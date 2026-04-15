@@ -63,7 +63,7 @@ export default function PosTerminalPage() {
     if (cart.length === 0) return;
     setLoading(true);
     try {
-      const res = await api("POST", "/pos/checkout", { items: cart, paymentMethod, totalAmount });
+      const res = await api("POST", "/pos/checkout", { items: cart, paymentMethod, totalAmount, finalAmount: totalAmount });
       setSuccessModal({ orderNo: res?.order?.orderNo || "OK" });
       setCart([]);
     } catch (err) { alert(err.message); } finally { setLoading(false); }
