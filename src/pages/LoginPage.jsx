@@ -14,8 +14,8 @@ export default function LoginPage() {
   // QoL: Dev mode auto-fill requested by user to speed up testing
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      setUsername('hq_admin');
-      setPassword('888888');
+      setUsername('admin');
+      setPassword('admin123');
     }
   }, []);
 
