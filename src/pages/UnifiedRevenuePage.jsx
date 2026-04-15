@@ -11,7 +11,21 @@ export default function UnifiedRevenuePage() {
 
   useEffect(() => {
     api('GET', '/analysis/revenue-detailed')
-      .then(res => { if(res && !res.error) setData(res); })
+      .then(res => {
+        if (res && !res.error) {
+          // Transform API response to expected structure
+          const apiData = res.data || res;
+          setData({
+            channels: {
+              dineIn: apiData.channels?.find(c => c.name?.includes('堂食') || c.name?.includes('Dine-in'))?.amount || 0,
+              grab: apiData.channels?.find(c => c.name?.includes('Grab'))?.amount || 0,
+              gofood: apiData.channels?.find(c => c.name?.includes('Go') && !c.name?.includes('Shop'))?.amount || 0,
+              shopee: apiData.channels?.find(c => c.name?.includes('Shopee'))?.amount || 0
+            },
+            alerts: apiData.alerts || { unaccepted: 0, overdue: 0 }
+          });
+        }
+      })
       .finally(() => setLoading(false));
   }, []);
 
