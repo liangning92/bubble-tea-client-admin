@@ -1,0 +1,346 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth, api } from '../context/AuthContext';
+
+export default function DashboardPage() {
+  const navigate = useNavigate();
+  const { user, logout, changeLang, lang, t } = useAuth();
+  const [summary, setSummary] = useState(null);
+  const [alerts, setAlerts] = useState([]);
+  const [dashboardAlerts, setDashboardAlerts] = useState(null);
+  const [alertExpanded, setAlertExpanded] = useState(false);
+  const [profit, setProfit] = useState(null);
+  const [pendingOrders, setPendingOrders] = useState([]);
+  const [recentSales, setRecentSales] = useState([]);
+  const [weekTrend, setWeekTrend] = useState([]);
+  const [staffData, setStaffData] = useState({ total: 0, active: 0 });
+  const [invWarnings, setInvWarnings] = useState(null);
+
+  const today = new Date().toISOString().split('T')[0];
+
+  const loadData = async () => {
+    const [summaryData, alertsData, profitData, ordersData, salesData, staffRes, warningsRes, dashAlertsRes] = await Promise.all([
+      api('GET', '/report/daily?date=' + today),
+      api('GET', '/alerts'),
+      api('GET', '/profit/daily?date=' + today),
+      api('GET', '/purchase-orders?status=pending'),
+      api('GET', '/sales'),
+      api('GET', '/staff'),
+      api('GET', '/inventory/warnings'),
+      api('GET', '/dashboard/alerts')
+    ]);
+    setSummary(summaryData);
+    // alerts API returns {success:true, data:{days, totalIngredients, items, needsOrderCount}} → extract items
+    setAlerts(alertsData?.data?.items || alertsData?.data || []);
+    setDashboardAlerts(dashAlertsRes || { inventory: [], attendance: [], hygiene: [], totalCount: 0 });
+    setProfit(profitData);
+    // purchase-orders API returns {success:true, data:[...]} → extract data
+    setPendingOrders(ordersData?.data || ordersData || []);
+    // inventory warnings
+    const warnData = warningsRes?.data || warningsRes;
+    setInvWarnings(warnData?.summary || null);
+
+    const allStaff = (staffRes?.data || staffRes || []);
+    const activeStaff = allStaff.filter(s => s.status === 'active').length;
+    setStaffData({ total: allStaff.length, active: activeStaff });
+
+    const sortedSales = (salesData?.data || salesData || []).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    setRecentSales(sortedSales.slice(0, 5));
+
+    const trend = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      const daySales = (salesData?.data || salesData || []).filter(s => s.createdAt.startsWith(dateStr));
+      const dayRevenue = daySales.reduce((sum, s) => sum + (s.quantity * (s.unitPrice || 10000)), 0);
+      const wdays = t.weekdays;
+      trend.push({ date: dateStr, day: wdays[d.getDay()], revenue: dayRevenue, count: daySales.length });
+    }
+    setWeekTrend(trend);
+  };
+
+  useEffect(() => { loadData(); }, []);
+
+  const formatCurrency = (num) => {
+    if (num >= 1000000) return 'Rp ' + (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000) return 'Rp ' + (num / 1000).toFixed(0) + 'K';
+    return 'Rp ' + num;
+  };
+
+  const maxRevenue = Math.max(...weekTrend.map(d => d.revenue), 1);
+
+  return (
+    <div className="page">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-xl font-bold">{t.appTitle}</h1>
+          <p className="text-gray-500 text-sm">{today} ({(user?.username)})</p>
+        </div>
+        <div className="flex gap-2">
+          <button onClick={() => changeLang(lang === 'zh' ? 'id' : lang === 'id' ? 'en' : 'zh')} className="btn btn-sm btn-secondary">
+            {lang === 'zh' ? 'EN' : lang === 'id' ? t.switchLang || 'EN' : t.switchLang || 'ID'}
+          </button>
+          <button onClick={logout} className="btn btn-sm btn-secondary">{t.logout}</button>
+        </div>
+      </div>
+
+      {/* 异常聚合卡片 */}
+      {dashboardAlerts && dashboardAlerts.totalCount > 0 && (
+        <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-lg">
+          <div className="flex items-center justify-between mb-3 cursor-pointer" onClick={() => setAlertExpanded(!alertExpanded)}>
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              </span>
+              <h3 className="font-bold text-red-700">⚠️ 异常提醒</h3>
+              <span className="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                {dashboardAlerts.totalCount}
+              </span>
+            </div>
+            <span className="text-red-500 text-sm">{alertExpanded ? '▲ 收起' : '▼ 展开'}</span>
+          </div>
+
+          {alertExpanded && (
+            <div className="space-y-3">
+              {/* 库存预警 */}
+              {dashboardAlerts.inventory && dashboardAlerts.inventory.length > 0 && (
+                <div className="border border-red-100 rounded-lg p-3 bg-white/50">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-red-600 text-sm">📦 库存预警 ({dashboardAlerts.inventory.length})</h4>
+                    <a href="/inventory" className="text-xs text-red-500 hover:text-red-700">查看详情 →</a>
+                  </div>
+                  <div className="space-y-1">
+                    {dashboardAlerts.inventory.slice(0, 3).map((item, i) => (
+                      <div key={i} className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-2">
+                          <span className={`w-2 h-2 rounded-full ${item.level === 'danger' ? 'bg-red-500' : item.level === 'warning' ? 'bg-yellow-500' : 'bg-green-500'}`}></span>
+                          <span className="text-gray-700">{item.name}</span>
+                        </div>
+                        <span className="text-gray-500">
+                          {item.stock}/{item.safeStock} {item.unit}
+                          <span className={`ml-2 text-xs ${item.level === 'danger' ? 'text-red-500' : item.level === 'warning' ? 'text-yellow-500' : 'text-green-500'}`}>
+                            {item.level === 'danger' ? '🔴 紧急' : item.level === 'warning' ? '🟡 预警' : '🟢 正常'}
+                          </span>
+                        </span>
+                      </div>
+                    ))}
+                    {dashboardAlerts.inventory.length > 3 && (
+                      <div className="text-xs text-gray-400 text-center">还有 {dashboardAlerts.inventory.length - 3} 项...</div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* 考勤异常 */}
+              {dashboardAlerts.attendance && dashboardAlerts.attendance.length > 0 && (
+                <div className="border border-red-100 rounded-lg p-3 bg-white/50">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-red-600 text-sm">📋 考勤异常 ({dashboardAlerts.attendance.length})</h4>
+                    <a href="/attendance" className="text-xs text-red-500 hover:text-red-700">查看详情 →</a>
+                  </div>
+                  <div className="space-y-1">
+                    {dashboardAlerts.attendance.slice(0, 3).map((att, i) => (
+                      <div key={i} className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                          <span className="text-gray-700">{att.staffName}</span>
+                        </div>
+                        <span className="text-red-500 text-xs font-medium">
+                          {att.type} {att.time && `@ ${att.time}`}
+                        </span>
+                      </div>
+                    ))}
+                    {dashboardAlerts.attendance.length > 3 && (
+                      <div className="text-xs text-gray-400 text-center">还有 {dashboardAlerts.attendance.length - 3} 项...</div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* 卫生超时 */}
+              {dashboardAlerts.hygiene && dashboardAlerts.hygiene.length > 0 && (
+                <div className="border border-red-100 rounded-lg p-3 bg-white/50">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-red-600 text-sm">🧹 卫生超时 ({dashboardAlerts.hygiene.length})</h4>
+                    <a href="/hygiene" className="text-xs text-red-500 hover:text-red-700">查看详情 →</a>
+                  </div>
+                  <div className="space-y-1">
+                    {dashboardAlerts.hygiene.slice(0, 3).map((hyg, i) => (
+                      <div key={i} className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                          <span className="text-gray-700">{hyg.task}</span>
+                        </div>
+                        <span className="text-red-500 text-xs">
+                          {hyg.assignedTo} · {hyg.scheduledTime}
+                        </span>
+                      </div>
+                    ))}
+                    {dashboardAlerts.hygiene.length > 3 && (
+                      <div className="text-xs text-gray-400 text-center">还有 {dashboardAlerts.hygiene.length - 3} 项...</div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
+        <div className="stat-card bg-indigo-600 text-white">
+          <div className="text-2xl font-bold">{formatCurrency(profit?.totalRevenue || 0)}</div>
+          <div className="text-white/80 text-sm">{t.todayRevenue}</div>
+          <div className="text-xs text-white/60 mt-1">{summary?.summary?.totalSales || 0} {t.orderCount}</div>
+        </div>
+        <div className="stat-card bg-blue-600 text-white">
+          <div className="text-2xl font-bold">{formatCurrency(profit?.netProfit || 0)}</div>
+          <div className="text-white/80 text-sm">{t.todayProfit}</div>
+          <div className="text-xs text-white/60 mt-1">{t.profitMargin} {profit?.totalRevenue > 0 ? ((profit.netProfit / profit.totalRevenue) * 100).toFixed(0) : 0}%</div>
+        </div>
+        <div className="stat-card bg-violet-600 text-white">
+          <div className="text-2xl font-bold">{staffData.total}</div>
+          <div className="text-white/80 text-sm">{t.totalStaff}</div>
+          <div className="text-xs text-white/60 mt-1">{staffData.active} {t.staffActive}</div>
+        </div>
+        <div className="stat-card bg-cyan-600 text-white">
+          <div className="text-2xl font-bold">{pendingOrders.length}</div>
+          <div className="text-white/80 text-sm">{t.pendingOrders}</div>
+          <div className="text-xs text-white/60 mt-1">{t.receiveStock}</div>
+        </div>
+        <div className="stat-card bg-rose-600 text-white">
+          <div className="text-2xl font-bold">{alerts.length}</div>
+          <div className="text-white/80 text-sm">{t.inventoryAlert}</div>
+          <div className="text-xs text-white/60 mt-1">{t.lowStockWarning}</div>
+        </div>
+      </div>
+
+      {/* 库存警告卡片 */}
+      {invWarnings && invWarnings.total > 0 && (
+        <div className="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-bold text-amber-800">🔔 库存警告</h3>
+            <a href="/inventory" className="text-sm text-amber-600 hover:text-amber-800">查看详情 →</a>
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-red-600">{invWarnings.criticalCount || 0}</div>
+              <div className="text-xs text-red-500">🔴 紧急</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-amber-600">{invWarnings.warningCount || 0}</div>
+              <div className="text-xs text-amber-500">🟡 预警</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-blue-600">{invWarnings.noticeCount || 0}</div>
+              <div className="text-xs text-blue-500">🔵 注意</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-green-600">{invWarnings.normalCount || 0}</div>
+              <div className="text-xs text-green-500">✅ 正常</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="card mb-6">
+        <h3 className="font-bold mb-4">📈 {t.todayRevenue}（7 {t.daysSupply}）</h3>
+        <div className="flex items-end justify-between gap-2 h-32">
+          {weekTrend.map((d, i) => (
+            <div key={i} className="flex-1 flex flex-col items-center">
+              <div className="w-full bg-indigo-100 rounded-t relative" style={{ height: `${Math.max((d.revenue / maxRevenue) * 100, d.revenue > 0 ? 4 : 2)}%` }}>
+                {d.revenue > 0 && (
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap text-indigo-600">
+                    {formatCurrency(d.revenue)}
+                  </div>
+                )}
+              </div>
+              <div className="text-xs text-gray-500 mt-2">{d.day}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="card">
+          <h3 className="font-bold mb-3">📋 {t.pendingItems}</h3>
+          {pendingOrders.length === 0 && alerts.length === 0 ? (
+            <div className="text-center py-6">
+              <div className="text-4xl mb-2 opacity-40">🎉</div>
+              <p className="text-sm text-gray-400">{t.noPendingItems}</p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {pendingOrders.slice(0, 3).map(o => (
+                <div key={o.id} className="flex items-center justify-between p-2 bg-yellow-50 rounded-lg">
+                  <div>
+                    <div className="font-medium text-sm">{o.inventory?.name || t.selectIngredient}</div>
+                    <div className="text-xs text-gray-500">{t.purchaseQuantity}: {o.quantity}</div>
+                  </div>
+                  <span className="badge bg-yellow-200 text-yellow-800">{t.pendingOrders}</span>
+                </div>
+              ))}
+              {alerts.slice(0, 3).map((a, i) => (
+                <div key={i} className="flex items-center justify-between p-2 bg-red-50 rounded-lg">
+                  <div className="font-medium text-sm text-red-700">{a.message}</div>
+                  <span className="badge bg-red-200 text-red-800">⚠️</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="card">
+          <h3 className="font-bold mb-3">{t.topProducts}</h3>
+          {summary?.summary?.topProducts?.length > 0 ? (
+            <div className="space-y-2">
+              {summary.summary.topProducts.slice(0, 4).map((p, i) => (
+                <div key={i} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${i === 0 ? 'bg-yellow-400' : i === 1 ? 'bg-gray-300' : i === 2 ? 'bg-orange-400' : 'bg-gray-200'}`}>
+                      {i + 1}
+                    </span>
+                    <span className="text-sm">{p.name}</span>
+                  </div>
+                  <span className="font-bold text-blue-600">{p.quantity} {t.cup}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-6">
+              <div className="text-4xl mb-2 opacity-40">🏆</div>
+              <p className="text-sm text-gray-400">{t.noData}</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="card mt-4">
+        <h3 className="font-bold mb-3">🕐 {t.recentSales}</h3>
+        {recentSales.length > 0 ? (
+          <div className="space-y-2">
+            {recentSales.map(s => (
+              <div key={s.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+                <div>
+                  <div className="font-medium text-sm">{s.productName}</div>
+                  <div className="text-xs text-gray-400">{new Date(s.createdAt).toLocaleString()}</div>
+                </div>
+                <div className="text-right">
+                  <div className="font-bold text-green-600">Rp {(s.quantity * (s.unitPrice || 0)).toLocaleString()}</div>
+                  <div className="text-xs text-gray-400">x{s.quantity}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-6">
+            <div className="text-4xl mb-2 opacity-40">📋</div>
+            <p className="text-sm text-gray-400">{t.noRecords}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

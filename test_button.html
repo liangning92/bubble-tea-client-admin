@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Test</title>
+    <style>
+        .btn { padding: 10px; background: blue; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:active { background: darkblue; }
+    </style>
+</head>
+<body>
+    <button class="btn" onclick="alert('Clicked!')">Test Button (onclick)</button>
+    <button class="btn" id="js-btn">Test Button (addEventListener)</button>
+    <script>
+        document.getElementById('js-btn').addEventListener('click', () => {
+            alert('Clicked via addEventListener!');
+        });
+    </script>
+</body>
+</html>

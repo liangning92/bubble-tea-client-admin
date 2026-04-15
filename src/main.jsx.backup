@@ -1,0 +1,25 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import ErrorBoundary from './components/ErrorBoundary'
+import './index.css'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+if (process.env.NODE_ENV === 'development') {
+  // 仅在开发环境使用StrictMode
+  root.render(
+    <React.StrictMode>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </React.StrictMode>
+  )
+} else {
+  // 生产环境不使用StrictMode，但保留ErrorBoundary
+  root.render(
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  )
+}
