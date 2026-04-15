@@ -8,5 +8,12 @@
   "arrowParens": "avoid",
   "endOfLine": "lf",
   "jsxSingleQuote": false,
-  "jsxBracketSameLine": false
+  "overrides": [
+    {
+      "files": "*.css",
+      "options": {
+        "parser": "css"
+      }
+    }
+  ]
 }
