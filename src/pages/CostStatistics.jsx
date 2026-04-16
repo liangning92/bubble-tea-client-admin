@@ -178,7 +178,7 @@ export default function CostStatistics({ hideHeader }) {
             <div className="flex-1 h-px bg-slate-100"></div>
             {entriesTotal > 0 && (
               <span className="text-[13px] font-black text-slate-400 uppercase tracking-widest">
-                已录入: Rp {formatCurrency(entriesTotal)}
+                {t('entriesRecordedLabel')} {formatCurrency(entriesTotal)}
               </span>
             )}
           </div>

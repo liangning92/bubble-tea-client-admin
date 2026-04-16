@@ -64,7 +64,7 @@ export default function ProductPage() {
       if (!res.error) success++;
     }
     
-    window.dispatchEvent(new CustomEvent('app:success', { detail: `成功更新 ${success} 个产品的价格` }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('bulkPriceUpdated') + (success > 1 ? ` (${success})` : '') }));
     setShowBulkPrice(false); loadData();
   };
 
@@ -117,9 +117,9 @@ export default function ProductPage() {
                       onClick={(e) => handleToggleShelve(p, e)}
                       disabled={togglingId === p.id}
                       className={`px-4 py-2 rounded-full text-[12px] font-black uppercase tracking-widest border transition-all active:scale-95 ${p.isActive !== false ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm shadow-emerald-500/20 hover:bg-red-500 hover:border-red-600' : 'bg-slate-100 text-slate-400 border-slate-200 hover:bg-emerald-500 hover:text-white hover:border-emerald-600'}`}
-                      title={p.isActive !== false ? '点击下架' : '点击上架'}
+                      title={p.isActive !== false ? t('clickToUnshelve') : t('clickToShelve')}
                     >
-                      {togglingId === p.id ? '...' : p.isActive !== false ? '🟢 在架' : '⚫ 下架'}
+                      {togglingId === p.id ? '...' : p.isActive !== false ? '🟢 ' + t('productOnShelf') : '⚫ ' + t('productOffShelf')}
                     </button>
                   </td>
                   <td className="px-4 py-4 text-center"><button onClick={(e) => { e.stopPropagation(); setShowDeleteConfirm(p); }} className="p-2 text-slate-300 hover:text-red-500 transition-colors">🗑️</button></td>

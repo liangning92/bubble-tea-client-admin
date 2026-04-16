@@ -124,10 +124,10 @@ export default function ProfitStatistics({ hideHeader }) {
         <div className="p-12">
            <div className="divide-y divide-slate-50">
               {[
-                { label: t('cogsLabel'), sub: 'Ingredients, Packaging & Sourcing', value: (data?.cost || 0) * 0.48, auto: true },
-                { label: t('opexLabel'), sub: 'Base Salary, Bonus & Insurance', value: (data?.cost || 0) * 0.35, auto: true },
-                { label: t('capexLabel'), sub: 'Rent, Lease & Store Maintenance', value: (data?.cost || 0) * 0.12, auto: false },
-                { label: t('advertLabel'), sub: 'Ads, Campaigns & Loyalties', value: (data?.cost || 0) * 0.05, auto: true },
+                { label: t('cogsLabel'), sub: t('cogsSub'), value: (data?.cost || 0) * 0.48, auto: true },
+                { label: t('opexLabel'), sub: t('opexSub'), value: (data?.cost || 0) * 0.35, auto: true },
+                { label: t('capexLabel'), sub: t('capexSub'), value: (data?.cost || 0) * 0.12, auto: false },
+                { label: t('advertLabel'), sub: t('advertSub'), value: (data?.cost || 0) * 0.05, auto: true },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col sm:flex-row justify-between items-center group/item px-10 py-10 hover:bg-slate-50 transition-all cursor-default">
                    <div className="flex gap-10 items-center w-full sm:w-auto mb-8 sm:mb-0">

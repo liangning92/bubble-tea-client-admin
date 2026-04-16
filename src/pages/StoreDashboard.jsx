@@ -103,7 +103,7 @@ export default function StoreDashboard() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 px-2">
         <div className="space-y-1.5">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">
-            {t('greeting')}, {user?.username?.toUpperCase() || 'MANAGER'}
+            {t('greeting')}, {user?.username?.toUpperCase()}
           </h2>
           <p className="text-slate-400 font-black uppercase text-[14px] tracking-[0.4em] opacity-60">
             {t('opCanvas') || '业务实时运营看板'}
@@ -214,7 +214,7 @@ export default function StoreDashboard() {
             <h4 className="text-[14px] font-black uppercase tracking-[0.4em] text-slate-400 relative z-10 mb-6 opacity-60">{t('smartInsight') || '经营智能诊断'}</h4>
             <div className="p-8 bg-slate-50/50 backdrop-blur-xl rounded-[32px] border border-slate-100 relative z-10 transition-all group-hover:bg-white group-hover:shadow-2xl group-hover:shadow-slate-900/5 group-hover:-translate-y-2">
               <p className="text-[14px] text-slate-900 leading-relaxed font-black tracking-tight italic opacity-80">
-                {t('aiInsightHint') || '"建议优化 AOV 以对冲原材料成本上涨。"'}
+                {t('aiInsightHint')}
               </p>
             </div>
           </div>
