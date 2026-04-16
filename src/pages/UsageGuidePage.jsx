@@ -95,13 +95,13 @@ export default function UsageGuidePage() {
     <div className="page">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-xl font-bold">
-          {lang === 'zh' ? '📖 使用指南' : '📖 Panduan Penggunaan'}
+          {t('usageGuideTitle')}
         </h1>
       </div>
 
       {/* 快速导航 */}
       <div className="card mb-6 bg-gradient-to-r from-blue-50 to-indigo-50">
-        <h3 className="font-bold mb-3">{lang === 'zh' ? '🚀 快速导航' : '🚀 Navigasi Cepat'}</h3>
+        <h3 className="font-bold mb-3">{t('quickNavigation')}</h3>
         <div className="grid grid-cols-3 gap-2">
           {guideItems.slice(0, 6).map((item, i) => (
             <div key={i} className="bg-white rounded-lg p-2 text-center border border-gray-100">

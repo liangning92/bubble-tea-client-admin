@@ -1,6 +1,8 @@
 export const i18n = {
   zh: {
     appTitle: 'Shopwise 门店智能管理',
+    usageGuideTitle: '📖 使用指南',
+    quickNavigation: '🚀 快速导航',
     growthRoadmapTitle: '2024-2025 全域增长日历与自动大促节点',
     uploadAssets: '＋ 上传营销素材',
     manage: '管理排单',
@@ -940,6 +942,8 @@ export const i18n = {
   },
   en: {
     appTitle: 'HQ Chain Management Hub',
+    usageGuideTitle: '📖 Usage Guide',
+    quickNavigation: '🚀 Quick Navigation',
     growthRoadmapTitle: '2024-2025 Growth Roadmap & Campaigns',
     uploadAssets: '＋ UPLOAD ASSETS',
     manage: 'Manage',
@@ -1625,6 +1629,8 @@ export const i18n = {
     uploadCourse: 'Upload New Course',
     completion: 'Completion',
     importFormatHint: 'Format: produk, jumlah, tanggal',
+    usageGuideTitle: '📖 Panduan Penggunaan',
+    quickNavigation: '🚀 Navigasi Cepat',
     growthRoadmapTitle: 'Peta Jalan 2024-2025 & Kampanye',
     uploadAssets: '＋ UNGGAH ASET',
     manage: 'Kelola',
