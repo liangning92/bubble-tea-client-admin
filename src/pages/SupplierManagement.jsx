@@ -200,7 +200,7 @@ export default function SupplierManagement() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-4">
                 <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('name') || '名称'}</label>
-                <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} required placeholder="供应商名称" />
+                <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} required placeholder={t('placeholderSupplierName')} />
               </div>
               <div className="space-y-4">
                 <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('category') || '类别'}</label>
@@ -211,7 +211,7 @@ export default function SupplierManagement() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('staffName') || '联系人'}</label>
-                  <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.contact} onChange={e => setForm(p => ({ ...p, contact: e.target.value }))} placeholder="联系人姓名" />
+                  <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.contact} onChange={e => setForm(p => ({ ...p, contact: e.target.value }))} placeholder={t('placeholderContactName')} />
                 </div>
                 <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('contactPhone') || '电话'}</label>
@@ -224,7 +224,7 @@ export default function SupplierManagement() {
               </div>
               <div className="space-y-4">
                 <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('address') || '地址'}</label>
-                <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.address} onChange={e => setForm(p => ({ ...p, address: e.target.value }))} placeholder="供应商地址" />
+                <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.address} onChange={e => setForm(p => ({ ...p, address: e.target.value }))} placeholder={t('placeholderSupplierAddress')} />
               </div>
               <div className="flex gap-3 pt-4">
                 <button type="submit" disabled={saving} className="flex-1 btn-premium active !bg-[#FF7700] !text-white !h-14 border-none shadow-xl shadow-orange-500/20 text-[14px] font-black uppercase tracking-widest !rounded-[20px] active:scale-95 disabled:opacity-50 transition-all">

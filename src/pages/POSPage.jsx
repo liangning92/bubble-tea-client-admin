@@ -449,7 +449,7 @@ export default function POSPage() {
           <div className="mb-6 flex gap-2">
             <input 
               type="text" 
-              placeholder="输入或扫描优惠码/核销码" 
+              placeholder={t('placeholderCouponCode')} 
               className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-100 outline-none transition-all"
               value={couponCode}
               onChange={e => setCouponCode(e.target.value)}
@@ -538,7 +538,7 @@ export default function POSPage() {
                   <span className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 font-black text-lg">📱</span>
                   <input 
                     type="text" 
-                    placeholder="顾客手机号 (WhatsApp ID)" 
+                    placeholder={t('placeholderCustomerPhone')} 
                     className="w-full pl-12 pr-5 py-5 bg-slate-50 rounded-2xl border-2 border-slate-200 text-xl font-black focus:border-indigo-500 outline-none transition-all placeholder:text-slate-300" 
                     id="success-modal-phone"
                   />
@@ -602,7 +602,7 @@ export default function POSPage() {
                        autoFocus
                        value={blindCashInput}
                        onChange={(e) => setBlindCashInput(e.target.value)}
-                       placeholder="现金总额 (Rp)"
+                       placeholder={t('placeholderCashTotal')}
                        className="w-full text-center text-3xl font-black text-slate-800 bg-slate-100 border-2 border-slate-200 rounded-xl py-3 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all mb-6"
                     />
                   <div className="flex gap-4 w-full">

@@ -61,7 +61,7 @@ export default function StoreSettingsPage() {
                 </div>
                 <div className="space-y-4">
                    <label className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">品牌标语/愿景</label>
-                   <input className="input-premium w-full !p-6 !rounded-[24px] bg-slate-50 border-none transition-all placeholder:text-slate-300 font-bold" placeholder="写一句动人的品牌标语..." value={store.description} onChange={e => setStore({...store, description: e.target.value})} />
+                   <input className="input-premium w-full !p-6 !rounded-[24px] bg-slate-50 border-none transition-all placeholder:text-slate-300 font-bold" placeholder={t('placeholderBrandSlogan')} value={store.description} onChange={e => setStore({...store, description: e.target.value})} />
                 </div>
                 <div className="grid grid-cols-2 gap-6">
                    <div className="space-y-4">

@@ -213,7 +213,7 @@ export default function StaffPortal() {
               <textarea 
                 className="w-full bg-slate-50 border-2 border-slate-100 rounded-[24px] p-6 text-sm font-bold focus:border-indigo-500 outline-none transition-all placeholder:text-slate-300"
                 rows="4"
-                placeholder="例如：因交通意外导致迟到，附证明..."
+                placeholder={t('placeholderStaffAppeal')}
                 value={appealModal.reason}
                 onChange={e => setAppealModal({...appealModal, reason: e.target.value})}
               ></textarea>

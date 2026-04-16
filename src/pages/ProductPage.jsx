@@ -167,7 +167,7 @@ export default function ProductPage() {
              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                    <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">{t('productNameLabel')}</label>
-                   <input className="input-premium" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder="手打柠檬茶" />
+                   <input className="input-premium" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder={t('placeholderDrinkName')} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                    <div>

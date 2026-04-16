@@ -142,7 +142,7 @@ export default function RewardManagementTab({ lang = 'zh' }) {
               <textarea 
                 className="w-full bg-slate-50 border-2 border-slate-100 rounded-[24px] p-6 text-sm font-bold focus:border-indigo-500 outline-none transition-all"
                 rows="3"
-                placeholder="例如：情况属实，予以撤销..."
+                placeholder={t('placeholderAppealResult')}
                 value={note}
                 onChange={e => setNote(e.target.value)}
               ></textarea>

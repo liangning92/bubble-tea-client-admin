@@ -53,7 +53,7 @@ export default function CouponFactory({ hideHeader }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                  <div>
                     <label className="block text-[14px] font-bold text-slate-500 mb-1">名称 (Name)</label>
-                    <input type="text" className="input w-full bg-white" placeholder="e.g. 芝芝系列专享" required value={newCoupon.name} onChange={e=>setNewCoupon({...newCoupon, name: e.target.value})} />
+                    <input type="text" className="input w-full bg-white" placeholder={t('placeholderCategoryExample')} required value={newCoupon.name} onChange={e=>setNewCoupon({...newCoupon, name: e.target.value})} />
                  </div>
                  <div>
                     <label className="block text-[14px] font-bold text-slate-500 mb-1">优惠类型 (Type)</label>

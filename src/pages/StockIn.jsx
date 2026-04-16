@@ -93,7 +93,7 @@ export default function StockInPage({ hideHeader }) {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                  <div className="md:col-span-2 space-y-4 relative" ref={dropdownRef}>
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-2">搜索并选择物料</label>
-                    <input className="input-premium w-full !p-5 !rounded-2xl font-bold bg-slate-50 border-none" placeholder="输入物料名称或编码..." value={searchText} onChange={e => { setSearchText(e.target.value); setShowDropdown(true); }} />
+                    <input className="input-premium w-full !p-5 !rounded-2xl font-bold bg-slate-50 border-none" placeholder={t('placeholderMaterialSearch')} value={searchText} onChange={e => { setSearchText(e.target.value); setShowDropdown(true); }} />
                     {showDropdown && searchText.trim() && (
                        <div className="absolute top-full left-0 w-full bg-white border border-slate-100 rounded-2xl shadow-3xl z-50 mt-2 overflow-hidden animate-soft">
                           {inventory.filter(i => i.name.includes(searchText)).slice(0, 6).map(s => (

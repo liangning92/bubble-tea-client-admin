@@ -187,7 +187,7 @@ export default function AttendancePage() {
                  <div className="bg-slate-50 p-6 rounded-3xl space-y-4 border border-slate-100">
                     <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">修正事由 (行政审计必填)</span>
                     <textarea 
-                      placeholder="请详细描述修正原因（如：POS硬件故障、店长现场补验等）..."
+                      placeholder={t('placeholderAttendanceReason')}
                       className="w-full h-32 bg-white border-2 border-slate-200 rounded-2xl p-4 text-[14px] font-bold outline-none focus:border-slate-900 transition-all"
                     ></textarea>
                  </div>

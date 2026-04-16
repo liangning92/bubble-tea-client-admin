@@ -331,9 +331,9 @@ export default function StaffPage({ defaultTab: initialTab }) {
                     <option value="">关联员工</option>
                     {(staffList || []).map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
                   </select>
-                  <input className="input-premium text-[14px]" type="number" placeholder="金额 (Rp)" value={rewardForm.amount} onChange={e => setRewardForm({...rewardForm, amount: e.target.value})} required />
+                  <input className="input-premium text-[14px]" type="number" placeholder={t('placeholderAmount')} value={rewardForm.amount} onChange={e => setRewardForm({...rewardForm, amount: e.target.value})} required />
                 </div>
-                <input className="input-premium w-full text-[14px]" placeholder="缘由 / 事件说明" value={rewardForm.reason} onChange={e => setRewardForm({...rewardForm, reason: e.target.value})} />
+                <input className="input-premium w-full text-[14px]" placeholder={t('placeholderIncidentReason')} value={rewardForm.reason} onChange={e => setRewardForm({...rewardForm, reason: e.target.value})} />
                 <div className="flex gap-4">
                    <button type="submit" className={`flex-1 px-8 py-3 rounded-2xl font-black text-[14px] uppercase ${rewardForm.type === 'reward' ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'}`}>提交记录</button>
                    <button type="button" onClick={() => setShowAddReward(false)} className="flex-1 px-8 py-3 bg-white/5 text-slate-500 rounded-2xl font-black text-[14px] uppercase">取消</button>

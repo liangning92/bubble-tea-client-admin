@@ -133,12 +133,12 @@ export default function TaxReporter({ hideHeader }) {
             <div className="space-y-4">
               <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('storeNameLabel')}</label>
               <input className="input-premium w-full !bg-slate-50 focus:!bg-white border-none !rounded-[24px] !p-6 font-black text-[16px] shadow-inner"
-                value={storeInfo.name} onChange={e => setStoreInfo(p => ({ ...p, name: e.target.value }))} placeholder="门店名称" />
+                value={storeInfo.name} onChange={e => setStoreInfo(p => ({ ...p, name: e.target.value }))} placeholder={t('placeholderStoreName')} />
             </div>
             <div className="space-y-4">
               <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('merchantAddressLabel')}</label>
               <input className="input-premium w-full !bg-slate-50 focus:!bg-white border-none !rounded-[24px] !p-6 font-black text-[16px] shadow-inner"
-                value={storeInfo.address} onChange={e => setStoreInfo(p => ({ ...p, address: e.target.value }))} placeholder="门店地址" />
+                value={storeInfo.address} onChange={e => setStoreInfo(p => ({ ...p, address: e.target.value }))} placeholder={t('placeholderStoreAddress')} />
             </div>
             <div className="space-y-4">
               <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('taxpayerIdLabel')}</label>
