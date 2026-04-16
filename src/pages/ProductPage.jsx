@@ -6,6 +6,7 @@ export default function ProductPage() {
   const { lang, t } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [togglingId, setTogglingId] = useState(null);
   
   // 弹窗状态
   const [showAdd, setShowAdd] = useState(false);
@@ -25,6 +26,20 @@ export default function ProductPage() {
   };
 
   useEffect(() => { loadData(); }, []);
+
+  const handleToggleShelve = async (product, e) => {
+    e?.stopPropagation();
+    setTogglingId(product.id);
+    try {
+      const newStatus = product.isActive ? false : true;
+      const res = await api('PUT', `/products/${product.id}/shelve`, { isActive: newStatus });
+      if (res && !res.error) {
+        setProducts(prev => prev.map(p => p.id === product.id ? { ...p, isActive: newStatus } : p));
+      }
+    } finally {
+      setTogglingId(null);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,6 +101,7 @@ export default function ProductPage() {
                 <th className="px-4 py-3 text-left text-[12px] font-black text-slate-400 uppercase tracking-widest">分类</th>
                 <th className="px-4 py-3 text-right text-[12px] font-black text-slate-400 uppercase tracking-widest">售价</th>
                 <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">BOM配方</th>
+                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">状态</th>
                 <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">操作</th>
               </tr>
             </thead>
@@ -96,6 +112,16 @@ export default function ProductPage() {
                   <td className="px-4 py-4"><span className="badge-pill bg-orange-50 text-orange-600 border-none text-[12px]"><BusinessDataTranslator text={p.category} /></span></td>
                   <td className="px-4 py-4 text-right font-black text-slate-900">{t('currencySymbol')} {p.sellingPrice.toLocaleString()}</td>
                   <td className="px-4 py-4 text-center"><span className={`text-[12px] font-black px-2 py-1 rounded-full ${p.bomItemsCount > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>{p.bomItemsCount > 0 ? `${p.bomItemsCount}项` : '未配置'}</span></td>
+                  <td className="px-4 py-4 text-center">
+                    <button
+                      onClick={(e) => handleToggleShelve(p, e)}
+                      disabled={togglingId === p.id}
+                      className={`px-4 py-2 rounded-full text-[12px] font-black uppercase tracking-widest border transition-all active:scale-95 ${p.isActive !== false ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm shadow-emerald-500/20 hover:bg-red-500 hover:border-red-600' : 'bg-slate-100 text-slate-400 border-slate-200 hover:bg-emerald-500 hover:text-white hover:border-emerald-600'}`}
+                      title={p.isActive !== false ? '点击下架' : '点击上架'}
+                    >
+                      {togglingId === p.id ? '...' : p.isActive !== false ? '🟢 在架' : '⚫ 下架'}
+                    </button>
+                  </td>
                   <td className="px-4 py-4 text-center"><button onClick={(e) => { e.stopPropagation(); setShowDeleteConfirm(p); }} className="p-2 text-slate-300 hover:text-red-500 transition-colors">🗑️</button></td>
                 </tr>
               ))}
