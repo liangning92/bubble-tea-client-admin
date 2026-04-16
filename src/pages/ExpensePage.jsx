@@ -106,7 +106,7 @@ export default function ExpensePage() {
           <select className="input" value={name} onChange={e => setName(e.target.value)} required>
             <option value="">{t.selectExpenseType}</option>
             {expenseTypes.map(e => (
-              <option key={e.value} value={e.value}>{t.lang === 'zh' ? e.zh : e.id}</option>
+              <option key={e.value} value={e.value}>{lang === 'zh' ? e.zh : e.id}</option>
             ))}
           </select>
           <input className="input" type="number" step="0.01" placeholder={t.amount} value={amount} onChange={e => setAmount(e.target.value)} required />

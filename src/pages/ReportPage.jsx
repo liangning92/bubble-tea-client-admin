@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
 export default function ReportPage() {
-  const { t } = useAuth();
+  const { t, lang } = useAuth();
   const [report, setReport] = useState(null);
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [loading, setLoading] = useState(false);
@@ -83,7 +83,7 @@ export default function ReportPage() {
                 {report.suggestions.map((s, i) => (
                   <div key={i} className="text-sm">
                     <span className="font-medium">{s.ingredient}</span>:
-                    {t.lang === 'zh'
+                    {lang === 'zh'
                       ? ` 建议订购 ${s.suggested}${s.unit} (当前: ${s.current}${s.unit})`
                       : ` Saran pesan ${s.suggested}${s.unit} (Saat ini: ${s.current}${s.unit})`
                     }

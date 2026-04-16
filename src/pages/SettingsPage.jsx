@@ -49,9 +49,7 @@ export default function SettingsPage() {
   };
 
   const handleClearData = async () => {
-    const confirmText = lang === 'zh'
-      ? '⚠️ 确定要清空所有业务数据吗？此操作不可恢复！\n\n将清空：销售记录、费用记录、库存日志'
-      : '⚠️ Yakin ingin hapus semua data bisnis? Tindakan ini tidak dapat dibatalkan!\n\nAkan dihapus: Catatan penjualan, biaya, log inventaris';
+    const confirmText = t('clearDataConfirmText');
     if (!confirm(confirmText)) return;
     if (!confirm(t('clearDataConfirm'))) return;
     const res = await api('DELETE', '/data/business');
