@@ -1,6 +1,10 @@
 export const i18n = {
   zh: {
     appTitle: 'Shopwise 门店智能管理',
+    importFormatHint: '支持格式: 产品, 数量, 日期',
+    import: '批量导入',
+    calculatingRevenue: '正在核算营收动态数据...',
+    cups: '杯',
     expirationMonitorTitle: '半成品效期监控',
     expired: '已过期',
     expiringSoon: '即将过期',
@@ -923,6 +927,10 @@ export const i18n = {
   },
   en: {
     appTitle: 'HQ Chain Management Hub',
+    importFormatHint: 'Format: product, quantity, date',
+    import: 'IMPORT',
+    calculatingRevenue: 'CALCULATING REVENUE FLOW...',
+    cups: 'CUPS',
     expirationMonitorTitle: 'Expiration Monitor',
     expired: 'Expired',
     expiringSoon: 'Expiring Soon',
@@ -1590,6 +1598,10 @@ export const i18n = {
     trainingSubtitle: 'Enterprise Training & Certification Engine',
     uploadCourse: 'Upload New Course',
     completion: 'Completion',
+    importFormatHint: 'Format: produk, jumlah, tanggal',
+    import: 'IMPOR',
+    calculatingRevenue: 'MENGHITUNG ARUS PENDAPATAN...',
+    cups: 'CANGKIR',
     enrolledStaff: 'Enrolled Staff',
     previewContent: 'Preview Content',
     generateQuiz: 'Generate Quiz',

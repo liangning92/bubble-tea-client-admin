@@ -157,7 +157,7 @@ function ImportModal({ products, onClose, onSuccess }) {
                 <div className="text-5xl mb-4">📤</div>
                 <div className="text-[14px] font-black text-slate-900 mb-2 uppercase tracking-widest">{tl('点击上传 CSV/Excel', 'Click to upload CSV/Excel', 'Klik untuk upload')}</div>
                 <div className="text-[14px] text-slate-500 uppercase">
-                  {lang === 'zh' ? '支持格式: 产品, 数量, 日期' : 'Format: product, quantity, date'}
+                  {t('importFormatHint')}
                 </div>
                 <input ref={fileInputRef} type="file" accept=".csv,.xlsx,.xls,.pdf,.txt" className="hidden" onChange={handleFile} disabled={importing} />
               </div>
@@ -300,7 +300,7 @@ function RevenuePage() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-black text-slate-900 tracking-tight">{t.title}</h2>
         <button onClick={() => setShowImport(true)} className="btn-premium active !px-8 shadow-sm">
-          📥 {lang === 'zh' ? '批量导入' : 'IMPORT'}
+          📥 {t('import')}
         </button>
       </div>
 
@@ -313,7 +313,7 @@ function RevenuePage() {
       </div>
 
       {loading ? (
-        <div className="py-20 text-center text-[14px] font-black text-indigo-400 animate-pulse tracking-[0.3em]">{lang === 'zh' ? '正在核算营收动态数据...' : 'CALCULATING REVENUE FLOW...'}</div>
+        <div className="py-20 text-center text-[14px] font-black text-indigo-400 animate-pulse tracking-[0.3em]">{t('calculatingRevenue')}</div>
       ) : data ? (
         <div className="space-y-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -341,7 +341,7 @@ function RevenuePage() {
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-[14px] ${i < 3 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'bg-slate-100 text-slate-400'}`}>{i + 1}</div>
                   <div className="flex-1">
                     <div className="font-black text-slate-900 text-sm">{p.name}</div>
-                    <div className="text-[14px] text-slate-500 font-bold mt-1 uppercase tracking-tight">{p.quantity} {lang === 'zh' ? '杯' : 'CUPS'} · {formatCurrency(p.revenue)}</div>
+                    <div className="text-[14px] text-slate-500 font-bold mt-1 uppercase tracking-tight">{p.quantity} {t('cups')} · {formatCurrency(p.revenue)}</div>
                   </div>
                   <div className="w-32 h-2 bg-slate-100 rounded-full overflow-hidden hidden sm:block border border-slate-200/50">
                     <div className="h-full bg-indigo-500" style={{ width: `${(p.quantity / (data.topProducts[0].quantity || 1)) * 100}%` }}></div>
