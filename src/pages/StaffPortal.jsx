@@ -3,7 +3,7 @@ import { useAuth, api } from '../context/AuthContext';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 
 export default function StaffPortal() {
-  const { user, lang } = useAuth();
+  const { user, lang, t } = useAuth();
   const [salaries, setSalaries] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [rewards, setRewards] = useState([]);
@@ -45,7 +45,7 @@ export default function StaffPortal() {
           const res = await api('POST', '/attendance/clock-in-qr', { token: decodedText });
           if (res.error) throw new Error(res.error);
           setScanResult('Check-in Success!');
-          window.dispatchEvent(new CustomEvent('app:success', { detail: '打卡成功！' }));
+          window.dispatchEvent(new CustomEvent('app:success', { detail: t('clockInSuccess') }));
           scanner.clear();
           setShowScanner(false);
           loadPortalData();
@@ -62,7 +62,7 @@ export default function StaffPortal() {
     if (!appealModal?.reason) return;
     try {
       await api('POST', `/reward/${appealModal.id}/appeal`, { reason: appealModal.reason });
-      window.dispatchEvent(new CustomEvent('app:success', { detail: '申诉已提交，请等待审核' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('appealSubmitted') }));
       setAppealModal(null);
       loadPortalData();
     } catch (e) {

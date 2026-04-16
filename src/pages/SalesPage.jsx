@@ -38,7 +38,7 @@ export default function SalesPage() {
     if (result?.error) return;
     setQuantity(1);
     loadData();
-    window.dispatchEvent(new CustomEvent('app:success', { detail: '销售已录入' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('salesRecorded') }));
   };
 
   const handleImport = async (e) => {
@@ -51,7 +51,7 @@ export default function SalesPage() {
     setImporting(false);
     if (result?.error) return;
     loadData();
-    window.dispatchEvent(new CustomEvent('app:success', { detail: t.importSuccess || 'Import successful' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('importSuccess') }));
   };
 
   const handleExcelFile = async (e) => {
@@ -61,7 +61,7 @@ export default function SalesPage() {
     try {
       const { rows, error } = await parseFile(file);
       if (error || rows.length < 2) {
-        window.dispatchEvent(new CustomEvent('app:error', { detail: error || '文件无有效数据' }));
+        window.dispatchEvent(new CustomEvent('app:error', { detail: error || t('noValidData') }));
         return;
       }
 
@@ -86,7 +86,7 @@ export default function SalesPage() {
 
       setParsedSales(allItems.filter(i => i.productName));
     } catch (err) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: '解析失败: ' + err.message }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: t('parseFailed') + ': ' + err.message }));
     }
   };
 
@@ -130,7 +130,7 @@ export default function SalesPage() {
     setParsedSales([]);
     loadData();
     if (failed === 0) {
-      window.dispatchEvent(new CustomEvent('app:success', { detail: t.importSuccess || 'Import successful' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('importSuccess') }));
     } else {
       window.dispatchEvent(new CustomEvent('app:error', { detail: `${failed} items failed` }));
     }

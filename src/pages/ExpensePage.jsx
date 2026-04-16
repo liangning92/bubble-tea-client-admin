@@ -28,16 +28,16 @@ export default function ExpensePage() {
     e.preventDefault();
     const parsedAmount = parseFloat(amount);
     if (!name) {
-      alert(lang === 'zh' ? '请选择费用类型' : lang === 'en' ? 'Please select expense type' : 'Pilih jenis biaya');
+      alert(t('selectExpenseType'));
       return;
     }
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      alert(lang === 'zh' ? '请输入有效金额' : lang === 'en' ? 'Please enter a valid amount' : 'Masukkan jumlah yang valid');
+      alert(t('enterValidAmount'));
       return;
     }
     const result = await api('POST', '/expenses', { name, amount: parsedAmount });
     if (result?.error) {
-      alert((lang === 'zh' ? '保存失败：' : lang === 'en' ? 'Save failed: ' : 'Gagal menyimpan: ') + (result.error || ''));
+      alert(t('saveFailed') + (result.error || ''));
       return;
     }
     setName('');
