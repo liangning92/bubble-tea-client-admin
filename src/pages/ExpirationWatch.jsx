@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 export default function ExpirationWatch() {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   
   // 模拟泡好的半成品 (Brewed Teas, Cut Fruits, Pearls)
   const [batches, setBatches] = useState([
@@ -24,7 +24,7 @@ export default function ExpirationWatch() {
 
   const handleDestroy = (id) => {
       setBatches(batches.filter(b => b.id !== id));
-      window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '已记录废弃处理' : 'Waste recorded' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('wasteRecorded') }));
   };
 
   return (

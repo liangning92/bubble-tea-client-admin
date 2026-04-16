@@ -56,7 +56,7 @@ export default function ReportExportPage() {
         await exportPdf();
       }
     } catch (e) {
-      alert(lang === 'zh' ? '导出失败' : 'Ekspor gagal');
+      alert(t('exportFailed'));
       console.error(e);
     }
     setLoading(false);

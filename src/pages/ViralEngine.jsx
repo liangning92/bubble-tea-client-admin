@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
 export default function ViralEngine({ hideHeader }) {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [loading, setLoading] = useState(false);
   const [isEditingStrategy, setIsEditingStrategy] = useState(false);
   
@@ -37,7 +37,7 @@ export default function ViralEngine({ hideHeader }) {
         // 假设后端已支持扩展营销字段，此处模拟同步
         marketingViralStrategy: JSON.stringify(strategy) 
       });
-      window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '增长策略已更新并下发' : 'Strategy updated & deployed' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('strategyUpdated') }));
       setIsEditingStrategy(false);
     } catch (err) {
       console.error(err);

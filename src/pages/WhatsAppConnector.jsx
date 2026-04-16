@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { api, useAuth } from '../context/AuthContext';
 
 export default function WhatsAppConnector({ hideHeader }) {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [status, setStatus] = useState({ status: 'DISCONNECTED', hasQr: false, qrCode: null });
   const [loading, setLoading] = useState(false);
   const [commMode, setCommMode] = useState(localStorage.getItem('wa_comm_mode') || 'auto'); // auto or safe

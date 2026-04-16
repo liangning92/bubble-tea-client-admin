@@ -11,12 +11,12 @@ const PRESET_HOLIDAYS = [
 ];
 
 export default function MarketingCalendar({ hideHeader }) {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [events, setEvents] = useState(PRESET_HOLIDAYS);
   const [isEditing, setIsEditing] = useState(null);
 
   const handleUpload = () => {
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '营销素材上传成功' : 'Marketing assets uploaded' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('marketingAssetUploaded') }));
   };
 
   return (

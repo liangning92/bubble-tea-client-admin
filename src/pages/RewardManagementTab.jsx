@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../context/AuthContext';
+import { useAuth, api } from '../context/AuthContext';
 
 export default function RewardManagementTab({ lang = 'zh' }) {
+  const { t } = useAuth();
   const [rewards, setRewards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // all | appealed | penalty | reward
@@ -25,7 +26,7 @@ export default function RewardManagementTab({ lang = 'zh' }) {
   const handleResolve = async (id, action) => {
     try {
       await api('POST', `/reward/${id}/resolve`, { action, note });
-      window.dispatchEvent(new CustomEvent('app:success', { detail: '处理成功' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('rewardProcessed') }));
       setResolveModal(null);
       setNote('');
       loadRewards();

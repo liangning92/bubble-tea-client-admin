@@ -30,7 +30,7 @@ export default function StoreSettingsPage() {
   const handleSave = async () => {
     const res = await api('PUT', '/store', store);
     if (!res?.error) {
-      window.dispatchEvent(new CustomEvent('app:success', { detail: t('opSuccess') || '设置已保存' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('settingsSaved') }));
     }
   };
 

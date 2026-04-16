@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
 export default function StockInPage({ hideHeader }) {
-  const { user } = useAuth();
+  const { user, t } = useAuth();
   const [inventory, setInventory] = useState([]);
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ export default function StockInPage({ hideHeader }) {
       });
       setSearchText(''); setSelectedInvId(''); setQuantity(1); setUnitPrice(0); setExpiryDate(''); setNotes('');
       loadData();
-      window.dispatchEvent(new CustomEvent('app:success', { detail: '物料入库已记录至账表' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('stockInRecorded') }));
     } catch (err) {
       console.error(err);
     } finally {

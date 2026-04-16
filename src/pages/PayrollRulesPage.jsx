@@ -26,7 +26,7 @@ export default function PayrollRulesPage() {
   const handleSave = async () => {
     const res = await api('POST', '/system/config', { payrollRules: rules });
     if (!res?.error) {
-      window.dispatchEvent(new CustomEvent('app:success', { detail: '薪资结算规则已全线同步' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('payrollRuleSaved') }));
     }
   };
 

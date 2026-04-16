@@ -22,7 +22,7 @@ export default function SettingsPage() {
     localStorage.setItem('auto_refresh', autoRefresh);
     localStorage.setItem('currency', currency);
     localStorage.setItem('date_format', dateFormat);
-    alert(lang === 'zh' ? '设置已保存' : 'Pengaturan disimpan');
+    alert(t('settingsSaved'));
   };
 
   const handleExportData = async () => {
@@ -170,7 +170,7 @@ export default function SettingsPage() {
       if (result.error) alert(result.error);
       else setImportResult(result);
     } catch (err) {
-      alert(lang === 'zh' ? '上传失败: ' + err.message : 'Upload gagal: ' + err.message);
+      alert(t('uploadFailed') + err.message);
     }
     e.target.value = '';
   };

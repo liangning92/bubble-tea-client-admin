@@ -43,7 +43,7 @@ export default function POSHardwareConfig() {
   const handleSave = async (newCfg = config) => {
     try {
       await api('POST', '/system/config', newCfg);
-      window.dispatchEvent(new CustomEvent('app:success', { detail: t('opSuccess') || '同步成功' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('syncSuccess') }));
     } catch (e) {
       console.error(e);
     }

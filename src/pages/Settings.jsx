@@ -50,7 +50,7 @@ export default function SettingsPage() {
     e.preventDefault();
     const res = await api('POST', '/system/config', config);
     if (!res.error) {
-      window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '全局配置已保存' : 'Konfigurasi disimpan' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('globalConfigSaved') }));
     }
   };
 
@@ -61,7 +61,7 @@ export default function SettingsPage() {
       setShowAddMapping(false);
       setMappingForm({ sourceText: '', translatedText: '', targetLang: 'zh', category: 'product' });
       loadMappings();
-      window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '映射已添加' : 'Pemetaan ditambahkan' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('mappingAdded') }));
     }
   };
 
@@ -85,7 +85,7 @@ export default function SettingsPage() {
     setShowAddUser(false);
     setUserForm({ username: '', password: '', role: 'staff', name: '' });
     loadUsers();
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '用户已添加' : 'Pengguna ditambahkan' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('userAdded') }));
   };
 
   const handleDeleteUser = async (id) => {
@@ -107,7 +107,7 @@ export default function SettingsPage() {
   const handleSmartImport = async (e) => {
     e.preventDefault();
     if (!smartImportText.trim()) {
-      alert(lang === 'zh' ? '请输入导入内容' : 'Masukkan konten');
+      alert(t('enterImportContent'));
       return;
     }
     const result = await api('POST', '/import/smart', { text: smartImportText });
@@ -136,7 +136,7 @@ export default function SettingsPage() {
         setImportResult(result);
       }
     } catch (err) {
-      alert(lang === 'zh' ? '上传失败: ' + err.message : 'Upload gagal: ' + err.message);
+      alert(t('uploadFailed') + err.message);
     }
     e.target.value = '';
   };
