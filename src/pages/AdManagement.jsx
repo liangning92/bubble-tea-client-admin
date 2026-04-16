@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../context/AuthContext';
+import { useAuth, api } from '../context/AuthContext';
 import BusinessDataTranslator from '../components/BusinessDataTranslator';
 
 export default function AdManagement() {
+  const { t } = useAuth();
   const [ads, setAds] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -39,9 +40,9 @@ export default function AdManagement() {
     try {
       await api('POST', '/system/config', { posDisplayMode: mode });
       setDisplayMode(mode);
-      window.dispatchEvent(new CustomEvent('app:success', { detail: `已切换至 ${mode === 'dual' ? '双屏' : '单屏'} 模式` }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('displayModeChanged') }));
     } catch (e) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: '修改显示模式失败' } }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: t('displayModeChangeFailed') } }));
     } finally {
       setLoading(false);
     }
@@ -51,10 +52,10 @@ export default function AdManagement() {
     setLoading(true);
     try {
       const res = await api('POST', '/marketing/ads/auto-generate');
-      window.dispatchEvent(new CustomEvent('app:success', { detail: `AI 成功生成 ${res.count} 个精准营销内容` }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('aiGenSuccess').replace('{n}', res.count) }));
       loadAds();
     } catch (e) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: '生成失败，请检查近期销量数据' } }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: t('adGenerateFailed') } }));
     } finally {
       setLoading(false);
     }
@@ -66,7 +67,7 @@ export default function AdManagement() {
       const res = await api('GET', '/marketing/ads');
       setAds(Array.isArray(res) ? res : []);
     } catch (e) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: '加载广告失败' } }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: t('adLoadFailed') } }));
     } finally {
       setLoading(false);
     }
@@ -83,22 +84,22 @@ export default function AdManagement() {
       }
       setShowModal(false);
       loadAds();
-      window.dispatchEvent(new CustomEvent('app:success', { detail: '保存成功' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('adSaveSuccess') }));
     } catch (e) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: '保存失败' } }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: t('adSaveFailed') } }));
     } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('确定删除该广告吗？')) return;
+    if (!window.confirm(t('deleteConfirm'))) return;
     try {
       await api('DELETE', `/marketing/ads/${id}`);
       loadAds();
-      window.dispatchEvent(new CustomEvent('app:success', { detail: '已删除' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('adDeleteSuccess') }));
     } catch (e) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: '删除失败' } }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: { message: t('adDeleteFailed') } }));
     }
   };
 
@@ -106,7 +107,7 @@ export default function AdManagement() {
     <div className="p-8 bg-slate-50 min-h-screen">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
         <div>
-          <h1 className="text-4xl font-black text-slate-800 tracking-tight">屏幕与设备中心</h1>
+          <h1 className="text-4xl font-black text-slate-800 tracking-tight">t('screenDeviceCenter')</h1>
           <p className="text-slate-500 font-medium mt-1 uppercase tracking-widest text-[14px]">Hardware & Screen Configuration</p>
         </div>
 
@@ -116,14 +117,14 @@ export default function AdManagement() {
             onClick={() => updateDisplayMode('single')}
             className={`px-8 py-3 rounded-2xl text-sm font-black transition-all flex items-center gap-2 ${displayMode === 'single' ? 'bg-slate-900 text-white shadow-lg' : 'text-slate-400 hover:bg-slate-50'}`}
           >
-            🖥️ 仅店员主屏
+            🖥️ {t('staffScreenOnly')}
           </button>
           <button
             disabled={loading}
             onClick={() => updateDisplayMode('dual')}
             className={`px-8 py-3 rounded-2xl text-sm font-black transition-all flex items-center gap-2 ${displayMode === 'dual' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-100' : 'text-slate-400 hover:bg-slate-50'}`}
           >
-            📺 客显双屏模式
+            📺 {t('customerDualScreen')}
           </button>
         </div>
       </div>
@@ -131,20 +132,20 @@ export default function AdManagement() {
       {displayMode === 'single' ? (
         <div className="bg-white rounded-[40px] p-16 text-center border-4 border-dashed border-slate-100 flex flex-col items-center">
           <div className="w-32 h-32 bg-slate-50 rounded-full flex items-center justify-center text-6xl mb-8 grayscale opacity-50">👩‍🍳</div>
-          <h2 className="text-3xl font-black text-slate-800 mb-4">店员专用模式 (Standalone)</h2>
+          <h2 className="text-3xl font-black text-slate-800 mb-4">t('standaloneMode')</h2>
           <p className="text-slate-500 max-w-md mx-auto leading-relaxed">
-            当前门店配置为单屏幕架构。收银系统将专注于店员的高效操作，不显示也不需要配置任何顾客端广告内容。
+            t('standaloneArchitecture')
           </p>
           <div className="mt-10 p-6 bg-slate-50 rounded-3xl border border-slate-100 inline-flex items-center gap-3 text-slate-500 font-bold text-sm">
             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-            收银端已锁定为高效极简界面
+            t('staffLocked')
           </div>
         </div>
       ) : (
         <div className="animate-in fade-in slide-in-from-bottom-5 duration-500">
           <div className="flex justify-between items-end mb-8">
             <div>
-              <h2 className="text-2xl font-black text-slate-800">副屏营销中心</h2>
+              <h2 className="text-2xl font-black text-slate-800">t('adCenter')</h2>
               <p className="text-slate-400 text-sm font-bold uppercase tracking-tighter">Manage Secondary Display Content</p>
             </div>
             <div className="flex gap-3">
@@ -153,7 +154,7 @@ export default function AdManagement() {
                 onClick={handleSmartGenerate}
                 className="bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-emerald-100 hover:bg-emerald-600 transition-all flex items-center gap-2"
               >
-                {loading ? '...' : '🤖 AI 智能生成'}
+                {loading ? '...' : '🤖 ' + t('aiSmartGenerate')}
               </button>
               <button
                 onClick={() => {
@@ -163,7 +164,7 @@ export default function AdManagement() {
                 }}
                 className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-slate-200 hover:bg-slate-800 transition-all flex items-center gap-2"
               >
-                <span>➕</span> 开发新广告
+                <span>➕</span>{t('createNewAd')}
               </button>
             </div>
           </div>
@@ -219,12 +220,12 @@ export default function AdManagement() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
           <div className="bg-white w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
             <div className="p-6 bg-indigo-600 text-white font-black text-xl text-center">
-              {editingAd ? '编辑广告内容' : '创建新营销内容'}
+              {editingAd ? t('editAdContent') : t('createNewContent')}
             </div>
             <form onSubmit={handleSave} className="p-8 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2">
-                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">广告标题</label>
+                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">{t('adTitle')}</label>
                   <input
                     required
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold outline-none focus:border-indigo-500 transition-all"
@@ -233,7 +234,7 @@ export default function AdManagement() {
                   />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">图片 URL (支持外部链接或上传路径)</label>
+                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">{t('adImageUrl')}</label>
                   <input
                     required
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold outline-none focus:border-indigo-500 transition-all font-mono text-sm"
@@ -242,19 +243,19 @@ export default function AdManagement() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">广告类型</label>
+                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">{t('adType')}</label>
                   <select
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold outline-none focus:border-indigo-500 transition-all"
                     value={formData.type}
                     onChange={e => setFormData({ ...formData, type: e.target.value })}
                   >
-                    <option value="promo">常规促销 (Promo)</option>
-                    <option value="new_item">新品推介 (New In)</option>
-                    <option value="announcement">品牌公告 (Info)</option>
+                    <option value="promo">{t('promoType')}</option>
+                    <option value="new_item">{t('newInType')}</option>
+                    <option value="announcement">{t('infoType')}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">显示权重 (越大越靠前)</label>
+                  <label className="block text-[14px] font-black text-slate-400 mb-2 uppercase">{t('adPriority')}</label>
                   <input
                     type="number"
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold outline-none focus:border-indigo-500 transition-all"
@@ -269,14 +270,14 @@ export default function AdManagement() {
                   onClick={() => setShowModal(false)}
                   className="flex-1 py-4 bg-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-all"
                 >
-                  取消
+                  {t('cancelBtn')}
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
                   className="flex-1 py-4 bg-indigo-600 text-white font-black rounded-2xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all"
                 >
-                  {loading ? '保存中...' : '发布内容'}
+                  {loading ? t('publishing') : t('publishContent')}
                 </button>
               </div>
             </form>
