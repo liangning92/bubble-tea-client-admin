@@ -14,10 +14,10 @@ export default function ExpirationWatch() {
 
   const getStatusVisuals = (status) => {
      switch(status) {
-        case 'dead': return { ring: 'border-red-500', bg: 'bg-red-50', text: 'text-red-700', icon: '⛔', act: lang === 'zh' ? '该批次已过期' : 'Expired' };
-        case 'critical': return { ring: 'border-red-300', bg: 'bg-red-50', text: 'text-red-600', icon: '⚠️', act: lang === 'zh' ? '即将过期' : 'Expiring Soon' };
-        case 'warning': return { ring: 'border-amber-300', bg: 'bg-amber-50', text: 'text-amber-700', icon: '⏰', act: lang === 'zh' ? '留意效期' : 'Warning' };
-        case 'safe': return { ring: 'border-slate-200', bg: 'bg-slate-50', text: 'text-slate-600', icon: '✅', act: lang === 'zh' ? '效期正常' : 'Normal' };
+        case 'dead': return { ring: 'border-red-500', bg: 'bg-red-50', text: 'text-red-700', icon: '⛔', act: t('batchExpired') };
+        case 'critical': return { ring: 'border-red-300', bg: 'bg-red-50', text: 'text-red-600', icon: '⚠️', act: t('expiringSoon') };
+        case 'warning': return { ring: 'border-amber-300', bg: 'bg-amber-50', text: 'text-amber-700', icon: '⏰', act: t('warning') };
+        case 'safe': return { ring: 'border-slate-200', bg: 'bg-slate-50', text: 'text-slate-600', icon: '✅', act: t('expirationNormal') };
         default: return {};
      }
   };
@@ -33,26 +33,24 @@ export default function ExpirationWatch() {
        <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
           <div>
             <h2 className="text-xl font-bold text-slate-800 mb-2">
-               {lang === 'zh' ? '半成品效期监控' : 'Expiration Monitor'}
+               {t('expirationMonitorTitle')}
             </h2>
             <p className="text-slate-500 text-sm max-w-2xl">
-               {lang === 'zh' 
-                  ? '追踪门店自制半成品（如茶汤、果泥、珍珠等）的有效食用期。请及时处理过期物料以保证食品安全。' 
-                  : 'Track the shelf life of semi-finished products. Please dispose of expired items promptly to ensure food safety.'}
+               {t('expirationWatchDesc')}
             </p>
 
             <div className="mt-4 flex gap-4 text-sm">
                <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-slate-600">{lang === 'zh' ? '已过期' : 'Expired'}</span>
+                  <span className="text-slate-600">{t('expired')}</span>
                </div>
                <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 bg-amber-400 rounded-full"></div>
-                  <span className="text-slate-600">{lang === 'zh' ? '临期 (<2h)' : 'Expiring'}</span>
+                  <span className="text-slate-600">{t('expiringSoon')}</span>
                </div>
                <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-slate-600">{lang === 'zh' ? '正常 (>2h)' : 'Normal'}</span>
+                  <span className="text-slate-600">{t('normal')}</span>
                </div>
             </div>
           </div>
@@ -67,7 +65,7 @@ export default function ExpirationWatch() {
                    {v.status === 'dead' && (
                       <div className="absolute inset-0 bg-white/90 backdrop-blur-[1px] rounded-lg z-10 flex flex-col items-center justify-center border border-red-200">
                          <span className="text-red-500 text-3xl mb-2">⚠️</span>
-                         <h3 className="font-bold text-slate-800 mb-3">{lang === 'zh' ? '物料已过期' : 'Expired'}</h3>
+                         <h3 className="font-bold text-slate-800 mb-3">{t('materialExpired')}</h3>
                          <button onClick={() => handleDestroy(v.id)} className="px-4 py-1.5 bg-white border border-red-500 text-red-600 hover:bg-red-50 rounded text-sm font-medium transition">
                            处理废料
                          </button>
@@ -85,12 +83,12 @@ export default function ExpirationWatch() {
 
                    <h3 className="text-base font-medium text-slate-800 mb-1">{v.name}</h3>
                    <div className="text-[14px] text-slate-500 mb-4">
-                     {lang === 'zh' ? '生产时间' : 'Brewed'}: {v.generatedAt}
+                     {t('brewed')}: {v.generatedAt}
                    </div>
 
                    <div className="border-t border-slate-100 pt-4">
                        <div className="flex justify-between items-center mb-1">
-                           <span className="text-[14px] text-slate-500">{lang === 'zh' ? '剩余时长' : 'Time Left'}</span>
+                           <span className="text-[14px] text-slate-500">{t('timeLeft')}</span>
                            <span className="text-[14px] text-slate-400">MAX: {v.maxLife}h</span>
                        </div>
                        
