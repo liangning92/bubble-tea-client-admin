@@ -101,7 +101,7 @@ export default function SettingsPage() {
     if (res?.error) return;
     setShowChangePwd(false);
     setPwdForm({ oldPassword: '', newPassword: '' });
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '密码已修改' : 'Kata sandi diubah' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('passwordChanged') }));
   };
 
   const handleSmartImport = async (e) => {
@@ -162,7 +162,7 @@ export default function SettingsPage() {
     const res = await api('DELETE', '/logs');
     if (res?.error) return;
     loadLogs();
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '日志已清空' : 'Log dihapus' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('logCleared') }));
   };
 
   const getActionColor = (action) => {

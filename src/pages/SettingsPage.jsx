@@ -58,7 +58,7 @@ export default function SettingsPage() {
     if (res.error) {
       window.dispatchEvent(new CustomEvent('app:error', { detail: res.error }));
     } else {
-      window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '数据已清空' : 'Data telah dikosongkan' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('dataCleared') }));
     }
   };
 
@@ -86,7 +86,7 @@ export default function SettingsPage() {
     setShowAddUser(false);
     setUserForm({ username: '', password: '', role: 'staff', name: '' });
     loadUsers();
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '用户已添加' : 'Pengguna ditambahkan' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('userAdded') }));
   };
 
   const handleDeleteUser = async (id) => {
@@ -96,7 +96,7 @@ export default function SettingsPage() {
       window.dispatchEvent(new CustomEvent('app:error', { detail: res.error }));
     } else {
       loadUsers();
-      window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '用户已删除' : 'Pengguna dihapus' }));
+      window.dispatchEvent(new CustomEvent('app:success', { detail: t('userDeleted') }));
     }
   };
 
@@ -109,7 +109,7 @@ export default function SettingsPage() {
     }
     setShowChangePwd(false);
     setPwdForm({ oldPassword: '', newPassword: '' });
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '密码已修改' : 'Kata sandi diubah' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('passwordChanged') }));
   };
 
   // ========== 日志 ==========
@@ -133,7 +133,7 @@ export default function SettingsPage() {
     const res = await api('DELETE', '/logs');
     if (res?.error) return;
     loadLogs();
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '日志已清空' : 'Log dihapus' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('logCleared') }));
   };
 
   // ========== 智能导入 ==========
@@ -144,14 +144,14 @@ export default function SettingsPage() {
   const handleSmartImport = async (e) => {
     e.preventDefault();
     if (!smartImportText.trim()) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: lang === 'zh' ? '请输入导入内容' : 'Masukkan konten' }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: t('enterImportContent') }));
       return;
     }
     const result = await api('POST', '/import/smart', { text: smartImportText });
     if (result?.error) return;
     setImportResult(result);
     setSmartImportText('');
-    window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '导入成功' : 'Impor berhasil' }));
+    window.dispatchEvent(new CustomEvent('app:success', { detail: t('importSuccessCustom') }));
   };
 
   const handleFileUpload = async (e) => {
