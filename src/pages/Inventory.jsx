@@ -64,20 +64,20 @@ export default function InventoryPage({ readOnly = false }) {
   if (loading) return <div className="py-24 text-center text-label-caps animate-pulse tracking-widest">{t('loading')}</div>;
 
   return (
-    <div className="space-y-6 animate-soft text-slate-900 pb-10">
-      <div className="flex justify-between items-center gap-3 px-2">
+    <div className="space-y-4 animate-soft text-slate-900 pb-10">
+      <div className="flex justify-between items-center gap-3 px-4">
            <div className="flex gap-3">
              {!readOnly && (
-               <button onClick={() => setIsModalOpen(true)} className="px-6 py-2 bg-slate-900 text-white font-black text-[14px] rounded-[24px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg active:scale-95">
+               <button onClick={() => setIsModalOpen(true)} className="px-4 py-3 bg-slate-900 text-white font-black text-[14px] rounded-[24px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg active:scale-95">
                  {t('addMaterial')}
                </button>
              )}
-             <button onClick={loadData} className="px-5 py-2 bg-white text-slate-900 border border-slate-100 font-black text-[14px] rounded-[24px] uppercase tracking-widest hover:bg-slate-50 transition-all shadow-sm active:scale-95">
+             <button onClick={loadData} className="px-5 py-3 bg-white text-slate-900 border border-slate-100 font-black text-[14px] rounded-[24px] uppercase tracking-widest hover:bg-slate-50 transition-all shadow-sm active:scale-95">
                {t('refresh')}
              </button>
            </div>
            {readOnly && (
-             <span className="px-5 py-2 bg-slate-50 text-slate-400 font-black text-[14px] rounded-[24px] border border-slate-100 uppercase tracking-widest shadow-sm">
+             <span className="px-5 py-3 bg-slate-50 text-slate-400 font-black text-[14px] rounded-[24px] border border-slate-100 uppercase tracking-widest shadow-sm">
                🛡️ {t('readOnlyView')}
              </span>
            )}
@@ -103,12 +103,12 @@ export default function InventoryPage({ readOnly = false }) {
           <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
               <tr className="bg-slate-50/50 border-b border-slate-50">
-                <th className="px-6 py-4 text-[14px] font-black text-slate-400 uppercase tracking-widest rounded-tl-[40px] w-24 text-center">{t('materialCode')}</th>
-                <th className="px-6 py-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('materialName')}</th>
-                <th className="px-6 py-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('category')}</th>
-                <th className="px-6 py-4 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('onHand')}</th>
-                <th className="px-6 py-4 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">{t('status')}</th>
-                {!readOnly && <th className="px-6 py-4 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right rounded-tr-[40px]">权限</th>}
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest rounded-tl-[40px] w-24 text-center">{t('materialCode')}</th>
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('materialName')}</th>
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('category')}</th>
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('onHand')}</th>
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">{t('status')}</th>
+                {!readOnly && <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right rounded-tr-[40px]">权限</th>}
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
@@ -116,10 +116,10 @@ export default function InventoryPage({ readOnly = false }) {
                 const low = (item.stock || 0) <= (item.safeStock || 5);
                 return (
                   <tr key={item.id} className="group hover:bg-slate-50/30 transition-all">
-                     <td className="px-6 py-4 text-center">
+                     <td className="px-4 py-3 text-center">
                         <span className="text-[14px] font-black text-slate-300 font-mono tracking-widest">#{item.code || '---'}</span>
                      </td>
-                     <td className="px-6 py-4">
+                     <td className="px-4 py-3">
                         <div className="flex items-center gap-4">
                           <span className={`w-3 h-3 rounded-full ${low ? 'bg-red-500 animate-pulse' : 'bg-slate-200 group-hover:bg-emerald-500'} transition-colors`} />
                           <span className="text-[15px] font-black text-slate-900 tracking-tight">
@@ -127,23 +127,23 @@ export default function InventoryPage({ readOnly = false }) {
                           </span>
                         </div>
                      </td>
-                     <td className="px-6 py-4">
+                     <td className="px-4 py-3">
                         <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-lg">
                            <BusinessDataTranslator text={item.category || 'RAW'} />
                         </span>
                      </td>
-                     <td className="px-6 py-4 text-center">
+                     <td className="px-4 py-3 text-center">
                         <span className={`text-[16px] font-black tracking-tighter ${low ? 'text-red-600' : 'text-slate-900'}`}>
                           {(item.stock || 0).toLocaleString()} <span className="text-[14px] text-slate-300 ml-1 font-bold uppercase">{item.unit || 'kg'}</span>
                         </span>
                      </td>
-                     <td className="px-6 py-4 text-right">
-                        <span className={`px-5 py-2 rounded-full text-[14px] font-black uppercase tracking-widest border transition-all ${low ? 'bg-red-50 text-red-600 border-red-100 shadow-sm' : 'bg-emerald-50 text-emerald-600 border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white'}`}>
+                     <td className="px-4 py-3 text-right">
+                        <span className={`px-5 py-3 rounded-full text-[14px] font-black uppercase tracking-widest border transition-all ${low ? 'bg-red-50 text-red-600 border-red-100 shadow-sm' : 'bg-emerald-50 text-emerald-600 border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white'}`}>
                           {low ? t('stockLow') : t('available')}
                         </span>
                      </td>
                      {!readOnly && (
-                       <td className="px-6 py-4 text-right">
+                       <td className="px-4 py-3 text-right">
                           <button onClick={() => handleDelete(item.id)} className="text-red-600 hover:text-red-800 text-[14px] font-black uppercase tracking-widest transition-colors opacity-0 group-hover:opacity-100">
                              {t('delete')}
                           </button>
@@ -168,18 +168,18 @@ export default function InventoryPage({ readOnly = false }) {
               <button onClick={() => setIsModalOpen(false)} className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-slate-400 hover:bg-slate-100 transition-colors">✕</button>
             </div>
 
-            <form onSubmit={handleCreate} className="space-y-6 relative z-10">
-              <div className="space-y-2">
+            <form onSubmit={handleCreate} className="space-y-4 relative z-10">
+              <div className="space-y-4">
                 <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('materialNameLabel')}</label>
                 <input required className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.name} onChange={e => setNewMat({...newMat, name: e.target.value})} />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('materialUnitLabel')}</label>
                   <input required className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" placeholder="g / ml / pcs" value={newMat.unit} onChange={e => setNewMat({...newMat, unit: e.target.value})} />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('materialCategoryLabel')}</label>
                   <select className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px] appearance-none" value={newMat.category} onChange={e => setNewMat({...newMat, category: e.target.value})}>
                     <option value="茶汤">茶汤</option>
@@ -191,7 +191,7 @@ export default function InventoryPage({ readOnly = false }) {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('materialPriceLabel')}</label>
                 <input type="number" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.costPerUnit} onChange={e => setNewMat({...newMat, costPerUnit: parseFloat(e.target.value)})} />
               </div>
@@ -209,7 +209,7 @@ export default function InventoryPage({ readOnly = false }) {
       {/* 底部政策卡片 */}
       <div className="p-10 bg-slate-50 rounded-[56px] border border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-10 relative overflow-hidden group shadow-sm">
          <div className="absolute top-0 left-0 w-2 h-full bg-marigold opacity-80"></div>
-         <div className="space-y-3 relative z-10 flex-1">
+         <div className="space-y-4 relative z-10 flex-1">
             <h4 className="text-xl font-black text-slate-800 tracking-tight flex items-center gap-3">
                <span className="w-8 h-8 bg-white rounded-xl shadow-sm flex items-center justify-center text-sm">🛡️</span>
                {t('inventoryPolicyTitle')}
@@ -219,8 +219,8 @@ export default function InventoryPage({ readOnly = false }) {
             </p>
          </div>
          <div className="flex gap-4 relative z-10 w-full lg:w-auto">
-            <button className="flex-1 lg:flex-none px-10 py-4 bg-white text-slate-900 border border-slate-200 text-[14px] font-black uppercase tracking-widest rounded-2xl hover:bg-slate-100 transition-all shadow-sm active:scale-95">{t('exportExcel')}</button>
-            <button className="flex-1 lg:flex-none px-10 py-4 bg-slate-900 text-marigold text-[14px] font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all shadow-xl shadow-slate-900/10 active:scale-95">{t('viewTrends')}</button>
+            <button className="flex-1 lg:flex-none px-10 py-3 bg-white text-slate-900 border border-slate-200 text-[14px] font-black uppercase tracking-widest rounded-2xl hover:bg-slate-100 transition-all shadow-sm active:scale-95">{t('exportExcel')}</button>
+            <button className="flex-1 lg:flex-none px-10 py-3 bg-slate-900 text-marigold text-[14px] font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all shadow-xl shadow-slate-900/10 active:scale-95">{t('viewTrends')}</button>
          </div>
       </div>
     </div>

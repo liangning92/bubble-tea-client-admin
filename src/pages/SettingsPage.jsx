@@ -215,7 +215,7 @@ export default function SettingsPage() {
       {showChangePwd && (
         <div className="card mb-4">
           <h3 className="font-bold mb-3">{lang === 'zh' ? '修改密码' : 'Ubah Kata Sandi'}</h3>
-          <form onSubmit={handleChangePassword} className="space-y-3">
+          <form onSubmit={handleChangePassword} className="space-y-4">
             <input className="input" type="password" placeholder={lang === 'zh' ? '旧密码' : 'Sandi Lama'} value={pwdForm.oldPassword} onChange={e => setPwdForm({...pwdForm, oldPassword: e.target.value})} required />
             <input className="input" type="password" placeholder={lang === 'zh' ? '新密码' : 'Sandi Baru'} value={pwdForm.newPassword} onChange={e => setPwdForm({...pwdForm, newPassword: e.target.value})} required />
             <div className="flex gap-2">
@@ -252,7 +252,7 @@ export default function SettingsPage() {
               ].map(l => (
                 <button key={l.code}
                   onClick={() => changeLang(l.code)}
-                  className={`flex-1 py-2 rounded-lg text-sm font-medium border-2 ${lang === l.code ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}`}>
+                  className={`flex-1 py-3 rounded-lg text-sm font-medium border-2 ${lang === l.code ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}`}>
                   <div>{l.label}</div>
                   <div className="text-xs text-gray-400">{l.name}</div>
                 </button>
@@ -263,7 +263,7 @@ export default function SettingsPage() {
           {/* 通知设置 */}
           <div className="card">
             <h3 className="font-bold mb-3">🔔 {lang === 'zh' ? '通知设置' : 'Pengaturan Notifikasi'}</h3>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <label className="flex items-center justify-between">
                 <span>{lang === 'zh' ? '启用通知提醒' : 'Aktifkan notifikasi'}</span>
                 <input type="checkbox" className="toggle" checked={notificationEnabled}
@@ -280,7 +280,7 @@ export default function SettingsPage() {
           {/* 货币与日期 */}
           <div className="card">
             <h3 className="font-bold mb-3">💰 {lang === 'zh' ? '显示设置' : 'Pengaturan Tampilan'}</h3>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span>{lang === 'zh' ? '货币' : 'Mata Uang'}</span>
                 <select className="input w-32" value={currency} onChange={e => setCurrency(e.target.value)}>
@@ -303,7 +303,7 @@ export default function SettingsPage() {
           {/* 数据管理 */}
           <div className="card">
             <h3 className="font-bold mb-3">💾 {lang === 'zh' ? '数据管理' : 'Manajemen Data'}</h3>
-            <div className="space-y-2">
+            <div className="space-y-4">
               <button onClick={handleExportData} className="btn btn-secondary w-full text-left justify-start">
                 📤 {lang === 'zh' ? '导出全部数据' : 'Ekspor semua data'}
               </button>
@@ -333,7 +333,7 @@ export default function SettingsPage() {
           {showAddUser && (
             <div className="card mb-4">
               <h3 className="font-bold mb-3">{lang === 'zh' ? '添加用户' : 'Tambah Pengguna'}</h3>
-              <form onSubmit={handleAddUser} className="space-y-3">
+              <form onSubmit={handleAddUser} className="space-y-4">
                 <input className="input" placeholder={lang === 'zh' ? '姓名' : 'Nama'} value={userForm.name} onChange={e => setUserForm({...userForm, name: e.target.value})} />
                 <input className="input" placeholder={t.username} value={userForm.username} onChange={e => setUserForm({...userForm, username: e.target.value})} required />
                 <input className="input" type="password" placeholder={t.password} value={userForm.password} onChange={e => setUserForm({...userForm, password: e.target.value})} required />
@@ -349,7 +349,7 @@ export default function SettingsPage() {
             </div>
           )}
 
-          <div className="space-y-2">
+          <div className="space-y-4">
             {users.map(u => (
               <div key={u.id} className="card">
                 <div className="flex justify-between items-center">
@@ -361,7 +361,7 @@ export default function SettingsPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className={`text-xs px-2 py-0.5 rounded ${u.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
+                    <span className={`text-xs px-4 py-0.5 rounded ${u.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
                       {roleLabels[u.role] || u.role}
                     </span>
                     {user?.role === 'admin' && u.id !== user?.id && (
@@ -387,7 +387,7 @@ export default function SettingsPage() {
             <div className="flex gap-2 mt-2">
               {['all', 'login', 'create', 'update', 'delete'].map(f => (
                 <button key={f} onClick={() => setLogFilter(f)}
-                  className={`px-2 py-1 rounded text-xs ${logFilter === f ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                  className={`px-4 py-1 rounded text-xs ${logFilter === f ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}>
                   {f === 'all' ? (lang === 'zh' ? '全部' : 'Semua') :
                     f === 'login' ? (lang === 'zh' ? '登录' : 'Login') :
                     f === 'create' ? (lang === 'zh' ? '创建' : 'Buat') :
@@ -401,13 +401,13 @@ export default function SettingsPage() {
           {logs.length === 0 ? (
             <p className="text-gray-400 text-sm text-center py-8">{t.noRecords}</p>
           ) : (
-            <div className="space-y-2">
+            <div className="space-y-4">
               {logs.map(log => (
                 <div key={log.id} className="card">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className={`text-xs px-2 py-0.5 rounded ${
+                        <span className={`text-xs px-4 py-0.5 rounded ${
                           log.action === 'login' ? 'bg-blue-100 text-blue-700' :
                           log.action === 'create' ? 'bg-green-100 text-green-700' :
                           log.action === 'update' ? 'bg-yellow-100 text-yellow-700' :

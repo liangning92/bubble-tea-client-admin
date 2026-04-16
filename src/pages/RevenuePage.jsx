@@ -150,7 +150,7 @@ function ImportModal({ products, onClose, onSuccess }) {
           </button>
         </div>
 
-        <div className="p-8 flex-1 overflow-y-auto no-scrollbar space-y-6">
+        <div className="p-8 flex-1 overflow-y-auto no-scrollbar space-y-4">
           {mode === 'file' && (
             <div className="space-y-4">
               <div className="border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center hover:border-indigo-500 transition-all cursor-pointer bg-slate-50/50" onClick={() => fileInputRef.current?.click()}>
@@ -166,13 +166,13 @@ function ImportModal({ products, onClose, onSuccess }) {
           )}
 
           {mode === 'manual' && (
-            <div className="space-y-6">
-              <div className="space-y-2">
+            <div className="space-y-4">
+              <div className="space-y-4">
                 <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">{tl('销售日期', 'Sale Date', 'Tanggal')}</label>
                 <input type="date" className="input-premium w-full !p-3" value={manualDate} onChange={e => setManualDate(e.target.value)} />
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {(manualRows || []).map((row, i) => (
                   <div key={i} className="flex gap-2 items-center animate-soft">
                     <select
@@ -208,7 +208,7 @@ function ImportModal({ products, onClose, onSuccess }) {
               <button
                 onClick={handleManualSubmit}
                 disabled={importing}
-                className="w-full bg-indigo-500 text-white font-black uppercase text-[14px] tracking-widest py-4 rounded-2xl shadow-lg shadow-indigo-500/20 hover:bg-indigo-400 transition-all"
+                className="w-full bg-indigo-500 text-white font-black uppercase text-[14px] tracking-widest py-3 rounded-2xl shadow-lg shadow-indigo-500/20 hover:bg-indigo-400 transition-all"
               >
                 {importing ? tl('提交中...', 'Submitting...', 'Mengirim...') : tl('确认录入', 'Confirm Entry', 'Konfirmasi')}
               </button>
@@ -306,7 +306,7 @@ function RevenuePage() {
 
       <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 w-fit overflow-x-auto no-scrollbar">
         {['today', 'yesterday', 'thisWeek', 'thisMonth', 'custom'].map(k => (
-          <button key={k} onClick={() => setTimeTab(k)} className={`px-6 py-2 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${timeTab === k ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}>
+          <button key={k} onClick={() => setTimeTab(k)} className={`px-4 py-3 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${timeTab === k ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}>
             {lang === 'zh' ? (k === 'today' ? '今日' : k === 'yesterday' ? '昨日' : k === 'thisWeek' ? '本周' : k === 'thisMonth' ? '本月' : '自定义') : k.toUpperCase()}
           </button>
         ))}
@@ -335,7 +335,7 @@ function RevenuePage() {
             <div className="p-8 border-b border-slate-100 bg-slate-50/50">
               <h3 className="text-label-caps">{t.topProducts}</h3>
             </div>
-            <div className="p-8 space-y-6">
+            <div className="p-8 space-y-4">
               {data.topProducts.map((p, i) => (
                 <div key={i} className="flex gap-6 items-center group">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-[14px] ${i < 3 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'bg-slate-100 text-slate-400'}`}>{i + 1}</div>

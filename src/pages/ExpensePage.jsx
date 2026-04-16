@@ -102,7 +102,7 @@ export default function ExpensePage() {
 
       <div className="card mb-4">
         <h3 className="font-bold mb-3">{t.addNew}</h3>
-        <form onSubmit={handleAdd} className="space-y-3">
+        <form onSubmit={handleAdd} className="space-y-4">
           <select className="input" value={name} onChange={e => setName(e.target.value)} required>
             <option value="">{t.selectExpenseType}</option>
             {expenseTypes.map(e => (
@@ -129,7 +129,7 @@ export default function ExpensePage() {
         {parsedExpenses.length > 0 && (
           <div className="mt-3">
             <p className="text-sm font-medium mb-2">{t.parsedItems} ({parsedExpenses.length})</p>
-            <div className="space-y-1 mb-3 max-h-40 overflow-y-auto">
+            <div className="space-y-4 mb-3 max-h-40 overflow-y-auto">
               {parsedExpenses.map((item, i) => (
                 <div key={i} className="text-[14px] bg-gray-50 p-2 rounded">
                   {item.matchedType || item.name} x Rp{item.amount}
@@ -160,9 +160,9 @@ export default function ExpensePage() {
           <span className="text-danger font-bold">{t.totalExpense}: Rp{total.toFixed(2)}</span>
         </div>
         {expenses.length === 0 ? <p className="text-gray-400 text-sm">{t.noRecords}</p> : (
-          <div className="space-y-2">
+          <div className="space-y-4">
              {expenses.slice(0, 20).map(e => (
-               <div key={e.id} className="flex justify-between items-center text-sm py-2 border-b border-gray-100">
+               <div key={e.id} className="flex justify-between items-center text-sm py-3 border-b border-gray-100">
                  <span>
                    <BusinessDataTranslator text={e.name} />
                  </span>

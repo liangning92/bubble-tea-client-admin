@@ -152,7 +152,7 @@ export default function AdManagement() {
               <button
                 disabled={loading}
                 onClick={handleSmartGenerate}
-                className="bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-emerald-100 hover:bg-emerald-600 transition-all flex items-center gap-2"
+                className="bg-emerald-500 text-white px-8 py-3 rounded-2xl font-black shadow-lg shadow-emerald-100 hover:bg-emerald-600 transition-all flex items-center gap-2"
               >
                 {loading ? '...' : '🤖 ' + t('aiSmartGenerate')}
               </button>
@@ -162,7 +162,7 @@ export default function AdManagement() {
                   setFormData({ title: '', imageUrl: '', type: 'promo', priority: 0, status: 'active', startDate: '', endDate: '' });
                   setShowModal(true);
                 }}
-                className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-slate-200 hover:bg-slate-800 transition-all flex items-center gap-2"
+                className="bg-slate-900 text-white px-8 py-3 rounded-2xl font-black shadow-lg shadow-slate-200 hover:bg-slate-800 transition-all flex items-center gap-2"
               >
                 <span>➕</span>{t('createNewAd')}
               </button>
@@ -268,14 +268,14 @@ export default function AdManagement() {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="flex-1 py-4 bg-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-all"
+                  className="flex-1 py-3 bg-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-all"
                 >
                   {t('cancelBtn')}
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 py-4 bg-indigo-600 text-white font-black rounded-2xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all"
+                  className="flex-1 py-3 bg-indigo-600 text-white font-black rounded-2xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all"
                 >
                   {loading ? t('publishing') : t('publishContent')}
                 </button>

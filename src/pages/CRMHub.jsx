@@ -82,7 +82,7 @@ export default function CRMHub({ mode = 'page', hideHeader }) {
       {/* Conditionally show header/nav based on mode and hideHeader */}
       {mode === 'page' && !hideHeader && (
         <>
-          <div className="flex flex-col gap-2 px-2">
+          <div className="flex flex-col gap-2 px-4">
             <h1 className="text-h1 uppercase  tracking-tight">{t('marketingHub')}</h1>
             <p className="text-label-caps !text-slate-400">{t('memberAssets')}</p>
           </div>
@@ -170,11 +170,11 @@ export default function CRMHub({ mode = 'page', hideHeader }) {
            <div className="card-premium w-full max-w-md m-0 shadow-2xl animate-soft !p-12 border-none">
               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">{t('quickAddMember')}</h3>
               <form onSubmit={handleAddMember} className="space-y-8">
-                 <div className="space-y-3">
+                 <div className="space-y-4">
                     <label className="text-label-caps block pl-1 uppercase tracking-widest">{t('phoneNumber')}</label>
                     <input className="input-premium w-full font-mono text-xl !p-6" placeholder="08XXXXXXXX" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} required />
                  </div>
-                 <div className="space-y-3">
+                 <div className="space-y-4">
                     <label className="text-label-caps block pl-1 uppercase tracking-widest">{t('memberName')}</label>
                     <input className="input-premium w-full font-black text-xl !p-6" placeholder="NAME" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required />
                  </div>

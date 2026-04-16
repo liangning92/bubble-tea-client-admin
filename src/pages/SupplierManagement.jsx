@@ -116,8 +116,8 @@ export default function SupplierManagement() {
   return (
     <div className="space-y-8 animate-soft pb-24 !max-w-7xl">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-2">
-        <div className="space-y-1">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
+        <div className="space-y-4">
           <div className="flex items-center gap-4">
             <span className="text-4xl">🚛</span>
             <div>
@@ -147,16 +147,16 @@ export default function SupplierManagement() {
             <h3 className="text-[18px] font-black text-slate-900 mb-5 leading-tight">{s.name}</h3>
 
             <div className="grid grid-cols-2 gap-4 p-5 bg-slate-50/50 rounded-[28px] border border-slate-100 mb-6">
-              <div className="space-y-1.5">
+              <div className="space-y-4.5">
                 <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{t('staffName') || '联系人'}</p>
                 <p className="font-black text-slate-700 text-[13px]">{s.contact || '-'}</p>
               </div>
-              <div className="space-y-1.5">
+              <div className="space-y-4.5">
                 <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{t('contactPhone') || '电话'}</p>
                 <p className="font-black text-slate-700 text-[13px]">{s.phone || '-'}</p>
               </div>
               {s.email && (
-                <div className="space-y-1.5 col-span-2">
+                <div className="space-y-4.5 col-span-2">
                   <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Email</p>
                   <p className="font-black text-slate-700 text-[13px]">{s.email}</p>
                 </div>
@@ -181,7 +181,7 @@ export default function SupplierManagement() {
         <div className="text-center py-40 card-premium !bg-slate-50 border-2 border-dashed border-slate-100 !rounded-[56px]">
           <div className="text-7xl mb-8 grayscale opacity-10">🚛</div>
           <p className="text-slate-300 font-black uppercase tracking-widest text-sm">{t('noRecordsFound') || '暂无供应商记录'}</p>
-          <button onClick={handleOpenAdd} className="btn-premium active !bg-[#FF7700] !text-white !px-12 !py-4 !mt-8 border-none shadow-xl text-[13px] font-black uppercase tracking-widest !rounded-[20px]">
+          <button onClick={handleOpenAdd} className="btn-premium active !bg-[#FF7700] !text-white !px-12 !py-3 !mt-8 border-none shadow-xl text-[13px] font-black uppercase tracking-widest !rounded-[20px]">
             + 录入第一家供应商
           </button>
         </div>
@@ -197,32 +197,32 @@ export default function SupplierManagement() {
               </h3>
               <button onClick={() => setShowForm(false)} className="w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-400 rounded-full hover:bg-slate-900 hover:text-white transition-all">✕</button>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('name') || '名称'}</label>
                 <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} required placeholder="供应商名称" />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('category') || '类别'}</label>
                 <select className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none appearance-none" value={form.category} onChange={e => setForm(p => ({ ...p, category: e.target.value }))}>
                   {categoryOptions.map(c => <option key={c.key} value={c.key}>{c.label}</option>)}
                 </select>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('staffName') || '联系人'}</label>
                   <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.contact} onChange={e => setForm(p => ({ ...p, contact: e.target.value }))} placeholder="联系人姓名" />
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('contactPhone') || '电话'}</label>
                   <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} placeholder="+62 xxx" />
                 </div>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">Email</label>
                 <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} placeholder="supplier@example.com" />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('address') || '地址'}</label>
                 <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" value={form.address} onChange={e => setForm(p => ({ ...p, address: e.target.value }))} placeholder="供应商地址" />
               </div>

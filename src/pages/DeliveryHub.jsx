@@ -39,7 +39,7 @@ export default function DeliveryHub({ hideHeader }) {
     const filteredOrders = orders.filter(o => o.status === status);
     return (
       <div className="flex-1 min-w-[340px] bg-slate-50/50 rounded-[40px] p-8 flex flex-col h-[750px] border border-slate-100/50">
-        <div className="flex items-center justify-between mb-8 px-2">
+        <div className="flex items-center justify-between mb-8 px-4">
            <div className="flex items-center gap-4">
               <span className="text-2xl">{icon}</span>
               <h4 className="font-black text-slate-800 uppercase tracking-tighter text-sm">{title}</h4>
@@ -49,11 +49,11 @@ export default function DeliveryHub({ hideHeader }) {
            </span>
         </div>
         
-        <div className="flex-1 overflow-y-auto space-y-6 px-1 no-scrollbar">
+        <div className="flex-1 overflow-y-auto space-y-4 px-1 no-scrollbar">
            {filteredOrders.map(order => (
              <div key={order.id} className="card-premium !p-8 group hover:scale-[1.02] active:scale-[0.98] transition-all border-slate-100 bg-white">
                 <div className="flex justify-between items-start mb-6">
-                   <div className={`px-2.5 py-1 rounded-lg text-[14px] font-black text-white uppercase tracking-widest ${order.color} border-2 border-white/20 shadow-sm`}>
+                   <div className={`px-4.5 py-1 rounded-lg text-[14px] font-black text-white uppercase tracking-widest ${order.color} border-2 border-white/20 shadow-sm`}>
                       {order.platform}
                    </div>
                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest ">{order.time}</span>
@@ -70,7 +70,7 @@ export default function DeliveryHub({ hideHeader }) {
                         <button onClick={() => updateStatus(order.id, 'MAKING')} className="btn-primary">开始接单</button>
                       )}
                       {status === 'MAKING' && (
-                        <button onClick={() => updateStatus(order.id, 'READY')} className="btn-premium active !bg-slate-900 !text-white !px-6 !py-2.5 border-none shadow-lg shadow-slate-900/10 !text-[14px] uppercase font-black">核销出餐</button>
+                        <button onClick={() => updateStatus(order.id, 'READY')} className="btn-premium active !bg-slate-900 !text-white !px-4 !py-3.5 border-none shadow-lg shadow-slate-900/10 !text-[14px] uppercase font-black">核销出餐</button>
                       )}
                       {status === 'READY' && (
                         <div className="flex gap-2">
@@ -79,7 +79,7 @@ export default function DeliveryHub({ hideHeader }) {
                                 const msg = `🛵 您的外卖订单 ${order.id} 已制作完成！骑手正在赶来。`;
                                 window.open(`https://wa.me/6281277889901?text=${encodeURIComponent(msg)}`, '_blank');
                              }}
-                             className="px-4 py-2.5 bg-white text-orange-600 border border-orange-100 text-[14px] font-black rounded-xl uppercase hover:bg-orange-50 transition-all"
+                             className="px-4 py-3.5 bg-white text-orange-600 border border-orange-100 text-[14px] font-black rounded-xl uppercase hover:bg-orange-50 transition-all"
                            >
                               {t('notifyRider')}
                            </button>
@@ -106,7 +106,7 @@ export default function DeliveryHub({ hideHeader }) {
       
       {/* Premium Header Header */}
       {!hideHeader && (
-        <div className="flex flex-col gap-2 px-2">
+        <div className="flex flex-col gap-2 px-4">
           <h1 className="text-h1">{lang === 'zh' ? '全链路外卖中枢' : 'Delivery Backbone'}</h1>
           <p className="text-label-caps">{lang === 'zh' ? '多平台外卖实时对账与调度中心' : 'Multi-Channel Reconciliation & Ops Hub'}</p>
         </div>
@@ -165,7 +165,7 @@ export default function DeliveryHub({ hideHeader }) {
       ) : activeTab === 'smartops' ? (
         <SmartOpsHub />
       ) : (
-        <div className="max-w-4xl mx-auto pb-20 px-2">
+        <div className="max-w-4xl mx-auto pb-20 px-4">
           <DeliverySettings />
         </div>
       )}

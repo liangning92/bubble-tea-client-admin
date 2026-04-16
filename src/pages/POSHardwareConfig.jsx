@@ -61,14 +61,14 @@ export default function POSHardwareConfig() {
   return (
     <div className="space-y-12 animate-soft text-slate-900 pb-24">
       {/* 统一页头 - 纯净汉化 */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-10 px-2 gap-6">
-        <div className="space-y-1">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-10 px-4 gap-6">
+        <div className="space-y-4">
           <h3 className="text-h2 uppercase">{t('posSetupTitle') || '收银终端硬件配置'}</h3>
           <p className="text-label-caps mt-1 !text-slate-400">POS Hardware & Peripherals Config</p>
         </div>
         <div className="flex gap-4">
-           <button onClick={loadConfig} className="btn-premium !px-6 bg-white border-slate-100 text-slate-400 font-black uppercase tracking-widest text-[12px]">{t('refresh') || '刷新'}</button>
-           <button onClick={() => handleSave()} className="btn-premium active !bg-slate-900 !text-white !px-10 !py-4 border-none shadow-xl shadow-slate-900/10 uppercase tracking-widest text-[13px] font-black">
+           <button onClick={loadConfig} className="btn-premium !px-4 bg-white border-slate-100 text-slate-400 font-black uppercase tracking-widest text-[12px]">{t('refresh') || '刷新'}</button>
+           <button onClick={() => handleSave()} className="btn-premium active !bg-slate-900 !text-white !px-10 !py-3 border-none shadow-xl shadow-slate-900/10 uppercase tracking-widest text-[13px] font-black">
               {t('syncToTerminals') || '同步至收银终端'}
            </button>
         </div>
@@ -81,7 +81,7 @@ export default function POSHardwareConfig() {
           className={`card-premium !p-8 flex items-center gap-6 cursor-pointer transition-all !rounded-[40px] border-2 ${config.mode === 'single' ? 'border-primary bg-primary/5' : 'border-slate-50 hover:border-slate-200 bg-white'}`}
         >
           <div className="w-20 h-20 bg-slate-100 rounded-3xl flex items-center justify-center text-4xl shadow-inner">📱</div>
-          <div className="flex-1 space-y-1">
+          <div className="flex-1 space-y-4">
             <h3 className="text-[18px] font-black text-slate-900 uppercase">{t('posSingleMode') || '单屏收银模式'}</h3>
             <p className="text-[12px] text-slate-400 font-bold uppercase tracking-tight opacity-70">
                {t('singleModeDesc') || '仅显示收银员操作界面，适用于紧凑型吧台'}
@@ -97,7 +97,7 @@ export default function POSHardwareConfig() {
           className={`card-premium !p-8 flex items-center gap-6 cursor-pointer transition-all !rounded-[40px] border-2 ${config.mode === 'dual' ? 'border-primary bg-primary/5' : 'border-slate-50 hover:border-slate-200 bg-white'}`}
         >
           <div className="w-20 h-20 bg-slate-100 rounded-3xl flex items-center justify-center text-4xl shadow-inner">💻</div>
-          <div className="flex-1 space-y-1">
+          <div className="flex-1 space-y-4">
             <h3 className="text-[18px] font-black text-slate-900 uppercase">{t('posDualMode') || '双屏客显模式'}</h3>
             <p className="text-[12px] text-slate-400 font-bold uppercase tracking-tight opacity-70">
                {t('dualModeDesc') || '主屏收银，副屏同步订单详情与品牌广告'}

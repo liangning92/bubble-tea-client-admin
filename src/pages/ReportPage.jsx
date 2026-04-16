@@ -51,7 +51,7 @@ export default function ReportPage() {
           {report.summary?.topProducts?.length > 0 && (
             <div className="card">
               <h3 className="font-bold mb-3">{t.topProducts}</h3>
-              <div className="space-y-2">
+              <div className="space-y-4">
                 {report.summary.topProducts.map((p, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <span className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 text-center font-bold text-sm">{i+1}</span>
@@ -66,7 +66,7 @@ export default function ReportPage() {
           {report.alerts?.lowStock?.length > 0 && (
             <div className="card border-l-4 border-red-500">
               <h3 className="font-bold text-red-600 mb-3">{t.inventoryAlert}</h3>
-              <div className="space-y-1">
+              <div className="space-y-4">
                 {report.alerts.lowStock.map((item, i) => (
                   <div key={i} className="text-sm text-red-600">
                     {item.name}: {item.current}{item.unit} (安全: {item.safe}{item.unit})
@@ -79,7 +79,7 @@ export default function ReportPage() {
           {report.suggestions?.length > 0 && (
             <div className="card border-l-4 border-blue-500">
               <h3 className="font-bold text-blue-600 mb-3">{t.restockSuggestion}</h3>
-              <div className="space-y-2">
+              <div className="space-y-4">
                 {report.suggestions.map((s, i) => (
                   <div key={i} className="text-sm">
                     <span className="font-medium">{s.ingredient}</span>:

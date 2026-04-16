@@ -105,12 +105,12 @@ export default function TaxReporter({ hideHeader }) {
     <div className="space-y-12 animate-soft text-slate-900 pb-24">
       {/* Header */}
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 px-2">
-          <div className="space-y-1.5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 px-4">
+          <div className="space-y-4.5">
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">{t('taxHub')}</h3>
             <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em] opacity-60 leading-none">{t('taxSubtitle')}</p>
           </div>
-          <button onClick={handleDownloadPdf} className="btn-premium active !bg-[#FF7700] !text-white !px-12 !py-4 !text-[13px] border-none shadow-2xl shadow-orange-500/20 !scale-100 hover:scale-105 active:scale-95 transition-all uppercase tracking-[0.2em] font-black rounded-[24px]">
+          <button onClick={handleDownloadPdf} className="btn-premium active !bg-[#FF7700] !text-white !px-12 !py-3 !text-[13px] border-none shadow-2xl shadow-orange-500/20 !scale-100 hover:scale-105 active:scale-95 transition-all uppercase tracking-[0.2em] font-black rounded-[24px]">
             📄 {t('downloadPdfReport') || '下载税务PDF'}
           </button>
         </div>
@@ -149,7 +149,7 @@ export default function TaxReporter({ hideHeader }) {
           </div>
 
           <div className="pt-8 relative z-10">
-            <button onClick={handleSaveNpwp} disabled={saving} className="text-[14px] font-black text-white uppercase tracking-widest hover:bg-[#FF7700] hover:text-white px-10 py-4 bg-slate-900 rounded-full border border-slate-100 transition-all underline decoration-slate-700 decoration-4 underline-offset-8 disabled:opacity-50">
+            <button onClick={handleSaveNpwp} disabled={saving} className="text-[14px] font-black text-white uppercase tracking-widest hover:bg-[#FF7700] hover:text-white px-10 py-3 bg-slate-900 rounded-full border border-slate-100 transition-all underline decoration-slate-700 decoration-4 underline-offset-8 disabled:opacity-50">
               {saving ? (t('processingDatabase') || '处理中...') : (t('updateLockHeader') || '更新并锁定')}
             </button>
           </div>
@@ -167,16 +167,16 @@ export default function TaxReporter({ hideHeader }) {
             </h4>
           </div>
 
-          <div className="space-y-6 relative z-10">
+          <div className="space-y-4 relative z-10">
             {/* Month selector */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <label className="text-[13px] font-black text-slate-500 uppercase tracking-widest">{t('filingMonthLabel')}</label>
               <input type="month" value={month} onChange={e => setMonth(e.target.value)}
                 className="w-full !bg-white/10 !text-white !rounded-[20px] !p-5 font-black text-[15px] border border-white/10" />
             </div>
 
             {/* Gross turnover input */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <label className="text-[13px] font-black text-slate-500 uppercase tracking-widest">{t('grossTurnover')}</label>
               <div className="flex gap-3">
                 <input type="number" value={grossTurnover} onChange={e => setGrossTurnover(e.target.value)} placeholder="0"

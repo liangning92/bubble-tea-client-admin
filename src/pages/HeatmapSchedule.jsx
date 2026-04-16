@@ -83,7 +83,7 @@ export default function HeatmapSchedule({ staff }) {
                           <span className="text-[14px] text-slate-400 font-bold mt-1 scale-90 origin-top">{tf.hour.split(':')[0]}点</span>
                           
                           {/* Tooltip */}
-                          <div className="absolute bottom-full mb-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white text-[14px] py-1 px-2 rounded-lg pointer-events-none whitespace-nowrap z-10">
+                          <div className="absolute bottom-full mb-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white text-[14px] py-1 px-4 rounded-lg pointer-events-none whitespace-nowrap z-10">
                             预估客流: {tf.load}
                           </div>
                        </div>

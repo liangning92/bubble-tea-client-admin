@@ -90,8 +90,8 @@ export default function StockOutPage({ hideHeader }) {
   return (
     <div className="space-y-12 animate-soft text-slate-900 pb-24">
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 px-2">
-          <div className="space-y-1.5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 px-4">
+          <div className="space-y-4.5">
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase ">{t('stockOutHub')}</h3>
             <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em]  opacity-60 leading-none">{t('stockOutSubtitle')}</p>
           </div>
@@ -113,7 +113,7 @@ export default function StockOutPage({ hideHeader }) {
                     <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('selectMaterialLabel')}</label>
                     <input className="input-premium w-full !p-6 focus:!bg-white !rounded-[24px] font-black text-[16px]  bg-slate-50/50 border-none appearance-none" placeholder={t('materialPlaceholder')} value={searchText} onChange={e => { setSearchText(e.target.value); setShowDropdown(true); }} />
                     {showDropdown && searchText.trim() && (
-                       <div className="absolute top-full left-0 w-full bg-white border border-slate-50 rounded-[32px] shadow-3xl z-50 mt-4 overflow-hidden animate-soft py-2 ring-1 ring-slate-100">
+                       <div className="absolute top-full left-0 w-full bg-white border border-slate-50 rounded-[32px] shadow-3xl z-50 mt-4 overflow-hidden animate-soft py-3 ring-1 ring-slate-100">
                           {inventory.filter(i => i.name.toLowerCase().includes(searchText.toLowerCase())).slice(0, 8).map(s => (
                              <div key={s.id} onClick={() => handleSelectItem(s)} className="p-6 hover:bg-slate-50 cursor-pointer border-b border-slate-50 last:border-none flex justify-between items-center transition-all group/item">
                                 <div>
@@ -164,7 +164,7 @@ export default function StockOutPage({ hideHeader }) {
            <div className="card-premium border-slate-50 bg-white !p-0 overflow-hidden shadow-sm hover:border-slate-300 transition-all !rounded-[48px] h-full">
               <div className="p-12 border-b border-slate-50 bg-slate-50/30 backdrop-blur-md flex justify-between items-center">
                  <h4 className="text-[14px] font-black uppercase tracking-widest text-slate-900 ">{t('latestOutRecords')}</h4>
-                 <span className="text-[14px] bg-slate-900 text-white px-4 py-2 rounded-full uppercase font-black tracking-widest shadow-sm ">{t('auditTrail')}</span>
+                 <span className="text-[14px] bg-slate-900 text-white px-4 py-3 rounded-full uppercase font-black tracking-widest shadow-sm ">{t('auditTrail')}</span>
               </div>
               <div className="divide-y divide-slate-50 max-h-[1000px] overflow-y-auto no-scrollbar font-sans">
                  {stockOutHistory.length === 0 ? (
@@ -177,7 +177,7 @@ export default function StockOutPage({ hideHeader }) {
                       <div key={h.id} className="p-12 hover:bg-slate-50/80 transition-all group cursor-default relative overflow-hidden">
                          <div className="absolute top-0 right-0 p-8 opacity-5 text-4xl font-black grayscale pointer-events-none  uppercase">DISPOSE</div>
                          <div className="flex justify-between items-start mb-6 relative z-10">
-                            <div className="space-y-3">
+                            <div className="space-y-4">
                                <p className="font-black text-slate-900 text-[18px] uppercase tracking-tighter group-hover:text-slate-600 transition-colors ">{h.inventory?.name}</p>
                                <span className="px-3 py-1 bg-slate-900 text-white text-[14px] font-black rounded-full uppercase tracking-widest ">{t(`type${h.type?.charAt(0).toUpperCase() + h.type?.slice(1)}`) || h.type}</span>
                             </div>

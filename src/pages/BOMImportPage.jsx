@@ -141,12 +141,12 @@ export default function BOMImportPage() {
   }, {}));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
           <span>🧬</span> {tl('配方与 BOM 矩阵', 'Recipe & BOM Matrix', 'Matriks Resep & BOM')}
         </h2>
-        <button onClick={() => setShowBatch(true)} className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded-xl font-bold transition shadow-lg shadow-blue-500/20">
+        <button onClick={() => setShowBatch(true)} className="px-5 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded-xl font-bold transition shadow-lg shadow-blue-500/20">
           📥 {tl('批量导入配方', 'Batch Import', 'Impor Massal')}
         </button>
       </div>
@@ -176,7 +176,7 @@ export default function BOMImportPage() {
                   <h3 className="font-bold text-blue-700 text-lg mb-4 flex items-center gap-2 border-b border-blue-50 pb-2">
                     <span>🧋</span> {productName}
                   </h3>
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     {items.map(item => (
                       <div key={item.id} className="flex justify-between items-center text-sm p-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors group/item">
                         <div className="flex flex-col">
@@ -184,7 +184,7 @@ export default function BOMImportPage() {
                            <span className="text-[14px] text-slate-400 font-medium">1 {tl('杯/份', 'cup/unit', 'cup/unit')}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                           <div className="flex items-center bg-white border border-slate-200 rounded-lg px-2 shadow-sm focus-within:ring-2 focus-within:ring-blue-500 transition-all">
+                           <div className="flex items-center bg-white border border-slate-200 rounded-lg px-4 shadow-sm focus-within:ring-2 focus-within:ring-blue-500 transition-all">
                               <input 
                                 type="number" 
                                 defaultValue={item.usageAmount}
@@ -257,7 +257,7 @@ export default function BOMImportPage() {
                   value={batchText}
                   onChange={e => setBatchText(e.target.value)}
                  />
-                 <button onClick={parseBatchText} className="w-full py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold transition text-sm">
+                 <button onClick={parseBatchText} className="w-full py-3 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold transition text-sm">
                    {tl('解析文本', 'Parse Text', 'Urai Teks')}
                  </button>
               </div>
@@ -266,9 +266,9 @@ export default function BOMImportPage() {
             {parsedItems.length > 0 && (
               <div className="mb-8">
                 <h4 className="font-bold text-slate-800 mb-3 flex items-center gap-2">
-                  <span>✨</span> {tl('解析结果预览', 'Parse Results Preview', 'Pratinjau Hasil Urai')} <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-[14px]">共 {parsedItems.length} 项</span>
+                  <span>✨</span> {tl('解析结果预览', 'Parse Results Preview', 'Pratinjau Hasil Urai')} <span className="bg-blue-100 text-blue-700 px-4 py-0.5 rounded-full text-[14px]">共 {parsedItems.length} 项</span>
                 </h4>
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 max-h-60 overflow-y-auto space-y-2">
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 max-h-60 overflow-y-auto space-y-4">
                   {parsedItems.map((item, i) => (
                     item._error ? (
                       <div key={i} className="text-[14px] bg-red-50 p-3 rounded-xl text-red-600 border border-red-100 font-medium flex items-center gap-2">
@@ -277,9 +277,9 @@ export default function BOMImportPage() {
                     ) : (
                       <div key={i} className={`text-[14px] p-3 rounded-xl border font-medium flex items-center justify-between ${item.matched ? 'bg-green-50 border-green-100 text-green-800' : 'bg-yellow-50 border-yellow-100 text-yellow-800'}`}>
                         <div className="flex items-center gap-2">
-                          <span className="bg-white px-2 py-1 rounded shadow-sm">{item.productName}</span> 
+                          <span className="bg-white px-4 py-1 rounded shadow-sm">{item.productName}</span> 
                           <span className="text-slate-400">+</span>
-                          <span className="bg-white px-2 py-1 rounded shadow-sm">{item.ingredientName}</span>
+                          <span className="bg-white px-4 py-1 rounded shadow-sm">{item.ingredientName}</span>
                           <span className="text-slate-400">×</span>
                           <span className="font-black">{item.usage}</span>
                         </div>
@@ -297,11 +297,11 @@ export default function BOMImportPage() {
               <button 
                 onClick={handleBatchImport} 
                 disabled={parsedItems.filter(i => !i._error && i.matched).length === 0}
-                className="flex-[2] py-4 bg-emerald-500 disabled:bg-slate-300 disabled:cursor-not-allowed hover:bg-emerald-600 text-white rounded-xl font-bold transition shadow-lg shadow-emerald-500/20 text-lg"
+                className="flex-[2] py-3 bg-emerald-500 disabled:bg-slate-300 disabled:cursor-not-allowed hover:bg-emerald-600 text-white rounded-xl font-bold transition shadow-lg shadow-emerald-500/20 text-lg"
               >
                 {tl('确认灌入数据库', 'Confirm & Import Database', 'Konfirmasi & Impor ke Database')} ({parsedItems.filter(i => !i._error && i.matched).length})
               </button>
-              <button onClick={() => { setShowBatch(false); setBatchText(''); setParsedItems([]); }} className="flex-1 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold transition">
+              <button onClick={() => { setShowBatch(false); setBatchText(''); setParsedItems([]); }} className="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold transition">
                 {tl('取消', 'Cancel', 'Batal')}
               </button>
             </div>

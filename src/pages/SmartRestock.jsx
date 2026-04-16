@@ -52,8 +52,8 @@ export default function SmartRestock({ hideHeader }) {
   return (
     <div className="space-y-12 animate-soft text-slate-900 pb-24">
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 px-2">
-          <div className="space-y-1.5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 px-4">
+          <div className="space-y-4.5">
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase ">{t('smartRestockHub')}</h3>
             <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em]  opacity-60 leading-none">{t('supplyChainVelocitySubtitle')}</p>
           </div>
@@ -63,7 +63,7 @@ export default function SmartRestock({ hideHeader }) {
                <button
                  key={d}
                  onClick={() => setSafetyDays(d)}
-                 className={`px-6 py-3 rounded-[18px] text-[14px] font-black transition-all uppercase tracking-widest ${safetyDays === d ? 'bg-white text-slate-900 shadow-md border border-slate-100 scale-[1.05] ring-4 ring-slate-900/5' : 'text-slate-400 hover:text-slate-600'}`}
+                 className={`px-4 py-3 rounded-[18px] text-[14px] font-black transition-all uppercase tracking-widest ${safetyDays === d ? 'bg-white text-slate-900 shadow-md border border-slate-100 scale-[1.05] ring-4 ring-slate-900/5' : 'text-slate-400 hover:text-slate-600'}`}
                >
                  {d}d
                </button>
@@ -131,13 +131,13 @@ export default function SmartRestock({ hideHeader }) {
             <div className="flex gap-6 w-full sm:w-auto">
                <button 
                   onClick={() => window.print()} 
-                  className="flex-1 sm:flex-none btn-premium !bg-white !text-slate-900 !px-10 !py-4 border border-slate-200 shadow-sm hover:bg-slate-50 active:scale-95 transition-all text-[14px] font-black uppercase tracking-widest rounded-2xl"
+                  className="flex-1 sm:flex-none btn-premium !bg-white !text-slate-900 !px-10 !py-3 border border-slate-200 shadow-sm hover:bg-slate-50 active:scale-95 transition-all text-[14px] font-black uppercase tracking-widest rounded-2xl"
                >
                   {t('exportRestockList')}
                </button>
                <button 
                   onClick={() => alert(t('syncingWithVendorPortal'))}
-                  className="flex-1 sm:flex-none btn-premium !bg-primary !text-white !px-10 !py-4 border-none shadow-xl shadow-primary/10 hover:scale-105 active:scale-95 transition-all text-[14px] font-black uppercase tracking-widest rounded-2xl"
+                  className="flex-1 sm:flex-none btn-premium !bg-primary !text-white !px-10 !py-3 border-none shadow-xl shadow-primary/10 hover:scale-105 active:scale-95 transition-all text-[14px] font-black uppercase tracking-widest rounded-2xl"
                >
                   🚀 {t('pushToPurchaseCenter')}
                </button>

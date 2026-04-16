@@ -184,7 +184,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
           </div>
           <div className="bg-slate-100 p-1.5 rounded-2xl flex gap-1 border border-slate-200 overflow-x-auto no-scrollbar">
             {tabs.map(tab => (
-              <button key={tab.key} onClick={() => setActiveTab(tab.key)} className={`whitespace-nowrap px-6 py-2 rounded-xl tab-text uppercase transition-all ${activeTab === tab.key ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-800'}`}>
+              <button key={tab.key} onClick={() => setActiveTab(tab.key)} className={`whitespace-nowrap px-4 py-3 rounded-xl tab-text uppercase transition-all ${activeTab === tab.key ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-800'}`}>
                 {lang === 'zh' ? tab.zh : tab.en}
               </button>
             ))}
@@ -203,9 +203,9 @@ export default function StaffPage({ defaultTab: initialTab }) {
 
           {showAddTraining && (
             <div className="card-premium border-slate-200 bg-white animate-soft mb-4 !p-4">
-              <h3 className="text-[14px] font-black text-slate-800 uppercase tracking-widest mb-4 px-2">{lang === 'zh' ? '发布新培训任务清单' : 'New Training Task'}</h3>
+              <h3 className="text-[14px] font-black text-slate-800 uppercase tracking-widest mb-4 px-4">{lang === 'zh' ? '发布新培训任务清单' : 'New Training Task'}</h3>
               <form onSubmit={handleAddTraining} className="space-y-4">
-                <input className="input-premium w-full !py-2.5" placeholder={lang === 'zh' ? '培训项目标题 (如：SOP 标准操作)' : 'Training Title'} value={trainingForm.title} onChange={e => setTrainingForm({...trainingForm, title: e.target.value})} required />
+                <input className="input-premium w-full !py-3.5" placeholder={lang === 'zh' ? '培训项目标题 (如：SOP 标准操作)' : 'Training Title'} value={trainingForm.title} onChange={e => setTrainingForm({...trainingForm, title: e.target.value})} required />
                 <div className="grid grid-cols-2 gap-6">
                   <select className="input-premium w-full text-[14px]" value={trainingForm.assignedTo} onChange={e => setTrainingForm({...trainingForm, assignedTo: e.target.value})}>
                     <option value="">分配给特定员工</option>
@@ -228,7 +228,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
               (trainings || []).map(t => (
                 <div key={t.id} className="card-premium group relative hover:border-indigo-200 transition-all bg-white border-slate-200">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-2 py-1 rounded uppercase tracking-widest border border-indigo-100">{lang === 'zh' ? '培训存证' : 'Training Log'}</span>
+                    <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-4 py-1 rounded uppercase tracking-widest border border-indigo-100">{lang === 'zh' ? '培训存证' : 'Training Log'}</span>
                     <span className="text-[14px] text-slate-400 font-bold">{t.date}</span>
                   </div>
                   <h4 className="text-sm font-black text-slate-800 mb-2 leading-tight tracking-tight">
@@ -291,7 +291,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                   <h3 className="text-[14px] font-black text-slate-800 tracking-widest">{date}</h3>
                   <span className="text-[14px] font-bold text-slate-400 uppercase">{items.length} 班次</span>
                 </div>
-                <div className="p-3 space-y-2">
+                <div className="p-3 space-y-4">
                   {(items || []).map(item => (
                     <div key={item.id} className="flex justify-between items-center p-4 bg-slate-50/50 rounded-2xl border border-slate-100 hover:bg-white transition-all group">
                       <div className="flex items-center gap-4">
@@ -325,7 +325,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
           {showAddReward && (
             <div className="card-premium border-slate-200 bg-white animate-soft mb-8">
               <h3 className="text-[14px] font-black text-slate-800 mb-6 uppercase tracking-widest">{lang === 'zh' ? '录入绩效动态看板' : 'Add Performance Log'}</h3>
-              <form onSubmit={handleAddReward} className="space-y-6">
+              <form onSubmit={handleAddReward} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <select className="input-premium text-[14px]" value={rewardForm.userId} onChange={e => setRewardForm({...rewardForm, userId: e.target.value})} required>
                     <option value="">关联员工</option>
@@ -354,7 +354,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                     <div>
                       <div className="font-black text-slate-900 flex items-center gap-2">
                         {r.User?.username || 'Employee'}
-                        <span className={`text-[14px] px-2 py-0.5 rounded font-bold ${r.category === 'reward' ? 'bg-emerald-100 text-emerald-600' : 'bg-rose-100 text-rose-600'}`}>
+                        <span className={`text-[14px] px-4 py-0.5 rounded font-bold ${r.category === 'reward' ? 'bg-emerald-100 text-emerald-600' : 'bg-rose-100 text-rose-600'}`}>
                           {r.category === 'reward' ? 'BONUS' : 'PENALTY'}
                         </span>
                       </div>
@@ -380,45 +380,45 @@ export default function StaffPage({ defaultTab: initialTab }) {
       {activeTab === 'salaries' && (
         <div className="space-y-4 animate-soft">
           <div className="flex justify-end">
-            <button onClick={() => setShowAddSalary(true)} className="px-10 py-4 bg-indigo-500 text-white rounded-2xl font-black text-[14px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-500/30">
+            <button onClick={() => setShowAddSalary(true)} className="px-10 py-3 bg-indigo-500 text-white rounded-2xl font-black text-[14px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-500/30">
               ⚡ 发放本月薪资
             </button>
           </div>
 
           {showAddSalary && (
             <div className="card-premium border-slate-200 bg-white mb-8">
-               <h3 className="text-[14px] font-black text-slate-800 mb-8 uppercase tracking-widest px-2">{lang === 'zh' ? '核算单月薪酬明细' : 'Payroll Calculation'}</h3>
+               <h3 className="text-[14px] font-black text-slate-800 mb-8 uppercase tracking-widest px-4">{lang === 'zh' ? '核算单月薪酬明细' : 'Payroll Calculation'}</h3>
                <form onSubmit={handleAddSalary} className="space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                     <div className="space-y-2">
+                     <div className="space-y-4">
                         <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">选择发放员工</label>
                         <select className="input-premium w-full text-[14px]" value={salaryForm.staffId} onChange={e => setSalaryForm({...salaryForm, staffId: e.target.value})} required>
                            <option value="">员工姓名</option>
                            {(staffList || []).map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
                         </select>
                      </div>
-                     <div className="space-y-2">
+                     <div className="space-y-4">
                         <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">结算周期</label>
                         <input className="input-premium w-full !p-3 text-[14px]" type="month" value={salaryForm.month} onChange={e => setSalaryForm({...salaryForm, month: e.target.value})} required />
                      </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                     <div className="space-y-2">
+                     <div className="space-y-4">
                         <label className="text-[14px] font-black text-emerald-500 uppercase tracking-widest ml-2">基本薪资</label>
                         <input className="input-premium w-full text-white font-black" type="number" value={salaryForm.baseSalary} onChange={e => setSalaryForm({...salaryForm, baseSalary: e.target.value})} required />
                      </div>
-                     <div className="space-y-2">
+                     <div className="space-y-4">
                         <label className="text-[14px] font-black text-indigo-400 uppercase tracking-widest ml-2">浮动奖金</label>
                         <input className="input-premium w-full text-white font-black" type="number" value={salaryForm.bonus} onChange={e => setSalaryForm({...salaryForm, bonus: e.target.value})} />
                      </div>
-                     <div className="space-y-2">
+                     <div className="space-y-4">
                         <label className="text-[14px] font-black text-rose-400 uppercase tracking-widest ml-2">扣除/罚金</label>
                         <input className="input-premium w-full text-white font-black" type="number" value={salaryForm.deduction} onChange={e => setSalaryForm({...salaryForm, deduction: e.target.value})} />
                      </div>
                   </div>
                   <div className="flex gap-4 pt-4">
-                     <button type="submit" className="flex-1 px-8 py-4 bg-indigo-600 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-lg shadow-indigo-500/20">{lang === 'zh' ? '确认同步并登记发放' : 'Confirm & Sync'}</button>
-                     <button type="button" onClick={() => setShowAddSalary(false)} className="px-8 py-4 bg-slate-100 text-slate-500 rounded-2xl font-black text-[14px] uppercase tracking-widest border border-slate-200">取消</button>
+                     <button type="submit" className="flex-1 px-8 py-3 bg-indigo-600 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-lg shadow-indigo-500/20">{lang === 'zh' ? '确认同步并登记发放' : 'Confirm & Sync'}</button>
+                     <button type="button" onClick={() => setShowAddSalary(false)} className="px-8 py-3 bg-slate-100 text-slate-500 rounded-2xl font-black text-[14px] uppercase tracking-widest border border-slate-200">取消</button>
                   </div>
                </form>
             </div>

@@ -59,7 +59,7 @@ export default function WhatsAppAudit({ hideHeader }) {
               <p className="text-slate-500 font-medium">查看发送给顾客的每一条关怀消息与营销内容</p>
            </div>
            <div className="flex items-center gap-3">
-              <div className={`flex items-center gap-2 px-4 py-2 rounded-2xl border ${
+              <div className={`flex items-center gap-2 px-4 py-3 rounded-2xl border ${
                  engineStatus.status === 'READY' ? 'bg-emerald-50 border-emerald-100 text-emerald-600' : 'bg-rose-50 border-rose-100 text-rose-600'
               }`}>
                  <div className={`w-2 h-2 rounded-full ${engineStatus.status === 'READY' ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`}></div>
@@ -67,7 +67,7 @@ export default function WhatsAppAudit({ hideHeader }) {
               </div>
               {engineStatus.qrCode && engineStatus.status === 'QR_READY' && (
                  <div className="relative group">
-                    <button className="px-4 py-2 bg-indigo-600 text-white rounded-2xl text-[14px] font-black shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all">扫码登录</button>
+                    <button className="px-4 py-3 bg-indigo-600 text-white rounded-2xl text-[14px] font-black shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all">扫码登录</button>
                     <div className="absolute top-full right-0 mt-2 p-2 bg-white border border-slate-200 rounded-2xl shadow-2xl z-[60] hidden group-hover:block transition-all">
                        <img src={engineStatus.qrCode} alt="QR" className="w-32 h-32" />
                        <p className="text-[14px] text-slate-400 text-center mt-1 font-bold">店长使用 WhatsApp 扫码</p>
@@ -86,10 +86,10 @@ export default function WhatsAppAudit({ hideHeader }) {
                <table className="w-full text-left border-collapse">
                   <thead>
                      <tr className="bg-slate-50/50 border-b border-slate-100 ">
-                        <th className="py-4 px-6 text-[14px] font-black text-slate-400 uppercase tracking-widest">接收人信息</th>
-                        <th className="py-4 px-6 text-[14px] font-black text-slate-400 uppercase tracking-widest">发送次数</th>
-                        <th className="py-4 px-6 text-[14px] font-black text-slate-400 uppercase tracking-widest">消息内容</th>
-                        <th className="py-4 px-6 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">阅读状态</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">接收人信息</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">发送次数</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">消息内容</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">阅读状态</th>
                      </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
@@ -102,7 +102,7 @@ export default function WhatsAppAudit({ hideHeader }) {
                               onClick={() => setActivePreview(log)}
                               className={`group cursor-pointer transition-colors ${activePreview?.id === log.id ? 'bg-indigo-50/40' : 'hover:bg-slate-50/50'}`}
                            >
-                              <td className="py-5 px-6">
+                              <td className="py-5 px-4">
                                  <div className="flex items-center gap-3">
                                     <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-[14px]">👤</div>
                                     <div>
@@ -111,20 +111,20 @@ export default function WhatsAppAudit({ hideHeader }) {
                                     </div>
                                  </div>
                               </td>
-                              <td className="py-5 px-6">
-                                 <span className="text-[14px] font-black text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg">
+                              <td className="py-5 px-4">
+                                 <span className="text-[14px] font-black text-slate-700 bg-slate-100 px-4.5 py-1 rounded-lg">
                                     {getSendCount(log.recipient)} 次
                                  </span>
                               </td>
-                              <td className="py-5 px-6">
+                              <td className="py-5 px-4">
                                  <div className="text-[14px] text-slate-600 line-clamp-1 max-w-[200px]">
                                     {log.content}
                                  </div>
                                  <div className="text-[14px] text-indigo-500 font-black uppercase tracking-tighter mt-1">{log.type}</div>
                               </td>
-                              <td className="py-5 px-6 text-right">
+                              <td className="py-5 px-4 text-right">
                                  <div className="flex flex-col items-end gap-1">
-                                    <span className={`px-2 py-0.5 rounded-lg text-[14px] font-black uppercase tracking-widest border ${
+                                    <span className={`px-4 py-0.5 rounded-lg text-[14px] font-black uppercase tracking-widest border ${
                                        log.status === 'read' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 
                                        log.status === 'failed' ? 'bg-rose-50 text-rose-600 border-rose-100' : 'bg-blue-50 text-blue-600 border-blue-100'
                                     }`}>
@@ -151,7 +151,7 @@ export default function WhatsAppAudit({ hideHeader }) {
                {/* 屏幕内屏 */}
                <div className="w-full h-full bg-[#f0f2f5] rounded-[38px] overflow-hidden flex flex-col relative">
                   {/* 顶部状态栏 */}
-                  <div className="h-6 bg-slate-800 flex justify-between px-6 items-center text-[8px] font-bold text-slate-300">
+                  <div className="h-6 bg-slate-800 flex justify-between px-4 items-center text-[8px] font-bold text-slate-300">
                      <span>9:41</span>
                      <div className="flex gap-1.5">
                         <span>📶</span><span>🔋</span>
@@ -176,7 +176,7 @@ export default function WhatsAppAudit({ hideHeader }) {
                            </div>
                            <div className="w-full h-28 bg-slate-50 rounded-xl flex flex-col items-center justify-center border border-slate-100 p-2 group hover:bg-white transition-all">
                               <div className="text-[14px] font-black text-indigo-600 mb-1 uppercase tracking-tighter">会员专享通道</div>
-                              <div className="bg-white px-2 py-1.5 rounded-lg text-[8px] font-mono text-slate-400 w-full truncate mb-2 border border-slate-100">https://bbt.io/voucher/...</div>
+                              <div className="bg-white px-4 py-1.5 rounded-lg text-[8px] font-mono text-slate-400 w-full truncate mb-2 border border-slate-100">https://bbt.io/voucher/...</div>
                               <button className="w-full py-1.5 bg-indigo-600 text-white text-[14px] font-black rounded-lg shadow-sm active:scale-95 transition-all">立即领取</button>
                            </div>
                            <div className="flex justify-end items-center gap-1 text-[7px] text-slate-400 mt-2">

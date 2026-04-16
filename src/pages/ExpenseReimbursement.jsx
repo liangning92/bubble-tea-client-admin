@@ -110,10 +110,10 @@ export default function ExpenseReimbursement({ hideHeader }) {
   ];
 
   return (
-    <div className="space-y-6 animate-soft text-slate-900 pb-12">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-5 px-2">
+    <div className="space-y-4 animate-soft text-slate-900 pb-12">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-5 px-4">
         {!hideHeader ? (
-          <div className="space-y-1">
+          <div className="space-y-4">
             <h2 className="text-h1 uppercase tracking-tight">{t('expenseHub')}</h2>
             <p className="text-label-caps !text-slate-400">{t('expenseSubtitle')}</p>
           </div>
@@ -132,25 +132,25 @@ export default function ExpenseReimbursement({ hideHeader }) {
           <h3 className="text-lg font-black text-slate-900 uppercase tracking-tighter mb-8 border-b border-slate-50 pb-6 relative z-10">
             ⚡ {t('claimSubmission')}
           </h3>
-          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+          <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <label className="text-label-caps block pl-2">{t('expenseCategory')}</label>
                 <select className="input-premium w-full !p-4 font-black text-slate-900 text-[14px] bg-slate-50 border-transparent" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
                   {categoryOptions.map(c => <option key={c.key} value={c.key}>{c.label}</option>)}
                 </select>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <label className="text-label-caps block pl-2">{t('amount')}</label>
                 <input type="number" required placeholder="0.00" className="input-premium w-full !p-4 font-black text-slate-900 text-2xl tracking-tighter bg-slate-50 border-transparent" value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value })} />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <label className="text-label-caps block pl-2">{t('date')}</label>
                 <input type="date" className="input-premium w-full !p-4 font-black text-slate-900 text-[14px] bg-slate-50 border-transparent" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest block pl-2">{t('complianceNote')}</label>
               <textarea required placeholder="..." className="input-premium w-full h-28 !p-6 text-[14px] font-medium bg-slate-50 border-transparent" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} />
             </div>

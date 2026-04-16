@@ -109,16 +109,16 @@ export default function CostStatistics({ hideHeader }) {
   return (
     <div className="space-y-12 animate-soft text-slate-900 pb-24">
       {/* Header row */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-10 px-2">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-10 px-4">
         <div className="bg-emerald-50 px-8 py-3 rounded-[24px] flex items-center gap-4 border border-emerald-100 shadow-sm transition-all hover:bg-emerald-100/50 cursor-help">
           <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(16,185,129,0.4)]"></span>
           <span className="text-[14px] font-black text-emerald-700 uppercase tracking-widest">{t('coreSyncActive')}</span>
         </div>
         <div className="flex gap-4">
-          <button onClick={() => setShowAddForm(true)} className="btn-premium active !bg-[#FF7700] !text-white !px-8 !py-4 !text-[13px] border-none shadow-2xl shadow-orange-500/20 !scale-100 hover:scale-105 active:scale-95 transition-all uppercase tracking-[0.2em] font-black rounded-[24px]">
+          <button onClick={() => setShowAddForm(true)} className="btn-premium active !bg-[#FF7700] !text-white !px-8 !py-3 !text-[13px] border-none shadow-2xl shadow-orange-500/20 !scale-100 hover:scale-105 active:scale-95 transition-all uppercase tracking-[0.2em] font-black rounded-[24px]">
             + {t('addNew') || '新增'}
           </button>
-          <button onClick={loadData} className="btn-premium active !bg-slate-900 !text-white !px-12 !py-4 !text-[13px] border-none shadow-2xl shadow-slate-900/10 !scale-100 hover:scale-105 active:scale-95 transition-all uppercase tracking-[0.2em] font-black rounded-[24px]">
+          <button onClick={loadData} className="btn-premium active !bg-slate-900 !text-white !px-12 !py-3 !text-[13px] border-none shadow-2xl shadow-slate-900/10 !scale-100 hover:scale-105 active:scale-95 transition-all uppercase tracking-[0.2em] font-black rounded-[24px]">
             {t('refreshFiscal')}
           </button>
         </div>
@@ -149,7 +149,7 @@ export default function CostStatistics({ hideHeader }) {
       <div className="card-premium bg-slate-900 text-white !p-16 border-none shadow-3xl shadow-slate-900/10 !rounded-[56px] relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-slate-800 rounded-full blur-[140px] opacity-40 -mr-80 -mt-80 transition-transform group-hover:scale-110 duration-1000" />
         <div className="flex flex-col xl:flex-row justify-between items-center gap-16 relative z-10">
-          <div className="space-y-6 text-center xl:text-left">
+          <div className="space-y-4 text-center xl:text-left">
             <p className="text-[13px] text-slate-500 tracking-[0.4em] font-black uppercase opacity-60">{t('monthlyAggregateOutflow')}</p>
             <p className="text-5xl font-black tracking-tighter text-white font-mono">
               <span className="text-2xl text-slate-500 mr-4 font-black tracking-normal scale-75 inline-block">Rp</span>
@@ -191,21 +191,21 @@ export default function CostStatistics({ hideHeader }) {
                 <button onClick={() => { setShowAddForm(false); setNewEntry({ category: 'rent', amount: '', description: '', date: new Date().toISOString().split('T')[0] }); }} className="text-slate-400 hover:text-slate-900 text-2xl font-black">&times;</button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('date') || '日期'}</label>
                   <input type="date" value={newEntry.date} onChange={e => setNewEntry(p => ({ ...p, date: e.target.value }))} className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" />
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('category') || '类别'}</label>
                   <select value={newEntry.category} onChange={e => setNewEntry(p => ({ ...p, category: e.target.value }))} className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none appearance-none">
                     {costCategories.map(c => <option key={c.key} value={c.key}>{c.icon} {c.label}</option>)}
                   </select>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('amountRpLabel') || '金额 (Rp)'}</label>
                   <input type="number" value={newEntry.amount} onChange={e => setNewEntry(p => ({ ...p, amount: e.target.value }))} placeholder="0" className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" />
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('complianceNote') || '备注'}</label>
                   <input type="text" value={newEntry.description} onChange={e => setNewEntry(p => ({ ...p, description: e.target.value }))} placeholder={t('auditReasonPlaceholder') || '备注...'} className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" />
                 </div>

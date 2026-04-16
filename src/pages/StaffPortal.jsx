@@ -85,7 +85,7 @@ export default function StaffPortal() {
             
             <button 
               onClick={() => setShowScanner(!showScanner)}
-              className="mt-8 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl flex items-center gap-3 shadow-lg shadow-indigo-500/30 transition-all active:scale-95"
+              className="mt-8 px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl flex items-center gap-3 shadow-lg shadow-indigo-500/30 transition-all active:scale-95"
             >
               <span className="text-2xl">📸</span>
               {showScanner ? "关闭扫描仪" : "扫码打卡 (Clock In)"}
@@ -109,9 +109,9 @@ export default function StaffPortal() {
          <section className="space-y-4">
             <div className="flex justify-between items-center px-4">
                <h3 className="text-xl font-black text-slate-800 tracking-tight">待办任务</h3>
-               <span className="px-2 py-0.5 bg-orange-100 text-orange-600 text-[14px] font-black rounded-lg uppercase tracking-widest">{tasks.length} PENDING</span>
+               <span className="px-4 py-0.5 bg-orange-100 text-orange-600 text-[14px] font-black rounded-lg uppercase tracking-widest">{tasks.length} PENDING</span>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
                {tasks.length === 0 ? (
                   <div className="p-10 bg-white border border-slate-200 rounded-[32px] text-center text-slate-400 ">任务已清空 ✨</div>
                ) : (
@@ -121,7 +121,7 @@ export default function StaffPortal() {
                           <div className="font-bold text-slate-800">{task.name}</div>
                           <div className="text-[14px] text-slate-400 font-black uppercase tracking-widest">{task.area}</div>
                        </div>
-                       <button onClick={() => window.location.href = '/hygiene'} className="px-4 py-2 bg-slate-900 text-white text-[14px] font-black rounded-xl">完成</button>
+                       <button onClick={() => window.location.href = '/hygiene'} className="px-4 py-3 bg-slate-900 text-white text-[14px] font-black rounded-xl">完成</button>
                     </div>
                   ))
                )}
@@ -132,7 +132,7 @@ export default function StaffPortal() {
          <section className="space-y-4">
             <div className="flex justify-between items-center px-4">
                <h3 className="text-xl font-black text-slate-800 tracking-tight">工资单</h3>
-               <span className="px-2 py-0.5 bg-emerald-100 text-emerald-600 text-[12px] font-black rounded-lg uppercase tracking-widest border border-emerald-200">专属私密</span>
+               <span className="px-4 py-0.5 bg-emerald-100 text-emerald-600 text-[12px] font-black rounded-lg uppercase tracking-widest border border-emerald-200">专属私密</span>
             </div>
             <div className="bg-white border border-slate-200 rounded-[32px] p-6 shadow-sm">
                {salaries.length === 0 ? (
@@ -159,7 +159,7 @@ export default function StaffPortal() {
          <section className="space-y-4 md:col-span-2">
             <div className="flex justify-between items-center px-4">
                <h3 className="text-xl font-black text-slate-800 tracking-tight">奖惩历史与记录</h3>
-               <span className="px-2 py-0.5 bg-indigo-100 text-indigo-600 text-[12px] font-black rounded-lg uppercase tracking-widest">异常申诉中心</span>
+               <span className="px-4 py-0.5 bg-indigo-100 text-indigo-600 text-[12px] font-black rounded-lg uppercase tracking-widest">异常申诉中心</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                {rewards.length === 0 ? (
@@ -190,7 +190,7 @@ export default function StaffPortal() {
                           {r.type === 'penalty' && r.status === 'active' && (
                              <button 
                                 onClick={() => setAppealModal({ id: r.id, reason: '' })}
-                                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-[14px] font-black rounded-xl transition-all active:scale-95"
+                                className="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 text-[14px] font-black rounded-xl transition-all active:scale-95"
                              >
                                 申报/申诉
                              </button>
@@ -218,8 +218,8 @@ export default function StaffPortal() {
                 onChange={e => setAppealModal({...appealModal, reason: e.target.value})}
               ></textarea>
               <div className="flex gap-4 mt-8">
-                 <button onClick={() => setAppealModal(null)} className="flex-1 py-4 bg-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-all">取消</button>
-                 <button onClick={handleAppeal} className="flex-1 py-4 bg-indigo-600 text-white font-black rounded-2xl shadow-lg shadow-indigo-100 transition-all active:scale-95">提交申请</button>
+                 <button onClick={() => setAppealModal(null)} className="flex-1 py-3 bg-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-all">取消</button>
+                 <button onClick={handleAppeal} className="flex-1 py-3 bg-indigo-600 text-white font-black rounded-2xl shadow-lg shadow-indigo-100 transition-all active:scale-95">提交申请</button>
               </div>
            </div>
         </div>

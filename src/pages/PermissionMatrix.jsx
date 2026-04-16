@@ -84,7 +84,7 @@ export default function PermissionMatrix() {
       <div className="flex gap-4 border-b border-slate-100 pb-0">
         <button
           onClick={() => setActiveTab('matrix')}
-          className={`pb-3 px-2 text-[13px] font-black uppercase tracking-widest border-b-2 transition-all ${
+          className={`pb-3 px-4 text-[13px] font-black uppercase tracking-widest border-b-2 transition-all ${
             activeTab === 'matrix'
               ? 'border-orange-500 text-slate-900'
               : 'border-transparent text-slate-400 hover:text-slate-600'
@@ -94,7 +94,7 @@ export default function PermissionMatrix() {
         </button>
         <button
           onClick={() => setActiveTab('audit')}
-          className={`pb-3 px-2 text-[13px] font-black uppercase tracking-widest border-b-2 transition-all ${
+          className={`pb-3 px-4 text-[13px] font-black uppercase tracking-widest border-b-2 transition-all ${
             activeTab === 'audit'
               ? 'border-orange-500 text-slate-900'
               : 'border-transparent text-slate-400 hover:text-slate-600'
@@ -119,7 +119,7 @@ function PermissionMatrixView({ matrix, modules, roles }) {
   const { t } = useAuth();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {roles.map(role => {
@@ -173,7 +173,7 @@ function PermissionMatrixView({ matrix, modules, roles }) {
                             <span className="text-[11px] text-slate-300 font-black uppercase">—</span>
                           ) : (
                             perms.map(p => (
-                              <span key={p} className="inline-block bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded-lg">
+                              <span key={p} className="inline-block bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-wider px-4 py-1 rounded-lg">
                                 {p.split('.')[1] || p}
                               </span>
                             ))

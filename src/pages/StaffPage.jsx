@@ -78,15 +78,15 @@ export default function StaffPage({ defaultTab, hideHeader }) {
   };
 
   return (
-    <div className={`animate-soft space-y-6 pb-24 !max-w-7xl mx-auto ${hideHeader ? '!pt-0' : ''}`}>
+    <div className={`animate-soft space-y-4 pb-24 !max-w-7xl mx-auto ${hideHeader ? '!pt-0' : ''}`}>
       {toast && (
-        <div className={`fixed top-12 left-1/2 -translate-x-1/2 z-[300] px-10 py-4 rounded-2xl shadow-3xl font-black text-[13px] border-4 border-white animate-soft ${toast.type === 'error' ? 'bg-red-500 text-white' : 'bg-slate-900 text-white'}`}>
+        <div className={`fixed top-12 left-1/2 -translate-x-1/2 z-[300] px-10 py-3 rounded-2xl shadow-3xl font-black text-[13px] border-4 border-white animate-soft ${toast.type === 'error' ? 'bg-red-500 text-white' : 'bg-slate-900 text-white'}`}>
            {toast.msg}
         </div>
       )}
 
-      <div className="flex justify-between items-end px-2">
-        <div className="space-y-1">
+      <div className="flex justify-between items-end px-4">
+        <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
              <span className="text-3xl">👤</span> {t('staffManagement', '员工档案数字化管理')}
           </h2>
@@ -118,7 +118,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
                    <span className="text-[10px] text-slate-300 mr-2 uppercase tracking-widest">IDR</span>
                    {parseFloat(s.baseSalary || 0).toLocaleString()}
                 </td>
-                <td className="p-8 text-center"><span className="px-5 py-2 bg-emerald-500 text-white rounded-full text-[11px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">{t('onDuty', '正式在职')}</span></td>
+                <td className="p-8 text-center"><span className="px-5 py-3 bg-emerald-500 text-white rounded-full text-[11px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">{t('onDuty', '正式在职')}</span></td>
                 <td className="p-8 text-right">
                     <button onClick={() => handleEdit(s)} className="w-12 h-12 border border-slate-100 rounded-xl flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-sm mx-auto float-right text-xl">✏️</button>
                 </td>
@@ -140,25 +140,25 @@ export default function StaffPage({ defaultTab, hideHeader }) {
             <div className="p-10">
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid grid-cols-2 gap-8">
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                      <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('name', '姓名')}</label>
-                     <input className="w-full h-14 bg-slate-50 rounded-2xl px-6 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all placeholder:opacity-30" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required placeholder="Enter name" />
+                     <input className="w-full h-14 bg-slate-50 rounded-2xl px-4 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all placeholder:opacity-30" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required placeholder="Enter name" />
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                      <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('phone', '电话')}</label>
-                     <input className="w-full h-14 bg-slate-50 rounded-2xl px-6 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} required placeholder="e.g. 0812..." />
+                     <input className="w-full h-14 bg-slate-50 rounded-2xl px-4 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} required placeholder="e.g. 0812..." />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-8">
-                   <div className="space-y-3">
+                   <div className="space-y-4">
                       <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('role', '岗位')}</label>
-                      <select className="w-full h-14 bg-slate-50 rounded-2xl px-6 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all appearance-none cursor-pointer" value={form.role} onChange={e => setForm({ ...form, role: e.target.value })}>
+                      <select className="w-full h-14 bg-slate-50 rounded-2xl px-4 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all appearance-none cursor-pointer" value={form.role} onChange={e => setForm({ ...form, role: e.target.value })}>
                         {roles.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
                       </select>
                    </div>
-                   <div className="space-y-3">
+                   <div className="space-y-4">
                       <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('baseSalary', '底薪')} (IDR)</label>
-                      <input className="w-full h-14 bg-slate-50 rounded-2xl px-6 font-black text-orange-600 outline-none border-2 border-transparent focus:border-orange-500 transition-all" type="text" value={form.baseSalary} onChange={e => setForm({ ...form, baseSalary: e.target.value })} required placeholder="e.g. 5000000" />
+                      <input className="w-full h-14 bg-slate-50 rounded-2xl px-4 font-black text-orange-600 outline-none border-2 border-transparent focus:border-orange-500 transition-all" type="text" value={form.baseSalary} onChange={e => setForm({ ...form, baseSalary: e.target.value })} required placeholder="e.g. 5000000" />
                    </div>
                 </div>
                 <button type="submit" className="w-full h-20 bg-slate-900 text-white rounded-[32px] font-black uppercase tracking-[0.3em] shadow-2xl active:scale-95 transition-all text-[15px]">{t('saveProfile', '确认物理保存档案')}</button>

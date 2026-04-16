@@ -31,7 +31,7 @@ export default function CouponFactory({ hideHeader }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {!hideHeader && (
         <div className="flex justify-between items-center">
           <div>
@@ -40,7 +40,7 @@ export default function CouponFactory({ hideHeader }) {
           </div>
           <button 
             onClick={() => setShowConfig(true)}
-            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20"
+            className="px-5 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20"
           >
             {tl('Buat Baru', '新建优惠券')}
           </button>
@@ -79,7 +79,7 @@ export default function CouponFactory({ hideHeader }) {
               </div>
               <div className="flex gap-2 pt-2">
                  <button type="submit" className="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold">发步券码 (Deploy)</button>
-                 <button type="button" onClick={()=>setShowConfig(false)} className="px-6 bg-white border border-slate-200 rounded-xl font-bold">取消</button>
+                 <button type="button" onClick={()=>setShowConfig(false)} className="px-4 bg-white border border-slate-200 rounded-xl font-bold">取消</button>
               </div>
            </form>
         </div>

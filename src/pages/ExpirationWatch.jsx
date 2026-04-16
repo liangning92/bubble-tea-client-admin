@@ -28,7 +28,7 @@ export default function ExpirationWatch() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
        
        <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
           <div>
@@ -78,7 +78,7 @@ export default function ExpirationWatch() {
                       <div className="w-10 h-10 bg-slate-50 flex items-center justify-center rounded border border-slate-100 text-lg">
                          {v.name.includes('珍珠') ? '🧋' : v.name.includes('果') ? '🥭' : '🍵'}
                       </div>
-                      <div className="px-2 py-0.5 text-[14px] text-slate-500 border border-slate-200 rounded bg-slate-50">
+                      <div className="px-4 py-0.5 text-[14px] text-slate-500 border border-slate-200 rounded bg-slate-50">
                          {v.batchNo}
                       </div>
                    </div>

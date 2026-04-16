@@ -89,13 +89,13 @@ export default function WhatsAppConnector({ hideHeader }) {
               <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200">
                  <button 
                     onClick={() => handleSwitchMode('auto')}
-                    className={`px-4 py-2 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${commMode === 'auto' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400'}`}
+                    className={`px-4 py-3 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${commMode === 'auto' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400'}`}
                  >
                     Full-Auto
                  </button>
                  <button 
                     onClick={() => handleSwitchMode('safe')}
-                    className={`px-4 py-2 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${commMode === 'safe' ? 'bg-emerald-600 text-white shadow-lg' : 'text-slate-400'}`}
+                    className={`px-4 py-3 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${commMode === 'safe' ? 'bg-emerald-600 text-white shadow-lg' : 'text-slate-400'}`}
                  >
                     Zero-Risk
                  </button>
@@ -140,7 +140,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                   <button 
                      onClick={handleInitialize}
                      disabled={loading}
-                     className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest shadow-xl hover:bg-slate-800 transition-all"
+                     className="px-8 py-3 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest shadow-xl hover:bg-slate-800 transition-all"
                   >
                      {loading ? 'Initializing Interface...' : '启动真机连接器'}
                   </button>
@@ -161,7 +161,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                            placeholder="6281277889901" 
                            value={testPhone}
                            onChange={e => setTestPhone(e.target.value)}
-                           className="w-full bg-white border border-slate-200 rounded-xl px-4 py-4 text-sm font-bold shadow-sm focus:border-indigo-500 outline-none transition-all"
+                           className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold shadow-sm focus:border-indigo-500 outline-none transition-all"
                         />
                      </div>
                      <div>
@@ -170,7 +170,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                            rows="3"
                            value={testMsg}
                            onChange={e => setTestMsg(e.target.value)}
-                           className="w-full bg-white border border-slate-200 rounded-xl px-4 py-4 text-sm font-medium shadow-sm focus:border-indigo-500 outline-none transition-all"
+                           className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium shadow-sm focus:border-indigo-500 outline-none transition-all"
                         />
                      </div>
                   </div>
@@ -178,7 +178,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                      <button 
                         onClick={handleSendTest}
                         disabled={loading || !testPhone}
-                        className={`w-full py-4 rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-lg transition-all flex items-center justify-center gap-2 ${
+                        className={`w-full py-3 rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-lg transition-all flex items-center justify-center gap-2 ${
                            commMode === 'safe' ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-500/20' : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-500/20'
                         }`}
                      >
@@ -203,7 +203,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                <a 
                  href="file:///Users/liangning/.gemini/antigravity/brain/e45006d9-43ed-4c79-954e-023fdbc18083/anti_ban_survival_guide.md"
                  target="_blank"
-                 className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-indigo-400 font-black text-[14px] uppercase tracking-widest hover:bg-white/10 transition-all shadow-xl"
+                 className="inline-flex items-center gap-2 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-indigo-400 font-black text-[14px] uppercase tracking-widest hover:bg-white/10 transition-all shadow-xl"
                >
                  查看通讯安全合规指南 (SOP) →
                </a>

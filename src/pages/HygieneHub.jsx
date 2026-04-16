@@ -29,7 +29,7 @@ export default function HygieneHub({ hideHeader }) {
       <div className="max-w-[1600px] mx-auto space-y-10">
         
         {!hideHeader && (
-          <div className="flex flex-col gap-2 px-2">
+          <div className="flex flex-col gap-2 px-4">
             <h1 className="text-h1">{pageTitle}</h1>
             <p className="text-label-caps">{t('staffSubtitle')}</p>
           </div>
@@ -41,7 +41,7 @@ export default function HygieneHub({ hideHeader }) {
             <button
               key={tb.key}
               onClick={() => handleTabClick(tb.key)}
-              className={`px-8 py-4 rounded-[28px] text-[11px] font-black uppercase tracking-widest transition-all ${
+              className={`px-8 py-3 rounded-[28px] text-[11px] font-black uppercase tracking-widest transition-all ${
                 tab === tb.key
                   ? 'bg-slate-900 text-white shadow-xl scale-105'
                   : 'text-slate-400 hover:text-slate-600'

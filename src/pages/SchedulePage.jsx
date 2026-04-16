@@ -71,7 +71,7 @@ export default function SchedulePage({ hideHeader }) {
   };
 
   return (
-    <div className="space-y-6 pb-20 animate-soft text-slate-900 !max-w-full">
+    <div className="space-y-4 pb-20 animate-soft text-slate-900 !max-w-full">
       {!hideHeader && (
         <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center bg-white p-6 md:p-10 rounded-[48px] border border-slate-100 shadow-xl gap-6 relative overflow-hidden">
            <div className="relative z-10">
@@ -80,9 +80,9 @@ export default function SchedulePage({ hideHeader }) {
            </div>
            <div className="flex flex-wrap gap-4 relative z-10 w-full xl:w-auto">
               <div className="flex bg-slate-100 p-2 rounded-[24px] border border-slate-200 shadow-inner">
-                <button className="px-6 py-2.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest bg-white text-slate-900 shadow-md">周视图</button>
+                <button className="px-4 py-3.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest bg-white text-slate-900 shadow-md">周视图</button>
                 <div className="w-px h-5 bg-slate-200 mx-2 self-center"></div>
-                <button className="px-6 py-2.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest text-slate-400">月视图</button>
+                <button className="px-4 py-3.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest text-slate-400">月视图</button>
               </div>
               <button className="btn-premium active !bg-slate-900 !text-white !px-12 !h-14 border-none shadow-2xl shadow-slate-900/10 text-[12px] font-black uppercase tracking-widest !rounded-[20px]">
                  发布确认排班
@@ -145,7 +145,7 @@ export default function SchedulePage({ hideHeader }) {
                          <div className={`text-[18px] font-black tracking-tighter ${totalHr > 40 ? 'text-red-500' : 'text-slate-900'}`}>
                             {totalHr}h
                          </div>
-                         {totalHr > 40 && <div className="text-[9px] text-white bg-red-500 px-2.5 py-1 rounded-full inline-block font-black uppercase tracking-widest mt-1 shadow-lg shadow-red-500/20">OT</div>}
+                         {totalHr > 40 && <div className="text-[9px] text-white bg-red-500 px-4.5 py-1 rounded-full inline-block font-black uppercase tracking-widest mt-1 shadow-lg shadow-red-500/20">OT</div>}
                       </td>
                     </tr>
                   );

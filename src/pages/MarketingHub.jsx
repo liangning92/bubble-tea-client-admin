@@ -25,13 +25,13 @@ export default function MarketingHub() {
 
   return (
     <div className="animate-soft space-y-10 focus:outline-none text-slate-900 pb-20">
-      <div className="flex flex-col gap-2 px-2">
+      <div className="flex flex-col gap-2 px-4">
         <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
            <span className="text-3xl">🚀</span> 智慧营销与品牌增长引擎
         </h2>
       </div>
 
-      <div className="overflow-x-auto no-scrollbar py-2">
+      <div className="overflow-x-auto no-scrollbar py-3">
         <SubNav 
           tabs={tabs} 
           activeTab={tab} 
@@ -99,7 +99,7 @@ function MarketingAssets({ hideHeader }) {
                 <div className="aspect-square bg-slate-50 flex items-center justify-center text-slate-200">
                    <span className="text-5xl group-hover:scale-110 transition-transform">📸</span>
                 </div>
-                <div className="p-6 space-y-2 bg-white text-center">
+                <div className="p-6 space-y-4 bg-white text-center">
                    <p className="text-[14px] font-black text-slate-800 truncate">品牌活动位_0{i}.png</p>
                    <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest">素材尺寸: 1080x1080 / 2.4MB</p>
                 </div>
@@ -109,7 +109,7 @@ function MarketingAssets({ hideHeader }) {
 
        <div className="p-16 rounded-[48px] bg-slate-900 text-white flex flex-col items-center justify-center text-center space-y-8">
           <div className="w-20 h-20 bg-white/10 rounded-[32px] flex items-center justify-center text-4xl border border-white/10 backdrop-blur-md">☁️</div>
-          <div className="max-w-md mx-auto space-y-2">
+          <div className="max-w-md mx-auto space-y-4">
              <h4 className="font-black uppercase tracking-widest text-[16px] text-orange-400">视觉资产云端同步已就绪</h4>
              <p className="text-[14px] text-white/50 font-bold leading-relaxed">
                所有上传的视觉资产将自动通过 CDN 指纹同步至全球收银终端。修改品牌 Logo 或海报将在下一次终端心跳周期内强制更新。

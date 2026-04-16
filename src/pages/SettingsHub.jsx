@@ -28,7 +28,7 @@ export default function SettingsHub() {
 
   return (
     <div className="animate-soft space-y-12 focus:outline-none text-slate-900 pb-12">
-      <div className="flex flex-col gap-2 px-2">
+      <div className="flex flex-col gap-2 px-4">
         <h1 className="text-h1 uppercase  tracking-tight">
           {t('settingsHubTitle')}
         </h1>
@@ -79,7 +79,7 @@ function SystemGeneralSettings() {
              <div className="space-y-8">
                 <div className="flex justify-between items-center bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm">
                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('defaultInterfaceLabel')}</span>
-                   <select className="input-premium !py-3 !px-6 w-56 font-black text-slate-900 bg-slate-50 border-none appearance-none cursor-pointer hover:bg-slate-100 transition-all rounded-xl  uppercase text-[13px]">
+                   <select className="input-premium !py-3 !px-4 w-56 font-black text-slate-900 bg-slate-50 border-none appearance-none cursor-pointer hover:bg-slate-100 transition-all rounded-xl  uppercase text-[13px]">
                       <option>简体中文 (ZH)</option>
                       <option>English (EN)</option>
                       <option>Bahasa Indonesia (ID)</option>
@@ -87,7 +87,7 @@ function SystemGeneralSettings() {
                 </div>
                 <div className="flex justify-between items-center bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm">
                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('currencyFormatLabel')}</span>
-                   <input className="input-premium !py-3 !px-6 w-56 font-black text-slate-900 bg-slate-50 border-none rounded-xl  uppercase text-[15px] shadow-inner" defaultValue="Rp" />
+                   <input className="input-premium !py-3 !px-4 w-56 font-black text-slate-900 bg-slate-50 border-none rounded-xl  uppercase text-[15px] shadow-inner" defaultValue="Rp" />
                 </div>
              </div>
           </div>
@@ -111,7 +111,7 @@ function SystemGeneralSettings() {
 
        <div className="p-12 rounded-[48px] border-2 border-dashed border-slate-200 flex flex-col md:flex-row gap-10 items-center bg-slate-50/50 hover:bg-white transition-all hover:border-slate-400 group">
           <div className="w-20 h-20 bg-white rounded-[24px] shadow-2xl shadow-slate-900/5 border border-slate-100 flex items-center justify-center text-4xl group-hover:scale-110 transition-transform">⚠️</div>
-          <div className="flex-1 space-y-2">
+          <div className="flex-1 space-y-4">
              <h4 className="text-[15px] font-black text-slate-900 uppercase tracking-widest ">
                {t('criticalActionNoticeTitle')}
              </h4>

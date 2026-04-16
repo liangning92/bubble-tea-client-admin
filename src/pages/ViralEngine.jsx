@@ -59,7 +59,7 @@ export default function ViralEngine({ hideHeader }) {
           <div className="flex gap-3">
               <button 
                 onClick={() => setIsEditingStrategy(!isEditingStrategy)}
-                className="bg-indigo-600 px-6 py-2.5 rounded-xl text-white text-[14px] font-black uppercase tracking-widest shadow-lg shadow-indigo-200 hover:scale-105 active:scale-95 transition-all">
+                className="bg-indigo-600 px-4 py-3.5 rounded-xl text-white text-[14px] font-black uppercase tracking-widest shadow-lg shadow-indigo-200 hover:scale-105 active:scale-95 transition-all">
                 {isEditingStrategy ? '🔙 返回看板' : '⚙️ 调节增长策略'}
               </button>
           </div>
@@ -75,9 +75,9 @@ export default function ViralEngine({ hideHeader }) {
                核心激励规则
             </h4>
             
-            <div className="space-y-6">
+            <div className="space-y-4">
                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest">推荐人奖励 (Rp)</label>
                     <input 
                       type="number" value={strategy.referralBonus}
@@ -85,7 +85,7 @@ export default function ViralEngine({ hideHeader }) {
                       className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3 font-black text-lg outline-none focus:ring-2 focus:ring-indigo-500"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest">被推荐人折扣 (%)</label>
                     <input 
                       type="number" value={strategy.inviteeDiscount}
@@ -95,7 +95,7 @@ export default function ViralEngine({ hideHeader }) {
                   </div>
                </div>
 
-               <div className="space-y-2">
+               <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest">激活门槛 (Min Spend)</label>
                   <input 
                     type="number" value={strategy.minSpendForBonus}
@@ -114,8 +114,8 @@ export default function ViralEngine({ hideHeader }) {
                   周期与风控
                </h4>
                
-               <div className="space-y-6">
-                  <div className="space-y-3">
+               <div className="space-y-4">
+                  <div className="space-y-4">
                     <div className="flex justify-between items-end">
                       <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest">活动有效期 (天)</label>
                       <span className="text-xl font-black text-indigo-400">{strategy.campaignDuration} Days</span>
@@ -128,7 +128,7 @@ export default function ViralEngine({ hideHeader }) {
                     />
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div className="flex justify-between items-end">
                       <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest">目标 ROI 预警值</label>
                       <span className="text-xl font-black text-indigo-400">{strategy.targetROI}x</span>
@@ -154,7 +154,7 @@ export default function ViralEngine({ hideHeader }) {
       ) : (
         /* 数据展示面板 (Stats Display Panel) - 原有逻辑 */
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in duration-500">
-          <div className="space-y-6">
+          <div className="space-y-4">
              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {[
                   { label: '荐新总数', value: stats.totalInvites, color: 'text-slate-800' },
@@ -174,12 +174,12 @@ export default function ViralEngine({ hideHeader }) {
                <div key={c.id} className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all relative group">
                   <div className="flex justify-between items-start mb-4">
                      <div className="text-2xl">🤝</div>
-                     <span className={`px-2 py-1 rounded text-[14px] font-black uppercase tracking-widest ${c.status === 'Active' ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400'}`}>
+                     <span className={`px-4 py-1 rounded text-[14px] font-black uppercase tracking-widest ${c.status === 'Active' ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400'}`}>
                         {c.status}
                      </span>
                   </div>
                   <h5 className="font-black text-slate-800 text-lg">{c.name}</h5>
-                  <div className="mt-2 space-y-1">
+                  <div className="mt-2 space-y-4">
                      <p className="text-[14px] text-slate-500 font-bold">Incentive: <span className="text-indigo-600">{c.incentive}</span></p>
                   </div>
                   <div className="mt-6 grid grid-cols-2 gap-4">

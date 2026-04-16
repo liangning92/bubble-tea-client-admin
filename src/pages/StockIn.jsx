@@ -71,27 +71,27 @@ export default function StockInPage({ hideHeader }) {
   if (loading) return <div className="py-24 text-center font-black text-slate-400 uppercase tracking-widest">正在同步同步物料台账...</div>;
 
   return (
-    <div className="space-y-6 animate-soft text-slate-900 pb-20 px-2 lg:px-4">
+    <div className="space-y-4 animate-soft text-slate-900 pb-20 px-4 lg:px-4">
       {!hideHeader && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-          <div className="space-y-1">
+          <div className="space-y-4">
             <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase ">采购物料入库中心</h2>
           </div>
-          <button onClick={() => setShowBatch(!showBatch)} className="px-6 py-3 bg-white text-slate-900 border border-slate-100 shadow-sm hover:bg-slate-50 transition-all text-[11px] font-black uppercase tracking-widest rounded-xl">
+          <button onClick={() => setShowBatch(!showBatch)} className="px-4 py-3 bg-white text-slate-900 border border-slate-100 shadow-sm hover:bg-slate-50 transition-all text-[11px] font-black uppercase tracking-widest rounded-xl">
             {showBatch ? '✕ 切换至单品录入' : '📋 批量文本入库 (Beta)'}
           </button>
         </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-8 space-y-6">
+        <div className="lg:col-span-8 space-y-4">
            <div className="card-premium border-slate-100 !p-8 bg-white !rounded-[32px] shadow-sm group">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-sm">A</div>
                 <h4 className="text-[14px] font-black text-slate-900 uppercase tracking-widest">第一步：采购明细 (下单预期)</h4>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                 <div className="md:col-span-2 space-y-2 relative" ref={dropdownRef}>
+                 <div className="md:col-span-2 space-y-4 relative" ref={dropdownRef}>
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-2">搜索并选择物料</label>
                     <input className="input-premium w-full !p-5 !rounded-2xl font-bold bg-slate-50 border-none" placeholder="输入物料名称或编码..." value={searchText} onChange={e => { setSearchText(e.target.value); setShowDropdown(true); }} />
                     {showDropdown && searchText.trim() && (
@@ -107,11 +107,11 @@ export default function StockInPage({ hideHeader }) {
                        </div>
                     )}
                  </div>
-                 <div className="space-y-2">
+                 <div className="space-y-4">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-2">下单数量</label>
                     <input type="number" className="input-premium w-full !p-5 font-black text-[18px] bg-slate-50 border-none !rounded-2xl text-center" value={orderedQuantity} onChange={e => setOrderedQuantity(parseFloat(e.target.value) || 0)} />
                  </div>
-                 <div className="space-y-2">
+                 <div className="space-y-4">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-2">采购单价</label>
                     <div className="relative">
                        <span className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 font-black text-[15px]">¥</span>
@@ -127,15 +127,15 @@ export default function StockInPage({ hideHeader }) {
                 <h4 className="text-[14px] font-black text-slate-900 uppercase tracking-widest">第二步：入库明细 (实到入库)</h4>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                 <div className="space-y-2">
+                 <div className="space-y-4">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-2">实收数量</label>
                     <input type="number" className="input-premium w-full !p-5 font-black text-[22px] text-indigo-600 bg-indigo-50/20 border-none !rounded-2xl text-center" value={quantity} onChange={e => setQuantity(parseFloat(e.target.value) || 0)} />
                  </div>
-                 <div className="space-y-2">
+                 <div className="space-y-4">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-2">保质期/批次控制</label>
                     <input type="date" className="input-premium w-full !p-5 bg-slate-50 border-none !rounded-2xl font-black text-[14px]" value={expiryDate} onChange={e => setExpiryDate(e.target.value)} />
                  </div>
-                 <div className="space-y-2">
+                 <div className="space-y-4">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-2">入库备注 / 批次说明</label>
                     <input type="text" className="input-premium w-full !p-5 bg-slate-50 border-none !rounded-2xl text-[14px] font-black" placeholder="..." value={notes} onChange={e => setNotes(e.target.value)} />
                  </div>

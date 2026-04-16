@@ -162,7 +162,7 @@ export default function SalesPage() {
           <button
             onClick={handleAdd}
             disabled={!productName}
-            className="btn btn-primary px-6"
+            className="btn btn-primary px-4"
           >
             + {t('quickDeal')}
           </button>
@@ -210,7 +210,7 @@ export default function SalesPage() {
         {parsedSales.length > 0 && (
           <div className="mt-3">
             <p className="text-sm font-medium mb-2">{t.parsedItems} ({parsedSales.length})</p>
-            <div className="space-y-1 mb-3 max-h-40 overflow-y-auto">
+            <div className="space-y-4 mb-3 max-h-40 overflow-y-auto">
               {parsedSales.map((item, i) => (
                 <div key={i} className="text-[14px] bg-gray-50 p-2 rounded">
                   <BusinessDataTranslator text={item.productName} /> x {item.quantity} | {item.sale_date}
@@ -247,7 +247,7 @@ export default function SalesPage() {
       <div className="card">
         <h3 className="font-bold mb-1.5">{t.recentSales}</h3>
         {sales.length === 0 ? <p className="text-gray-400 text-sm">{t.noRecords}</p> : (
-          <div className="space-y-1">
+          <div className="space-y-4">
             {sales.slice(0, 20).map(s => (
               <div key={s.id} className="flex justify-between items-center text-sm py-1 border-b border-gray-100 ">
                 <span>

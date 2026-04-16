@@ -272,7 +272,7 @@ export default function PurchaseDetailPage() {
         </div>
         <div className="bg-slate-100 p-1.5 rounded-2xl flex gap-1 border border-slate-200 overflow-x-auto no-scrollbar">
           {tabs.map(tab => (
-            <button key={tab.key} onClick={() => setActiveTab(tab.key)} className={`whitespace-nowrap px-6 py-2 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${activeTab === tab.key ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-800'}`}>
+            <button key={tab.key} onClick={() => setActiveTab(tab.key)} className={`whitespace-nowrap px-4 py-3 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${activeTab === tab.key ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-800'}`}>
               {tl(tab.zh, tab.en, tab.id)}
             </button>
           ))}
@@ -325,7 +325,7 @@ export default function PurchaseDetailPage() {
             {purchaseOrders.filter(o => o.status === 'pending').length === 0 ? (
               <p className="text-gray-400 text-[14px]">{tl('暂无待入库订单', 'No pending orders', 'Tidak ada pesanan')}</p>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-4">
                 {purchaseOrders.filter(o => o.status === 'pending').slice(0, 5).map(order => (
                   <div key={order.id} className="flex items-center justify-between p-2 bg-yellow-50 rounded-lg">
                     <div>
@@ -374,23 +374,23 @@ export default function PurchaseDetailPage() {
                     <tbody>
                       {paginatedHistory.map(record => (
                         <tr key={record.id} className="border-b border-gray-50 hover:bg-gray-50">
-                          <td className="py-2 text-gray-500">{fmtFull(record.receivedAt || record.createdAt)}</td>
-                          <td className="py-2 font-medium">{record.inventory?.name || '-'}</td>
-                          <td className="py-2 text-right">{record.quantity} {record.unit || ''}</td>
-                          <td className="py-2 text-right text-gray-500">
+                          <td className="py-3 text-gray-500">{fmtFull(record.receivedAt || record.createdAt)}</td>
+                          <td className="py-3 font-medium">{record.inventory?.name || '-'}</td>
+                          <td className="py-3 text-right">{record.quantity} {record.unit || ''}</td>
+                          <td className="py-3 text-right text-gray-500">
                             {record.unitPrice > 0 ? `Rp${record.unitPrice.toLocaleString()}` : '-'}
                           </td>
-                          <td className="py-2 text-right font-medium text-blue-600">
+                          <td className="py-3 text-right font-medium text-blue-600">
                             Rp{(record.totalPrice || 0).toLocaleString()}
                           </td>
-                          <td className="py-2 text-center">
+                          <td className="py-3 text-center">
                             {record.status === 'received' ? (
                               <span className="badge badge-success text-[14px]">{tl('已入库', 'Received', 'Diterima')}</span>
                             ) : (
                               <span className="badge bg-yellow-100 text-yellow-800 text-[14px]">{tl('待入库', 'Pending', 'Menunggu')}</span>
                             )}
                           </td>
-                          <td className="py-2 text-center">
+                          <td className="py-3 text-center">
                             {record.status === 'pending' && (
                               <div className="flex gap-1 justify-center">
                                 <button onClick={() => handleReceive(record.id)} className="btn btn-xs btn-success">{tl('入库', 'In', 'M')}</button>
@@ -482,7 +482,7 @@ export default function PurchaseDetailPage() {
               </button>
             </div>
             {suggestions.length === 0 ? (
-              <p className="text-gray-400 text-sm text-center py-4">
+              <p className="text-gray-400 text-sm text-center py-3">
                 🎉 {tl('库存充足，暂无建议', 'Stock sufficient, no suggestions', 'Stok cukup, tidak ada saran')}
               </p>
             ) : (
@@ -490,25 +490,25 @@ export default function PurchaseDetailPage() {
                 <table className="w-full text-[14px]">
                   <thead>
                     <tr className="border-b text-left text-gray-500">
-                      <th className="py-2">{tl('原料', 'Ingredient', 'Bahan')}</th>
-                      <th className="py-2 text-right">{tl('当前', 'Current', 'Saat Ini')}</th>
-                      <th className="py-2 text-right">{tl('已购', 'On Order', 'Dipesan')}</th>
-                      <th className="py-2 text-right">{tl('安全库存', 'Safe Stock', 'Aman')}</th>
-                      <th className="py-2 text-right">{tl('建议采购', 'Suggested', 'Saran')}</th>
-                      <th className="py-2 text-center">{tl('状态', 'Status', 'Status')}</th>
+                      <th className="py-3">{tl('原料', 'Ingredient', 'Bahan')}</th>
+                      <th className="py-3 text-right">{tl('当前', 'Current', 'Saat Ini')}</th>
+                      <th className="py-3 text-right">{tl('已购', 'On Order', 'Dipesan')}</th>
+                      <th className="py-3 text-right">{tl('安全库存', 'Safe Stock', 'Aman')}</th>
+                      <th className="py-3 text-right">{tl('建议采购', 'Suggested', 'Saran')}</th>
+                      <th className="py-3 text-center">{tl('状态', 'Status', 'Status')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {suggestions.map((item, i) => (
                       <tr key={i} className={`border-b ${item.status === 'suggest_order' ? 'bg-yellow-50' : 'bg-green-50'}`}>
-                        <td className="py-2 font-medium">{item.inventoryName}</td>
-                        <td className="py-2 text-right">{item.currentStock}{item.unit}</td>
-                        <td className="py-2 text-right text-blue-600">{item.orderedStock}{item.unit}</td>
-                        <td className="py-2 text-right">{item.safeStock}{item.unit}</td>
-                        <td className={`py-2 text-right font-bold ${item.suggestedOrder > 0 ? 'text-red-600' : 'text-gray-400'}`}>
+                        <td className="py-3 font-medium">{item.inventoryName}</td>
+                        <td className="py-3 text-right">{item.currentStock}{item.unit}</td>
+                        <td className="py-3 text-right text-blue-600">{item.orderedStock}{item.unit}</td>
+                        <td className="py-3 text-right">{item.safeStock}{item.unit}</td>
+                        <td className={`py-3 text-right font-bold ${item.suggestedOrder > 0 ? 'text-red-600' : 'text-gray-400'}`}>
                           {item.suggestedOrder}{item.unit}
                         </td>
-                        <td className="py-2 text-center">
+                        <td className="py-3 text-center">
                           {item.status === 'suggest_order' ? (
                             <button
                               onClick={async () => {
@@ -542,7 +542,7 @@ export default function PurchaseDetailPage() {
               <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-slate-50">
                 <h3 className="text-[14px] font-black text-slate-800 uppercase tracking-widest">
                   ⚡ {tl('AI 推荐采购清单', 'AI Suggested List', 'Daftar Pembelian Otomatis')}
-                  <span className="ml-3 px-2 py-0.5 bg-indigo-600 text-white rounded text-[14px]">{autoSuggestions.length} 条建议</span>
+                  <span className="ml-3 px-4 py-0.5 bg-indigo-600 text-white rounded text-[14px]">{autoSuggestions.length} 条建议</span>
                 </h3>
               </div>
               <div className="overflow-x-auto">
@@ -610,7 +610,7 @@ export default function PurchaseDetailPage() {
         <div className="space-y-8 animate-soft">
           <div className="card-premium border-slate-200 bg-white shadow-sm p-8">
             <h3 className="text-[14px] font-black mb-4 text-slate-800 uppercase tracking-widest">{tl('💡 库存策略说明', '💡 Strategy Info', '💡 Info')}</h3>
-            <div className="text-[14px] text-slate-400 font-bold space-y-3 uppercase tracking-widest">
+            <div className="text-[14px] text-slate-400 font-bold space-y-4 uppercase tracking-widest">
               <p>• <strong>{tl('安全库存天数', 'Safe Stock Days', 'Hari Stok Aman')}</strong>: {tl('库存低于此天数用量时触发预警', 'Triggers alert when stock is below this many days of usage', 'Peringatan saat stok di bawah penggunaan')}</p>
               <p>• <strong>{tl('目标使用周期', 'Target Usage Period', 'Periode Penggunaan Target')}</strong>: {tl('自动生成采购清单的目标周期', 'Target period for auto-generated purchase list', 'Periode target')}</p>
             </div>
@@ -649,21 +649,21 @@ export default function PurchaseDetailPage() {
                       const isLow = estimatedDaily > 0 && currentStock / estimatedDaily < safeDays;
                       return (
                         <tr key={item.id} className={`border-b border-gray-50 ${isLow ? 'bg-red-50' : ''}`}>
-                          <td className="py-2 font-medium">{item.name}</td>
-                          <td className={`py-2 text-right font-medium ${isLow ? 'text-red-600' : ''}`}>
+                          <td className="py-3 font-medium">{item.name}</td>
+                          <td className={`py-3 text-right font-medium ${isLow ? 'text-red-600' : ''}`}>
                             {currentStock} <span className="text-gray-400">{item.unit}</span>
                           </td>
-                          <td className="py-2 text-center">
-                            <span className={`px-2 py-0.5 rounded ${isLow ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}`}>
+                          <td className="py-3 text-center">
+                            <span className={`px-4 py-0.5 rounded ${isLow ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}`}>
                               {safeDays} {tl('天', 'd', 'h')}
                             </span>
                           </td>
-                          <td className="py-2 text-center">
-                            <span className="px-2 py-0.5 rounded bg-green-100 text-green-700">
+                          <td className="py-3 text-center">
+                            <span className="px-4 py-0.5 rounded bg-green-100 text-green-700">
                               {targetDays2} {tl('天', 'd', 'h')}
                             </span>
                           </td>
-                          <td className="py-2 text-center">
+                          <td className="py-3 text-center">
                             {isLow ? (
                               <span className="badge badge-danger text-[14px]">{tl('预警', 'Alert', 'Peringatan')}</span>
                             ) : (
@@ -673,7 +673,7 @@ export default function PurchaseDetailPage() {
                               {tl('剩余', 'Left', 'Tersisa')}: {daysLeft} {tl('天', 'd', 'h')}
                             </div>
                           </td>
-                          <td className="py-2 text-center">
+                          <td className="py-3 text-center">
                             <button
                               onClick={() => handleOpenEdit(item)}
                               className="btn btn-xs btn-secondary"
@@ -706,7 +706,7 @@ export default function PurchaseDetailPage() {
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div>
                 <label className="text-[14px] text-gray-500 mb-1 block">
                   {tl('安全库存天数', 'Safe Stock Days', 'Hari Stok Aman')} ({tl('低于此值预警', 'Alert when below', 'Peringatan bila di bawah')})

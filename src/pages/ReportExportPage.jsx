@@ -427,7 +427,7 @@ export default function ReportExportPage() {
         {loading ? (
           <div className="loading">{t('loading') || '加载中...'}</div>
         ) : previewData ? (
-          <div className="space-y-3">
+          <div className="space-y-4">
             {reportType === 'profit' && (
               <>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

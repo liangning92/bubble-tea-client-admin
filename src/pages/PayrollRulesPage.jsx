@@ -32,8 +32,8 @@ export default function PayrollRulesPage() {
 
   return (
     <div className="space-y-10 animate-soft text-slate-900 pb-24 !max-w-7xl">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-2">
-        <div className="space-y-1">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
+        <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
              <span className="text-3xl">⚙️</span> 薪资提成与结算标准配置
           </h2>
@@ -49,7 +49,7 @@ export default function PayrollRulesPage() {
            <h4 className="text-xl font-black uppercase tracking-tight border-b border-slate-50 pb-8 text-slate-900">
              岗位基础福利设定
            </h4>
-           <div className="space-y-6">
+           <div className="space-y-4">
               {[
                 { label: '月度全勤奖金', key: 'attendance', icon: '🏆' },
                 { label: '工作餐补标 (每日)', key: 'meal', icon: '🍱' },
@@ -60,7 +60,7 @@ export default function PayrollRulesPage() {
                       <span className="text-3xl">{item.icon}</span>
                       <span className="text-[15px] font-black text-slate-900 uppercase tracking-widest">{item.label}</span>
                    </div>
-                   <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-2xl shadow-inner border border-slate-100">
+                   <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-2xl shadow-inner border border-slate-100">
                       <span className="text-[12px] font-black text-slate-300">Rp</span>
                       <input className="bg-transparent text-right font-black text-slate-900 w-32 focus:outline-none" defaultValue="300,000" />
                    </div>
@@ -78,9 +78,9 @@ export default function PayrollRulesPage() {
              销售阶梯提成矩阵
            </h4>
            
-           <div className="space-y-6">
+           <div className="space-y-4">
               <div className="p-8 bg-white rounded-[40px] border border-orange-100 flex justify-between items-center shadow-lg shadow-orange-500/5">
-                 <div className="space-y-1">
+                 <div className="space-y-4">
                     <span className="text-[11px] font-black text-orange-400 uppercase tracking-widest">第一阶梯门槛</span>
                     <h5 className="text-[15px] font-black text-slate-900">单日 0 - 100 杯</h5>
                  </div>
@@ -92,7 +92,7 @@ export default function PayrollRulesPage() {
               </div>
 
               <div className="p-8 bg-white rounded-[40px] border-2 border-orange-500 flex justify-between items-center shadow-2xl shadow-orange-500/10 scale-[1.05]">
-                 <div className="space-y-1">
+                 <div className="space-y-4">
                     <span className="text-[11px] font-black text-orange-500 uppercase tracking-widest">第二阶梯 (活跃推荐)</span>
                     <h5 className="text-[15px] font-black text-slate-900">单日 101 - 300 杯</h5>
                  </div>

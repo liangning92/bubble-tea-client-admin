@@ -49,7 +49,7 @@ export default function MarketingAutomation({ hideHeader }) {
                         type="number" 
                         value={config.memberThreshold} 
                         onChange={e => setConfig({...config, memberThreshold: parseInt(e.target.value)})}
-                        className="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-2xl font-black text-orange-500 w-full focus:ring-2 focus:ring-orange-500/30 outline-none transition-all"
+                        className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-2xl font-black text-orange-500 w-full focus:ring-2 focus:ring-orange-500/30 outline-none transition-all"
                      />
                   </div>
                   <p className="text-[14px] text-slate-500 font-bold leading-relaxed ">当非会员在 POS 端单次消费满足条件，系统自动触发会员转化流程。</p>
@@ -62,14 +62,14 @@ export default function MarketingAutomation({ hideHeader }) {
                         type="number" 
                         value={config.lapseShort} 
                         onChange={e => setConfig({...config, lapseShort: parseInt(e.target.value)})}
-                        className="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-2xl font-black text-white w-24 text-center"
+                        className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-2xl font-black text-white w-24 text-center"
                      />
                      <span className="text-slate-700 font-black">/</span>
                      <input 
                         type="number" 
                         value={config.lapseLong} 
                         onChange={e => setConfig({...config, lapseLong: parseInt(e.target.value)})}
-                        className="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-2xl font-black text-white w-24 text-center"
+                        className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-2xl font-black text-white w-24 text-center"
                      />
                      <span className="text-slate-500 font-black text-[14px] uppercase">Days</span>
                   </div>
@@ -87,12 +87,12 @@ export default function MarketingAutomation({ hideHeader }) {
 
       {/* 自动化任务列表 */}
       <div className="space-y-8">
-        <div className="flex justify-between items-end px-2">
+        <div className="flex justify-between items-end px-4">
           <div>
              <h4 className="text-h3">{tl('Agentic Automations', '执行中的智能策略')}</h4>
              <p className="text-label-caps mt-1">Real-time conversions monitored by AI</p>
           </div>
-          <div className="flex items-center gap-4 bg-orange-50 px-5 py-2.5 rounded-2xl border border-orange-100">
+          <div className="flex items-center gap-4 bg-orange-50 px-5 py-3.5 rounded-2xl border border-orange-100">
              <span className="text-[14px] font-black text-orange-600 uppercase tracking-widest">Global Auto-Send</span>
              <div className="w-10 h-5 bg-orange-500 rounded-full relative">
                 <div className="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
@@ -133,7 +133,7 @@ export default function MarketingAutomation({ hideHeader }) {
                   <button className="flex-1 btn-premium active !bg-slate-900 !text-white !h-12 border-none text-[14px] font-black uppercase tracking-widest">
                      策略分析
                   </button>
-                  <button className="flex-1 px-6 py-2 text-slate-400 text-[14px] font-black uppercase tracking-widest hover:text-slate-900 transition-colors">
+                  <button className="flex-1 px-4 py-3 text-slate-400 text-[14px] font-black uppercase tracking-widest hover:text-slate-900 transition-colors">
                      规则编辑
                   </button>
                </div>

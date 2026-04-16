@@ -50,7 +50,7 @@ export default function SmartOpsHub() {
     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
       
       {/* 核心看板：SKU 可售状态实时熔断 */}
-      <section className="space-y-6">
+      <section className="space-y-4">
          <div className="flex justify-between items-end">
             <div>
                <h2 className="text-3xl font-black text-slate-800 tracking-tighter">{t('skuMonitor')}</h2>
@@ -58,7 +58,7 @@ export default function SmartOpsHub() {
             </div>
             <button 
               onClick={loadSkus}
-              className="px-6 py-2 bg-slate-900 text-white text-[14px] font-black rounded-2xl hover:bg-indigo-600 transition-all shadow-lg hover:shadow-indigo-200"
+              className="px-4 py-3 bg-slate-900 text-white text-[14px] font-black rounded-2xl hover:bg-indigo-600 transition-all shadow-lg hover:shadow-indigo-200"
             >
                {t('refreshStatus')}
             </button>
@@ -106,7 +106,7 @@ export default function SmartOpsHub() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-               <div className="space-y-2">
+               <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-1 text-white">{t('targetProduct')}</label>
                   <select 
                     value={campaign.productName}
@@ -117,7 +117,7 @@ export default function SmartOpsHub() {
                      {skuAvailability.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
                   </select>
                </div>
-               <div className="space-y-2 text-white">
+               <div className="space-y-4 text-white">
                   <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-1">{t('discountRate')}</label>
                   <input 
                     type="number" 
@@ -126,11 +126,11 @@ export default function SmartOpsHub() {
                     className="w-full bg-slate-900 border border-slate-800 text-white rounded-2xl p-4 font-bold focus:ring-2 focus:ring-indigo-500 outline-none" 
                   />
                </div>
-               <div className="space-y-2 flex items-end">
+               <div className="space-y-4 flex items-end">
                   <button 
                     onClick={handleGuardCheck}
                     disabled={validating || !campaign.productName}
-                    className="w-full py-4 bg-indigo-600 text-white font-black rounded-2xl hover:bg-white hover:text-indigo-900 transition-all shadow-xl shadow-indigo-900/40 disabled:opacity-50"
+                    className="w-full py-3 bg-indigo-600 text-white font-black rounded-2xl hover:bg-white hover:text-indigo-900 transition-all shadow-xl shadow-indigo-900/40 disabled:opacity-50"
                   >
                      {validating ? t('validating') : t('validateCampaign')}
                   </button>
@@ -164,7 +164,7 @@ export default function SmartOpsHub() {
                <h4 className="text-xl font-black text-slate-800 tracking-tight leading-tight mb-4">{t('bufferConfig')}</h4>
                <p className="text-sm text-slate-400 font-medium mb-8 ">{t('bufferConfigDesc')}</p>
                
-               <div className="space-y-6">
+               <div className="space-y-4">
                   <div className="p-5 bg-slate-50 rounded-3xl border border-slate-100">
                      <div className="flex justify-between items-center mb-2">
                         <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('oosTrigger')}</span>
@@ -174,7 +174,7 @@ export default function SmartOpsHub() {
                   </div>
                </div>
             </div>
-            <button className="w-full py-4 mt-8 bg-slate-100 text-slate-500 font-black rounded-2xl hover:bg-slate-900 hover:text-white transition-all">{t('saveConfig')}</button>
+            <button className="w-full py-3 mt-8 bg-slate-100 text-slate-500 font-black rounded-2xl hover:bg-slate-900 hover:text-white transition-all">{t('saveConfig')}</button>
          </div>
       </section>
 

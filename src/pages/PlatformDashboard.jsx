@@ -70,18 +70,18 @@ export default function PlatformDashboard() {
             <table className="w-full text-left">
                <thead>
                   <tr className="border-b border-slate-50 text-[14px] font-black text-slate-400 uppercase tracking-widest">
-                     <th className="py-4 px-2">{t('brandIdentifier')}</th>
-                     <th className="py-4 px-2">{t('keyAccount')}</th>
-                     <th className="py-4 px-2">{t('nodesCount')}</th>
-                     <th className="py-4 px-2">{t('validThru')}</th>
-                     <th className="py-4 px-2">{t('healthStatus')}</th>
-                     <th className="py-4 px-6 text-right">{t('inspect')}</th>
+                     <th className="py-3 px-4">{t('brandIdentifier')}</th>
+                     <th className="py-3 px-4">{t('keyAccount')}</th>
+                     <th className="py-3 px-4">{t('nodesCount')}</th>
+                     <th className="py-3 px-4">{t('validThru')}</th>
+                     <th className="py-3 px-4">{t('healthStatus')}</th>
+                     <th className="py-3 px-4 text-right">{t('inspect')}</th>
                   </tr>
                </thead>
                <tbody className="divide-y divide-slate-50">
                   {tenants.map((t_item, i) => (
                      <tr key={i} className="group hover:bg-slate-50/50 transition-colors">
-                        <td className="py-6 px-2">
+                        <td className="py-6 px-4">
                            <div className="flex items-center gap-4">
                               <div className="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center font-black text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">{t_item.brandName.charAt(0)}</div>
                               <div>
@@ -90,26 +90,26 @@ export default function PlatformDashboard() {
                               </div>
                            </div>
                         </td>
-                        <td className="py-6 px-2">
+                        <td className="py-6 px-4">
                            <div className="text-[14px] font-bold text-slate-600">{t_item.adminUser}</div>
                         </td>
-                        <td className="py-6 px-2">
+                        <td className="py-6 px-4">
                            <div className="text-sm font-black text-slate-800 tabular-nums">{t_item.storeCount}</div>
                         </td>
-                        <td className="py-6 px-2">
+                        <td className="py-6 px-4">
                            <div className="text-[14px] font-bold text-slate-500">{t_item.expireAt}</div>
                         </td>
-                        <td className="py-6 px-2">
-                           <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border ${
+                        <td className="py-6 px-4">
+                           <span className={`px-4 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border ${
                               t_item.status === 'active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-rose-50 text-rose-600 border-rose-100'
                            }`}>
                               {t_item.status}
                            </span>
                         </td>
-                        <td className="py-6 px-6 text-right">
+                        <td className="py-6 px-4 text-right">
                            <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                               <button className="p-2 bg-slate-100 text-slate-400 rounded-lg hover:bg-slate-200 hover:text-slate-800 transition-all">⚙️</button>
-                              <button className="px-4 py-2 bg-slate-900 text-white text-[14px] font-black rounded-lg uppercase tracking-widest hover:bg-indigo-600 transition-all shadow-lg">{t('inspect')}</button>
+                              <button className="px-4 py-3 bg-slate-900 text-white text-[14px] font-black rounded-lg uppercase tracking-widest hover:bg-indigo-600 transition-all shadow-lg">{t('inspect')}</button>
                            </div>
                         </td>
                      </tr>
@@ -125,7 +125,7 @@ export default function PlatformDashboard() {
             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
             <h4 className="text-[14px] font-black text-slate-500 uppercase tracking-widest">{t('platformLog')}</h4>
          </div>
-         <div className="space-y-2 font-mono text-[14px] text-slate-400 relative z-10 overflow-x-auto">
+         <div className="space-y-4 font-mono text-[14px] text-slate-400 relative z-10 overflow-x-auto">
             <p><span className="text-slate-500">[SYSTEM]</span> Tenant Provisoning: Global Cluster Node SYD-04 initialized successfully.</p>
             <p><span className="text-slate-500">[SECURE]</span> Access Token Audit: Completed for Tenant ID TN-001.</p>
             <p><span className="text-indigo-400">[KERNEL]</span> Microservice Harmony: All 14 subsystems operational at 99.99% SLA.</p>

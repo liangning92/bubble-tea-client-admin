@@ -72,14 +72,14 @@ export default function BusinessAnalysisPage() {
                         type="date"
                         value={dateRange.start}
                         onChange={e => setDateRange({ ...dateRange, start: e.target.value })}
-                        className="bg-white border-none rounded-xl px-4 py-2 text-[14px] font-black text-slate-900 outline-none shadow-sm"
+                        className="bg-white border-none rounded-xl px-4 py-3 text-[14px] font-black text-slate-900 outline-none shadow-sm"
                     />
                     <span className="text-[14px] font-black text-slate-400">→</span>
                     <input
                         type="date"
                         value={dateRange.end}
                         onChange={e => setDateRange({ ...dateRange, end: e.target.value })}
-                        className="bg-white border-none rounded-xl px-4 py-2 text-[14px] font-black text-slate-900 outline-none shadow-sm"
+                        className="bg-white border-none rounded-xl px-4 py-3 text-[14px] font-black text-slate-900 outline-none shadow-sm"
                     />
                 </div>
             </div>
@@ -111,14 +111,14 @@ export default function BusinessAnalysisPage() {
                         <span className="px-3 py-1.5 bg-blue-50 text-blue-600 text-[14px] font-black rounded-xl border border-blue-100 uppercase tracking-widest">Live Flow</span>
                     </div>
                     
-                    <div className="flex items-end justify-between h-48 gap-1.5 px-2">
+                    <div className="flex items-end justify-between h-48 gap-1.5 px-4">
                         {(data?.hourDist || []).map(h => (
                             <div key={h.hour} className="group relative flex-1 flex flex-col items-center">
                                 <div
                                     style={{ height: `${((h.count || 0) / maxHourCount) * 100}%` }}
                                     className="w-full bg-slate-200 group-hover:bg-blue-600 rounded-t-lg transition-all duration-500 relative"
                                 >
-                                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-[14px] font-black py-1 px-2 bg-blue-600 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-xl">
+                                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-[14px] font-black py-1 px-4 bg-blue-600 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-xl">
                                         {h.count}
                                     </div>
                                 </div>
@@ -138,9 +138,9 @@ export default function BusinessAnalysisPage() {
                         <span className="px-3 py-1.5 bg-emerald-50 text-emerald-600 text-[14px] font-black rounded-xl border border-emerald-100 uppercase tracking-widest">Profitable</span>
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         {(data?.categoryBreakdown || []).slice(0, 6).map(c => (
-                            <div key={c.category} className="space-y-2 group">
+                            <div key={c.category} className="space-y-4 group">
                                 <div className="flex justify-between items-end">
                                     <span className="text-[14px] font-black text-slate-800 uppercase tracking-widest">{c.category}</span>
                                     <span className="text-sm font-black text-slate-900">{formatCurrency(c.revenue)}</span>

@@ -14,7 +14,7 @@ export default function MarketingCampaigns({ hideHeader }) {
   return (
     <div className="space-y-10 animate-soft text-slate-900 pb-12">
        {!hideHeader && (
-         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-2">
+         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
              <h3 className="text-h2">{tl('Marketing Campaigns', '全链路营销活动执行')}</h3>
              <p className="text-label-caps mt-1">Lifecycle event orchestration & outcome auditing</p>
@@ -31,7 +31,7 @@ export default function MarketingCampaigns({ hideHeader }) {
              {/* 状态徽章 */}
              <div className="mb-6 flex justify-between items-start">
                 <div className="text-4xl bg-slate-50 w-14 h-14 rounded-2xl flex items-center justify-center border border-slate-100">{c.icon}</div>
-                <div className={`px-2.5 py-1 rounded-lg text-[14px] font-black uppercase tracking-widest border ${
+                <div className={`px-4.5 py-1 rounded-lg text-[14px] font-black uppercase tracking-widest border ${
                   c.status === 'active' ? 'bg-orange-50 text-orange-600 border-orange-100' : 
                   c.status === 'ready' ? 'bg-slate-50 text-slate-400 border-slate-100' : 'bg-slate-50 text-slate-300 border-slate-50'
                 }`}>

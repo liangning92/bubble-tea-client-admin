@@ -129,7 +129,7 @@ export default function PurchasePage() {
 
   return (
     <div className="page animate-soft space-y-12 pb-24 !max-w-7xl">
-      <div className="flex flex-col gap-2 px-2">
+      <div className="flex flex-col gap-2 px-4">
         <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase ">{t('purchaseHubTitle')}</h1>
         <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em]  opacity-60">{t('purchaseHubSubtitle')}</p>
       </div>
@@ -137,13 +137,13 @@ export default function PurchasePage() {
       <div className="flex bg-slate-50 p-1.5 rounded-[24px] border border-slate-100 shadow-inner max-w-2xl">
         <button
           onClick={() => setActiveTab('orders')}
-          className={`flex-1 py-4 px-8 rounded-[18px] font-black transition-all text-[13px] uppercase tracking-widest  ${activeTab === 'orders' ? 'bg-white text-slate-900 shadow-sm ring-1 ring-slate-100' : 'text-slate-300 hover:text-slate-600'}`}
+          className={`flex-1 py-3 px-8 rounded-[18px] font-black transition-all text-[13px] uppercase tracking-widest  ${activeTab === 'orders' ? 'bg-white text-slate-900 shadow-sm ring-1 ring-slate-100' : 'text-slate-300 hover:text-slate-600'}`}
         >
           📋 {t('purchaseOrders')} ({(pendingOrders || []).length})
         </button>
         <button
           onClick={() => setActiveTab('history')}
-          className={`flex-1 py-4 px-8 rounded-[18px] font-black transition-all text-[13px] uppercase tracking-widest  ${activeTab === 'history' ? 'bg-white text-slate-900 shadow-sm ring-1 ring-slate-100' : 'text-slate-300 hover:text-slate-600'}`}
+          className={`flex-1 py-3 px-8 rounded-[18px] font-black transition-all text-[13px] uppercase tracking-widest  ${activeTab === 'history' ? 'bg-white text-slate-900 shadow-sm ring-1 ring-slate-100' : 'text-slate-300 hover:text-slate-600'}`}
         >
           📦 {t('purchaseHistory')} ({(orderHistory || []).length})
         </button>
@@ -158,7 +158,7 @@ export default function PurchasePage() {
                 {t('addNew')}
               </h3>
               <form onSubmit={handleAddOrder} className="space-y-8">
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('ingredient')}</label>
                   <select className="input-premium w-full !p-5 !rounded-2xl bg-slate-50 border-none appearance-none cursor-pointer  font-black uppercase text-[14px]" value={inventoryId} onChange={e => setInventoryId(e.target.value)} required>
                     <option value="">{t('selectMaterialTip')}</option>
@@ -166,11 +166,11 @@ export default function PurchasePage() {
                   </select>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('quantity')}</label>
                     <input className="input-premium w-full !p-5 !rounded-2xl bg-slate-50 border-none font-black text-[16px]" type="number" step="0.01" min="1" placeholder="0.00" value={quantity} onChange={e => setQuantity(e.target.value)} required />
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('spec')}</label>
                     <select className="input-premium w-full !p-5 !rounded-2xl bg-slate-50 border-none font-black text-[14px]" value={spec} onChange={e => setSpec(e.target.value)}>
                       <option value="kg">{t('unitKg')}</option>
@@ -178,7 +178,7 @@ export default function PurchasePage() {
                       <option value="个">{t('unitPc')}</option>
                     </select>
                   </div>
-                  <div className="md:col-span-2 space-y-3">
+                  <div className="md:col-span-2 space-y-4">
                     <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('unitCostLabel')}</label>
                     <input className="input-premium w-full !p-5 !rounded-2xl bg-slate-50 border-none font-black text-[16px] no-spinners" type="number" step="0.01" placeholder="0.00" value={unitPrice} onChange={e => setUnitPrice(e.target.value)} />
                   </div>
@@ -195,13 +195,13 @@ export default function PurchasePage() {
               <div className="space-y-8">
                 <div className="p-10 bg-white rounded-[32px] border-2 border-slate-100 border-dashed text-center group transition-all hover:border-slate-900">
                   <p className="text-[13px] font-black text-slate-400 uppercase tracking-widest mb-6  opacity-60">📁 {t('uploadExcel')} (.xlsx / .csv)</p>
-                  <label className="btn-premium active !bg-slate-900 !text-white !px-10 !py-4 inline-block cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-slate-900/10  font-black uppercase text-[14px] rounded-[18px]">
+                  <label className="btn-premium active !bg-slate-900 !text-white !px-10 !py-3 inline-block cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-slate-900/10  font-black uppercase text-[14px] rounded-[18px]">
                     📤 {t('selectFile')}
                     <input type="file" accept=".xlsx,.xls,.csv" onChange={handleExcelFile} className="hidden" />
                   </label>
                 </div>
 
-                <div className="flex items-center gap-6 py-2">
+                <div className="flex items-center gap-6 py-3">
                    <div className="h-px bg-slate-100 flex-1"></div>
                    <span className="text-[14px] font-black text-slate-300 uppercase tracking-[0.4em]  opacity-40">OR PASTE</span>
                    <div className="h-px bg-slate-100 flex-1"></div>
@@ -223,7 +223,7 @@ export default function PurchasePage() {
                   <div className="mt-8 p-10 bg-white rounded-[40px] border border-slate-100 shadow-2xl animate-soft relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-5 text-7xl font-black grayscale pointer-events-none ">PARSE</div>
                     <p className="text-[15px] font-black text-slate-900 mb-8  uppercase tracking-tight">{t('parsedItems')} ({parsedPurchases.length})</p>
-                    <div className="space-y-3 mb-10 max-h-72 overflow-y-auto no-scrollbar pr-2">
+                    <div className="space-y-4 mb-10 max-h-72 overflow-y-auto no-scrollbar pr-2">
                       {parsedPurchases.map((item, i) => (
                         <div key={i} className={`flex justify-between items-center p-5 rounded-[20px] border ${item.matched ? 'bg-slate-50 border-slate-100' : 'bg-rose-50 border-rose-100 text-rose-500'}`}>
                           <span className="font-black text-[14px] "><BusinessDataTranslator text={item.name} /> x {item.quantity}</span>
@@ -256,7 +256,7 @@ export default function PurchasePage() {
                    <p className="text-[14px] font-black uppercase tracking-[0.4em] ">{t('noRecordsFound')}</p>
                 </div>
               ) : (
-                <div className="p-8 space-y-6">
+                <div className="p-8 space-y-4">
                   {(pendingOrders || []).map(order => (
                     <div key={order.id} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 group hover:bg-white hover:shadow-3xl hover:shadow-slate-900/5 transition-all relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-48 h-48 bg-slate-900/5 rounded-full blur-[80px] -mr-24 -mt-24 pointer-events-none" />
@@ -325,7 +325,7 @@ export default function PurchasePage() {
                          </div>
                       </div>
                       <div className="flex justify-center">
-                         <div className="px-6 py-2 bg-slate-900 text-white text-[14px] font-black rounded-full uppercase tracking-widest  shadow-lg shadow-slate-900/10">VERIFIED ✓</div>
+                         <div className="px-4 py-3 bg-slate-900 text-white text-[14px] font-black rounded-full uppercase tracking-widest  shadow-lg shadow-slate-900/10">VERIFIED ✓</div>
                       </div>
                     </div>
                   </div>

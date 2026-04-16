@@ -55,8 +55,8 @@ export default function SalaryPage() {
 
   return (
     <div className="space-y-10 animate-soft text-slate-900 !max-w-full pb-32">
-       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-2">
-         <div className="space-y-2">
+       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
+         <div className="space-y-4">
             <h2 className="text-3xl font-black tracking-tighter uppercase flex items-center gap-4">
                <span className="p-3 bg-slate-900 text-white rounded-2xl text-2xl shadow-xl">💹</span>
                {t('salaryMatrix', '薪资对账与绩效矩阵')}
@@ -91,7 +91,7 @@ export default function SalaryPage() {
                       <div className="w-14 h-14 bg-slate-100 rounded-[22px] flex items-center justify-center text-xl font-black group-hover:bg-slate-900 group-hover:text-white transition-all">
                          {item.name[0]}
                       </div>
-                      <div className="space-y-1">
+                      <div className="space-y-4">
                          <div className="text-[16px] font-black">{item.name}</div>
                          <div className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{item.role}</div>
                       </div>
@@ -101,12 +101,12 @@ export default function SalaryPage() {
                 <td className="p-10 text-emerald-500">{formatCurrency(item.commission)}</td>
                 <td className="p-10 text-red-400">{formatCurrency(item.penalty)}</td>
                 <td className="p-10">
-                   <div className="bg-slate-50 border border-slate-100 py-3 px-6 rounded-2xl inline-block float-right min-w-[160px]">
+                   <div className="bg-slate-50 border border-slate-100 py-3 px-4 rounded-2xl inline-block float-right min-w-[160px]">
                       {formatCurrency(item.total)}
                    </div>
                 </td>
                 <td className="p-10 text-center">
-                   <span className="px-6 py-2.5 bg-orange-500 text-white rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20 animate-pulse">
+                   <span className="px-4 py-3.5 bg-orange-500 text-white rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20 animate-pulse">
                       {t('pendingAudit', '待终审')}
                    </span>
                 </td>
@@ -128,7 +128,7 @@ export default function SalaryPage() {
           <div className="p-12 bg-slate-900 flex flex-col md:flex-row items-center justify-between gap-12">
              <div className="flex items-center gap-8">
                 <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center text-4xl border border-white/10 backdrop-blur-md">🏦</div>
-                <div className="space-y-1">
+                <div className="space-y-4">
                    {formatCurrency(summary.totalNet)}
                    <p className="text-[11px] font-black text-white/30 uppercase tracking-[0.3em]">{t('totalPayroll', '当期实核发总额 (IDR)')}</p>
                 </div>

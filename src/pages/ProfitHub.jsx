@@ -28,7 +28,7 @@ export default function ProfitHub() {
   return (
     <div className="animate-soft space-y-10 focus:outline-none text-slate-900">
       {/* 统一页头 */}
-      <div className="flex flex-col gap-2 px-2">
+      <div className="flex flex-col gap-2 px-4">
         <h1 className="text-h1 uppercase  tracking-tight">{t('profitHub')}</h1>
         <p className="text-label-caps !text-slate-400">{t('profitSubtitle')}</p>
       </div>

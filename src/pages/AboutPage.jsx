@@ -23,20 +23,20 @@ export default function AboutPage() {
       {/* 系统信息 */}
       <div className="card mb-4">
         <h3 className="font-bold mb-4">{tl('📋 系统信息', '📋 System Information', '📋 Informasi Sistem')}</h3>
-        <div className="space-y-3">
-          <div className="flex justify-between items-center py-2 border-b">
+        <div className="space-y-4">
+          <div className="flex justify-between items-center py-3 border-b">
             <span className="text-gray-600">{tl('系统名称', 'System Name', 'Nama Sistem')}</span>
             <span className="font-medium">{tl('Shopwise 门店智能管理', 'Shopwise Management System', 'Shopwise Manajemen Sistem')}</span>
           </div>
-          <div className="flex justify-between items-center py-2 border-b">
+          <div className="flex justify-between items-center py-3 border-b">
             <span className="text-gray-600">{tl('版本号', 'Version', 'Versi')}</span>
             <span className="font-medium">v{version}</span>
           </div>
-          <div className="flex justify-between items-center py-2 border-b">
+          <div className="flex justify-between items-center py-3 border-b">
             <span className="text-gray-600">{tl('构建日期', 'Build Date', 'Tanggal Build')}</span>
             <span className="font-medium">{buildDate}</span>
           </div>
-          <div className="flex justify-between items-center py-2 border-b">
+          <div className="flex justify-between items-center py-3 border-b">
             <span className="text-gray-600">{tl('技术栈', 'Tech Stack', 'Stack Teknologi')}</span>
             <span className="font-medium text-sm">React + Node.js + Prisma</span>
           </div>
@@ -69,7 +69,7 @@ export default function AboutPage() {
       {/* 使用指南 */}
       <div className="card mb-4">
         <h3 className="font-bold mb-4">{tl('📖 快速入门', '📖 Quick Start', '📖 Mulai Cepat')}</h3>
-        <div className="space-y-3 text-sm">
+        <div className="space-y-4 text-sm">
           <div className="flex gap-3">
             <span className="text-blue-500 font-bold">1.</span>
             <div>
@@ -97,7 +97,7 @@ export default function AboutPage() {
       {/* 联系支持 */}
       <div className="card">
         <h3 className="font-bold mb-4">{tl('📞 联系支持', '📞 Contact Support', '📞 Kontak Dukungan')}</h3>
-        <div className="text-sm text-gray-500 space-y-2">
+        <div className="text-sm text-gray-500 space-y-4">
           <p>{tl('如有问题或建议，请联系系统管理员', 'For questions or suggestions, contact admin', 'Untuk pertanyaan atau saran, hubungi admin')}</p>
           <p>{tl('技术邮箱: support@shopwise-system.com', 'Email: support@shopwise-system.com', 'Email: support@shopwise-system.com')}</p>
         </div>

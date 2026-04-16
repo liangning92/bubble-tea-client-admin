@@ -39,13 +39,13 @@ export default function BrandDashboard() {
     <div className="space-y-8 animate-soft text-slate-900">
       {/* 头部指挥控制台 */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-10 rounded-[48px] border border-slate-100 shadow-sm gap-8 transition-all">
-        <div className="space-y-1">
+        <div className="space-y-4">
           <h2 className="text-h1 uppercase  tracking-tight">{t('hqDashboard')}</h2>
           <p className="text-label-caps !text-slate-400">{t('hqSubtitle')}</p>
         </div>
         <button 
           onClick={executeBOMSync} 
-          className="btn-premium active !bg-slate-900 !text-white !px-10 !py-4 border-none shadow-xl shadow-slate-900/10 hover:scale-105 active:scale-95"
+          className="btn-premium active !bg-slate-900 !text-white !px-10 !py-3 border-none shadow-xl shadow-slate-900/10 hover:scale-105 active:scale-95"
         >
           {t('forceSyncBOM')}
         </button>
@@ -146,38 +146,38 @@ export default function BrandDashboard() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-slate-100 text-[14px] font-black text-slate-400 uppercase tracking-widest bg-slate-50/50">
-                <th className="py-6 px-6 rounded-tl-[32px]">{t('storeRank')}</th>
-                <th className="py-6 px-6">{t('storeSystemName')}</th>
-                <th className="py-6 px-6">{t('managerContact')}</th>
-                <th className="py-6 px-6 text-right">{t('accumulatedRevenue')}</th>
-                <th className="py-6 px-6 text-center">{t('shortageAlertCount')}</th>
-                <th className="py-6 px-6 rounded-tr-[32px] text-center">{t('inspect')}</th>
+                <th className="py-6 px-4 rounded-tl-[32px]">{t('storeRank')}</th>
+                <th className="py-6 px-4">{t('storeSystemName')}</th>
+                <th className="py-6 px-4">{t('managerContact')}</th>
+                <th className="py-6 px-4 text-right">{t('accumulatedRevenue')}</th>
+                <th className="py-6 px-4 text-center">{t('shortageAlertCount')}</th>
+                <th className="py-6 px-4 rounded-tr-[32px] text-center">{t('inspect')}</th>
               </tr>
             </thead>
             <tbody className="text-[13px] text-slate-700">
               {stores.map((s, idx) => (
                 <tr key={s.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-all group">
-                  <td className="py-6 px-6 font-black text-slate-300 group-hover:text-slate-900 transition-colors">#{idx + 1}</td>
-                  <td className="py-6 px-6">
+                  <td className="py-6 px-4 font-black text-slate-300 group-hover:text-slate-900 transition-colors">#{idx + 1}</td>
+                  <td className="py-6 px-4">
                      <span className="font-black text-slate-900 text-[15px] tracking-tight">{s.name}</span>
                   </td>
-                  <td className="py-6 px-6">
+                  <td className="py-6 px-4">
                     <div className="font-black text-slate-700">{s.bossName}</div>
                     <div className="text-[14px] text-slate-400 font-bold font-mono uppercase tracking-widest">{s.bossPhone}</div>
                   </td>
-                  <td className="py-6 px-6 text-right font-black text-slate-900 text-lg tracking-tighter">
+                  <td className="py-6 px-4 text-right font-black text-slate-900 text-lg tracking-tighter">
                     <span className="text-[0.6em] text-slate-300 mr-1.5 font-bold">¥</span>
                     {formatCurrencyValue(s.revenue)}
                   </td>
-                  <td className="py-6 px-6 text-center">
+                  <td className="py-6 px-4 text-center">
                     {s.shortageCount > 0 ? (
                       <span className="px-4 py-1.5 rounded-full text-[14px] font-black bg-red-50 text-red-600 border border-red-100 shadow-sm animate-soft">{s.shortageCount}</span>
                     ) : (
                       <span className="text-slate-200 font-black">—</span>
                     )}
                   </td>
-                  <td className="py-6 px-6 text-center">
-                    <button className="btn-premium !bg-slate-100 !text-slate-900 hover:!bg-slate-900 hover:!text-white border-none !px-6 !py-2.5 !text-[14px] uppercase tracking-widest font-black transition-all">
+                  <td className="py-6 px-4 text-center">
+                    <button className="btn-premium !bg-slate-100 !text-slate-900 hover:!bg-slate-900 hover:!text-white border-none !px-4 !py-3.5 !text-[14px] uppercase tracking-widest font-black transition-all">
                        {t('inspect')}
                     </button>
                   </td>

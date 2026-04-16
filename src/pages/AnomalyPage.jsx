@@ -76,7 +76,7 @@ export default function AnomalyPage() {
             {(!data.items || !Array.isArray(data.items) || data.items.length === 0) ? (
               <p className="text-gray-400 text-sm text-center py-8">{t('noAnomaly')}</p>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {data.items.map((item, i) => (
                   <div key={i} className={`p-3 rounded-lg border-l-4 ${getStatusColor(item.status)}`}>
                     <div className="flex justify-between items-start mb-1">

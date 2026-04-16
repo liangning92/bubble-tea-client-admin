@@ -54,14 +54,14 @@ export default function SalesAnalysisPage() {
                type="date"
                value={dateRange.start}
                onChange={e => setDateRange({ ...dateRange, start: e.target.value })}
-               className="bg-white/50 border-none rounded-2xl px-6 py-3 text-[14px] font-black text-slate-800 outline-none focus:bg-white transition-all w-48 shadow-inner"
+               className="bg-white/50 border-none rounded-2xl px-4 py-3 text-[14px] font-black text-slate-800 outline-none focus:bg-white transition-all w-48 shadow-inner"
             />
-            <div className="text-[14px] font-black text-slate-400 uppercase tracking-widest hidden md:block px-2">TO</div>
+            <div className="text-[14px] font-black text-slate-400 uppercase tracking-widest hidden md:block px-4">TO</div>
             <input
                type="date"
                value={dateRange.end}
                onChange={e => setDateRange({ ...dateRange, end: e.target.value })}
-               className="bg-white/50 border-none rounded-2xl px-6 py-3 text-[14px] font-black text-slate-800 outline-none focus:bg-white transition-all w-48 shadow-inner"
+               className="bg-white/50 border-none rounded-2xl px-4 py-3 text-[14px] font-black text-slate-800 outline-none focus:bg-white transition-all w-48 shadow-inner"
             />
          </div>
 
@@ -76,14 +76,14 @@ export default function SalesAnalysisPage() {
                   <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-indigo-100">Peak Hour Matrix</span>
                </div>
                
-               <div className="flex items-end justify-between h-48 gap-1.5 md:gap-2.5 px-2">
+               <div className="flex items-end justify-between h-48 gap-1.5 md:gap-2.5 px-4">
                   {(data?.hourDist || []).map(h => (
                      <div key={h.hour} className="group relative flex-1 flex flex-col items-center">
                         <div
                            style={{ height: `${((h.count || 0) / maxHourCount) * 100}%` }}
                            className="w-full bg-slate-800 group-hover:bg-indigo-500 rounded-t-xl transition-all duration-500 relative"
                         >
-                           <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-[14px] font-black py-1 px-2 bg-indigo-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-xl shadow-indigo-500/30">
+                           <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-[14px] font-black py-1 px-4 bg-indigo-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-xl shadow-indigo-500/30">
                               {h.count}
                            </div>
                         </div>
@@ -111,9 +111,9 @@ export default function SalesAnalysisPage() {
 
                <div className="space-y-8">
                   {(data?.categoryBreakdown || []).sort((a, b) => (b.revenue || 0) - (a.revenue || 0)).map(c => (
-                     <div key={c.category} className="space-y-3 group">
+                     <div key={c.category} className="space-y-4 group">
                         <div className="flex justify-between items-end">
-                           <div className="space-y-1">
+                           <div className="space-y-4">
                               <span className="text-[14px] font-black text-slate-800 group-hover:text-indigo-600 transition-colors uppercase tracking-widest">{c.category}</span>
                               <div className="text-[14px] font-black text-slate-400 uppercase tracking-[0.2em]">{c.quantity} Units Shipped</div>
                            </div>

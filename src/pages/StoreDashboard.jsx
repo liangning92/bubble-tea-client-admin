@@ -97,11 +97,11 @@ export default function StoreDashboard() {
   );
 
   return (
-    <div className="page animate-soft space-y-6 !max-w-7xl pb-10">
+    <div className="page animate-soft space-y-4 !max-w-7xl pb-10">
       
       {/* 顶部状态 */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 px-2">
-        <div className="space-y-1.5">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 px-4">
+        <div className="space-y-4.5">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">
             {t('greeting')}, {user?.username?.toUpperCase()}
           </h2>
@@ -117,7 +117,7 @@ export default function StoreDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="card-premium !p-8 bg-white border-slate-50 !rounded-[48px] shadow-sm hover:border-slate-900 transition-all">
               <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-3">{t('grossSales') || '今日总营业额'}</p>
@@ -161,7 +161,7 @@ export default function StoreDashboard() {
                   </div>
                   <div className="text-right">
                     <div className="font-black text-slate-900 text-[18px] tracking-tight">{formatCurrency( (sale.quantity || 0) * (sale.unitPrice || 0) )}</div>
-                    <div className="text-[12px] text-emerald-500 font-black uppercase tracking-widest mt-1.5 border border-emerald-100 px-2 py-0.5 rounded shadow-sm inline-block">{t('success') || '支付成功'}</div>
+                    <div className="text-[12px] text-emerald-500 font-black uppercase tracking-widest mt-1.5 border border-emerald-100 px-4 py-0.5 rounded shadow-sm inline-block">{t('success') || '支付成功'}</div>
                   </div>
                 </div>
               ))}
@@ -169,7 +169,7 @@ export default function StoreDashboard() {
           </div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className={`card-premium !p-8 border-slate-50 !rounded-[48px] shadow-sm transition-all bg-white relative overflow-hidden ${totalAlerts > 0 ? 'ring-2 ring-red-600 ring-offset-4' : ''}`}>
             <div className="flex justify-between items-center mb-10 relative z-10">
               <h3 className="text-[14px] font-black text-slate-900 uppercase tracking-widest flex items-center gap-3">
@@ -178,7 +178,7 @@ export default function StoreDashboard() {
               <span className="px-4 py-1.5 bg-red-600 text-white text-[15px] font-black rounded-full uppercase shadow-lg shadow-red-500/20">{totalAlerts}</span>
             </div>
 
-            <div className="space-y-6 relative z-10">
+            <div className="space-y-4 relative z-10">
               {alerts.inventory.map(inv => (
                 <div key={inv.id} className="p-6 bg-slate-50 rounded-[32px] border border-slate-100 hover:border-red-600 transition-all group">
                   <div className="flex justify-between text-[14px] font-black text-slate-900 uppercase mb-4 tracking-tight">
@@ -188,7 +188,7 @@ export default function StoreDashboard() {
                   <div className="w-full h-2 bg-white rounded-full overflow-hidden mb-5 border border-slate-100">
                     <div className="h-full bg-red-600 animate-pulse" style={{ width: '30%' }}></div>
                   </div>
-                  <button onClick={() => navigate('/inventory')} className="w-full py-4 bg-white text-slate-900 text-[12px] border border-slate-200 font-black uppercase rounded-2xl shadow-sm hover:bg-slate-900 hover:text-white transition-all active:scale-95 tracking-widest">
+                  <button onClick={() => navigate('/inventory')} className="w-full py-3 bg-white text-slate-900 text-[12px] border border-slate-200 font-black uppercase rounded-2xl shadow-sm hover:bg-slate-900 hover:text-white transition-all active:scale-95 tracking-widest">
                     {t('restockNow') || '立即补产'}
                   </button>
                 </div>

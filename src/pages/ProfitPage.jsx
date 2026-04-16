@@ -85,8 +85,8 @@ export default function ProfitPage() {
            
            <div className="space-y-8">
               {data.channels.map((ch, i) => (
-                <div key={i} className="space-y-3">
-                   <div className="flex justify-between items-end px-2">
+                <div key={i} className="space-y-4">
+                   <div className="flex justify-between items-end px-4">
                       <div className="flex items-center gap-3">
                         <span className="text-xl">{ch.icon}</span>
                         <span className="text-[14px] font-black text-slate-700 uppercase">{ch.name}</span>
@@ -107,14 +107,14 @@ export default function ProfitPage() {
         {/* 3. 单品毛利榜 (Product Profitability) */}
         <div className="card-premium !p-10 space-y-8">
            <h4 className="text-label-caps !text-slate-900 border-b border-slate-50 pb-4">单品毛利率排行榜</h4>
-           <div className="space-y-6">
+           <div className="space-y-4">
               {(data.topProducts || [
                 { name: 'Classic Milk Tea', margin: 72, cost: 4500 },
                 { name: 'Brown Sugar Boba', margin: 68, cost: 5200 },
                 { name: 'Mango Pomelo', margin: 62, cost: 8500 }
               ]).map((p, i) => (
                 <div key={i} className="flex justify-between items-center group">
-                   <div className="space-y-1">
+                   <div className="space-y-4">
                       <h5 className="text-[14px] font-black text-slate-800 uppercase tracking-tight">{p.name}</h5>
                       <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest">Cost: Rp {p.cost}</p>
                    </div>
@@ -125,7 +125,7 @@ export default function ProfitPage() {
                 </div>
               ))}
            </div>
-           <button className="w-full py-4 text-[12px] font-black uppercase tracking-widest text-slate-400 border border-dashed border-slate-200 rounded-2xl hover:bg-slate-50 transition-all mt-4">查看全表 (Full Audit)</button>
+           <button className="w-full py-3 text-[12px] font-black uppercase tracking-widest text-slate-400 border border-dashed border-slate-200 rounded-2xl hover:bg-slate-50 transition-all mt-4">查看全表 (Full Audit)</button>
         </div>
       </div>
 
@@ -134,7 +134,7 @@ export default function ProfitPage() {
          <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500 rounded-full blur-[120px] -mr-40 -mt-40 opacity-20" />
          <div className="flex flex-col md:flex-row gap-10 items-center relative z-10">
             <div className="w-20 h-20 bg-white/10 rounded-[24px] flex items-center justify-center text-4xl shadow-2xl">🔢</div>
-            <div className="flex-1 space-y-2">
+            <div className="flex-1 space-y-4">
                <h4 className="text-xl font-black uppercase tracking-tight">原料成本自动核算 (BOM AUTO-SYNC)</h4>
                <p className="text-[14px] text-slate-400 font-bold leading-relaxed max-w-2xl">
                   系统已连接 BOM 配方数据库。当前的“原料成本”是基于 [已完成销量] × [配方单价] 自动对冲得出的理论值。

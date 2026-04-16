@@ -160,8 +160,8 @@ export default function OperationAuditPage() {
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-2">
-         <div className="space-y-1">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
+         <div className="space-y-4">
             <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">{t('hygieneHub', '卫生与品质稽核中枢')}</h2>
             <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mt-1">{t('staffSubtitle')}</p>
          </div>
@@ -178,7 +178,7 @@ export default function OperationAuditPage() {
            <button 
              key={cat.key}
              onClick={() => setActiveTab(cat.key)} 
-             className={`px-8 py-4 rounded-[28px] text-[11px] font-black uppercase tracking-widest transition-all ${activeTab === cat.key ? 'bg-white text-slate-900 shadow-xl scale-105' : 'text-slate-400 hover:text-slate-600'}`}
+             className={`px-8 py-3 rounded-[28px] text-[11px] font-black uppercase tracking-widest transition-all ${activeTab === cat.key ? 'bg-white text-slate-900 shadow-xl scale-105' : 'text-slate-400 hover:text-slate-600'}`}
            >
              {cat.label}
            </button>
@@ -229,16 +229,16 @@ export default function OperationAuditPage() {
 
                {isEditing ? (
                   <div className="space-y-8">
-                     <div className="space-y-3">
+                     <div className="space-y-4">
                         <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">TASK TITLE</label>
                         <input 
                            type="text"
                            value={selectedTask.title}
                            onChange={e => handleUpdateTask(selectedTask.id, 'title', e.target.value)}
-                           className="w-full bg-slate-50 border-2 border-slate-50 focus:border-slate-900 rounded-[24px] px-6 py-5 text-xl font-black text-slate-900 transition-all outline-none"
+                           className="w-full bg-slate-50 border-2 border-slate-50 focus:border-slate-900 rounded-[24px] px-4 py-5 text-xl font-black text-slate-900 transition-all outline-none"
                         />
                      </div>
-                     <div className="space-y-3">
+                     <div className="space-y-4">
                         <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">SOP DESCRIPTION</label>
                         <textarea 
                            value={selectedTask.desc}
@@ -251,7 +251,7 @@ export default function OperationAuditPage() {
                   <div className="space-y-10">
                      <div className="text-center space-y-4">
                         <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">{selectedTask.title}</h3>
-                        <p className="text-[16px] text-slate-500 font-bold leading-relaxed px-6">{selectedTask.desc}</p>
+                        <p className="text-[16px] text-slate-500 font-bold leading-relaxed px-4">{selectedTask.desc}</p>
                      </div>
                      <div className="aspect-video bg-slate-900 rounded-[48px] flex flex-col items-center justify-center text-white space-y-4 border-4 border-white shadow-2xl relative group cursor-pointer" onClick={() => showToast('📷 Camera logic initialized...')}>
                         <span className="text-7xl group-hover:scale-110 transition-all">📷</span>

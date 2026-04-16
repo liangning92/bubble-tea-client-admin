@@ -52,8 +52,8 @@ export default function AttendancePage() {
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-2">
-        <div className="space-y-1">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
+        <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
              <span className="text-3xl">⏱️</span> 门店员工考勤实时看板
           </h2>
@@ -77,7 +77,7 @@ export default function AttendancePage() {
 
       <div className="p-10 rounded-[48px] border-2 border-dashed border-red-100 bg-red-50/20 flex flex-col md:flex-row gap-10 items-center group">
         <div className="w-20 h-20 bg-white rounded-3xl shadow-xl flex items-center justify-center text-4xl animate-pulse">🧹</div>
-        <div className="flex-1 space-y-3 text-center md:text-left">
+        <div className="flex-1 space-y-4 text-center md:text-left">
           <h4 className="text-[16px] font-black text-red-600 uppercase tracking-widest">强制卫生关联核查模式已开启</h4>
           <p className="text-[14px] text-slate-500 font-bold leading-relaxed tracking-tight">
             根据品牌SOP要求，员工在“签退”前必须通过 POS 端实时拍摄并上传操作间环境照片。系统将自动比对【卫生自查单】完成情况，若未关联有效记录，该笔考勤将自动标记为“异常”。
@@ -105,15 +105,15 @@ export default function AttendancePage() {
                   </td>
                   <td className="p-8 text-center" onClick={() => setShowCorrection(rec)}>
                     <div className="flex items-center justify-center gap-3 cursor-pointer hover:scale-105 transition-all">
-                       <span className="px-4 py-2 bg-slate-100 rounded-xl font-mono font-black text-[13px]">{rec.in}</span>
+                       <span className="px-4 py-3 bg-slate-100 rounded-xl font-mono font-black text-[13px]">{rec.in}</span>
                        <span className="text-slate-200">→</span>
-                       <span className="px-4 py-2 bg-slate-100 rounded-xl font-mono font-black text-[13px]">{rec.out}</span>
+                       <span className="px-4 py-3 bg-slate-100 rounded-xl font-mono font-black text-[13px]">{rec.out}</span>
                     </div>
                   </td>
                   <td className="p-8 text-center child-center">
                     <span 
                       onClick={() => setShowCorrection(rec)}
-                      className={`cursor-pointer px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-widest transition-all hover:scale-110 ${rec.status === '正常' ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20' : 'bg-red-500 text-white shadow-lg shadow-red-500/20'}`}
+                      className={`cursor-pointer px-5 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all hover:scale-110 ${rec.status === '正常' ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20' : 'bg-red-500 text-white shadow-lg shadow-red-500/20'}`}
                     >
                       {rec.status}
                     </span>
@@ -154,7 +154,7 @@ export default function AttendancePage() {
                        <p className="text-[14px] font-black uppercase tracking-widest">操作间环境核验照片</p>
                        <p className="text-[11px] opacity-40 uppercase tracking-[0.3em] mt-2">拍摄地点: POS 终端 01 · 拍摄日期: {selectedDoc.date} {selectedDoc.time}</p>
                     </div>
-                    <div className="absolute top-8 left-8 px-4 py-2 bg-emerald-500 rounded-full text-[10px] font-black tracking-widest">水印已验证</div>
+                    <div className="absolute top-8 left-8 px-4 py-3 bg-emerald-500 rounded-full text-[10px] font-black tracking-widest">水印已验证</div>
                  </div>
               </div>
               <div className="p-14 bg-slate-50 border-t border-slate-100 flex gap-6">
@@ -171,20 +171,20 @@ export default function AttendancePage() {
            <div className="bg-white rounded-[64px] shadow-3xl w-full max-w-xl overflow-hidden animate-soft border-8 border-white p-14 space-y-10" onClick={e => e.stopPropagation()}>
               <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase text-center">考勤合规性人工修正</h3>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                  <div className="bg-slate-50 p-6 rounded-3xl flex justify-between items-center border border-slate-100">
                     <span className="text-[14px] font-black text-slate-400">当前员工</span>
                     <span className="text-[16px] font-black text-slate-900">{showCorrection.name}</span>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-3xl flex justify-between items-center border border-slate-100">
                     <span className="text-[14px] font-black text-slate-400">判定结果修正</span>
-                    <select className="bg-white border-2 border-slate-200 rounded-xl px-4 py-2 font-black text-[14px] outline-none focus:border-slate-900 transition-all">
+                    <select className="bg-white border-2 border-slate-200 rounded-xl px-4 py-3 font-black text-[14px] outline-none focus:border-slate-900 transition-all">
                        <option>正常 (人工覆盖)</option>
                        <option>异常 (锁定)</option>
                        <option>免核查豁免</option>
                     </select>
                  </div>
-                 <div className="bg-slate-50 p-6 rounded-3xl space-y-3 border border-slate-100">
+                 <div className="bg-slate-50 p-6 rounded-3xl space-y-4 border border-slate-100">
                     <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">修正事由 (行政审计必填)</span>
                     <textarea 
                       placeholder="请详细描述修正原因（如：POS硬件故障、店长现场补验等）..."

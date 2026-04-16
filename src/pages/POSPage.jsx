@@ -295,7 +295,7 @@ export default function POSPage() {
               onClick={() => {
                  setAttendanceModal(true);
               }}
-              className="px-6 py-2.5 bg-indigo-100 text-indigo-700 font-bold rounded-xl shadow-sm border border-indigo-200 hover:bg-indigo-200 hover:shadow transition-all active:scale-95 flex items-center gap-2"
+              className="px-4 py-3.5 bg-indigo-100 text-indigo-700 font-bold rounded-xl shadow-sm border border-indigo-200 hover:bg-indigo-200 hover:shadow transition-all active:scale-95 flex items-center gap-2"
             >
               🕒 考勤扫码
             </button>
@@ -305,13 +305,13 @@ export default function POSPage() {
                  setShiftResult(null);
                  setBlindCashInput('');
               }}
-              className="px-6 py-2.5 bg-orange-100 text-orange-700 font-bold rounded-xl shadow-sm border border-orange-200 hover:bg-orange-200 hover:shadow transition-all active:scale-95 flex items-center gap-2"
+              className="px-4 py-3.5 bg-orange-100 text-orange-700 font-bold rounded-xl shadow-sm border border-orange-200 hover:bg-orange-200 hover:shadow transition-all active:scale-95 flex items-center gap-2"
             >
               🔒 防飞单交班
             </button>
             <button 
               onClick={() => navigate('/')} 
-              className="px-6 py-2.5 bg-white text-slate-700 font-semibold rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 hover:shadow transition-all active:scale-95"
+              className="px-4 py-3.5 bg-white text-slate-700 font-semibold rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 hover:shadow transition-all active:scale-95"
             >
               退出全屏
             </button>
@@ -319,12 +319,12 @@ export default function POSPage() {
         </div>
 
         {/* 分类标签横向滑动轴 */}
-        <div className="relative z-10 px-8 py-4 flex gap-3 overflow-x-auto no-scrollbar border-b border-slate-200/50">
+        <div className="relative z-10 px-8 py-3 flex gap-3 overflow-x-auto no-scrollbar border-b border-slate-200/50">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`whitespace-nowrap px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-sm ${
+              className={`whitespace-nowrap px-4 py-3.5 rounded-full font-bold text-sm transition-all duration-300 shadow-sm ${
                 activeCategory === cat 
                   ? 'bg-indigo-600 text-white shadow-indigo-200 hover:bg-indigo-700' 
                   : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-indigo-600 border border-slate-200'
@@ -365,7 +365,7 @@ export default function POSPage() {
                     
                     {/* 玻璃拟态遮罩文字层 */}
                     <div className="absolute inset-x-0 bottom-0 p-4 bg-white/30 backdrop-blur-md border-t border-white/40 h-2/3 flex flex-col justify-end translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      <div className="absolute -top-3 left-3 bg-slate-900/80 text-white text-[14px] font-bold px-2 py-0.5 rounded-full backdrop-blur-xl border border-white/20">
+                      <div className="absolute -top-3 left-3 bg-slate-900/80 text-white text-[14px] font-bold px-4 py-0.5 rounded-full backdrop-blur-xl border border-white/20">
                         <BusinessDataTranslator text={p.category || '核心品'} />
                       </div>
                       <h3 className="text-[17px] font-black text-slate-900 leading-tight mb-1 drop-shadow-md">
@@ -383,11 +383,11 @@ export default function POSPage() {
 
       {/* 【右侧：智能聚合结算滑台】 */}
       <div className="flex-[3] bg-white border-l border-slate-200 shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.1)] flex flex-col z-20 relative">
-        <div className="px-6 py-6 border-b border-slate-100/80 bg-slate-50/50">
+        <div className="px-4 py-6 border-b border-slate-100/80 bg-slate-50/50">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-black text-slate-800 flex items-center gap-2">
               <span>当前账单</span>
-              <span className="bg-indigo-100 text-indigo-700 text-sm py-0.5 px-2.5 rounded-full">{cart.length} 项</span>
+              <span className="bg-indigo-100 text-indigo-700 text-sm py-0.5 px-4.5 rounded-full">{cart.length} 项</span>
             </h2>
             {cart.length > 0 && (
               <button onClick={clearCart} className="text-red-500 hover:text-red-600 font-bold text-sm bg-red-50 px-3 py-1.5 rounded-lg active:scale-95 transition-all">
@@ -398,7 +398,7 @@ export default function POSPage() {
         </div>
 
         {/* 购物车流 */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/20">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/20">
           {cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full opacity-40 text-center">
               <span className="text-6xl mb-4 grayscale">🛒</span>
@@ -428,7 +428,7 @@ export default function POSPage() {
         </div>
 
         {/* 高级吸底计算与支付面板 */}
-          <div className="space-y-3 mb-6 bg-slate-50/80 p-5 rounded-2xl border border-slate-100">
+          <div className="space-y-4 mb-6 bg-slate-50/80 p-5 rounded-2xl border border-slate-100">
             <div className="flex justify-between text-sm font-bold text-slate-500">
               <span className="text-label-caps">小计</span>
               <span>Rp {subtotal.toLocaleString()}</span>
@@ -575,7 +575,7 @@ export default function POSPage() {
                 >
                   {localStorage.getItem('wa_comm_mode') === 'safe' ? '通过链接触达' : '确认转化并发送'}
                 </button>
-                <button onClick={() => setSuccessModal(null)} className="w-full py-4 text-slate-400 font-bold text-sm">暂不办理</button>
+                <button onClick={() => setSuccessModal(null)} className="w-full py-3 text-slate-400 font-bold text-sm">暂不办理</button>
               </div>
             </div>
           </div>
@@ -591,7 +591,7 @@ export default function POSPage() {
             </div>
             
             <div className="p-8 text-center flex flex-col items-center">
-              <div className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm font-bold mb-6">
+              <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm font-bold mb-6">
                 请仔细清点钱箱内现金 (盲校验资)
               </div>
               
@@ -603,20 +603,20 @@ export default function POSPage() {
                        value={blindCashInput}
                        onChange={(e) => setBlindCashInput(e.target.value)}
                        placeholder="现金总额 (Rp)"
-                       className="w-full text-center text-3xl font-black text-slate-800 bg-slate-100 border-2 border-slate-200 rounded-xl py-4 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all mb-6"
+                       className="w-full text-center text-3xl font-black text-slate-800 bg-slate-100 border-2 border-slate-200 rounded-xl py-3 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all mb-6"
                     />
                   <div className="flex gap-4 w-full">
                     <button 
                       disabled={loading}
                       onClick={() => setShiftModal(false)}
-                      className="flex-1 py-4 rounded-xl bg-slate-200 text-slate-700 font-bold text-lg hover:bg-slate-300 active:scale-95 transition-all"
+                      className="flex-1 py-3 rounded-xl bg-slate-200 text-slate-700 font-bold text-lg hover:bg-slate-300 active:scale-95 transition-all"
                     >
                       取消
                     </button>
                     <button 
                       disabled={loading}
                       onClick={handleShiftClose}
-                      className="flex-1 btn-primary py-4 text-lg"
+                      className="flex-1 btn-primary py-3 text-lg"
                     >
                       {loading ? <div className="animate-spin h-6 w-6 border-b-2 border-white rounded-full"></div> : '核对并打标'}
                     </button>
@@ -648,7 +648,7 @@ export default function POSPage() {
                       setShiftModal(false);
                       navigate('/'); // 强制退回内参台
                     }}
-                    className="w-full py-4 rounded-xl bg-slate-900 text-white font-black text-lg hover:bg-slate-800 active:scale-95 transition-all"
+                    className="w-full py-3 rounded-xl bg-slate-900 text-white font-black text-lg hover:bg-slate-800 active:scale-95 transition-all"
                   >
                     确认并注销下线
                   </button>
@@ -688,7 +688,7 @@ export default function POSPage() {
                 </div>
               </div>
 
-              <div className="w-full space-y-3">
+              <div className="w-full space-y-4">
                 <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 flex items-center gap-3">
                   <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-xl shadow-sm">📱</div>
                   <div className="flex-1">
@@ -699,7 +699,7 @@ export default function POSPage() {
 
                 <button 
                   onClick={() => setAttendanceModal(false)}
-                  className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-sm hover:bg-slate-800 transition-all active:scale-95 shadow-xl shadow-slate-200"
+                  className="w-full py-3 bg-slate-900 text-white rounded-2xl font-black text-sm hover:bg-slate-800 transition-all active:scale-95 shadow-xl shadow-slate-200"
                 >
                   关闭窗口
                 </button>
@@ -717,7 +717,7 @@ export default function POSPage() {
             <p>Order: {printReceipt.orderNo}</p>
             <p>{printReceipt.time}</p>
           </div>
-          <div className="space-y-1 mb-2">
+          <div className="space-y-4 mb-2">
             {printReceipt.items.map((item, idx) => (
               <div key={idx} className="flex justify-between">
                 <span>{item.productName} x {item.quantity}</span>
@@ -725,7 +725,7 @@ export default function POSPage() {
               </div>
             ))}
           </div>
-          <div className="border-t border-dashed border-slate-300 pt-2 space-y-1">
+          <div className="border-t border-dashed border-slate-300 pt-2 space-y-4">
             <div className="flex justify-between font-bold">
               <span>应收总额</span>
               <span>Rp {printReceipt.total.toLocaleString()}</span>

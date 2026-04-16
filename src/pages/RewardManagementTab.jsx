@@ -43,7 +43,7 @@ export default function RewardManagementTab({ lang = 'zh' }) {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex justify-between items-center bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
         <div className="flex gap-2">
           {['all', 'appealed', 'penalty', 'reward'].map(f => (
@@ -78,10 +78,10 @@ export default function RewardManagementTab({ lang = 'zh' }) {
                 <div>
                    <div className="flex items-center gap-2 mb-1">
                       <span className="font-black text-slate-900">{r.User?.username}</span>
-                      <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase ${r.type === 'penalty' ? 'bg-red-100 text-red-600' : 'bg-emerald-100 text-emerald-600'}`}>
+                      <span className={`px-4 py-0.5 rounded text-[8px] font-black uppercase ${r.type === 'penalty' ? 'bg-red-100 text-red-600' : 'bg-emerald-100 text-emerald-600'}`}>
                         {r.type === 'penalty' ? t('penaltyLabel') : t('rewardLabel')}
                       </span>
-                      {r.status === 'appealed' && <span className="px-2 py-0.5 bg-orange-500 text-white text-[8px] font-black rounded animate-pulse">待处理申诉</span>}
+                      {r.status === 'appealed' && <span className="px-4 py-0.5 bg-orange-500 text-white text-[8px] font-black rounded animate-pulse">待处理申诉</span>}
                    </div>
                    <div className="text-sm font-bold text-slate-600">{r.reason}</div>
                    <div className="text-[14px] text-slate-400 mt-1 font-medium">{new Date(r.occurredAt).toLocaleString()}</div>
@@ -103,13 +103,13 @@ export default function RewardManagementTab({ lang = 'zh' }) {
                      <>
                         <button 
                           onClick={() => setResolveModal({ id: r.id, action: 'revoked', title: '批准申诉 (撤销奖惩)' })}
-                          className="px-4 py-2 bg-emerald-600 text-white text-[14px] font-black rounded-xl shadow-lg active:scale-95 transition-all"
+                          className="px-4 py-3 bg-emerald-600 text-white text-[14px] font-black rounded-xl shadow-lg active:scale-95 transition-all"
                         >
                           批准/撤销
                         </button>
                         <button 
                           onClick={() => setResolveModal({ id: r.id, action: 'rejected', title: '驳回申诉 (维持原状)' })}
-                          className="px-4 py-2 bg-slate-900 text-white text-[14px] font-black rounded-xl shadow-lg active:scale-95 transition-all"
+                          className="px-4 py-3 bg-slate-900 text-white text-[14px] font-black rounded-xl shadow-lg active:scale-95 transition-all"
                         >
                           驳回
                         </button>
@@ -117,7 +117,7 @@ export default function RewardManagementTab({ lang = 'zh' }) {
                    ) : r.status === 'active' ? (
                      <button 
                         onClick={() => setResolveModal({ id: r.id, action: 'revoked', title: '直接撤销奖惩' })}
-                        className="px-4 py-2 bg-red-50 text-red-500 hover:bg-red-100 text-[14px] font-black rounded-xl transition-all"
+                        className="px-4 py-3 bg-red-50 text-red-500 hover:bg-red-100 text-[14px] font-black rounded-xl transition-all"
                      >
                         撤销
                      </button>
@@ -147,8 +147,8 @@ export default function RewardManagementTab({ lang = 'zh' }) {
                 onChange={e => setNote(e.target.value)}
               ></textarea>
               <div className="flex gap-4 mt-8">
-                 <button onClick={() => setResolveModal(null)} className="flex-1 py-4 bg-slate-100 text-slate-500 font-bold rounded-2xl">取消</button>
-                 <button onClick={() => handleResolve(resolveModal.id, resolveModal.action)} className="flex-1 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-lg transition-all active:scale-95">确认处理</button>
+                 <button onClick={() => setResolveModal(null)} className="flex-1 py-3 bg-slate-100 text-slate-500 font-bold rounded-2xl">取消</button>
+                 <button onClick={() => handleResolve(resolveModal.id, resolveModal.action)} className="flex-1 py-3 bg-slate-900 text-white font-black rounded-2xl shadow-lg transition-all active:scale-95">确认处理</button>
               </div>
            </div>
         </div>

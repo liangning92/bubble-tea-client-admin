@@ -26,8 +26,8 @@ export default function InventoryHub() {
 
   return (
     <div className="animate-soft space-y-8 focus:outline-none text-slate-900 pb-20">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-2">
-        <div className="space-y-1">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
+        <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
              <span className="text-3xl">📦</span> 智能库存与仓储管理中心
           </h2>
@@ -45,7 +45,7 @@ export default function InventoryHub() {
         </div>
       </div>
 
-      <div className="overflow-x-auto no-scrollbar py-2">
+      <div className="overflow-x-auto no-scrollbar py-3">
         <SubNav 
           tabs={tabs} 
           activeTab={tab} 

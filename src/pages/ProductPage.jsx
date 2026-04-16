@@ -82,7 +82,7 @@ export default function ProductPage() {
           <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest mt-1">Global Product Portfolio Management</p>
         </div>
         <div className="flex gap-3">
-          <button onClick={() => setShowBulkPrice(true)} className="btn-action bg-slate-100 text-slate-600 border border-slate-200 !px-6">
+          <button onClick={() => setShowBulkPrice(true)} className="btn-action bg-slate-100 text-slate-600 border border-slate-200 !px-4">
              ⚡ {t('bulkPriceUpdate')}
           </button>
           <button onClick={() => { setShowAdd(true); setEditId(null); setForm({ name: '', sellingPrice: 0, category: '奶茶' }); }} className="btn-action btn-primary-dark !px-8">
@@ -108,21 +108,21 @@ export default function ProductPage() {
             <tbody>
               {products.map(p => (
                 <tr key={p.id} onClick={() => { setEditId(p.id); setForm(p); setShowAdd(true); }} className="border-b border-slate-50 hover:bg-orange-50/30 cursor-pointer transition-colors">
-                  <td className="px-4 py-4 font-black text-slate-800"><BusinessDataTranslator text={p.name} /></td>
-                  <td className="px-4 py-4"><span className="badge-pill bg-orange-50 text-orange-600 border-none text-[12px]"><BusinessDataTranslator text={p.category} /></span></td>
-                  <td className="px-4 py-4 text-right font-black text-slate-900">{t('currencySymbol')} {p.sellingPrice.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-center"><span className={`text-[12px] font-black px-2 py-1 rounded-full ${p.bomItemsCount > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>{p.bomItemsCount > 0 ? p.bomItemsCount + ' ' + t('bomUnit') : t('notConfigured')}</span></td>
-                  <td className="px-4 py-4 text-center">
+                  <td className="px-4 py-3 font-black text-slate-800"><BusinessDataTranslator text={p.name} /></td>
+                  <td className="px-4 py-3"><span className="badge-pill bg-orange-50 text-orange-600 border-none text-[12px]"><BusinessDataTranslator text={p.category} /></span></td>
+                  <td className="px-4 py-3 text-right font-black text-slate-900">{t('currencySymbol')} {p.sellingPrice.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-center"><span className={`text-[12px] font-black px-4 py-1 rounded-full ${p.bomItemsCount > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>{p.bomItemsCount > 0 ? p.bomItemsCount + ' ' + t('bomUnit') : t('notConfigured')}</span></td>
+                  <td className="px-4 py-3 text-center">
                     <button
                       onClick={(e) => handleToggleShelve(p, e)}
                       disabled={togglingId === p.id}
-                      className={`px-4 py-2 rounded-full text-[12px] font-black uppercase tracking-widest border transition-all active:scale-95 ${p.isActive !== false ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm shadow-emerald-500/20 hover:bg-red-500 hover:border-red-600' : 'bg-slate-100 text-slate-400 border-slate-200 hover:bg-emerald-500 hover:text-white hover:border-emerald-600'}`}
+                      className={`px-4 py-3 rounded-full text-[12px] font-black uppercase tracking-widest border transition-all active:scale-95 ${p.isActive !== false ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm shadow-emerald-500/20 hover:bg-red-500 hover:border-red-600' : 'bg-slate-100 text-slate-400 border-slate-200 hover:bg-emerald-500 hover:text-white hover:border-emerald-600'}`}
                       title={p.isActive !== false ? t('clickToUnshelve') : t('clickToShelve')}
                     >
                       {togglingId === p.id ? '...' : p.isActive !== false ? '🟢 ' + t('productOnShelf') : '⚫ ' + t('productOffShelf')}
                     </button>
                   </td>
-                  <td className="px-4 py-4 text-center"><button onClick={(e) => { e.stopPropagation(); setShowDeleteConfirm(p); }} className="p-2 text-slate-300 hover:text-red-500 transition-colors">🗑️</button></td>
+                  <td className="px-4 py-3 text-center"><button onClick={(e) => { e.stopPropagation(); setShowDeleteConfirm(p); }} className="p-2 text-slate-300 hover:text-red-500 transition-colors">🗑️</button></td>
                 </tr>
               ))}
             </tbody>
@@ -135,7 +135,7 @@ export default function ProductPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
           <div className="card-premium w-full max-w-sm m-0 shadow-2xl animate-soft">
             <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight mb-6">🚀 {t('bulkPriceStrategy')}</h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
                <div>
                   <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">{t('selectApplyScope')}</label>
                   <select className="input-premium" value={bulkForm.category} onChange={e => setBulkForm({...bulkForm, category: e.target.value})}>
@@ -164,7 +164,7 @@ export default function ProductPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
           <div className="card-premium w-full max-w-md m-0 shadow-2xl animate-soft">
              <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight mb-8">{editId ? t('editProduct') : t('addNewProduct')}</h3>
-             <form onSubmit={handleSubmit} className="space-y-6">
+             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                    <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">{t('productNameLabel')}</label>
                    <input className="input-premium" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder="手打柠檬茶" />

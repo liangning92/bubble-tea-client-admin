@@ -82,8 +82,8 @@ export default function RewardPage() {
 
   return (
     <div className="space-y-10 animate-soft text-slate-900 pb-20">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-2">
-        <div className="space-y-1">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
+        <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
             <span className="text-3xl">⚖️</span> {t('rewardPenalty', '绩效奖惩与合规审计')}
           </h2>
@@ -95,7 +95,7 @@ export default function RewardPage() {
                 <button 
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${
+                  className={`px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${
                     filter === f ? 'bg-white text-slate-900 shadow-md' : 'text-slate-400 hover:text-slate-600'
                   }`}
                 >
@@ -160,10 +160,10 @@ export default function RewardPage() {
             </div>
             <div className="p-10">
               <form onSubmit={handleSubmit} className="space-y-10 text-slate-400">
-                <div className="space-y-3">
+                <div className="space-y-4">
                    <label className="text-[11px] font-black uppercase tracking-widest ml-1">{t('staffMember', '协作成员')}</label>
                    <select 
-                     className="w-full h-16 bg-slate-50 rounded-3xl px-6 font-black text-slate-900 outline-none border-4 border-transparent focus:border-slate-900/5 transition-all appearance-none cursor-pointer shadow-inner"
+                     className="w-full h-16 bg-slate-50 rounded-3xl px-4 font-black text-slate-900 outline-none border-4 border-transparent focus:border-slate-900/5 transition-all appearance-none cursor-pointer shadow-inner"
                      value={form.userId} 
                      onChange={e => setForm({ ...form, userId: e.target.value })}
                      required
@@ -174,7 +174,7 @@ export default function RewardPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-8">
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                      <label className="text-[11px] font-black uppercase tracking-widest ml-1">{t('type', '类型')}</label>
                      <div className="grid grid-cols-2 gap-2 bg-slate-50 p-1.5 rounded-3xl shadow-inner border border-slate-100">
                         <button 
@@ -193,7 +193,7 @@ export default function RewardPage() {
                         </button>
                      </div>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                      <label className="text-[11px] font-black uppercase tracking-widest ml-1">{t('amount', '金额')} (Rp)</label>
                      <input 
                        className="w-full h-16 bg-slate-50 rounded-3xl px-8 font-black text-slate-900 outline-none border-4 border-transparent focus:border-slate-900/5 transition-all shadow-inner text-xl"
@@ -206,7 +206,7 @@ export default function RewardPage() {
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                    <label className="text-[11px] font-black uppercase tracking-widest ml-1">{t('reason', '事由/凭证摘要')}</label>
                    <textarea 
                      className="w-full bg-slate-50 rounded-[32px] p-8 font-bold text-slate-900 outline-none border-4 border-transparent focus:border-slate-900/5 transition-all shadow-inner placeholder:text-slate-200"

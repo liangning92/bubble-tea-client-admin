@@ -45,7 +45,7 @@ export default function ProductProfitRanking() {
               <button 
                 key={p} 
                 onClick={() => setPeriod(p)}
-                className={`px-6 py-2 rounded-lg text-[14px] font-black uppercase tracking-widest transition-all ${period === p ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
+                className={`px-4 py-3 rounded-lg text-[14px] font-black uppercase tracking-widest transition-all ${period === p ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
               >
                 {t(p)}
               </button>
@@ -115,7 +115,7 @@ export default function ProductProfitRanking() {
                   {t('aiStrategicAdviceDesc')}
                </p>
             </div>
-            <button className="px-8 py-4 bg-marigold text-slate-900 hover:bg-marigold/90 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl shadow-marigold/20 transition-all">
+            <button className="px-8 py-3 bg-marigold text-slate-900 hover:bg-marigold/90 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl shadow-marigold/20 transition-all">
                {t('executeCampaign')}
             </button>
          </div>

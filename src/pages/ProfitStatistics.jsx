@@ -52,8 +52,8 @@ export default function ProfitStatistics({ hideHeader }) {
   return (
     <div className="space-y-12 animate-soft text-slate-900 pb-24">
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-end gap-10 px-2">
-          <div className="space-y-1.5">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-10 px-4">
+          <div className="space-y-4.5">
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase ">{t('profitHub')}</h3>
             <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em]  opacity-60 leading-none">{t('profitSubtitle')}</p>
           </div>
@@ -113,10 +113,10 @@ export default function ProfitStatistics({ hideHeader }) {
               </h4>
            </div>
            <div className="flex gap-6">
-              <button className="px-10 py-4 bg-white text-[14px] font-black uppercase tracking-widest border border-slate-200 rounded-[20px] hover:bg-slate-100 transition-all shadow-sm active:scale-95 ">
+              <button className="px-10 py-3 bg-white text-[14px] font-black uppercase tracking-widest border border-slate-200 rounded-[20px] hover:bg-slate-100 transition-all shadow-sm active:scale-95 ">
                 {t('downloadExcelReport')}
               </button>
-              <button className="px-10 py-4 bg-slate-900 text-white text-[14px] font-black uppercase tracking-widest rounded-[20px] hover:scale-105 transition-all shadow-3xl shadow-slate-900/10 active:scale-95  underline decoration-slate-700 decoration-4 underline-offset-4">
+              <button className="px-10 py-3 bg-slate-900 text-white text-[14px] font-black uppercase tracking-widest rounded-[20px] hover:scale-105 transition-all shadow-3xl shadow-slate-900/10 active:scale-95  underline decoration-slate-700 decoration-4 underline-offset-4">
                 {t('printPdfReport')}
               </button>
            </div>
@@ -132,7 +132,7 @@ export default function ProfitStatistics({ hideHeader }) {
                 <div key={i} className="flex flex-col sm:flex-row justify-between items-center group/item px-10 py-10 hover:bg-slate-50 transition-all cursor-default">
                    <div className="flex gap-10 items-center w-full sm:w-auto mb-8 sm:mb-0">
                       <div className="w-3 h-3 bg-slate-100 rounded-full group-hover/item:bg-slate-900 transition-all group-hover/item:scale-150 shrink-0" />
-                      <div className="space-y-2">
+                      <div className="space-y-4">
                          <div className="flex items-center gap-4">
                            <span className="text-[18px] font-black text-slate-800 tracking-tight uppercase ">{item.label}</span>
                            {item.auto && <span className="text-[14px] bg-slate-900 text-white px-3 py-1 rounded-full border border-slate-800 uppercase tracking-widest font-black ">{t('autoSync')}</span>}
@@ -156,7 +156,7 @@ export default function ProfitStatistics({ hideHeader }) {
       <div className="p-20 rounded-[80px] bg-white border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center space-y-12 group hover:shadow-3xl transition-all duration-700 relative overflow-hidden">
          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-slate-50 rounded-full blur-[160px] -mr-96 -mt-96 opacity-60 transition-transform group-hover:scale-125 duration-1000"></div>
          <div className="w-32 h-32 bg-white shadow-2xl border border-slate-100 rounded-[48px] flex items-center justify-center text-6xl group-hover:rotate-12 transition-transform relative z-10 shadow-inner">💎</div>
-         <div className="space-y-6 relative z-10">
+         <div className="space-y-4 relative z-10">
             <h4 className="font-black text-slate-900 uppercase tracking-tighter text-3xl  underline decoration-marigold decoration-8 underline-offset-8 decoration-white/0 group-hover:decoration-marigold/20 transition-all duration-700">{t('auditAdviceTitle')}</h4>
             <p className="text-[16px] text-slate-400 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-tight  opacity-70">
                {t('auditAdviceDesc')}

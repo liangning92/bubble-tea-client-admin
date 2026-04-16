@@ -22,7 +22,7 @@ export default function MarketingCalendar({ hideHeader }) {
   return (
     <div className="space-y-10 animate-soft text-slate-900 pb-20">
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-2">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
             <h2 className="text-h2">📅 品牌营销策略排期</h2>
             <p className="text-label-caps mt-1">{lang === 'zh' ? '2024-2025 全域增长日历与自动大促节点' : '2024-2025 Growth Roadmap & Campaigns'}</p>
@@ -54,7 +54,7 @@ export default function MarketingCalendar({ hideHeader }) {
                     </div>
                     <button 
                       onClick={() => setIsEditing(event.id)}
-                      className="px-5 py-2 bg-slate-50 text-slate-400 text-[14px] font-black rounded-xl border border-slate-100 uppercase hover:bg-slate-900 hover:text-white transition-all tracking-widest"
+                      className="px-5 py-3 bg-slate-50 text-slate-400 text-[14px] font-black rounded-xl border border-slate-100 uppercase hover:bg-slate-900 hover:text-white transition-all tracking-widest"
                     >
                       {lang === 'zh' ? '管理排单' : 'Manage'}
                     </button>
@@ -78,7 +78,7 @@ export default function MarketingCalendar({ hideHeader }) {
           ))}
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="card-premium !p-10 bg-slate-900 border-none shadow-2xl text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 blur-[60px] rounded-full" />
             <h3 className="text-[14px] font-black tracking-widest mb-6 border-b border-white/5 pb-4 uppercase text-slate-400">{lang === 'zh' ? 'AI 季度增长洞察' : 'Quarterly AI Insight'}</h3>
@@ -109,7 +109,7 @@ export default function MarketingCalendar({ hideHeader }) {
                ].map((item, i) => (
                  <div key={i} className="flex justify-between items-center border-b border-slate-50 last:border-none pb-3 mb-3 last:pb-0 last:mb-0">
                     <span className="text-[13px] font-bold text-slate-600">{item.label}</span>
-                    <span className={`text-[14px] font-black uppercase px-2.5 py-1 rounded-lg border ${item.status === 'Ready' || item.status === 'Active' ? 'bg-orange-50 text-orange-600 border-orange-100' : 'bg-slate-50 text-slate-300 border-slate-100'}`}>
+                    <span className={`text-[14px] font-black uppercase px-4.5 py-1 rounded-lg border ${item.status === 'Ready' || item.status === 'Active' ? 'bg-orange-50 text-orange-600 border-orange-100' : 'bg-slate-50 text-slate-300 border-slate-100'}`}>
                       {item.status}
                     </span>
                  </div>

@@ -55,14 +55,14 @@ export default function TrainingPage({ hideHeader }) {
 
   return (
     <div className="space-y-12 animate-soft text-slate-900">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 px-2">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 px-4">
         {!hideHeader ? (
-          <div className="space-y-1">
+          <div className="space-y-4">
             <h3 className="text-h1 uppercase  tracking-tight">{t('trainingHub')}</h3>
             <p className="text-label-caps !text-slate-400">{t('trainingSubtitle')}</p>
           </div>
         ) : <div className="flex-1" />}
-        <button className="btn-premium active !bg-slate-900 !text-white !px-10 !py-4 !scale-100 hover:scale-105 active:scale-95 transition-all border-none font-black text-[13px] uppercase tracking-widest shadow-xl shadow-slate-900/10">
+        <button className="btn-premium active !bg-slate-900 !text-white !px-10 !py-3 !scale-100 hover:scale-105 active:scale-95 transition-all border-none font-black text-[13px] uppercase tracking-widest shadow-xl shadow-slate-900/10">
            ➕ {t('uploadCourse')}
         </button>
       </div>
@@ -72,7 +72,7 @@ export default function TrainingPage({ hideHeader }) {
            {courses.map(course => (
              <div key={course.id} className="card-premium !p-10 group hover:border-slate-300 transition-all border-slate-50 bg-white !rounded-[40px] shadow-sm hover:shadow-xl">
                 <div className="flex justify-between items-start flex-wrap gap-6">
-                   <div className="space-y-3">
+                   <div className="space-y-4">
                       <span className="px-3 py-1 bg-slate-100 text-slate-400 text-[14px] font-black rounded-lg uppercase tracking-widest border border-slate-200">{course.category}</span>
                       <h4 className="text-2xl font-black text-slate-900 tracking-tighter">{course.title}</h4>
                    </div>
@@ -104,9 +104,9 @@ export default function TrainingPage({ hideHeader }) {
                     <h4 className="text-xl font-black text-slate-900  tracking-tighter uppercase">{t('quizPreview')}</h4>
                     <button onClick={() => setQuiz(null)} className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[14px] font-black text-slate-400 hover:bg-slate-900 hover:text-white transition-all shadow-sm">✕</button>
                  </div>
-                 <div className="space-y-6 relative z-10">
+                 <div className="space-y-4 relative z-10">
                     {quiz.questions.map((q, i) => (
-                      <div key={i} className="space-y-3 bg-white p-6 rounded-[28px] border border-slate-100 shadow-sm">
+                      <div key={i} className="space-y-4 bg-white p-6 rounded-[28px] border border-slate-100 shadow-sm">
                          <p className="text-[14px] font-black text-slate-800 leading-relaxed uppercase tracking-tight">Q{i+1}: {q.q}</p>
                          <p className="text-[14px] text-slate-400 font-black uppercase mt-2 pt-2 border-t border-slate-50 tracking-widest">
                            <span className="text-emerald-500">{t('correctAnswer')}</span> <span className="text-slate-900 font-mono">{q.a}</span>
@@ -131,7 +131,7 @@ export default function TrainingPage({ hideHeader }) {
 
            <div className="p-10 bg-white rounded-[40px] border border-slate-100 shadow-sm flex items-start gap-6 hover:shadow-md transition-shadow">
               <span className="text-3xl mt-1">💡</span>
-              <div className="space-y-2">
+              <div className="space-y-4">
                  <h5 className="text-[15px] font-black text-slate-900 uppercase tracking-tighter ">{t('certificationTitle')}</h5>
                  <p className="text-[14px] text-slate-400 font-bold leading-relaxed  uppercase tracking-tighter">
                     {t('certificationDesc')}
