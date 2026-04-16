@@ -25,13 +25,13 @@ export default function MarketingCalendar({ hideHeader }) {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
             <h2 className="text-h2">📅 品牌营销策略排期</h2>
-            <p className="text-label-caps mt-1">{lang === 'zh' ? '2024-2025 全域增长日历与自动大促节点' : '2024-2025 Growth Roadmap & Campaigns'}</p>
+            <p className="text-label-caps mt-1">{t('growthRoadmapTitle')}</p>
           </div>
           <button 
             onClick={handleUpload}
             className="btn-premium active !bg-slate-900 !text-white !px-8 border-none shadow-xl shadow-slate-900/10 !scale-100 hover:!scale-105 transition-all"
           >
-            {lang === 'zh' ? '＋ 上传营销素材' : '＋ UPLOAD ASSETS'}
+            {t('uploadAssets')}
           </button>
         </div>
       )}
@@ -56,7 +56,7 @@ export default function MarketingCalendar({ hideHeader }) {
                       onClick={() => setIsEditing(event.id)}
                       className="px-5 py-3 bg-slate-50 text-slate-400 text-[14px] font-black rounded-xl border border-slate-100 uppercase hover:bg-slate-900 hover:text-white transition-all tracking-widest"
                     >
-                      {lang === 'zh' ? '管理排单' : 'Manage'}
+                      {t('manage')}
                     </button>
                   </div>
                   
@@ -81,11 +81,9 @@ export default function MarketingCalendar({ hideHeader }) {
         <div className="space-y-4">
           <div className="card-premium !p-10 bg-slate-900 border-none shadow-2xl text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 blur-[60px] rounded-full" />
-            <h3 className="text-[14px] font-black tracking-widest mb-6 border-b border-white/5 pb-4 uppercase text-slate-400">{lang === 'zh' ? 'AI 季度增长洞察' : 'Quarterly AI Insight'}</h3>
+            <h3 className="text-[14px] font-black tracking-widest mb-6 border-b border-white/5 pb-4 uppercase text-slate-400">{t('quarterlyAIInsight')}</h3>
             <p className="text-sm font-bold leading-relaxed text-slate-300 ">
-              {lang === 'zh' 
-                ? '基于历史趋势，您的 Q2 营收预计在开斋节期间增长 350%。系统已自动开放库存预定权限。' 
-                : 'Q2 revenue is projected to spike 350% during Eid holidays. Inventory reservation mode activated.'}
+              {t('eidRevenueInsight')}
             </p>
             <div className="mt-10 pt-8 border-t border-white/5 space-y-4">
                <div className="flex justify-between items-center">
