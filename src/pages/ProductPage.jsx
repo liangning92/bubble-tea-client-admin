@@ -53,7 +53,7 @@ export default function ProductPage() {
   };
 
   const handleBulkPriceUpdate = async () => {
-    if (!confirm('确定要对所选品类进行批量调价吗？此操作将直接更新数据库。')) return;
+    if (!confirm(t('bulkPriceConfirm'))) return;
     const factor = 1 + (bulkForm.percentage / 100);
     const targets = products.filter(p => bulkForm.category === 'ALL' || p.category === bulkForm.category);
     
@@ -97,12 +97,12 @@ export default function ProductPage() {
           <table className="w-full">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-100">
-                <th className="px-4 py-3 text-left text-[12px] font-black text-slate-400 uppercase tracking-widest">产品名称</th>
-                <th className="px-4 py-3 text-left text-[12px] font-black text-slate-400 uppercase tracking-widest">分类</th>
-                <th className="px-4 py-3 text-right text-[12px] font-black text-slate-400 uppercase tracking-widest">售价</th>
-                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">BOM配方</th>
-                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">状态</th>
-                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">操作</th>
+                <th className="px-4 py-3 text-left text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('productName')}</th>
+                <th className="px-4 py-3 text-left text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('productCategory')}</th>
+                <th className="px-4 py-3 text-right text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('productPrice')}</th>
+                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('bomFormula')}</th>
+                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('productStatus')}</th>
+                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('productOperation')}</th>
               </tr>
             </thead>
             <tbody>
@@ -111,7 +111,7 @@ export default function ProductPage() {
                   <td className="px-4 py-4 font-black text-slate-800"><BusinessDataTranslator text={p.name} /></td>
                   <td className="px-4 py-4"><span className="badge-pill bg-orange-50 text-orange-600 border-none text-[12px]"><BusinessDataTranslator text={p.category} /></span></td>
                   <td className="px-4 py-4 text-right font-black text-slate-900">{t('currencySymbol')} {p.sellingPrice.toLocaleString()}</td>
-                  <td className="px-4 py-4 text-center"><span className={`text-[12px] font-black px-2 py-1 rounded-full ${p.bomItemsCount > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>{p.bomItemsCount > 0 ? `${p.bomItemsCount}项` : '未配置'}</span></td>
+                  <td className="px-4 py-4 text-center"><span className={`text-[12px] font-black px-2 py-1 rounded-full ${p.bomItemsCount > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>{p.bomItemsCount > 0 ? p.bomItemsCount + ' ' + t('bomUnit') : t('notConfigured')}</span></td>
                   <td className="px-4 py-4 text-center">
                     <button
                       onClick={(e) => handleToggleShelve(p, e)}

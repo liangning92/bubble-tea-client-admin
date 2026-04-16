@@ -53,7 +53,7 @@ export default function SettingsPage() {
       ? '⚠️ 确定要清空所有业务数据吗？此操作不可恢复！\n\n将清空：销售记录、费用记录、库存日志'
       : '⚠️ Yakin ingin hapus semua data bisnis? Tindakan ini tidak dapat dibatalkan!\n\nAkan dihapus: Catatan penjualan, biaya, log inventaris';
     if (!confirm(confirmText)) return;
-    if (!confirm(lang === 'zh' ? '再次确认：数据将被永久删除！' : 'Konfirmasi lagi: Data akan dihapus permanen!')) return;
+    if (!confirm(t('clearDataConfirm'))) return;
     const res = await api('DELETE', '/data/business');
     if (res.error) {
       window.dispatchEvent(new CustomEvent('app:error', { detail: res.error }));
@@ -129,7 +129,7 @@ export default function SettingsPage() {
   useEffect(() => { if (activeTab === 'logs') loadLogs(); }, [activeTab, startDate, endDate, logFilter]);
 
   const handleClearLogs = async () => {
-    if (!confirm(lang === 'zh' ? '确定要清空所有日志吗？' : 'Yakin ingin hapus semua log?')) return;
+    if (!confirm(t('clearLogsConfirm'))) return;
     const res = await api('DELETE', '/logs');
     if (res?.error) return;
     loadLogs();

@@ -37,7 +37,7 @@ export default function WhatsAppConnector({ hideHeader }) {
   };
 
   const handleLogout = async () => {
-    if (!window.confirm('确定要断开当前 WhatsApp 连接吗？')) return;
+    if (!window.confirm(t('whatsAppDisconnectConfirm'))) return;
     try {
       await api('POST', '/whatsapp/logout');
       window.dispatchEvent(new CustomEvent('app:success', { detail: '已成功注销连接' }));

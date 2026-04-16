@@ -150,7 +150,7 @@ export default function POSPage() {
   };
 
   const removeItem = (productId) => setCart(prev => prev.filter(i => i.productId !== productId));
-  const clearCart = () => window.confirm('确定清空当前收银单吗？') && setCart([]);
+  const clearCart = () => window.confirm(t('clearCartConfirm')) && setCart([]);
 
   const subtotal = cart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
   const discountAmount = discountInfo ? (discountInfo.type === 'percent' ? (subtotal * discountInfo.value / 100) : discountInfo.value) : 0;

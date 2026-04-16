@@ -158,7 +158,7 @@ export default function SettingsPage() {
   useEffect(() => { if (activeTab === 'logs') loadLogs(); }, [activeTab, startDate, endDate, logFilter]);
 
   const handleClearLogs = async () => {
-    if (!confirm(lang === 'zh' ? '确定要清空所有日志吗？' : 'Yakin ingin hapus semua log?')) return;
+    if (!confirm(t('clearLogsConfirm'))) return;
     const res = await api('DELETE', '/logs');
     if (res?.error) return;
     loadLogs();
