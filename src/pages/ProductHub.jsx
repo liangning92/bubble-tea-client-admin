@@ -25,8 +25,8 @@ export default function ProductHub() {
     <div className="animate-soft space-y-10 focus:outline-none text-slate-900">
       {/* 统一页头 */}
       <div className="flex flex-col gap-2 px-4">
-        <h1 className="text-h1">{lang === 'zh' ? '产品与研发枢纽' : 'Product & BOM Hub'}</h1>
-        <p className="text-label-caps">{lang === 'zh' ? '全渠道标准产品定义与高维配方数字化管理' : 'Unified Product Registry & Digital Recipe Governance'}</p>
+        <h1 className="text-h1">{t('productHubTitle')}</h1>
+        <p className="text-label-caps">{t('productHubSubtitle')}</p>
       </div>
 
       {/* 统一二级导航 (采用标准 SubNav 组件) */}
