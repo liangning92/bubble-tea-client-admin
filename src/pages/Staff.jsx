@@ -179,8 +179,8 @@ export default function StaffPage({ defaultTab: initialTab }) {
       {!isStandalone && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tighter">{lang === 'zh' ? '团队协作与绩效管理中心' : 'Staff Operations Hub'}</h2>
-            <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2 ">{lang === 'zh' ? '企业级全链路人力资源协同管理矩阵' : 'Collaborative Human Resource Command'}</p>
+            <h2 className="text-3xl font-black text-slate-900 tracking-tighter">{t('staffHubTitle')}</h2>
+            <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2 ">{t('staffHubSubtitle')}</p>
           </div>
           <div className="bg-slate-100 p-1.5 rounded-2xl flex gap-1 border border-slate-200 overflow-x-auto no-scrollbar">
             {tabs.map(tab => (
@@ -203,9 +203,9 @@ export default function StaffPage({ defaultTab: initialTab }) {
 
           {showAddTraining && (
             <div className="card-premium border-slate-200 bg-white animate-soft mb-4 !p-4">
-              <h3 className="text-[14px] font-black text-slate-800 uppercase tracking-widest mb-4 px-4">{lang === 'zh' ? '发布新培训任务清单' : 'New Training Task'}</h3>
+              <h3 className="text-[14px] font-black text-slate-800 uppercase tracking-widest mb-4 px-4">{t('titleNewTrainingTask')}</h3>
               <form onSubmit={handleAddTraining} className="space-y-4">
-                <input className="input-premium w-full !py-3.5" placeholder={lang === 'zh' ? '培训项目标题 (如：SOP 标准操作)' : 'Training Title'} value={trainingForm.title} onChange={e => setTrainingForm({...trainingForm, title: e.target.value})} required />
+                <input className="input-premium w-full !py-3.5" placeholder={t('placeholderTrainingTitle')} value={trainingForm.title} onChange={e => setTrainingForm({...trainingForm, title: e.target.value})} required />
                 <div className="grid grid-cols-2 gap-6">
                   <select className="input-premium w-full text-[14px]" value={trainingForm.assignedTo} onChange={e => setTrainingForm({...trainingForm, assignedTo: e.target.value})}>
                     <option value="">{t('optionSelectEmployee')}</option>
@@ -228,7 +228,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
               (trainings || []).map(t => (
                 <div key={t.id} className="card-premium group relative hover:border-indigo-200 transition-all bg-white border-slate-200">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-4 py-1 rounded uppercase tracking-widest border border-indigo-100">{lang === 'zh' ? '培训存证' : 'Training Log'}</span>
+                    <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-4 py-1 rounded uppercase tracking-widest border border-indigo-100">{t('labelTrainingLog')}</span>
                     <span className="text-[14px] text-slate-400 font-bold">{t.date}</span>
                   </div>
                   <h4 className="text-sm font-black text-slate-800 mb-2 leading-tight tracking-tight">
@@ -258,7 +258,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
 
           {showAddSchedule && (
             <div className="card-premium border-slate-200 bg-white mb-4 !p-4">
-              <h3 className="text-[14px] font-black text-slate-800 mb-4 uppercase tracking-widest">{lang === 'zh' ? '录入单日排班计划' : 'Add Schedule'}</h3>
+              <h3 className="text-[14px] font-black text-slate-800 mb-4 uppercase tracking-widest">{t('titleAddSchedule')}</h3>
               <form onSubmit={handleAddSchedule} className="grid grid-cols-1 md:grid-cols-4 gap-3">
                 <select className="input-premium text-[14px]" value={scheduleForm.userId} onChange={e => setScheduleForm({...scheduleForm, userId: e.target.value})} required>
                   <option value="">{t('optionSelectStaff')}</option>
@@ -270,7 +270,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                   {(shifts || []).map(s => <option key={s.id} value={s.id}>{s.name} ({s.startTime}-{s.endTime})</option>)}
                 </select>
                 <div className="flex gap-2">
-                  <button type="submit" className="flex-1 bg-indigo-600 text-white rounded-xl font-black text-[14px] uppercase">{lang === 'zh' ? '保存' : 'Save'}</button>
+                  <button type="submit" className="flex-1 bg-indigo-600 text-white rounded-xl font-black text-[14px] uppercase">{t('save')}</button>
                   <button type="button" onClick={() => setShowAddSchedule(false)} className="px-4 bg-slate-100 text-slate-500 rounded-xl font-black text-[14px] border border-slate-200">✕</button>
                 </div>
               </form>
@@ -324,7 +324,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
 
           {showAddReward && (
             <div className="card-premium border-slate-200 bg-white animate-soft mb-8">
-              <h3 className="text-[14px] font-black text-slate-800 mb-6 uppercase tracking-widest">{lang === 'zh' ? '录入绩效动态看板' : 'Add Performance Log'}</h3>
+              <h3 className="text-[14px] font-black text-slate-800 mb-6 uppercase tracking-widest">{t('titleAddPerformanceLog')}</h3>
               <form onSubmit={handleAddReward} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <select className="input-premium text-[14px]" value={rewardForm.userId} onChange={e => setRewardForm({...rewardForm, userId: e.target.value})} required>
@@ -343,7 +343,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
           )}
 
           <div className="card-premium !p-0 overflow-hidden border-slate-200 shadow-lg bg-white">
-            <div className="p-4 bg-slate-50 border-b border-slate-100 text-[14px] font-black text-slate-800 uppercase tracking-widest transition-all">{lang === 'zh' ? '历史奖惩流水清单' : 'Historical Records'}</div>
+            <div className="p-4 bg-slate-50 border-b border-slate-100 text-[14px] font-black text-slate-800 uppercase tracking-widest transition-all">{t('titleHistoricalRecords')}</div>
             <div className="divide-y divide-slate-50">
               {(rewards || []).map(r => (
                 <div key={r.id} className="p-4 flex justify-between items-center hover:bg-white/[0.02] transition-colors group">
@@ -387,7 +387,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
 
           {showAddSalary && (
             <div className="card-premium border-slate-200 bg-white mb-8">
-               <h3 className="text-[14px] font-black text-slate-800 mb-8 uppercase tracking-widest px-4">{lang === 'zh' ? '核算单月薪酬明细' : 'Payroll Calculation'}</h3>
+               <h3 className="text-[14px] font-black text-slate-800 mb-8 uppercase tracking-widest px-4">{t('titlePayrollCalculation')}</h3>
                <form onSubmit={handleAddSalary} className="space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                      <div className="space-y-4">
@@ -417,7 +417,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                      </div>
                   </div>
                   <div className="flex gap-4 pt-4">
-                     <button type="submit" className="flex-1 px-8 py-3 bg-indigo-600 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-lg shadow-indigo-500/20">{lang === 'zh' ? '确认同步并登记发放' : 'Confirm & Sync'}</button>
+                     <button type="submit" className="flex-1 px-8 py-3 bg-indigo-600 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-lg shadow-indigo-500/20">{t('btnConfirmSync')}</button>
                      <button type="button" onClick={() => setShowAddSalary(false)} className="px-8 py-3 bg-slate-100 text-slate-500 rounded-2xl font-black text-[14px] uppercase tracking-widest border border-slate-200">取消</button>
                   </div>
                </form>
