@@ -10,6 +10,7 @@ export default function StoreDashboard() {
   const [profit, setProfit] = useState({ totalRevenue: 0, netProfit: 0 });
   const [recentSales, setRecentSales] = useState([]);
   const [alerts, setAlerts] = useState({ inventory: [], attendance: [], hygiene: [], hardware: [], delivery: [] });
+  const [anomalies, setAnomalies] = useState([]);
 
   useEffect(() => {
     const today = new Date().toISOString().split('T')[0];
@@ -17,9 +18,10 @@ export default function StoreDashboard() {
 
     // Fetch real-time order stream + dashboard data
     const fetchDashboard = async () => {
-      const [profitRes, streamRes] = await Promise.all([
+      const [profitRes, streamRes, anomalyRes] = await Promise.all([
         api('GET', `/profit/daily?date=${today}`).catch(() => null),
-        api('GET', '/dashboard/orders/stream').catch(() => null)
+        api('GET', '/dashboard/orders/stream').catch(() => null),
+        api('GET', '/dashboard/operations/anomalies').catch(() => null)
       ]);
 
       const hasRealProfit = profitRes && !profitRes.error && profitRes.totalRevenue > 0;
@@ -41,6 +43,30 @@ export default function StoreDashboard() {
           { id: 'm3', productName: '杨枝甘露', quantity: 3, unitPrice: 22000, createdAt: new Date(Date.now() - 1000 * 60 * 32).toISOString() },
         ]);
       }
+
+      // Store anomalies for the alert card
+      const anomalyList = anomalyRes?.anomalies || [];
+      setAnomalies(anomalyList);
+
+      // Map anomalies to existing alert categories
+      setAlerts({
+        inventory: anomalyList.filter(a => a.type === 'inventory_critical' || a.type === 'inventory_low').map(a => ({
+          id: a.type + '-' + (a.data?.items?.[0]?.name || Math.random()),
+          name: a.data?.items?.[0]?.name || a.title,
+          stock: a.data?.items?.[0]?.stock || 0,
+          unit: a.data?.items?.[0]?.unit || ''
+        })),
+        attendance: anomalyList.filter(a => a.type === 'attendance_anomaly' || a.type === 'attendance_issue').map(a => ({
+          staffName: a.data?.staffName || a.title,
+          type: a.message || a.title
+        })),
+        hygiene: anomalyList.filter(a => a.type === 'hygiene_overdue' || a.type === 'hygiene_alert').map(a => ({
+          task: a.title,
+          scheduledTime: a.data?.scheduledTime || ''
+        })),
+        hardware: anomalyList.filter(a => a.type === 'hardware_alert'),
+        delivery: anomalyList.filter(a => a.type === 'delivery_issue')
+      });
 
       setLoading(false);
     };
