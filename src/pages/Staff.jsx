@@ -208,7 +208,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                 <input className="input-premium w-full !py-3.5" placeholder={lang === 'zh' ? '培训项目标题 (如：SOP 标准操作)' : 'Training Title'} value={trainingForm.title} onChange={e => setTrainingForm({...trainingForm, title: e.target.value})} required />
                 <div className="grid grid-cols-2 gap-6">
                   <select className="input-premium w-full text-[14px]" value={trainingForm.assignedTo} onChange={e => setTrainingForm({...trainingForm, assignedTo: e.target.value})}>
-                    <option value="">分配给特定员工</option>
+                    <option value="">{t('optionSelectEmployee')}</option>
                     {(staffList || []).map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
                   </select>
                   <input className="input-premium w-full" type="date" value={trainingForm.date} onChange={e => setTrainingForm({...trainingForm, date: e.target.value})} />
@@ -261,12 +261,12 @@ export default function StaffPage({ defaultTab: initialTab }) {
               <h3 className="text-[14px] font-black text-slate-800 mb-4 uppercase tracking-widest">{lang === 'zh' ? '录入单日排班计划' : 'Add Schedule'}</h3>
               <form onSubmit={handleAddSchedule} className="grid grid-cols-1 md:grid-cols-4 gap-3">
                 <select className="input-premium text-[14px]" value={scheduleForm.userId} onChange={e => setScheduleForm({...scheduleForm, userId: e.target.value})} required>
-                  <option value="">选择员工</option>
+                  <option value="">{t('optionSelectStaff')}</option>
                   {(staffList || []).map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
                 </select>
                 <input className="input-premium text-[14px]" type="date" value={scheduleForm.date} onChange={e => setScheduleForm({...scheduleForm, date: e.target.value})} required />
                 <select className="input-premium text-[14px]" value={scheduleForm.shiftId} onChange={e => setScheduleForm({...scheduleForm, shiftId: e.target.value})} required>
-                  <option value="">选择班次</option>
+                  <option value="">{t('optionSelectShift')}</option>
                   {(shifts || []).map(s => <option key={s.id} value={s.id}>{s.name} ({s.startTime}-{s.endTime})</option>)}
                 </select>
                 <div className="flex gap-2">
@@ -328,7 +328,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
               <form onSubmit={handleAddReward} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <select className="input-premium text-[14px]" value={rewardForm.userId} onChange={e => setRewardForm({...rewardForm, userId: e.target.value})} required>
-                    <option value="">关联员工</option>
+                    <option value="">{t('optionLinkEmployee')}</option>
                     {(staffList || []).map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
                   </select>
                   <input className="input-premium text-[14px]" type="number" placeholder={t('placeholderAmount')} value={rewardForm.amount} onChange={e => setRewardForm({...rewardForm, amount: e.target.value})} required />
@@ -393,7 +393,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                      <div className="space-y-4">
                         <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">选择发放员工</label>
                         <select className="input-premium w-full text-[14px]" value={salaryForm.staffId} onChange={e => setSalaryForm({...salaryForm, staffId: e.target.value})} required>
-                           <option value="">员工姓名</option>
+                           <option value="">{t('optionStaffName')}</option>
                            {(staffList || []).map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
                         </select>
                      </div>

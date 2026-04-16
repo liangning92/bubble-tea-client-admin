@@ -58,8 +58,8 @@ export default function CouponFactory({ hideHeader }) {
                  <div>
                     <label className="block text-[14px] font-bold text-slate-500 mb-1">优惠类型 (Type)</label>
                     <select className="input w-full bg-white font-bold h-11" value={newCoupon.type} onChange={e=>setNewCoupon({...newCoupon, type: e.target.value})}>
-                       <option value="fixed">固定金额立减 (Fixed Rp)</option>
-                       <option value="percent">百分比折扣 (Percent %)</option>
+                       <option value="fixed">{t('optionCouponFixed')}</option>
+                       <option value="percent">{t('optionCouponPercent')}</option>
                     </select>
                  </div>
               </div>

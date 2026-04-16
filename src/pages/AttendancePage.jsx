@@ -90,7 +90,7 @@ export default function AttendancePage() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-50/50">
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest">员工姓名</th>
+                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest">{t('optionStaffName')}</th>
                 <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">签入/签退时间</th>
                 <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">系统判定</th>
                 <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">卫生档案</th>
@@ -179,9 +179,9 @@ export default function AttendancePage() {
                  <div className="bg-slate-50 p-6 rounded-3xl flex justify-between items-center border border-slate-100">
                     <span className="text-[14px] font-black text-slate-400">判定结果修正</span>
                     <select className="bg-white border-2 border-slate-200 rounded-xl px-4 py-3 font-black text-[14px] outline-none focus:border-slate-900 transition-all">
-                       <option>正常 (人工覆盖)</option>
-                       <option>异常 (锁定)</option>
-                       <option>免核查豁免</option>
+                       <option>{t('optionAttendanceNormal')}</option>
+                       <option>{t('optionAttendanceAbnormal')}</option>
+                       <option>{t('optionAttendanceExempt')}</option>
                     </select>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-3xl space-y-4 border border-slate-100">
