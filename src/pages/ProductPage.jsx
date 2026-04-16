@@ -76,30 +76,32 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Product List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {products.map(p => (
-          <div key={p.id} className="card-premium group hover:border-orange-200 transition-all cursor-pointer overflow-hidden p-0" onClick={() => { setEditId(p.id); setForm(p); setShowAdd(true); }}>
-            <div className="p-6 relative">
-               <div className="flex justify-between items-start mb-6">
-                  <div className="badge-pill bg-orange-50 text-orange-600 border-none"><BusinessDataTranslator text={p.category} /></div>
-                  <button onClick={(e) => { e.stopPropagation(); setShowDeleteConfirm(p); }} className="p-2 text-slate-300 hover:text-red-500 transition-colors">🗑️</button>
-               </div>
-               <div className="font-black text-lg text-slate-800 tracking-tight h-12 line-clamp-2"><BusinessDataTranslator text={p.name} /></div>
-               <div className="mt-4 flex items-end justify-between">
-                  <div>
-                     <p className="text-[14px] font-black text-slate-400 uppercase mb-0.5 tracking-widest">Selling Price</p>
-                     <p className="stat-value-hero !text-2xl text-slate-900">{t('currencySymbol')} {p.sellingPrice.toLocaleString()}</p>
-                  </div>
-                  <div className="text-2xl opacity-40 group-hover:scale-125 transition-transform">🧋</div>
-               </div>
-            </div>
-            <div className="bg-slate-50 px-6 py-3 border-t border-slate-100/50 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
-               <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">Click to Edit Settings</span>
-               <span className="text-indigo-600">→</span>
-            </div>
-          </div>
-        ))}
+      {/* Product List - Table Format */}
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-100">
+                <th className="px-4 py-3 text-left text-[12px] font-black text-slate-400 uppercase tracking-widest">产品名称</th>
+                <th className="px-4 py-3 text-left text-[12px] font-black text-slate-400 uppercase tracking-widest">分类</th>
+                <th className="px-4 py-3 text-right text-[12px] font-black text-slate-400 uppercase tracking-widest">售价</th>
+                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">BOM配方</th>
+                <th className="px-4 py-3 text-center text-[12px] font-black text-slate-400 uppercase tracking-widest">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map(p => (
+                <tr key={p.id} onClick={() => { setEditId(p.id); setForm(p); setShowAdd(true); }} className="border-b border-slate-50 hover:bg-orange-50/30 cursor-pointer transition-colors">
+                  <td className="px-4 py-4 font-black text-slate-800"><BusinessDataTranslator text={p.name} /></td>
+                  <td className="px-4 py-4"><span className="badge-pill bg-orange-50 text-orange-600 border-none text-[12px]"><BusinessDataTranslator text={p.category} /></span></td>
+                  <td className="px-4 py-4 text-right font-black text-slate-900">{t('currencySymbol')} {p.sellingPrice.toLocaleString()}</td>
+                  <td className="px-4 py-4 text-center"><span className={`text-[12px] font-black px-2 py-1 rounded-full ${p.bomItemsCount > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>{p.bomItemsCount > 0 ? `${p.bomItemsCount}项` : '未配置'}</span></td>
+                  <td className="px-4 py-4 text-center"><button onClick={(e) => { e.stopPropagation(); setShowDeleteConfirm(p); }} className="p-2 text-slate-300 hover:text-red-500 transition-colors">🗑️</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* 1. 批量调价弹窗 */}
