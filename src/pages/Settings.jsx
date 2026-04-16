@@ -183,9 +183,9 @@ export default function SettingsPage() {
   };
 
   const roleLabels = {
-    admin: lang === 'zh' ? '管理员' : 'Admin',
-    manager: lang === 'zh' ? '经理' : 'Manajer',
-    staff: lang === 'zh' ? '员工' : 'Staf',
+    admin: t('roleAdmin'),
+    manager: t('roleManager'),
+    staff: t('roleStaff'),
   };
 
   const tabs = [
