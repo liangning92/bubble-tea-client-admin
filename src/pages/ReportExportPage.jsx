@@ -81,16 +81,19 @@ export default function ReportExportPage() {
     downloadBlob(blob, `${reportType}_${periodType}_${startDate}_${endDate}.csv`);
   };
 
-  // PDF导出
+  // PDF导出 - 使用后端API生成真实PDF（仅支持月度利润报表）
   const exportPdf = async () => {
-    // 使用HTML生成PDF
-    const printWindow = window.open('', '_blank');
-    const html = generatePrintHTML();
-    printWindow.document.write(html);
-    printWindow.document.close();
-    printWindow.onload = () => {
-      printWindow.print();
-    };
+    if (reportType === 'profit' && periodType === 'monthly') {
+      // 使用后端API生成真实PDF
+      window.open(`/api/profit/report/pdf?month=${month}`, '_blank');
+    } else {
+      // 前端打印方式兜底
+      const printWindow = window.open('', '_blank');
+      const html = generatePrintHTML();
+      printWindow.document.write(html);
+      printWindow.document.close();
+      printWindow.onload = () => { printWindow.print(); };
+    }
   };
 
   // 生成利润报表CSV
