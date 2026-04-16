@@ -65,7 +65,7 @@ export default function BusinessAnalysisPage() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
                     <h2 className="text-h1">{t('businessAnalysisTitle')}</h2>
-                    <p className="text-label-caps mt-1">{lang === 'zh' ? '多维度分析经营核心表现' : 'Multi-dimensional core performance'}</p>
+                    <p className="text-label-caps mt-1">{t('bizAnalysisCorePerformance')}</p>
                 </div>
                 <div className="flex items-center gap-3 p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
                     <input
@@ -87,15 +87,15 @@ export default function BusinessAnalysisPage() {
             {/* KPI Summary */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="card-premium border-blue-100/30">
-                    <p className="text-label-caps mb-4">{lang === 'zh' ? '总营业额' : 'Total Revenue'}</p>
+                    <p className="text-label-caps mb-4">{t('totalRevenue')}</p>
                     <div className="text-3xl font-black text-blue-600 tracking-tighter">{formatCurrency(data.revenue)}</div>
                 </div>
                 <div className="card-premium">
-                    <p className="text-label-caps mb-4">{lang === 'zh' ? '总订单量' : 'Total Orders'}</p>
+                    <p className="text-label-caps mb-4">{t('totalOrders')}</p>
                     <div className="text-3xl font-black text-slate-900 tracking-tighter">{data.orders} <span className="text-[14px] text-slate-400">Order</span></div>
                 </div>
                 <div className="card-premium">
-                    <p className="text-label-caps mb-4">{lang === 'zh' ? '平均客单价' : 'Avg Order'}</p>
+                    <p className="text-label-caps mb-4">{t('avgOrder')}</p>
                     <div className="text-3xl font-black text-slate-900 tracking-tighter">{formatCurrency(data.avgOrder)}</div>
                 </div>
             </div>
@@ -105,7 +105,7 @@ export default function BusinessAnalysisPage() {
                 <div className="card-premium border-slate-200 !p-10 bg-white">
                     <div className="flex justify-between items-center mb-10">
                         <div>
-                            <h3 className="text-h2">🕒 {lang === 'zh' ? '营业高峰分布' : 'Peak Hours'}</h3>
+                            <h3 className="text-h2">🕒 {t('peakHours')}</h3>
                             <p className="text-label-caps mt-1">Order Density Matrix</p>
                         </div>
                         <span className="px-3 py-1.5 bg-blue-50 text-blue-600 text-[14px] font-black rounded-xl border border-blue-100 uppercase tracking-widest">Live Flow</span>
@@ -132,7 +132,7 @@ export default function BusinessAnalysisPage() {
                 <div className="card-premium border-slate-200 !p-10 bg-white">
                     <div className="flex justify-between items-center mb-10">
                         <div>
-                            <h3 className="text-h2">📦 {lang === 'zh' ? '产品业绩矩阵' : 'Product Performance'}</h3>
+                            <h3 className="text-h2">📦 {t('productPerformance')}</h3>
                             <p className="text-label-caps mt-1">Revenue Contribution</p>
                         </div>
                         <span className="px-3 py-1.5 bg-emerald-50 text-emerald-600 text-[14px] font-black rounded-xl border border-emerald-100 uppercase tracking-widest">Profitable</span>
@@ -161,9 +161,7 @@ export default function BusinessAnalysisPage() {
             <div className="p-8 bg-blue-50 rounded-[32px] border border-blue-100 flex items-center gap-6">
                 <span className="text-3xl">💡</span>
                 <p className="text-body font-bold  tracking-tight">
-                    {lang === 'zh' 
-                        ? '系统提示：过去 7 天内，午间高峰（12h-14h）的订单量增加了 15%，建议加强该时段的操作补给。'
-                        : 'Insight: Sales during lunch peak (12h-14h) increased by 15% in the last 7 days. Ensure stock is ready for this period.'}
+                    {t('lunchPeakInsight')}
                 </p>
             </div>
         </div>
