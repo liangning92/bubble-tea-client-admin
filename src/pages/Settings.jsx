@@ -199,7 +199,7 @@ export default function SettingsPage() {
   return (
     <div className="page">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl font-bold">{lang === 'zh' ? '系统设置' : 'Pengaturan'}</h1>
+        <h1 className="text-xl font-bold">{t('titleSystemSettings')}</h1>
       </div>
 
       {/* 当前用户信息 */}
@@ -212,7 +212,7 @@ export default function SettingsPage() {
           </div>
           <div className="ml-auto flex gap-2">
             <button onClick={() => setShowChangePwd(true)} className="btn btn-secondary btn-sm">
-              🔐 {lang === 'zh' ? '改密码' : 'Ganti Sandi'}
+              🔐 {t('btnChangePassword')}
             </button>
             <button onClick={logout} className="btn btn-danger btn-sm">{t.logout}</button>
           </div>
@@ -221,10 +221,10 @@ export default function SettingsPage() {
 
       {showChangePwd && (
         <div className="card mb-4">
-          <h3 className="font-bold mb-3">{lang === 'zh' ? '修改密码' : 'Ubah Kata Sandi'}</h3>
+          <h3 className="font-bold mb-3">{t('titleChangePassword')}</h3>
           <form onSubmit={handleChangePassword} className="space-y-4">
-            <input className="input" type="password" placeholder={lang === 'zh' ? '旧密码' : 'Sandi Lama'} value={pwdForm.oldPassword} onChange={e => setPwdForm({ ...pwdForm, oldPassword: e.target.value })} required />
-            <input className="input" type="password" placeholder={lang === 'zh' ? '新密码' : 'Sandi Baru'} value={pwdForm.newPassword} onChange={e => setPwdForm({ ...pwdForm, newPassword: e.target.value })} required />
+            <input className="input" type="password" placeholder={t('placeholderOldPassword')} value={pwdForm.oldPassword} onChange={e => setPwdForm({ ...pwdForm, oldPassword: e.target.value })} required />
+            <input className="input" type="password" placeholder={t('placeholderNewPassword')} value={pwdForm.newPassword} onChange={e => setPwdForm({ ...pwdForm, newPassword: e.target.value })} required />
             <div className="flex gap-2">
               <button type="submit" className="btn btn-primary flex-1">{t.confirm}</button>
               <button type="button" onClick={() => setShowChangePwd(false)} className="btn btn-secondary">{t.cancel}</button>
@@ -237,7 +237,7 @@ export default function SettingsPage() {
         {tabs.map(tab => (
           <button key={tab.key} onClick={() => setActiveTab(tab.key)}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium ${activeTab === tab.key ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
-            {lang === 'zh' ? tab.zh : tab.id}
+            {t(tab.zh || tab.id, tab)}
           </button>
         ))}
       </div>
@@ -248,21 +248,21 @@ export default function SettingsPage() {
           {user?.role === 'admin' && (
             <div className="flex gap-2 mb-4">
               <button onClick={() => setShowAddUser(true)} className="btn btn-primary btn-sm">
-                + {lang === 'zh' ? '添加用户' : 'Tambah Pengguna'}
+                + {t('btnAddUser')}
               </button>
             </div>
           )}
 
           {showAddUser && (
             <div className="card mb-4">
-              <h3 className="font-bold mb-3">{lang === 'zh' ? '添加用户' : 'Tambah Pengguna'}</h3>
+              <h3 className="font-bold mb-3">{t('btnAddUser')}</h3>
               <form onSubmit={handleAddUser} className="space-y-4">
-                <input className="input" placeholder={lang === 'zh' ? '姓名' : 'Nama'} value={userForm.name} onChange={e => setUserForm({ ...userForm, name: e.target.value })} />
+                <input className="input" placeholder={t('placeholderName')} value={userForm.name} onChange={e => setUserForm({ ...userForm, name: e.target.value })} />
                 <input className="input" placeholder={t.username} value={userForm.username} onChange={e => setUserForm({ ...userForm, username: e.target.value })} required />
                 <input className="input" type="password" placeholder={t.password} value={userForm.password} onChange={e => setUserForm({ ...userForm, password: e.target.value })} required />
                 <select className="input" value={userForm.role} onChange={e => setUserForm({ ...userForm, role: e.target.value })}>
-                  <option value="staff">{lang === 'zh' ? '员工' : 'Staf'}</option>
-                  {user?.role === 'admin' && <option value="admin">{lang === 'zh' ? '管理员' : 'Admin'}</option>}
+                  <option value="staff">{t('roleStaff')}</option>
+                  {user?.role === 'admin' && <option value="admin">{t('roleAdmin')}</option>}
                 </select>
                 <div className="flex gap-2">
                   <button type="submit" className="btn btn-primary flex-1">{t.save}</button>
@@ -302,7 +302,7 @@ export default function SettingsPage() {
       {activeTab === 'import' && (
         <>
           <div className="card mb-4">
-            <h3 className="font-bold mb-2">{lang === 'zh' ? '🤖 智能批量导入' : '🤖 Import Batch Cerdas'}</h3>
+            <h3 className="font-bold mb-2">{t('titleSmartImport')}</h3>
 
             {/* 文件上传区域 */}
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 mb-4 text-center">
