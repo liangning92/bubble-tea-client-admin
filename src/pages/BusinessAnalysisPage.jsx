@@ -64,7 +64,7 @@ export default function BusinessAnalysisPage() {
             {/* Header & Filter */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
-                    <h2 className="text-h1">{lang === 'zh' ? '📈 营收与销量综合透视' : 'Business Analysis'}</h2>
+                    <h2 className="text-h1">{t('businessAnalysisTitle')}</h2>
                     <p className="text-label-caps mt-1">{lang === 'zh' ? '多维度分析经营核心表现' : 'Multi-dimensional core performance'}</p>
                 </div>
                 <div className="flex items-center gap-3 p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
