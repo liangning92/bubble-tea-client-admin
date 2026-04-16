@@ -316,47 +316,41 @@ export default function SettingsPage() {
               <label htmlFor="file-upload" className="cursor-pointer">
                 <div className="text-4xl mb-2">📎</div>
                 <div className="text-sm text-gray-600 mb-1">
-                  {lang === 'zh' ? '点击上传文件' : 'Klik untuk upload file'}
+                  {t('btnClickUploadFile')}
                 </div>
                 <div className="text-[14px] text-gray-400">
-                  {lang === 'zh'
-                    ? '支持: TXT, Excel, Word, PDF, 图片'
-                    : 'Mendukung: TXT, Excel, Word, PDF, Gambar'}
+                  {t('labelFormatSupport')}
                 </div>
               </label>
             </div>
 
             <div className="text-[14px] text-gray-400 mb-4 text-center">
-              {lang === 'zh'
-                ? '📄 支持格式: txt, xlsx, xls, csv, docx, pdf, png, jpg, jpeg | 图片将自动OCR识别文字'
-                : '📄 Format: txt, xlsx, xls, csv, docx, pdf, png, jpg, jpeg | Gambar akan dikenali OCR'}
+              {t('labelFormatDetail')}
             </div>
 
-            <div className="text-center text-gray-400 mb-3">{lang === 'zh' ? '或输入文本' : 'atau masukkan teks'}</div>
+            <div className="text-center text-gray-400 mb-3">{t('labelOrEnterText')}</div>
 
             <form onSubmit={handleSmartImport}>
               <textarea
                 className="input mb-3"
                 rows={5}
-                placeholder={lang === 'zh'
-                  ? '培训：食品安全培训\n清洁柜台 - 每日\n房租 Rp 5000000'
-                  : 'Pelatihan: Keamanan Makanan\nBersihkan Etalase - Harian\nBiaya Sewa Rp 5000000'}
+                placeholder={t('placeholderSmartImport')}
                 value={smartImportText}
                 onChange={e => setSmartImportText(e.target.value)}
               />
               <button type="submit" className="btn btn-primary w-full">
-                {lang === 'zh' ? '导入文本' : 'Import Teks'}
+                {t('labelImportText')}
               </button>
             </form>
           </div>
 
           {importResult && (
             <div className="card mb-4 bg-green-50">
-              <h4 className="font-bold mb-2 text-green-700">{lang === 'zh' ? '导入结果' : 'Hasil Import'}</h4>
+              <h4 className="font-bold mb-2 text-green-700">{t('titleImportResult')}</h4>
               <pre className="text-[14px] text-green-600 whitespace-pre-wrap">{importResult.summary}</pre>
               {importResult.fileType && (
                 <div className="text-[14px] text-gray-500 mt-1">
-                  {lang === 'zh' ? '文件类型' : 'Tipe file'}: {importResult.fileType}
+                  {t('labelFileType')}: {importResult.fileType}
                 </div>
               )}
 
@@ -367,7 +361,7 @@ export default function SettingsPage() {
                     onClick={() => navigate('/staff')}
                     className="px-3 py-1.5 bg-blue-500 text-white text-[14px] rounded-lg hover:bg-blue-600 flex items-center gap-1"
                   >
-                    👥 {lang === 'zh' ? '查看培训' : 'Lihat Pelatihan'} ({importResult.results.trainings.imported})
+                    👥 {t('btnViewTraining')} ({importResult.results.trainings.imported})
                   </button>
                 )}
                 {importResult.results?.hygieneTasks?.imported > 0 && (
@@ -375,7 +369,7 @@ export default function SettingsPage() {
                     onClick={() => navigate('/hygiene')}
                     className="px-3 py-1.5 bg-cyan-500 text-white text-[14px] rounded-lg hover:bg-cyan-600 flex items-center gap-1"
                   >
-                    🧹 {lang === 'zh' ? '查看卫生任务' : 'Lihat Kebersihan'} ({importResult.results.hygieneTasks.imported})
+                    🧹 {t('btnViewHygieneTasks')} ({importResult.results.hygieneTasks.imported})
                   </button>
                 )}
                 {importResult.results?.products?.imported > 0 && (
@@ -383,7 +377,7 @@ export default function SettingsPage() {
                     onClick={() => navigate('/inventory')}
                     className="px-3 py-1.5 bg-orange-500 text-white text-[14px] rounded-lg hover:bg-orange-600 flex items-center gap-1"
                   >
-                    📦 {lang === 'zh' ? '查看产品/配方' : 'Lihat Produk'} ({importResult.results.products.imported})
+                    📦 {t('btnViewProducts')} ({importResult.results.products.imported})
                   </button>
                 )}
                 {importResult.results?.expenses?.imported > 0 && (
@@ -391,14 +385,14 @@ export default function SettingsPage() {
                     onClick={() => navigate('/expense')}
                     className="px-3 py-1.5 bg-red-500 text-white text-[14px] rounded-lg hover:bg-red-600 flex items-center gap-1"
                   >
-                    💰 {lang === 'zh' ? '查看费用' : 'Lihat Biaya'} ({importResult.results.expenses.imported})
+                    💰 {t('btnViewExpenses')} ({importResult.results.expenses.imported})
                   </button>
                 )}
               </div>
 
               {importResult.results?.details?.length > 0 && (
                 <div className="mt-3 space-y-4 max-h-48 overflow-y-auto border-t pt-2">
-                  <div className="text-[14px] text-gray-500 mb-1">{lang === 'zh' ? '详情列表' : 'Daftar Detail'}:</div>
+                  <div className="text-[14px] text-gray-500 mb-1">{t('labelDetailList')}:</div>
                   {importResult.results.details.map((d, i) => (
                     <div key={i} className={`text-[14px] ${d.status === 'success' ? 'text-green-600' : d.status === 'skipped' ? 'text-yellow-600' : 'text-red-600'}`}>
                       {d.status === 'success' ? '✅' : d.status === 'skipped' ? '⏭️' : '❌'} {d.type}: {d.name}
@@ -425,11 +419,7 @@ export default function SettingsPage() {
               {['all', 'login', 'create', 'update', 'delete'].map(f => (
                 <button key={f} onClick={() => setLogFilter(f)}
                   className={`px-4 py-1 rounded text-[14px] ${logFilter === f ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}>
-                  {f === 'all' ? (lang === 'zh' ? '全部' : 'Semua') :
-                    f === 'login' ? (lang === 'zh' ? '登录' : 'Login') :
-                      f === 'create' ? (lang === 'zh' ? '创建' : 'Buat') :
-                        f === 'update' ? (lang === 'zh' ? '修改' : 'Edit') :
-                          (lang === 'zh' ? '删除' : 'Hapus')}
+                  {(f === 'all' ? t('labelAll') : f === 'login' ? t('labelLogin') : f === 'create' ? t('labelCreate') : f === 'update' ? t('labelUpdate') : t('labelDelete'))}
                 </button>
               ))}
             </div>
