@@ -35,7 +35,7 @@ export default function SchedulePage({ hideHeader }) {
       d.setDate(startOfWeek.getDate() + i);
       return {
         iso: d.toISOString().split('T')[0],
-        label: d.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US', { weekday: 'short' }),
+        label: d.toLocaleDateString(t('zh-cn'), { weekday: 'short' }),
         day: d.getDate(),
         month: d.getMonth() + 1
       };

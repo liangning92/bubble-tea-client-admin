@@ -107,8 +107,8 @@ export default function DeliveryHub({ hideHeader }) {
       {/* Premium Header Header */}
       {!hideHeader && (
         <div className="flex flex-col gap-2 px-4">
-          <h1 className="text-h1">{lang === 'zh' ? '全链路外卖中枢' : 'Delivery Backbone'}</h1>
-          <p className="text-label-caps">{lang === 'zh' ? '多平台外卖实时对账与调度中心' : 'Multi-Channel Reconciliation & Ops Hub'}</p>
+          <h1 className="text-h1">{t('deliveryHubTitle')}</h1>
+          <p className="text-label-caps">{t('deliveryHubSubtitle')}</p>
         </div>
       )}
 

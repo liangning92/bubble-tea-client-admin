@@ -307,7 +307,7 @@ function RevenuePage() {
       <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 w-fit overflow-x-auto no-scrollbar">
         {['today', 'yesterday', 'thisWeek', 'thisMonth', 'custom'].map(k => (
           <button key={k} onClick={() => setTimeTab(k)} className={`px-4 py-3 rounded-xl text-[14px] font-black uppercase tracking-widest transition-all ${timeTab === k ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}>
-            {lang === 'zh' ? (k === 'today' ? '今日' : k === 'yesterday' ? '昨日' : k === 'thisWeek' ? '本周' : k === 'thisMonth' ? '本月' : '自定义') : k.toUpperCase()}
+            {(k === 'today' ? t('today') : k === 'yesterday' ? t('yesterday') : k === 'thisWeek' ? t('thisWeek') : k === 'thisMonth' ? t('thisMonth') : t('custom'))}
           </button>
         ))}
       </div>

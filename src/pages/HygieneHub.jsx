@@ -22,7 +22,7 @@ export default function HygieneHub({ hideHeader }) {
     setSearchParams({ tab: key });
   };
 
-  const pageTitle = lang === 'zh' ? '运营管理' : lang === 'en' ? 'Operations' : 'Operasional';
+  const pageTitle = t('pageTitle');
   
   return (
     <div className="w-full bg-slate-50 text-slate-800">

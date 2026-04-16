@@ -81,7 +81,7 @@ export default function StaffPortal() {
             <h1 className="text-4xl font-black tracking-tighter mb-2">
                你好, {user.staffName || user.username} ☕
             </h1>
-            <p className="text-slate-400 font-medium">今天是 {new Date().toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <p className="text-slate-400 font-medium">今天是 {new Date().toLocaleDateString(t('zh-cn'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
             
             <button 
               onClick={() => setShowScanner(!showScanner)}

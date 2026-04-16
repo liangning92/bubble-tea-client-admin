@@ -268,7 +268,7 @@ export default function PurchaseDetailPage() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tighter">{tl('库存采购运营明细', 'Purchase Operations', 'Rincian Pembelian')}</h2>
-          <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2 ">{lang === 'zh' ? '供应链采购闭环与智能补货策略引擎' : 'Supply Chain Procurement & Intelligent Restock Hub'}</p>
+          <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2 ">{t('procurementHubTitle')}</p>
         </div>
         <div className="bg-slate-100 p-1.5 rounded-2xl flex gap-1 border border-slate-200 overflow-x-auto no-scrollbar">
           {tabs.map(tab => (
