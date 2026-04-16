@@ -29,9 +29,7 @@ export default function LoginPage() {
       navigate('/', { replace: true });
     } else {
       setError(
-        lang === 'zh' ? '账号或密码不正确，请重试' :
-        lang === 'id' ? 'Akun atau kata sandi salah' :
-        'Incorrect username or password'
+        t('loginError')
       );
     }
   };
@@ -43,9 +41,9 @@ export default function LoginPage() {
   ];
 
   const features = [
-    { icon: '💰', title: lang === 'zh' ? '实时财务核算' : 'Real-time Finance', desc: lang === 'zh' ? '毫秒级利润追踪与成本管控' : 'Millisecond profit tracking' },
-    { icon: '📦', title: lang === 'zh' ? '智能库存系统' : 'Smart Inventory', desc: lang === 'zh' ? '原料入库·出库·效期预警' : 'Stock-in · out · expiry alerts' },
-    { icon: '👥', title: lang === 'zh' ? '全员绩效管理' : 'Staff Performance', desc: lang === 'zh' ? '考勤·排班·薪资一体化' : 'Attendance · schedule · pay' },
+    { icon: '💰', title: t('featureFinance'), desc: t('featureFinanceDesc') },
+    { icon: '📦', title: t('featureInventory'), desc: t('featureInventoryDesc') },
+    { icon: '👥', title: t('featureStaff'), desc: t('featureStaffDesc') },
   ];
 
   return (
@@ -106,10 +104,10 @@ export default function LoginPage() {
             color: '#0f172a', fontWeight: 900, fontSize: '48px',
             lineHeight: 1.1, letterSpacing: '-2px', marginBottom: '20px',
           }}>
-            {lang === 'zh' ? <>智能掌控<br /><span style={{ color: '#FF7700' }}>连锁店业务</span></> : <>Total Control<br /><span style={{ color: '#FF7700' }}>Store Ops</span></>}
+            t('heroTitle')
           </h1>
           <p style={{ color: '#44403c', fontSize: '16px', fontWeight: 500, lineHeight: 1.6, marginBottom: '48px' }}>
-            {lang === 'zh' ? '专为高增长品牌打造的一体化门店管理系统' : 'All-in-one store management system for high-growth brands'}
+            t('heroSubtitle')
           </p>
 
           {/* 功能亮点 */}
@@ -168,10 +166,10 @@ export default function LoginPage() {
           {/* 标题 */}
           <div style={{ marginBottom: '36px' }}>
             <h2 style={{ color: '#0f172a', fontWeight: 900, fontSize: '32px', letterSpacing: '-1px', margin: 0 }}>
-              {lang === 'zh' ? '欢迎回来' : lang === 'id' ? 'Selamat Datang' : 'Welcome Back'}
+              t('welcomeBack')
             </h2>
             <p style={{ color: '#78716c', fontSize: '14px', fontWeight: 500, marginTop: '8px' }}>
-              {lang === 'zh' ? '请输入您的工作账号继续' : lang === 'id' ? 'Masukkan akun kerja Anda' : 'Sign in to your workspace'}
+              t('signInPrompt')
             </p>
           </div>
 
@@ -204,7 +202,7 @@ export default function LoginPage() {
             {/* 用户名 */}
             <div>
               <label style={{ display: 'block', color: '#78716c', fontSize: '11px', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '8px' }}>
-                {lang === 'zh' ? '账号' : lang === 'id' ? 'Akun' : 'Username'}
+                t('username')
               </label>
               <input
                 type="text"
@@ -212,7 +210,7 @@ export default function LoginPage() {
                 onChange={e => setUsername(e.target.value)}
                 required
                 autoComplete="username"
-                placeholder={lang === 'zh' ? '请输入用户名' : lang === 'id' ? 'Masukkan username' : 'Enter username'}
+                placeholder={t('placeholderUsername')}
                 style={{
                   width: '100%', boxSizing: 'border-box',
                   padding: '16px 20px',
@@ -233,7 +231,7 @@ export default function LoginPage() {
             {/* 密码 */}
             <div>
               <label style={{ display: 'block', color: '#78716c', fontSize: '11px', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '8px' }}>
-                {lang === 'zh' ? '密码' : lang === 'id' ? 'Kata Sandi' : 'Password'}
+                t('password')
               </label>
               <div style={{ position: 'relative' }}>
                 <input
@@ -242,7 +240,7 @@ export default function LoginPage() {
                   onChange={e => setPassword(e.target.value)}
                   required
                   autoComplete="current-password"
-                  placeholder={lang === 'zh' ? '请输入密码' : lang === 'id' ? 'Masukkan kata sandi' : 'Enter password'}
+                  placeholder={t('placeholderPassword')}
                   style={{
                     width: '100%', boxSizing: 'border-box',
                     padding: '16px 50px 16px 20px',
@@ -312,12 +310,12 @@ export default function LoginPage() {
                 }} />
               )}
               {loading
-                ? (lang === 'zh' ? '正在验证...' : lang === 'id' ? 'Memverifikasi...' : 'Signing in...')
-                : (lang === 'zh' ? '登录工作台' : lang === 'id' ? 'Masuk' : 'Sign In')}
+                ? t('signingIn')
+                : t('signIn')}
             </button>
           </form>
           <p style={{ textAlign: 'center', color: '#78716c', fontSize: '12px', fontWeight: 600, marginTop: '32px' }}>
-            {lang === 'zh' ? '如需注册账号，请联系系统管理员' : lang === 'id' ? 'Hubungi admin untuk membuat akun' : 'Contact admin to create an account'}
+            t('contactAdmin')
           </p>
         </div>
       </div>
