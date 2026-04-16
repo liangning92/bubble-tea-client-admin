@@ -184,9 +184,9 @@ export default function SettingsPage() {
   ];
 
   const roleLabels = {
-    admin: lang === 'zh' ? '管理员' : 'Admin',
-    manager: lang === 'zh' ? '经理' : 'Manajer',
-    staff: lang === 'zh' ? '员工' : 'Staf',
+    admin: t('roleAdmin'),
+    manager: t('roleManager'),
+    staff: t('roleStaff'),
   };
 
   return (
@@ -243,7 +243,7 @@ export default function SettingsPage() {
         <div className="space-y-4">
           {/* 语言 */}
           <div className="card">
-            <h3 className="font-bold mb-3">🌐 {lang === 'zh' ? '语言设置' : 'Pengaturan Bahasa'}</h3>
+            <h3 className="font-bold mb-3">🌐 {t('titleLanguageSettings')}</h3>
             <div className="flex gap-2">
               {[
                 { code: 'zh', label: '🇨🇳 中文', name: '中文' },
@@ -262,15 +262,15 @@ export default function SettingsPage() {
 
           {/* 通知设置 */}
           <div className="card">
-            <h3 className="font-bold mb-3">🔔 {lang === 'zh' ? '通知设置' : 'Pengaturan Notifikasi'}</h3>
+            <h3 className="font-bold mb-3">🔔 {t('titleNotificationSettings')}</h3>
             <div className="space-y-4">
               <label className="flex items-center justify-between">
-                <span>{lang === 'zh' ? '启用通知提醒' : 'Aktifkan notifikasi'}</span>
+                <span>{t('labelEnableNotifications')}</span>
                 <input type="checkbox" className="toggle" checked={notificationEnabled}
                   onChange={e => setNotificationEnabled(e.target.checked)} />
               </label>
               <label className="flex items-center justify-between">
-                <span>{lang === 'zh' ? '自动刷新数据' : 'Segarkan data otomatis'}</span>
+                <span>{t('labelAutoRefreshData')}</span>
                 <input type="checkbox" className="toggle" checked={autoRefresh}
                   onChange={e => setAutoRefresh(e.target.checked)} />
               </label>
@@ -279,10 +279,10 @@ export default function SettingsPage() {
 
           {/* 货币与日期 */}
           <div className="card">
-            <h3 className="font-bold mb-3">💰 {lang === 'zh' ? '显示设置' : 'Pengaturan Tampilan'}</h3>
+            <h3 className="font-bold mb-3">💰 {t('titleDisplaySettings')}</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span>{lang === 'zh' ? '货币' : 'Mata Uang'}</span>
+                <span>{t('labelCurrency')}</span>
                 <select className="input w-32" value={currency} onChange={e => setCurrency(e.target.value)}>
                   <option value="IDR">IDR (Rp)</option>
                   <option value="CNY">CNY (¥)</option>
@@ -290,7 +290,7 @@ export default function SettingsPage() {
                 </select>
               </div>
               <div className="flex items-center justify-between">
-                <span>{lang === 'zh' ? '日期格式' : 'Format Tanggal'}</span>
+                <span>{t('labelDateFormat')}</span>
                 <select className="input w-40" value={dateFormat} onChange={e => setDateFormat(e.target.value)}>
                   <option value="yyyy-MM-dd">2026-04-05</option>
                   <option value="dd/MM/yyyy">05/04/2026</option>
@@ -302,19 +302,19 @@ export default function SettingsPage() {
 
           {/* 数据管理 */}
           <div className="card">
-            <h3 className="font-bold mb-3">💾 {lang === 'zh' ? '数据管理' : 'Manajemen Data'}</h3>
+            <h3 className="font-bold mb-3">💾 {t('titleDataManagement')}</h3>
             <div className="space-y-4">
               <button onClick={handleExportData} className="btn btn-secondary w-full text-left justify-start">
-                📤 {lang === 'zh' ? '导出全部数据' : 'Ekspor semua data'}
+                📤 {t('btnExportAllData')}
               </button>
               <button onClick={handleClearData} className="btn btn-danger w-full text-left justify-start">
-                🗑️ {lang === 'zh' ? '清空业务数据' : 'Hapus data bisnis'}
+                🗑️ {t('btnClearBusinessData')}
               </button>
             </div>
           </div>
 
           <button onClick={handleSaveSystemSettings} className="btn btn-primary w-full">
-            💾 {lang === 'zh' ? '保存设置' : 'Simpan Pengaturan'}
+            💾 {t('btnSaveSettings')}
           </button>
         </div>
       )}
@@ -325,16 +325,16 @@ export default function SettingsPage() {
           {user?.role === 'admin' && (
             <div className="flex gap-2 mb-4">
               <button onClick={() => setShowAddUser(true)} className="btn btn-primary btn-sm">
-                + {lang === 'zh' ? '添加用户' : 'Tambah Pengguna'}
+                + {t('btnAddUser')}
               </button>
             </div>
           )}
 
           {showAddUser && (
             <div className="card mb-4">
-              <h3 className="font-bold mb-3">{lang === 'zh' ? '添加用户' : 'Tambah Pengguna'}</h3>
+              <h3 className="font-bold mb-3">{t('btnAddUser')}</h3>
               <form onSubmit={handleAddUser} className="space-y-4">
-                <input className="input" placeholder={lang === 'zh' ? '姓名' : 'Nama'} value={userForm.name} onChange={e => setUserForm({...userForm, name: e.target.value})} />
+                <input className="input" placeholder={t('placeholderName')} value={userForm.name} onChange={e => setUserForm({...userForm, name: e.target.value})} />
                 <input className="input" placeholder={t.username} value={userForm.username} onChange={e => setUserForm({...userForm, username: e.target.value})} required />
                 <input className="input" type="password" placeholder={t.password} value={userForm.password} onChange={e => setUserForm({...userForm, password: e.target.value})} required />
                 <select className="input" value={userForm.role} onChange={e => setUserForm({...userForm, role: e.target.value})}>
@@ -388,11 +388,7 @@ export default function SettingsPage() {
               {['all', 'login', 'create', 'update', 'delete'].map(f => (
                 <button key={f} onClick={() => setLogFilter(f)}
                   className={`px-4 py-1 rounded text-xs ${logFilter === f ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}>
-                  {f === 'all' ? (lang === 'zh' ? '全部' : 'Semua') :
-                    f === 'login' ? (lang === 'zh' ? '登录' : 'Login') :
-                    f === 'create' ? (lang === 'zh' ? '创建' : 'Buat') :
-                    f === 'update' ? (lang === 'zh' ? '修改' : 'Edit') :
-                    (lang === 'zh' ? '删除' : 'Hapus')}
+                  {(f === 'all' ? t('labelAll') : f === 'login' ? t('labelLogin') : f === 'create' ? t('labelCreate') : f === 'update' ? t('labelUpdate') : t('labelDelete'))}
                 </button>
               ))}
             </div>
@@ -434,7 +430,7 @@ export default function SettingsPage() {
       {activeTab === 'import' && (
         <>
           <div className="card mb-4">
-            <h3 className="font-bold mb-2">{lang === 'zh' ? '🤖 智能批量导入' : '🤖 Import Batch Cerdas'}</h3>
+            <h3 className="font-bold mb-2">{t('titleSmartImport')}</h3>
 
             {/* 文件上传 */}
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 mb-4 text-center">
@@ -448,54 +444,52 @@ export default function SettingsPage() {
               <label htmlFor="file-upload" className="cursor-pointer">
                 <div className="text-4xl mb-2">📎</div>
                 <div className="text-sm text-gray-600 mb-1">
-                  {lang === 'zh' ? '点击上传文件' : 'Klik untuk upload file'}
+                  {t('btnClickUploadFile')}
                 </div>
                 <div className="text-xs text-gray-400">
-                  {lang === 'zh' ? '支持: TXT, Excel, Word, PDF, 图片' : 'Mendukung: TXT, Excel, Word, PDF, Gambar'}
+                  {t('labelFormatSupport')}
                 </div>
               </label>
             </div>
 
             <div className="text-xs text-gray-400 mb-4 text-center">
-              {lang === 'zh' ? '📄 支持格式: txt, xlsx, xls, csv, docx, pdf, png, jpg, jpeg | 图片将自动OCR识别文字' : '📄 Format: txt, xlsx, xls, csv, docx, pdf, png, jpg, jpeg | Gambar akan dikenali OCR'}
+              {t('labelFormatDetail')}
             </div>
 
-            <div className="text-center text-gray-400 mb-3">{lang === 'zh' ? '或输入文本' : 'atau masukkan teks'}</div>
+            <div className="text-center text-gray-400 mb-3">{t('labelOrEnterText')}</div>
 
             <form onSubmit={handleSmartImport}>
               <textarea
                 className="input mb-3"
                 rows={5}
-                placeholder={lang === 'zh'
-                  ? '培训：食品安全培训\n清洁柜台 - 每日\n房租 Rp 5000000'
-                  : 'Pelatihan: Keamanan Makanan\nBersihkan Etalase - Harian\nBiaya Sewa Rp 5000000'}
+                placeholder={t('placeholderSmartImport')}
                 value={smartImportText}
                 onChange={e => setSmartImportText(e.target.value)}
               />
               <button type="submit" className="btn btn-primary w-full">
-                {lang === 'zh' ? '导入文本' : 'Import Teks'}
+                {t('labelImportText')}
               </button>
             </form>
           </div>
 
           {importResult && (
             <div className="card mb-4 bg-green-50">
-              <h4 className="font-bold mb-2 text-green-700">{lang === 'zh' ? '导入结果' : 'Hasil Import'}</h4>
+              <h4 className="font-bold mb-2 text-green-700">{t('titleImportResult')}</h4>
               <pre className="text-xs text-green-600 whitespace-pre-wrap">{importResult.summary}</pre>
               {importResult.fileType && (
                 <div className="text-xs text-gray-500 mt-1">
-                  {lang === 'zh' ? '文件类型' : 'Tipe file'}: {importResult.fileType}
+                  {t('labelFileType')}: {importResult.fileType}
                 </div>
               )}
               <div className="mt-3 flex flex-wrap gap-2">
                 {importResult.results?.trainings?.imported > 0 && (
-                  <button onClick={() => navigate('/staff')} className="px-3 py-1.5 bg-blue-500 text-white text-xs rounded-lg hover:bg-blue-600">👥 {lang === 'zh' ? '查看培训' : 'Lihat Pelatihan'} ({importResult.results.trainings.imported})</button>
+                  <button onClick={() => navigate('/staff')} className="px-3 py-1.5 bg-blue-500 text-white text-xs rounded-lg hover:bg-blue-600">👥 {t('btnViewTraining')} ({importResult.results.trainings.imported})</button>
                 )}
                 {importResult.results?.hygieneTasks?.imported > 0 && (
-                  <button onClick={() => navigate('/hygiene/tasks')} className="px-3 py-1.5 bg-cyan-500 text-white text-xs rounded-lg hover:bg-cyan-600">🧹 {lang === 'zh' ? '查看卫生任务' : 'Lihat Kebersihan'} ({importResult.results.hygieneTasks.imported})</button>
+                  <button onClick={() => navigate('/hygiene/tasks')} className="px-3 py-1.5 bg-cyan-500 text-white text-xs rounded-lg hover:bg-cyan-600">🧹 {t('btnViewHygieneTasks')} ({importResult.results.hygieneTasks.imported})</button>
                 )}
                 {importResult.results?.expenses?.imported > 0 && (
-                  <button onClick={() => navigate('/expense')} className="px-3 py-1.5 bg-red-500 text-white text-xs rounded-lg hover:bg-red-600">💰 {lang === 'zh' ? '查看费用' : 'Lihat Biaya'} ({importResult.results.expenses.imported})</button>
+                  <button onClick={() => navigate('/expense')} className="px-3 py-1.5 bg-red-500 text-white text-xs rounded-lg hover:bg-red-600">💰 {t('btnViewExpenses')} ({importResult.results.expenses.imported})</button>
                 )}
               </div>
             </div>
