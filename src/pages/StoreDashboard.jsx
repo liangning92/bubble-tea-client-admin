@@ -15,22 +15,25 @@ export default function StoreDashboard() {
     const today = new Date().toISOString().split('T')[0];
     setLoading(true);
 
-    Promise.all([
-      api('GET', `/profit/daily?date=${today}`).catch(() => null),
-      api('GET', '/sales').catch(() => null),
-      api('GET', '/dashboard/alerts').catch(() => null)
-    ]).then(([profitRes, salesRes, alertsRes]) => {
-      const hasRealProfit = profitRes && !profitRes.error && profitRes.totalRevenue > 0;
+    // Fetch real-time order stream + dashboard data
+    const fetchDashboard = async () => {
+      const [profitRes, streamRes] = await Promise.all([
+        api('GET', `/profit/daily?date=${today}`).catch(() => null),
+        api('GET', '/dashboard/orders/stream').catch(() => null)
+      ]);
 
+      const hasRealProfit = profitRes && !profitRes.error && profitRes.totalRevenue > 0;
       if (hasRealProfit) {
         setProfit(profitRes);
       } else {
         setProfit({ totalRevenue: 8520000, netProfit: 4260000 });
       }
 
-      const salesArr = salesRes?.data || salesRes || [];
-      if (salesArr.length > 0) {
-        setRecentSales(salesArr.slice(0, 6));
+      // Use real stream data if available, otherwise fall back
+      // API returns { stream: [...], total, timeRange, statusCounts }
+      const streamOrders = streamRes?.stream || streamRes?.data || [];
+      if (streamOrders.length > 0) {
+        setRecentSales(streamOrders.slice(0, 6));
       } else {
         setRecentSales([
           { id: 'm1', productName: '经典奶茶', quantity: 2, unitPrice: 28000, createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString() },
@@ -39,15 +42,14 @@ export default function StoreDashboard() {
         ]);
       }
 
-      setAlerts({
-        inventory: alertsRes?.inventory || [{ id: 1, name: '珍珠', stock: 12, unit: 'kg', safeStock: 20 }],
-        attendance: alertsRes?.attendance || [{ staffName: '张三', type: '迟到 15min' }],
-        hygiene: alertsRes?.hygiene || [{ task: '制冰机消毒', scheduledTime: '10:00' }],
-        hardware: [],
-        delivery: []
-      });
-    })
-      .finally(() => setLoading(false));
+      setLoading(false);
+    };
+
+    fetchDashboard();
+
+    // Poll every 8 seconds for real-time updates
+    const interval = setInterval(fetchDashboard, 8000);
+    return () => clearInterval(interval);
   }, [t]);
 
   const formatCurrency = (num) => {
