@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
 export default function AttendancePage() {
-  const { user } = useAuth();
+  const { user, t } = useAuth();
   const [loading, setLoading] = useState(true);
   const [exporting, setExporting] = useState(false);
   const [records, setRecords] = useState([]);
