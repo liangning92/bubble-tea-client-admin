@@ -54,7 +54,7 @@ export default function InventoryAnomalyPage({ mode = 'alert', hideHeader = fals
          <div className="card-premium !p-10 border-orange-50 bg-orange-50/10 !rounded-[40px] shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8 text-4xl opacity-10 group-hover:scale-110 transition-transform">🔍</div>
             <p className="text-[12px] font-black text-orange-400 uppercase tracking-widest mb-2">{t('pendingVerify')}</p>
-            <h4 className="text-3xl font-black text-slate-900">8 项</h4>
+            <h4 className="text-3xl font-black text-slate-900">8 items</h4>
             <button className="mt-6 text-[11px] font-black text-orange-600 uppercase tracking-widest underline underline-offset-8">{t('doPhysicalCount')}</button>
          </div>
 
