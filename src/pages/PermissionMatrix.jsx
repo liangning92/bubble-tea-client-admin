@@ -27,11 +27,11 @@ export default function PermissionMatrix() {
         setMatrix(data);
       } else {
         // fallback: use hardcoded
-        setMatrix(FALLBACK_MATRIX);
+        setMatrix(getFallbackMatrix(t));
       }
     } catch (e) {
       console.error(e);
-      setMatrix(FALLBACK_MATRIX);
+      setMatrix(getFallbackMatrix(t));
     } finally {
       setLoading(false);
     }
@@ -279,55 +279,74 @@ function AuditLogsView({ logs, loading, t }) {
 
 // ========== Helpers ==========
 
-const FALLBACK_MATRIX = {
-  admin: {
-    label: '管理员',
-    permissions: [
-      'dashboard.view', 'dashboard.orders_stream', 'dashboard.alerts',
-      'inventory.view', 'inventory.edit', 'inventory.delete',
-      'products.view', 'products.edit', 'products.shelve',
-      'recipe.view', 'recipe.edit',
-      'sales.view', 'sales.export',
-      'expense.view', 'expense.edit', 'expense.reimbursement.review',
-      'staff.view', 'staff.edit', 'staff.delete',
-      'attendance.view', 'attendance.edit',
-      'payroll.view', 'payroll.calculate',
-      'profit.view', 'profit.report_pdf',
-      'tax.view', 'tax.npwp', 'tax.pb1',
-      'supplier.view', 'supplier.edit',
-      'system.config', 'system.permission_audit'
-    ]
-  },
-  manager: {
-    label: '店长',
-    permissions: [
-      'dashboard.view', 'dashboard.alerts',
-      'inventory.view', 'inventory.edit',
-      'products.view', 'products.shelve',
-      'recipe.view',
-      'sales.view', 'sales.export',
-      'expense.view', 'expense.reimbursement.submit',
-      'staff.view',
-      'attendance.view',
-      'payroll.view',
-      'profit.view',
-      'supplier.view',
-      'system.config'
-    ]
-  },
-  staff: {
-    label: '员工',
-    permissions: [
-      'dashboard.view',
-      'inventory.view',
-      'products.view',
-      'sales.view', 'sales.create',
-      'expense.view', 'expense.reimbursement.submit',
-      'attendance.view',
-      'hygiene.view', 'hygiene.record'
-    ]
-  }
-};
+function getFallbackMatrix(t) {
+  return {
+    admin: {
+      label: t('roleAdmin'),
+      permissions: [
+        'dashboard.view', 'dashboard.orders_stream', 'dashboard.alerts',
+        'inventory.view', 'inventory.edit', 'inventory.delete',
+        'products.view', 'products.edit', 'products.shelve',
+        'recipe.view', 'recipe.edit',
+        'sales.view', 'sales.export',
+        'expense.view', 'expense.edit', 'expense.reimbursement.review',
+        'staff.view', 'staff.edit', 'staff.delete',
+        'attendance.view', 'attendance.edit',
+        'payroll.view', 'payroll.calculate',
+        'profit.view', 'profit.report_pdf',
+        'tax.view', 'tax.npwp', 'tax.pb1',
+        'supplier.view', 'supplier.edit',
+        'system.config', 'system.permission_audit'
+      ]
+    },
+    manager: {
+      label: t('roleManager'),
+      permissions: [
+        'dashboard.view', 'dashboard.alerts',
+        'inventory.view', 'inventory.edit',
+        'products.view', 'products.shelve',
+        'recipe.view',
+        'sales.view', 'sales.export',
+        'expense.view', 'expense.reimbursement.submit',
+        'staff.view',
+        'attendance.view',
+        'payroll.view',
+        'profit.view',
+        'supplier.view',
+        'system.config'
+      ]
+    },
+    staff: {
+      label: t('roleStaff'),
+      permissions: [
+        'dashboard.view',
+        'inventory.view',
+        'products.view',
+        'sales.view', 'sales.create',
+        'expense.view', 'expense.reimbursement.submit',
+        'attendance.view',
+        'hygiene.view', 'hygiene.record'
+      ]
+    }
+  };
+}
+
+const MODULE_LABELS = (t) => ({
+  dashboard: t('moduleDashboard'),
+  inventory: t('moduleInventory'),
+  products: t('moduleProducts'),
+  recipe: t('moduleRecipe'),
+  sales: t('moduleSales'),
+  expense: t('moduleExpense'),
+  staff: t('moduleStaff'),
+  attendance: t('moduleAttendance'),
+  payroll: t('modulePayroll'),
+  profit: t('moduleProfit'),
+  tax: t('moduleTax'),
+  supplier: t('moduleSupplier'),
+  system: t('moduleSystem'),
+  hygiene: t('moduleHygiene'),
+});
 
 // Group permissions by module (prefix before the dot)
 function buildModules(matrix) {
@@ -344,26 +363,11 @@ function buildModules(matrix) {
     });
   });
 
-  const MODULE_LABELS = {
-    dashboard: '经营看板',
-    inventory: '库存管理',
-    products: '产品管理',
-    recipe: '配方/BOM',
-    sales: '销售数据',
-    expense: '费用报销',
-    staff: '员工管理',
-    attendance: '考勤审计',
-    payroll: '薪酬核算',
-    profit: '利润与报表',
-    tax: '税务合规',
-    supplier: '供应商',
-    system: '系统设置',
-    hygiene: '卫生管理',
-  };
+  const moduleLabels = MODULE_LABELS(t);
 
   return Object.entries(moduleMap).map(([key, permsByRole]) => ({
     key,
-    label: MODULE_LABELS[key] || key,
+    label: moduleLabels[key] || key,
     count: new Set(Object.values(permsByRole).flat()).size,
     permsByRole
   })).sort((a, b) => a.key.localeCompare(b.key));

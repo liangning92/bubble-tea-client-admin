@@ -55,11 +55,11 @@ export default function ExpensePage() {
   const total = expenses.reduce((sum, e) => sum + e.amount, 0);
 
   const expenseTypes = [
-    { value: 'rent', zh: '房租', id: 'Sewa' },
-    { value: 'labor', zh: '人工', id: 'Tenaga Kerja' },
-    { value: 'utilities', zh: '水电', id: 'Utilitas' },
-    { value: 'supplies', zh: '耗材', id: 'Perlengkapan' },
-    { value: 'other', zh: '其他', id: 'Lainnya' },
+    { value: 'rent', labelKey: 'expenseRent' },
+    { value: 'labor', labelKey: 'expenseLabor' },
+    { value: 'utilities', labelKey: 'expenseUtilities' },
+    { value: 'supplies', labelKey: 'expenseSupplies' },
+    { value: 'other', labelKey: 'expenseOther' },
   ];
 
   const parseBatchText = () => {
@@ -106,7 +106,7 @@ export default function ExpensePage() {
           <select className="input" value={name} onChange={e => setName(e.target.value)} required>
             <option value="">{t.selectExpenseType}</option>
             {expenseTypes.map(e => (
-              <option key={e.value} value={e.value}>{lang === 'zh' ? e.zh : e.id}</option>
+              <option key={e.value} value={e.value}>{t(e.labelKey)}</option>
             ))}
           </select>
           <input className="input" type="number" step="0.01" placeholder={t.amount} value={amount} onChange={e => setAmount(e.target.value)} required />

@@ -5,16 +5,16 @@ import './DashboardTeam.css';
 
 // Agent configuration (mirrors openclaw agents)
 const AGENTS = [
-  { id: 'doctor-agent', name: 'CEO', icon: '⚡', role: '首席执行官', color: '#ffd700' },
-  { id: 'product-manager', name: '产品经理', icon: '📋', role: '产品规划', color: '#00f0ff' },
-  { id: 'data-collector', name: '数据采集师', icon: '📊', role: '数据采集', color: '#00ff88' },
-  { id: 'tech-engineer', name: '研发工程师', icon: '🔧', role: '技术实现', color: '#b44aff' },
-  { id: 'ux-designer', name: '用户体验设计', icon: '🎨', role: '界面体验', color: '#ff8c00' },
-  { id: 'growth-hacker', name: '增长黑客', icon: '🚀', role: '用户增长', color: '#ff2d78' },
-  { id: 'operations-manager', name: '运营经理', icon: '⚙️', role: '运营效率', color: '#00f0ff' },
-  { id: 'sales-closer', name: '销售成交', icon: '💰', role: '销售转化', color: '#00ff88' },
-  { id: 'customer-success', name: '客户成功', icon: '🤝', role: '客户满意', color: '#b44aff', cronId: 'customer-service' },
-  { id: 'procurement', name: '采购管理', icon: '📦', role: '供应链', color: '#ffd700' },
+  { id: 'doctor-agent', nameKey: 'agentNameCEO', icon: '⚡', roleKey: 'agentRoleCEO', color: '#ffd700' },
+  { id: 'product-manager', nameKey: 'agentNameProductManager', icon: '📋', roleKey: 'agentRoleProductManager', color: '#00f0ff' },
+  { id: 'data-collector', nameKey: 'agentNameDataCollector', icon: '📊', roleKey: 'agentRoleDataCollector', color: '#00ff88' },
+  { id: 'tech-engineer', nameKey: 'agentNameTechEngineer', icon: '🔧', roleKey: 'agentRoleTechEngineer', color: '#b44aff' },
+  { id: 'ux-designer', nameKey: 'agentNameUXDesigner', icon: '🎨', roleKey: 'agentRoleUXDesigner', color: '#ff8c00' },
+  { id: 'growth-hacker', nameKey: 'agentNameGrowthHacker', icon: '🚀', roleKey: 'agentRoleGrowthHacker', color: '#ff2d78' },
+  { id: 'operations-manager', nameKey: 'agentNameOperationsManager', icon: '⚙️', roleKey: 'agentRoleOperationsManager', color: '#00f0ff' },
+  { id: 'sales-closer', nameKey: 'agentNameSalesCloser', icon: '💰', roleKey: 'agentRoleSalesCloser', color: '#00ff88' },
+  { id: 'customer-success', nameKey: 'agentNameCustomerSuccess', icon: '🤝', roleKey: 'agentRoleCustomerSuccess', color: '#b44aff', cronId: 'customer-service' },
+  { id: 'procurement', nameKey: 'agentNameProcurement', icon: '📦', roleKey: 'agentRoleProcurement', color: '#ffd700' },
 ];
 
 // Mock agent task descriptions (keys for i18n)
@@ -29,20 +29,20 @@ const MOCK_TASK_KEYS = {
   'sales-closer': 'taskSalesCloser',
   'customer-success': 'taskCustomerSuccess',
 };
-  'procurement': '审查新批次珍珠原料供应商报价',
+  'procurement': 'taskProcurement',
 };
 
 // Mock cron job history for each agent
 const MOCK_CRON_HISTORY = [
-  { name: '销售数据采集', status: 'success', lastRun: '14:32:10', duration: '2.3s', nextRun: '15:00:00' },
-  { name: '库存盘点检查', status: 'success', lastRun: '14:30:00', duration: '5.1s', nextRun: '15:00:00' },
-  { name: '异常检测扫描', status: 'failed', lastRun: '14:28:45', duration: '0.8s', nextRun: '15:00:00' },
-  { name: '数据报表生成', status: 'success', lastRun: '14:00:00', duration: '18.2s', nextRun: '15:00:00' },
-  { name: '库存预警检查', status: 'success', lastRun: '13:45:00', duration: '3.4s', nextRun: '14:45:00' },
+  { nameKey: 'cronSalesDataCollection', status: 'success', lastRun: '14:32:10', duration: '2.3s', nextRun: '15:00:00' },
+  { nameKey: 'cronInventoryCheck', status: 'success', lastRun: '14:30:00', duration: '5.1s', nextRun: '15:00:00' },
+  { nameKey: 'cronAnomalyScan', status: 'failed', lastRun: '14:28:45', duration: '0.8s', nextRun: '15:00:00' },
+  { nameKey: 'cronReportGeneration', status: 'success', lastRun: '14:00:00', duration: '18.2s', nextRun: '15:00:00' },
+  { nameKey: 'cronInventoryAlert', status: 'success', lastRun: '13:45:00', duration: '3.4s', nextRun: '14:45:00' },
 ];
 
 // Determine real agent status from cron job data
-function determineAgentStatus(cronJobs, agentId) {
+function determineAgentStatus(cronJobs, agentId, t) {
   const now = Date.now();
   const MS_30_MIN = 30 * 60 * 1000;
   const MS_1_HOUR = 60 * 60 * 1000;
@@ -56,7 +56,7 @@ function determineAgentStatus(cronJobs, agentId) {
   });
 
   if (agentJobs.length === 0) {
-    return { status: 'idle', dot: '⚪', label: '空闲', className: 'idle', lastActive: null };
+    return { status: 'idle', dot: '⚪', labelKey: 'agentStatusIdle', className: 'idle', lastActive: null };
   }
 
   // Find the most recent job run
@@ -80,9 +80,9 @@ function determineAgentStatus(cronJobs, agentId) {
       // Scheduled for future
       const hoursUntil = Math.round((nextRunAt - now) / 3600000);
       const timeStr = hoursUntil < 1 ? '不到1小时' : `${hoursUntil}小时后`;
-      return { status: 'scheduled', dot: '⚪', label: `待执行 (${timeStr})`, className: 'scheduled', lastActive: null };
+      return { status: 'scheduled', dot: '⚪', labelKey: `agentStatusScheduled`, timeStr: timeStr, className: 'scheduled', lastActive: null };
     }
-    return { status: 'idle', dot: '⚪', label: '空闲', className: 'idle', lastActive: null };
+    return { status: 'idle', dot: '⚪', labelKey: 'agentStatusIdle', className: 'idle', lastActive: null };
   }
 
   const elapsed = now - mostRecentRunAt;
@@ -90,44 +90,44 @@ function determineAgentStatus(cronJobs, agentId) {
 
   // 1. Running now (lastRunStatus === "ok" within 30 min)
   if (lastStatus === 'ok' && elapsed < MS_30_MIN) {
-    return { status: 'running', dot: '🟢', label: '工作中', className: 'running', lastActive: mostRecentRunAt };
+    return { status: 'running', dot: '🟢', labelKey: 'agentStatusWorking', className: 'running', lastActive: mostRecentRunAt };
   }
 
   // 2. Currently running / executing
   const nextRunAt = mostRecentJob.state?.nextRunAtMs || 0;
   if (nextRunAt > 0 && nextRunAt < now + 60000 && elapsed < MS_30_MIN) {
-    return { status: 'executing', dot: '🟡', label: '执行中', className: 'executing', lastActive: mostRecentRunAt };
+    return { status: 'executing', dot: '🟡', labelKey: 'agentStatusExecuting', className: 'executing', lastActive: mostRecentRunAt };
   }
 
   // 3. Error within 1 hour
   if (lastStatus === 'error' && elapsed < MS_1_HOUR) {
-    return { status: 'error', dot: '🔴', label: '错误', className: 'error', lastActive: mostRecentRunAt };
+    return { status: 'error', dot: '🔴', labelKey: 'agentStatusError', className: 'error', lastActive: mostRecentRunAt };
   }
 
   // 4. Success run within 1 hour
   if (lastStatus === 'ok' && elapsed < MS_1_HOUR) {
-    return { status: 'running', dot: '🟢', label: '工作中', className: 'running', lastActive: mostRecentRunAt };
+    return { status: 'running', dot: '🟢', labelKey: 'agentStatusWorking', className: 'running', lastActive: mostRecentRunAt };
   }
 
   // 5. Ran within 6 hours
   if (elapsed < MS_6_HOURS) {
-    return { status: 'idle', dot: '🟡', label: '空闲中', className: 'idle', lastActive: mostRecentRunAt };
+    return { status: 'idle', dot: '🟡', labelKey: 'agentStatusIdleMid', className: 'idle', lastActive: mostRecentRunAt };
   }
 
   // 6. Otherwise
-  return { status: 'idle', dot: '⚪', label: '空闲', className: 'idle', lastActive: mostRecentRunAt };
+  return { status: 'idle', dot: '⚪', labelKey: 'agentStatusIdle', className: 'idle', lastActive: mostRecentRunAt };
 }
 
-function formatLastActive(lastRunAtMs) {
-  if (!lastRunAtMs) return '暂无记录';
+function formatLastActive(lastRunAtMs, t) {
+  if (!lastRunAtMs) return t('noRecords');
   const diff = Date.now() - lastRunAtMs;
   const seconds = Math.floor(diff / 1000);
-  if (seconds < 60) return '刚刚';
+  if (seconds < 60) return t('justNow');
   const minutes = Math.floor(seconds / 60);
-  if (minutes < 60) return `${minutes}分钟前`;
+  if (minutes < 60) return `${minutes}${t('minutesAgo')}`;
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}小时前`;
-  return `${Math.floor(hours / 24)}天前`;
+  if (hours < 24) return `${hours}${t('hoursAgo')}`;
+  return `${Math.floor(hours / 24)}${t('daysAgo')}`;
 }
 
 function getAgentStatsFromCron(cronJobs, agentId) {
@@ -285,16 +285,18 @@ function P0Alerts({ anomalies, attendance, hygiene, onAction }) {
 // Agent Card (expandable)
 function AgentCard({ agent, expanded, onToggle, statusInfo, cronJobs = [] }) {
   const status = statusInfo?.status || 'idle';
-  const lastActive = statusInfo?.lastActive ? formatLastActive(statusInfo.lastActive) : '暂无记录';
+  const lastActive = statusInfo?.lastActive ? formatLastActive(statusInfo.lastActive, t) : '暂无记录';
   const task = MOCK_TASK_KEYS[agent.id] ? t(MOCK_TASK_KEYS[agent.id]) : t('noTask');
   const agentStats = statusInfo?.stats || { successCount: 0, failCount: 0, totalCount: 0 };
 
   const statusConfig = {
-    running: { label: '工作中', dot: '🟢', className: 'running' },
-    executing: { label: '执行中', dot: '🟡', className: 'executing' },
-    idle: { label: '空闲', dot: '⚪', className: 'idle' },
-    error: { label: '错误', dot: '🔴', className: 'error' },
+    running: { labelKey: 'agentStatusWorking', dot: '🟢', className: 'running' },
+    executing: { labelKey: 'agentStatusExecuting', dot: '🟡', className: 'executing' },
+    idle: { labelKey: 'agentStatusIdle', dot: '⚪', className: 'idle' },
+    error: { labelKey: 'agentStatusError', dot: '🔴', className: 'error' },
   };
+  const cfg = statusConfig[status] || statusConfig.idle;
+  const statusLabel = t(cfg.labelKey);
 
   const cfg = statusConfig[status] || statusConfig.idle;
   const learningProgress = Math.round(((agent.id.charCodeAt(0) * 7) % 100));
@@ -311,8 +313,8 @@ function AgentCard({ agent, expanded, onToggle, statusInfo, cronJobs = [] }) {
           {agent.icon}
         </div>
         <div className="agent-info">
-          <div className="agent-name">{agent.name}</div>
-          <div className="agent-role">{agent.role}</div>
+          <div className="agent-name">{t(agent.nameKey)}</div>
+          <div className="agent-role">{t(agent.roleKey)}</div>
         </div>
         <div className="expand-arrow" style={{ marginLeft: 'auto', fontSize: 12, opacity: 0.6 }}>
           {expanded ? '▲' : '▼'}
@@ -348,7 +350,7 @@ function AgentCard({ agent, expanded, onToggle, statusInfo, cronJobs = [] }) {
                 <div key={i} className="cron-job-item">
                   <div className="cron-job-left">
                     <span className={`cron-status-dot ${runStatus === 'ok' ? 'success' : runStatus === 'error' ? 'failed' : 'pending'}`} />
-                    <span className="cron-job-name">{job.name}</span>
+                    <span className="cron-job-name">{t(job.nameKey)}</span>
                   </div>
                   <div className="cron-job-right">
                     <span className="cron-time">{timeStr}</span>
@@ -932,7 +934,7 @@ export default function DashboardTeam() {
 
   // Total agents & running count (from real cron data)
   const runningCount = AGENTS.filter(a => {
-    const info = determineAgentStatus(cronJobs, a.id);
+    const info = determineAgentStatus(cronJobs, a.id, t);
     return info.status === 'running' || info.status === 'executing';
   }).length;
 
@@ -1009,7 +1011,7 @@ export default function DashboardTeam() {
             <div className="agent-grid" key={forceRender}>
               {AGENTS.map(agent => {
                 const statusInfo = {
-                  ...determineAgentStatus(cronJobs, agent.id),
+                  ...determineAgentStatus(cronJobs, agent.id, t),
                   stats: getAgentStatsFromCron(cronJobs, agent.id),
                 };
                 const agentCronJobs = cronJobs.filter(job => {

@@ -9,16 +9,16 @@ export default function SchedulePage({ hideHeader }) {
   
   // 生产级物理预设班次
   const [shifts] = useState([
-    { id: 1, name: '早班', startTime: '09:00', endTime: '18:00', color: '#f27a1a' },
-    { id: 2, name: '中班', startTime: '12:00', endTime: '21:00', color: '#3b82f6' },
-    { id: 3, name: '晚班', startTime: '15:00', endTime: '00:00', color: '#10b981' }
+    { id: 1, nameKey: 'shiftMorning', startTime: '09:00', endTime: '18:00', color: '#f27a1a' },
+    { id: 2, nameKey: 'shiftAfternoon', startTime: '12:00', endTime: '21:00', color: '#3b82f6' },
+    { id: 3, nameKey: 'shiftNight', startTime: '15:00', endTime: '00:00', color: '#10b981' }
   ]);
 
   const [staffList] = useState([
-    { id: 1, name: '梁宁 (店长)', role: '店长' },
-    { id: 2, name: '收银员 A', role: '店员' },
-    { id: 3, name: '咖啡师 B', role: '吧师' },
-    { id: 4, name: '物流专员 C', role: '后勤' }
+    { id: 1, name: '梁宁 (店长)', roleKey: 'roleStoreManager' },
+    { id: 2, name: '收银员 A', roleKey: 'roleCashier' },
+    { id: 3, name: '咖啡师 B', roleKey: 'roleBarista' },
+    { id: 4, name: '物流专员 C', roleKey: 'roleLogistics' }
   ]);
 
   const [scheduleData, setScheduleData] = useState({});
@@ -118,7 +118,7 @@ export default function SchedulePage({ hideHeader }) {
                             </div>
                             <div className="min-w-0">
                                <div className="text-[17px] font-black text-slate-900 tracking-tighter truncate">{staff.name}</div>
-                               <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1 opacity-60">{staff.role}</div>
+                               <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1 opacity-60">{t(staff.roleKey)}</div>
                             </div>
                          </div>
                       </td>
@@ -136,7 +136,7 @@ export default function SchedulePage({ hideHeader }) {
                                style={shift ? { borderLeft: `10px solid ${shift.color}` } : {}}
                              >
                                 <option value="">轮休 (OFF)</option>
-                                {shifts.map(s => <option key={s.id} value={s.id}>{s.name} ({s.startTime})</option>)}
+                                {shifts.map(s => <option key={s.id} value={s.id}>{t(s.nameKey)} ({s.startTime})</option>)}
                              </select>
                           </td>
                         );

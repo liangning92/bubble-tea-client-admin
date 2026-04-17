@@ -7,7 +7,7 @@ import { translateBusinessText } from '../utils/autoTranslate';
  * 当 UI 语言与数据语言不一致时，自动提供翻译视图
  */
 export default function BusinessDataTranslator({ text, className = "" }) {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
 
   // 如果是中文界面，尝试翻译
   // 如果是印尼语界面，通常数据本身就是印尼语，直接返回

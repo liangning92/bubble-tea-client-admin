@@ -189,11 +189,11 @@ export default function SettingsPage() {
   };
 
   const tabs = [
-    { key: 'users', zh: '账户管理', id: 'Manajemen Akun' },
-    { key: 'smart-ops', zh: '智能运营', id: 'Smart Ops' },
-    { key: 'mappings', zh: '翻译设置', id: 'Translation' },
-    { key: 'logs', zh: '操作日志', id: 'Riwayat Aktivitas' },
-    { key: 'import', zh: '智能导入', id: 'Import Cerdas' },
+    { key: 'users', labelKey: 'settingsUsers' },
+    { key: 'smart-ops', labelKey: 'settingsSmartOps' },
+    { key: 'mappings', labelKey: 'settingsMappings' },
+    { key: 'logs', labelKey: 'settingsLogs' },
+    { key: 'import', labelKey: 'settingsImport' },
   ];
 
   return (
@@ -237,7 +237,7 @@ export default function SettingsPage() {
         {tabs.map(tab => (
           <button key={tab.key} onClick={() => setActiveTab(tab.key)}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium ${activeTab === tab.key ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
-            {t(tab.zh || tab.id, tab)}
+            {t(tab.labelKey)}
           </button>
         ))}
       </div>

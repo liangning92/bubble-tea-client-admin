@@ -174,11 +174,11 @@ export default function SettingsPage() {
   };
 
   const tabs = [
-    { key: 'system', zh: '系统设置', id: 'Pengaturan Sistem' },
-    { key: 'users', zh: '账户管理', id: 'Manajemen Akun' },
-    { key: 'logs', zh: '操作日志', id: 'Riwayat Aktivitas' },
-    { key: 'import', zh: '智能导入', id: 'Import Cerdas' },
-    { key: 'guide', zh: '使用指南', id: 'Panduan' },
+    { key: 'system', labelKey: 'settingsSystem' },
+    { key: 'users', labelKey: 'settingsUsers' },
+    { key: 'logs', labelKey: 'settingsLogs' },
+    { key: 'import', labelKey: 'settingsImport' },
+    { key: 'guide', labelKey: 'settingsGuide' },
   ];
 
   const roleLabels = {
@@ -231,7 +231,7 @@ export default function SettingsPage() {
             if (tab.key === 'guide') navigate('/settings/guide');
           }}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium ${activeTab === tab.key ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}>
-            {lang === 'zh' ? tab.zh : tab.id}
+            {t(tab.labelKey)}
           </button>
         ))}
       </div>
