@@ -134,8 +134,8 @@ export default function PosTerminalPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4" onClick={() => setConfigProduct(null)}>
            <div className="bg-white rounded-[40px] p-10 w-full max-w-md text-slate-900" onClick={(e) => e.stopPropagation()}>
               <h2 className="text-2xl font-black uppercase mb-8"><BusinessDataTranslator text={configProduct.name} /></h2>
-              <button onClick={addToCart} className="w-full py-5 bg-slate-900 text-white rounded-3xl font-black uppercase tracking-widest mb-4">加入账单</button>
-              <button onClick={() => setConfigProduct(null)} className="w-full py-5 bg-slate-100 rounded-3xl text-slate-400 font-black uppercase">取消</button>
+              <button onClick={addToCart} className="w-full py-5 bg-slate-900 text-white rounded-3xl font-black uppercase tracking-widest mb-4">{t('addToBill')}</button>
+              <button onClick={() => setConfigProduct(null)} className="w-full py-5 bg-slate-100 rounded-3xl text-slate-400 font-black uppercase">{t('cancel')}</button>
            </div>
         </div>
       )}

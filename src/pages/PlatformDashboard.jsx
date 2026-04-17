@@ -59,7 +59,7 @@ export default function PlatformDashboard() {
          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
             <div>
                <h3 className="text-2xl font-black text-slate-800 tracking-tight">{t('brandIdentifier')}</h3>
-               <p className="text-slate-400 text-[14px] font-medium mt-1 ">多品牌租户资源隔离状态与授权明细</p>
+               <p className="text-slate-400 text-[14px] font-medium mt-1 ">{t('multiBrandDesc')}</p>
             </div>
             <button className="px-8 py-3 bg-slate-900 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-xl hover:bg-indigo-600 hover:shadow-indigo-200 active:scale-95 transition-all">
                {t('provisionNew')}
