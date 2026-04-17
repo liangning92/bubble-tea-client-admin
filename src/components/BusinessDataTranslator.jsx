@@ -19,11 +19,11 @@ export default function BusinessDataTranslator({ text, className = "" }) {
   return (
     <span
       className={`inline-flex items-center gap-1 ${className}`}
-      title={hasTranslated ? `原文: ${text}` : ""}
+      title={hasTranslated ? `${t('originalText')}: ${text}` : ""}
     >
       {displayChat}
       {hasTranslated && (
-        <span className="text-[8px] bg-slate-100 text-slate-400 px-1 rounded uppercase tracking-tighter scale-90">自动</span>
+        <span className="text-[8px] bg-slate-100 text-slate-400 px-1 rounded uppercase tracking-tighter scale-90">{t('autoTag')}</span>
       )}
     </span>
   );

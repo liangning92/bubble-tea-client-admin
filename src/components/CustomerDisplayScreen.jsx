@@ -22,9 +22,9 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
 
   // 模拟广告数据
   const ads = [
-    { id: 1, title: '新品上市', subtitle: '限时优惠' },
-    { id: 2, title: '会员专享', subtitle: '积分抵现' },
-    { id: 3, title: '满额赠礼', subtitle: '惊喜不断' },
+    { id: 1, title: t('newProductTitle'), subtitle: t('limitedOffer') },
+    { id: 2, title: t('memberExclusive'), subtitle: t('pointsRedeem') },
+    { id: 3, title: t('giftWithPurchase'), subtitle: t('surpriseGift') },
   ];
 
   // 动态考勤码刷新（每30秒）

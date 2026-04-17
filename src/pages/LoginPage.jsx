@@ -91,7 +91,7 @@ export default function LoginPage() {
             </div>
             <div>
               <div style={{ color: '#0f172a', fontWeight: 900, fontSize: '24px', letterSpacing: '-1px', lineHeight: 1 }}>Shopwise</div>
-              <div style={{ color: '#ea580c', fontSize: '11px', fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px' }}>门店智能管理系统</div>
+              <div style={{ color: '#ea580c', fontSize: '11px', fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px' }}>{t('storeManagementSystem')}</div>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function LoginPage() {
             color: '#0f172a', fontWeight: 900, fontSize: '48px',
             lineHeight: 1.1, letterSpacing: '-2px', marginBottom: '20px',
           }}>
-            {lang === 'zh' ? <>智能掌控<br /><span style={{ color: '#FF7700' }}>连锁店业务</span></> : <>Total Control<br /><span style={{ color: '#FF7700' }}>Store Ops</span></>}
+            {lang === 'zh' ? <>{t('smartControl')}<br /><span style={{ color: '#FF7700' }}>{t('storeBusiness')}</span></> : <>{t('smartControlEn')}<br /><span style={{ color: '#FF7700' }}>{t('storeBusinessEn')}</span></>}
           </h1>
           <p style={{ color: '#44403c', fontSize: '16px', fontWeight: 500, lineHeight: 1.6, marginBottom: '48px' }}>
             {lang === 'zh' ? '专为高增长品牌打造的一体化门店管理系统' : 'All-in-one store management system for high-growth brands'}

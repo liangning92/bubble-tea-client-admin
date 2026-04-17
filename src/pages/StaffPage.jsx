@@ -16,11 +16,11 @@ export default function StaffPage({ defaultTab, hideHeader }) {
   });
 
   const roles = [
-    { value: 'manager', label: t('manager', '店长') },
-    { value: 'barista', label: t('barista', '茶艺师') },
-    { value: 'cashier', label: t('cashier', '收银员') },
-    { value: 'crew', label: t('crew', '普通员工') },
-    { value: 'admin', label: t('admin', '系统管理员') },
+    { value: 'manager', label: t('manager') },
+    { value: 'barista', label: t('barista') },
+    { value: 'cashier', label: t('cashier') },
+    { value: 'crew', label: t('crew') },
+    { value: 'admin', label: t('adminRole') },
   ];
 
   const showToast = (msg, type = 'success') => {

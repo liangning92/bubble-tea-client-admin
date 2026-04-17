@@ -11,11 +11,11 @@ export default function HygieneHub({ hideHeader }) {
 
   // 物理锁定 5 个维度分类
   const tabs = [
-    { key: 'sop', label: t('hygieneSOP', '每日 SOP') },
-    { key: 'audit', label: t('hygieneAudit', '品质巡检') },
-    { key: 'device', label: t('hygieneDevice', '设备维护') },
-    { key: 'security', label: t('hygieneSecurity', '食安红线') },
-    { key: 'protocol', label: t('hygieneProtocol', '标准协议') }
+    { key: 'sop', label: t('hygieneSOP') },
+    { key: 'audit', label: t('hygieneAudit') },
+    { key: 'device', label: t('hygieneDevice') },
+    { key: 'security', label: t('hygieneSecurity') },
+    { key: 'protocol', label: t('hygieneProtocol') }
   ];
 
   const handleTabClick = (key) => {

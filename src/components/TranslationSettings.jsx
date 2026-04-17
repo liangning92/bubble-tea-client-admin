@@ -50,12 +50,12 @@ export default function TranslationSettings() {
       {showAdd && (
         <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 animate-in slide-in-from-top-4 duration-300">
            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <input className="input" placeholder="源文本 (Source Text)" value={form.sourceText} onChange={e => setForm({...form, sourceText: e.target.value})} required />
-              <input className="input" placeholder="翻译文 (Translated Text)" value={form.translatedText} onChange={e => setForm({...form, translatedText: e.target.value})} required />
+              <input className="input" placeholder={t('sourceTextPlaceholder')} value={form.sourceText} onChange={e => setForm({...form, sourceText: e.target.value})} required />
+              <input className="input" placeholder={t('translatedTextPlaceholder')} value={form.translatedText} onChange={e => setForm({...form, translatedText: e.target.value})} required />
               <select className="input" value={form.targetLang} onChange={e => setForm({...form, targetLang: e.target.value})}>
-                 <option value="id">Bahasa Indonesia</option>
-                 <option value="zh">简体中文</option>
-                 <option value="en">English</option>
+                 <option value="id">{t('langIdLong')}</option>
+                 <option value="zh">{t('langZhLong')}</option>
+                 <option value="en">{t('langEnLong')}</option>
               </select>
               <select className="input" value={form.category} onChange={e => setForm({...form, category: e.target.value})}>
                  <option value="UI">Universal UI</option>
@@ -63,8 +63,8 @@ export default function TranslationSettings() {
                  <option value="System">System Prompt</option>
               </select>
               <div className="lg:col-span-4 flex gap-2">
-                 <button type="submit" className="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold">{lang === 'zh' ? '保存映射' : 'Save'}</button>
-                 <button type="button" onClick={() => setShowAdd(false)} className="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold">{lang === 'zh' ? '取消' : 'Cancel'}</button>
+                 <button type="submit" className="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold">{t('saveMapping')}</button>
+                 <button type="button" onClick={() => setShowAdd(false)} className="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold">{t('cancel')}</button>
               </div>
            </form>
         </div>

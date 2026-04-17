@@ -78,13 +78,13 @@ export default function Leaderboard({ hideHeader }) {
         <div className="space-y-4">
            <div className="card-premium !bg-slate-900 text-white !p-10 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-[60px] rounded-full" />
-              <h4 className="text-h3 text-slate-400 mb-8 border-b border-white/5 pb-4">📈 积分构成逻辑</h4>
+              <h4 className="text-h3 text-slate-400 mb-8 border-b border-white/5 pb-4">📈 {t('scoreCompositionLogic')}</h4>
               <div className="space-y-4 relative z-10">
                  {[
-                    { label: '培训认证', sub: 'Training & Quizzes', weight: '+10/cert', icon: '🎓' },
-                    { label: '考勤合规', sub: 'Attendance Consistency', weight: '+5/month', icon: '⏱️' },
-                    { label: '卫生自检', sub: 'Hygiene & SOP', weight: '+2/task', icon: '🧼' },
-                    { label: '迟到早退', sub: 'Attendance Penalty', weight: '-20/case', icon: '⚠️' }
+                    { label: t('trainingCertification'), sub: 'Training & Quizzes', weight: '+10/cert', icon: '🎓' },
+                    { label: t('attendanceCompliance'), sub: 'Attendance Consistency', weight: '+5/month', icon: '⏱️' },
+                    { label: t('hygieneSelfCheck'), sub: 'Hygiene & SOP', weight: '+2/task', icon: '🧼' },
+                    { label: t('lateEarlyLeave'), sub: 'Attendance Penalty', weight: '-20/case', icon: '⚠️' }
                  ].map((w, i) => (
                    <div key={i} className="flex justify-between items-center group">
                       <div className="flex items-center gap-4">

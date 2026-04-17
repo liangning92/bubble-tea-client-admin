@@ -63,18 +63,18 @@ function LoyaltyProgram({ hideHeader }) {
        
        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { label: '注册欢迎礼', desc: '新人专享礼包', active: true },
-            { label: '多倍积分日', desc: '全线产品积分翻倍', active: true },
-            { label: '生日专享权益', desc: '生日尊享 5 折优惠', active: false }
+            { label: t('welcomeGift'), desc: t('newMemberGift'), active: true },
+            { label: t('doublePointsDay'), desc: t('doublePointsDesc'), active: true },
+            { label: t('birthdayPrivilege'), desc: t('birthdayDiscountDesc'), active: false }
           ].map((item, i) => (
             <div key={i} className={`card-premium !p-10 border-slate-50 !rounded-[40px] ${!item.active && 'opacity-50 grayscale'}`}>
                <p className="text-[12px] font-black uppercase tracking-widest text-orange-600 mb-4">{item.label}</p>
                <h4 className="text-xl font-black text-slate-800 leading-tight mb-8">{item.desc}</h4>
                <div className="flex justify-between items-center pt-8 border-t border-slate-50">
                   <span className={`text-[12px] font-black uppercase tracking-widest ${item.active ? 'text-emerald-500' : 'text-slate-400'}`}>
-                    {item.active ? '活动进行中' : '已暂停'}
+                    {item.active ? t('campaignActive') : t('campaignPaused')}
                   </span>
-                  <button className="text-[13px] font-black text-slate-900 uppercase tracking-widest hover:text-orange-600">配置参数</button>
+                  <button className="text-[13px] font-black text-slate-900 uppercase tracking-widest hover:text-orange-600">{t('configParams')}</button>
                </div>
             </div>
           ))}

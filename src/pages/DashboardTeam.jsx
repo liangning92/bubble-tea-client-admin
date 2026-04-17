@@ -17,17 +17,18 @@ const AGENTS = [
   { id: 'procurement', name: '采购管理', icon: '📦', role: '供应链', color: '#ffd700' },
 ];
 
-// Mock agent task descriptions
-const MOCK_TASKS = {
-  'doctor-agent': '统筹协调团队任务分配与战略决策',
-  'product-manager': '分析本周销售数据，优化产品结构',
-  'data-collector': '采集昨日销售报告，整理库存数据',
-  'tech-engineer': '优化奶茶店点单系统响应速度',
-  'ux-designer': '设计新版会员积分界面方案',
-  'growth-hacker': '策划母亲节促销活动方案',
-  'operations-manager': '排班优化：协调周末高峰时段人员',
-  'sales-closer': '跟进企业团购客户订单',
-  'customer-success': '处理会员投诉：配送延误问题',
+// Mock agent task descriptions (keys for i18n)
+const MOCK_TASK_KEYS = {
+  'doctor-agent': 'taskDoctorAgent',
+  'product-manager': 'taskProductManager',
+  'data-collector': 'taskDataCollector',
+  'tech-engineer': 'taskTechEngineer',
+  'ux-designer': 'taskUXDesigner',
+  'growth-hacker': 'taskGrowthHacker',
+  'operations-manager': 'taskOperationsManager',
+  'sales-closer': 'taskSalesCloser',
+  'customer-success': 'taskCustomerSuccess',
+};
   'procurement': '审查新批次珍珠原料供应商报价',
 };
 
@@ -285,7 +286,7 @@ function P0Alerts({ anomalies, attendance, hygiene, onAction }) {
 function AgentCard({ agent, expanded, onToggle, statusInfo, cronJobs = [] }) {
   const status = statusInfo?.status || 'idle';
   const lastActive = statusInfo?.lastActive ? formatLastActive(statusInfo.lastActive) : '暂无记录';
-  const task = MOCK_TASKS[agent.id] || '暂无任务';
+  const task = MOCK_TASK_KEYS[agent.id] ? t(MOCK_TASK_KEYS[agent.id]) : t('noTask');
   const agentStats = statusInfo?.stats || { successCount: 0, failCount: 0, totalCount: 0 };
 
   const statusConfig = {

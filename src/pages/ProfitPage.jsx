@@ -55,10 +55,10 @@ export default function ProfitPage() {
       {/* 1. 营收核心概览 (Core Summary) */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {[
-          { label: '总收入 (Revenue)', val: data.summary.revenue, icon: '💰', color: 'text-emerald-600' },
-          { label: '原料成本 (Ingredient Cost)', val: data.summary.cost, icon: '📦', color: 'text-orange-600' },
-          { label: '毛利润 (Gross Profit)', val: data.summary.gross, icon: '📉', color: 'text-blue-600' },
-          { label: '毛利率 (Margin %)', val: data.summary.margin + '%', icon: '📈', color: 'text-purple-600' }
+          { label: t('totalRevenue'), val: data.summary.revenue, icon: '💰', color: 'text-emerald-600' },
+          { label: t('ingredientCost'), val: data.summary.cost, icon: '📦', color: 'text-orange-600' },
+          { label: t('grossProfit'), val: data.summary.gross, icon: '📉', color: 'text-blue-600' },
+          { label: t('grossMargin'), val: data.summary.margin + '%', icon: '📈', color: 'text-purple-600' }
         ].map((item, i) => (
           <div key={i} className="card-premium !p-8 space-y-4">
             <div className="flex justify-between items-center">

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
-const PERM_LABELS = {
-  EDIT: { text: '可编辑', textEn: 'EDIT', color: 'bg-orange-500 text-white shadow-orange-500/20' },
-  READ: { text: '可读', textEn: 'READ', color: 'bg-blue-600 text-white shadow-blue-600/20' },
-  NONE: { text: '无权限', textEn: 'NONE', color: 'bg-slate-50 text-slate-300' }
-};
+const PERM_LABELS = (t) => ({
+  EDIT: { text: t('permissionEdit'), textEn: 'EDIT', color: 'bg-orange-500 text-white shadow-orange-500/20' },
+  READ: { text: t('permissionRead'), textEn: 'READ', color: 'bg-blue-600 text-white shadow-blue-600/20' },
+  NONE: { text: t('permissionNone'), textEn: 'NONE', color: 'bg-slate-50 text-slate-300' }
+});
 
 export default function PermissionMatrix() {
   const { t } = useAuth();
