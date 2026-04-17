@@ -238,7 +238,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                     <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-[14px]">👤</div>
                     <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t.assignedUser?.username || '全员'}</span>
                   </div>
-                  <button onClick={async () => { if(confirm('Del?')) await api('DELETE', `/staff/training/${t.id}`); loadTrainings(); }} className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 text-rose-500 transition-opacity">✕</button>
+                  <button onClick={async () => { if(confirm(t('deleteConfirm'))) await api('DELETE', `/staff/training/${t.id}`); loadTrainings(); }} className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 text-rose-500 transition-opacity">✕</button>
                 </div>
               ))
             )}
@@ -296,11 +296,11 @@ export default function StaffPage({ defaultTab: initialTab }) {
                     <div key={item.id} className="flex justify-between items-center p-4 bg-slate-50/50 rounded-2xl border border-slate-100 hover:bg-white transition-all group">
                       <div className="flex items-center gap-4">
                         <span className={`px-3 py-1 rounded text-[14px] font-black uppercase tracking-widest ${getShiftColor(item.shift)}`}>
-                          {typeof item.shift === 'string' ? (lang === 'zh' ? (item.shift.toLowerCase().includes('morning') ? '早班' : item.shift.toLowerCase().includes('afternoon') ? '中班' : item.shift.toLowerCase().includes('night') ? '晚班' : item.shift) : item.shift) : (item.shift?.name || 'SHIFT')}
+                          {typeof item.shift === 'string' ? (lang === 'zh' ? (item.shift.toLowerCase().includes('morning') ? '早班' : item.shift.toLowerCase().includes('afternoon') ? '中班' : item.shift.toLowerCase().includes('night') ? '晚班' : item.shift) : item.shift) : (item.shift?.name || t('shift'))}
                         </span>
-                        <span className="text-sm font-black text-slate-800">{item.staff?.name || item.staff?.username || (lang === 'zh' ? '员工成员' : 'Staff Member')}</span>
+                        <span className="text-sm font-black text-slate-800">{item.staff?.name || item.staff?.username || t('staffMember')}</span>
                       </div>
-                      <button onClick={async () => { if(confirm('Del?')) await api('DELETE', `/staff/schedules/${item.id}`); loadSchedules(); }} className="opacity-0 group-hover:opacity-100 text-rose-500 text-[14px] transition-opacity">✕</button>
+                      <button onClick={async () => { if(confirm(t('deleteConfirm'))) await api('DELETE', `/staff/schedules/${item.id}`); loadSchedules(); }} className="opacity-0 group-hover:opacity-100 text-rose-500 text-[14px] transition-opacity">✕</button>
                     </div>
                   ))}
                 </div>
@@ -367,7 +367,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                      <div className={`text-lg font-black ${r.category === 'reward' ? 'text-emerald-400' : 'text-rose-400'}`}>
                         {r.category === 'reward' ? '+' : '-'}{formatCurrency(r.amount)}
                      </div>
-                     <button onClick={async () => { if(confirm('Del?')) await api('DELETE', `/staff/rewards/${r.id}`); loadRewards(); }} className="opacity-0 group-hover:opacity-100 text-slate-600 hover:text-rose-500 transition-all font-black">✕</button>
+                     <button onClick={async () => { if(confirm(t('deleteConfirm'))) await api('DELETE', `/staff/rewards/${r.id}`); loadRewards(); }} className="opacity-0 group-hover:opacity-100 text-slate-600 hover:text-rose-500 transition-all font-black">✕</button>
                   </div>
                 </div>
               ))}
@@ -439,20 +439,20 @@ export default function StaffPage({ defaultTab: initialTab }) {
                       return (
                          <tr key={s.id} className="hover:bg-slate-50 transition-colors group">
                             <td className="p-4">
-                               <div className="font-black text-slate-900">{s.User?.username || 'Staff Member'}</div>
-                               <div className="text-[14px] text-slate-400 font-bold uppercase mt-1">{s.month} Fiscal period</div>
+                               <div className="font-black text-slate-900">{s.User?.username || t('staffMember')}</div>
+                               <div className="text-[14px] text-slate-400 font-bold uppercase mt-1">{s.month} {t('fiscalPeriod')}</div>
                             </td>
                             <td className="p-8">
                                <div className="flex gap-6 text-[14px] font-black uppercase tracking-tight">
-                                  <span className="text-slate-400">Base: {formatCurrency(s.baseSalary)}</span>
-                                  <span className="text-emerald-500">Bonus: +{formatCurrency(s.bonus)}</span>
-                                  <span className="text-rose-500">Ded: -{formatCurrency(s.deduction)}</span>
+                                  <span className="text-slate-400">{t('base')}: {formatCurrency(s.baseSalary)}</span>
+                                  <span className="text-emerald-500">{t('bonus')}: +{formatCurrency(s.bonus)}</span>
+                                  <span className="text-rose-500">{t('deduction')}: -{formatCurrency(s.deduction)}</span>
                                 </div>
                             </td>
                             <td className="p-8 text-right">
                                <div className="flex items-center justify-end gap-6">
                                   <div className="text-xl font-black text-indigo-400">{formatCurrency(net)}</div>
-                                  <button onClick={async () => { if(confirm('Del?')) await api('DELETE', `/staff/salaries/${s.id}`); loadSalaries(); }} className="opacity-0 group-hover:opacity-100 text-rose-500 transition-opacity">✕</button>
+                                  <button onClick={async () => { if(confirm(t('deleteConfirm'))) await api('DELETE', `/staff/salaries/${s.id}`); loadSalaries(); }} className="opacity-0 group-hover:opacity-100 text-rose-500 transition-opacity">✕</button>
                                </div>
                             </td>
                          </tr>
