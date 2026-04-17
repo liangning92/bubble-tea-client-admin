@@ -8,7 +8,7 @@ import ProductPage from './ProductPage';
 import BOMImportPage from './BOMImportPage';
 
 export default function ProductHub() {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const tabs = [
