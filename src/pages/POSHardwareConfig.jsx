@@ -72,7 +72,7 @@ export default function POSHardwareConfig() {
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 px-4 gap-6">
         <div className="space-y-4">
           <h3 className="text-h2 uppercase">{t('posSetupTitle') || '收银终端硬件配置'}</h3>
-          <p className="text-label-caps mt-1 !text-slate-400">POS Hardware & Peripherals Config</p>
+          <p className="text-label-caps mt-1 !text-slate-400">{t('posSetupSubtitle')}</p>
         </div>
         <div className="flex gap-4">
            <button onClick={loadConfig} className="btn-premium !px-4 bg-white border-slate-100 text-slate-400 font-black uppercase tracking-widest text-[12px]">{t('refresh') || '刷新'}</button>

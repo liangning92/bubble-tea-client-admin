@@ -947,6 +947,7 @@ export const i18n = {
     statusDelivery: '配送中',
     // POS 相关新增词条 (汉化加固)
     posSetupTitle: '收银终端硬件配置',
+    posSetupSubtitle: '多终端收银外设与交互配置',
     syncToTerminals: '同步至收银终端',
     posSingleMode: '单屏收银模式',
     singleModeDesc: '仅显示收银员操作界面，适用于紧凑型吧台',
@@ -1073,6 +1074,7 @@ export const i18n = {
     tabSuppliers: 'Supply Chain',
     tabPOS: 'POS Hardware',
     posSetupTitle: 'POS Setup & Hardware',
+    posSetupSubtitle: 'Multi-terminal cashier peripheral & interaction config',
     syncToTerminals: 'Sync to All Terminals',
     posSingleMode: 'Single Screen Mode',
     singleModeDesc: 'Cashier-only view, compact bar setup',
@@ -2602,6 +2604,7 @@ export const i18n = {
     tabSuppliers: 'Rantai Pasok',
     tabPOS: 'Perangkat',
     posSetupTitle: 'Pengaturan Perangkat Kasir',
+    posSetupSubtitle: 'Konfigurasi perangkat & interaksi kasir multi-terminal',
     syncToTerminals: 'Sinkronisasi ke Semua Terminal',
     posSingleMode: 'Mode Layar Tunggal',
     singleModeDesc: 'Tampilan kasir saja, untuk meja kompak',
