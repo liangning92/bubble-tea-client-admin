@@ -21,7 +21,7 @@ export default function TranslationSettings() {
     e.preventDefault();
     const res = await api('POST', '/system/mappings', form);
     if (!res.error) {
-       window.dispatchEvent(new CustomEvent('app:success', { detail: lang === 'zh' ? '字典已更新' : 'Translation updated' }));
+       window.dispatchEvent(new CustomEvent('app:success', { detail: t('dictUpdated') }));
        setShowAdd(false);
        setForm({ sourceText: '', translatedText: '', targetLang: 'id', category: 'UI' });
        loadData();
@@ -40,7 +40,7 @@ export default function TranslationSettings() {
       <div className="flex justify-between items-center">
         <div>
            <h3 className="text-xl font-bold text-slate-800 tracking-tight">{t('dictControl')}</h3>
-           <p className="text-[14px] text-slate-400 mt-1">{lang === 'zh' ? '自定义产品名或 UI 标签的翻译映射。' : 'Override system labels or product names with custom translations.'}</p>
+           <p className="text-[14px] text-slate-400 mt-1">{t('dictOverrideDesc')}</p>
         </div>
         <button onClick={() => setShowAdd(true)} className="px-5 py-2.5 bg-slate-900 text-white rounded-xl font-black text-[14px] uppercase tracking-widest hover:scale-105 transition shadow-xl">
            + {t('addEntry')}
