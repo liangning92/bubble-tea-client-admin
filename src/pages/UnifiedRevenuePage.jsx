@@ -49,28 +49,34 @@ export default function UnifiedRevenuePage() {
              营收渠道占比
           </h3>
           <div className="space-y-8">
-            {[
-              { label: '堂食订单', val: data.channels.dineIn, icon: '🏠', color: 'bg-slate-900' },
-              { label: 'GRABFOOD', val: data.channels.grab, icon: '🛵', color: 'bg-emerald-500' },
-              { label: 'GOFOOD', val: data.channels.gofood, icon: '🏎️', color: 'bg-red-500' },
-              { label: 'SHOPEEFOOD', val: data.channels.shopee, icon: '🛍️', color: 'bg-orange-500' }
-            ].map((item, idx) => (
-              <div key={idx} className="group">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-4">
-                    <span className="text-2xl">{item.icon}</span>
-                    <span className="text-[14px] font-black text-slate-900 uppercase tracking-widest">{item.label}</span>
+            {(() => {
+              const total = Object.values(data.channels).reduce((s, v) => s + (v || 0), 0);
+              return [
+                { label: '堂食订单', val: data.channels.dineIn, icon: '🏠', color: 'bg-slate-900' },
+                { label: 'GRABFOOD', val: data.channels.grab, icon: '🛵', color: 'bg-emerald-500' },
+                { label: 'GOFOOD', val: data.channels.gofood, icon: '🏎️', color: 'bg-red-500' },
+                { label: 'SHOPEEFOOD', val: data.channels.shopee, icon: '🛍️', color: 'bg-orange-500' }
+              ].map((item, idx) => {
+                const pct = total > 0 ? Math.round((item.val / total) * 100) : 0;
+                return (
+                  <div key={idx} className="group">
+                    <div className="flex justify-between items-center mb-4">
+                      <div className="flex items-center gap-4">
+                        <span className="text-2xl">{item.icon}</span>
+                        <span className="text-[14px] font-black text-slate-900 uppercase tracking-widest">{item.label}</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-black text-slate-900">{formatCurrency(item.val)}</div>
+                        <div className="text-[11px] text-slate-400 font-black opacity-60">占比 {pct}%</div>
+                      </div>
+                    </div>
+                    <div className="w-full h-2 bg-slate-50 rounded-full overflow-hidden">
+                       <div className={`h-full ${item.color} rounded-full transition-all duration-1000`} style={{ width: pct > 0 ? pct + '%' : '2%' }} />
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <div className="font-black text-slate-900">{formatCurrency(item.val)}</div>
-                    <div className="text-[11px] text-slate-400 font-black opacity-60">占比 0%</div>
-                  </div>
-                </div>
-                <div className="w-full h-2 bg-slate-50 rounded-full overflow-hidden">
-                   <div className={`h-full ${item.color} rounded-full transition-all duration-1000`} style={{ width: item.val > 0 ? '25%' : '2%' }} />
-                </div>
-              </div>
-            ))}
+                );
+              });
+            })()}
           </div>
         </div>
 
