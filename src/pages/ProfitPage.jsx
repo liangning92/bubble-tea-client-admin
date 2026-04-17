@@ -7,8 +7,8 @@ export default function ProfitPage() {
   const [data, setData] = useState({
     summary: { revenue: 0, cost: 0, gross: 0, net: 0, margin: 0 },
     channels: [
-      { name: '堂食 (Dine-in)', amount: 0, percentage: 0, icon: '🏠', color: 'bg-blue-500' },
-      { name: '外卖自点 (Takeaway)', amount: 0, percentage: 0, icon: '🛍️', color: 'bg-orange-500' },
+      { name: t('dineIn'), amount: 0, percentage: 0, icon: '🏠', color: 'bg-blue-500' },
+      { name: t('takeaway'), amount: 0, percentage: 0, icon: '🛍️', color: 'bg-orange-500' },
       { name: 'GrabFood', amount: 0, percentage: 0, icon: '🛵', color: 'bg-emerald-500' },
       { name: 'GoFood', amount: 0, percentage: 0, icon: '🏍️', color: 'bg-red-500' },
     ],
@@ -31,8 +31,8 @@ export default function ProfitPage() {
             margin: apiData.margin || 0
           },
           channels: [
-            { name: '堂食 (Dine-in)', amount: 0, percentage: 0, icon: '🏠', color: 'bg-blue-500' },
-            { name: '外卖自点 (Takeaway)', amount: 0, percentage: 0, icon: '🛍️', color: 'bg-orange-500' },
+            { name: t('dineIn'), amount: 0, percentage: 0, icon: '🏠', color: 'bg-blue-500' },
+            { name: t('takeaway'), amount: 0, percentage: 0, icon: '🛍️', color: 'bg-orange-500' },
             { name: 'GrabFood', amount: 0, percentage: 0, icon: '🛵', color: 'bg-emerald-500' },
             { name: 'GoFood', amount: 0, percentage: 0, icon: '🏍️', color: 'bg-red-500' },
           ],
