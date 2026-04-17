@@ -127,7 +127,7 @@ function AuthProvider({ children }) {
 }
 
 function ProtectedRoute() {
-  const { user, loading } = useAuth();
+  const { user, loading, t } = useAuth();
   if (loading) return <div className="loading">{t('loading') || 'Loading...'}</div>;
   if (loading) return null;
   if (!user) return <Navigate to="/login" replace />;
