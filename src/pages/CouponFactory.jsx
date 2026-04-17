@@ -69,7 +69,7 @@ export default function CouponFactory({ hideHeader }) {
                     <input type="number" className="input w-full bg-white font-black text-emerald-600" required value={newCoupon.value} onChange={e=>setNewCoupon({...newCoupon, value: e.target.value})} />
                  </div>
                  <div>
-                    <label className="block text-[14px] font-bold text-slate-500 mb-1">使用门槛 (满金额)</label>
+                    <label className="block text-[14px] font-bold text-slate-500 mb-1">{t('minSpendLabel')}</label>
                     <input type="number" className="input w-full bg-white" required value={newCoupon.minSpend} onChange={e=>setNewCoupon({...newCoupon, minSpend: e.target.value})} />
                  </div>
                  <div>
