@@ -67,10 +67,10 @@ export default function DeliveryHub({ hideHeader }) {
                    <span className="text-base font-black text-slate-900 tracking-tighter">{order.total}</span>
                    <div className="flex gap-2">
                       {status === 'PENDING' && (
-                        <button onClick={() => updateStatus(order.id, 'MAKING')} className="btn-primary">开始接单</button>
+                        <button onClick={() => updateStatus(order.id, 'MAKING')} className="btn-primary">{t('acceptOrder')}</button>
                       )}
                       {status === 'MAKING' && (
-                        <button onClick={() => updateStatus(order.id, 'READY')} className="btn-premium active !bg-slate-900 !text-white !px-4 !py-3.5 border-none shadow-lg shadow-slate-900/10 !text-[14px] uppercase font-black">核销出餐</button>
+                        <button onClick={() => updateStatus(order.id, 'READY')} className="btn-premium active !bg-slate-900 !text-white !px-4 !py-3.5 border-none shadow-lg shadow-slate-900/10 !text-[14px] uppercase font-black">{t('verifyServe')}</button>
                       )}
                       {status === 'READY' && (
                         <div className="flex gap-2">
