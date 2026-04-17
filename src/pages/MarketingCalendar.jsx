@@ -24,7 +24,7 @@ export default function MarketingCalendar({ hideHeader }) {
       {!hideHeader && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
-            <h2 className="text-h2">📅 品牌营销策略排期</h2>
+            <h2 className="text-h2">📅 {t('marketingCalendarTitle')}</h2>
             <p className="text-label-caps mt-1">{t('growthRoadmapTitle')}</p>
           </div>
           <button 
@@ -62,7 +62,7 @@ export default function MarketingCalendar({ hideHeader }) {
                   
                   <div className="mt-6 p-6 bg-orange-50 rounded-2xl border border-orange-100/30">
                     <p className="text-sm font-bold text-orange-900 leading-relaxed ">
-                       <span className="text-[14px] uppercase font-black text-orange-400 block mb-1 tracking-widest not-">Strategy Logic / 营销逻辑:</span>
+                       <span className="text-[14px] uppercase font-black text-orange-400 block mb-1 tracking-widest not-">{t('strategyLogic')}:</span>
                        "{event.strategy}"
                     </p>
                   </div>

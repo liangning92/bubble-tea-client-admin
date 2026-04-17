@@ -36,7 +36,7 @@ export default function CouponFactory({ hideHeader }) {
         <div className="flex justify-between items-center">
           <div>
              <h3 className="text-xl font-black text-slate-800 tracking-tight">{tl('Pabrik Kupon', '优惠券工厂')}</h3>
-             <p className="text-[14px] text-slate-500 font-medium mt-1">设计并投放不同维度的促销凭证以提升转化率</p>
+             <p className="text-[14px] text-slate-500 font-medium mt-1">{t('couponFactoryDesc')}</p>
           </div>
           <button 
             onClick={() => setShowConfig(true)}
@@ -52,11 +52,11 @@ export default function CouponFactory({ hideHeader }) {
            <form onSubmit={handleCreate} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                  <div>
-                    <label className="block text-[14px] font-bold text-slate-500 mb-1">名称 (Name)</label>
+                    <label className="block text-[14px] font-bold text-slate-500 mb-1">{t('couponName')} (Name)</label>
                     <input type="text" className="input w-full bg-white" placeholder={t('placeholderCategoryExample')} required value={newCoupon.name} onChange={e=>setNewCoupon({...newCoupon, name: e.target.value})} />
                  </div>
                  <div>
-                    <label className="block text-[14px] font-bold text-slate-500 mb-1">优惠类型 (Type)</label>
+                    <label className="block text-[14px] font-bold text-slate-500 mb-1">{t('couponType')} (Type)</label>
                     <select className="input w-full bg-white font-bold h-11" value={newCoupon.type} onChange={e=>setNewCoupon({...newCoupon, type: e.target.value})}>
                        <option value="fixed">{t('optionCouponFixed')}</option>
                        <option value="percent">{t('optionCouponPercent')}</option>
@@ -65,7 +65,7 @@ export default function CouponFactory({ hideHeader }) {
               </div>
               <div className="grid grid-cols-3 gap-4">
                  <div>
-                    <label className="block text-[14px] font-bold text-slate-500 mb-1">优惠面值</label>
+                    <label className="block text-[14px] font-bold text-slate-500 mb-1">{t('couponValue')}</label>
                     <input type="number" className="input w-full bg-white font-black text-emerald-600" required value={newCoupon.value} onChange={e=>setNewCoupon({...newCoupon, value: e.target.value})} />
                  </div>
                  <div>

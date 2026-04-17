@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 export default function MarketingAutomation({ hideHeader }) {
-  const { lang, user } = useAuth();
-  
+  const { lang, user, t } = useAuth();
+
   // 核心漏斗配置 (Funnel Strategy)
   const [config, setConfig] = useState({
     memberThreshold: 30000,
@@ -23,7 +23,7 @@ export default function MarketingAutomation({ hideHeader }) {
 
   return (
     <div className="space-y-10 animate-soft text-slate-900 pb-12">
-      
+
       {/* 漏斗全局参数配置 (Lock-in & Trigger Settings) */}
       <div className="bg-slate-900 rounded-[40px] p-12 text-white shadow-2xl relative overflow-hidden border border-white/5">
          <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 rounded-full blur-[100px] -mr-40 -mt-40 pointer-events-none"></div>
@@ -39,41 +39,41 @@ export default function MarketingAutomation({ hideHeader }) {
                   )}
                </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                <div className="space-y-4">
                   <label className="block text-label-caps !text-slate-500">{tl('Membership Threshold', '会员准入门槛 (单笔消费)')}</label>
                   <div className="flex items-center gap-4">
                      <span className="text-slate-600 font-black text-xl">Rp</span>
-                     <input 
-                        type="number" 
-                        value={config.memberThreshold} 
+                     <input
+                        type="number"
+                        value={config.memberThreshold}
                         onChange={e => setConfig({...config, memberThreshold: parseInt(e.target.value)})}
                         className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-2xl font-black text-orange-500 w-full focus:ring-2 focus:ring-orange-500/30 outline-none transition-all"
                      />
                   </div>
-                  <p className="text-[14px] text-slate-500 font-bold leading-relaxed ">当非会员在 POS 端单次消费满足条件，系统自动触发会员转化流程。</p>
+                  <p className="text-[14px] text-slate-500 font-bold leading-relaxed ">{t('automationConversionDesc')}</p>
                </div>
 
                <div className="space-y-4">
                   <label className="block text-label-caps !text-slate-500">{tl('Purchasing Cycle Triggers', '复购衰减周期 (天)')}</label>
                   <div className="flex items-center gap-4">
-                     <input 
-                        type="number" 
-                        value={config.lapseShort} 
+                     <input
+                        type="number"
+                        value={config.lapseShort}
                         onChange={e => setConfig({...config, lapseShort: parseInt(e.target.value)})}
                         className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-2xl font-black text-white w-24 text-center"
                      />
                      <span className="text-slate-700 font-black">/</span>
-                     <input 
-                        type="number" 
-                        value={config.lapseLong} 
+                     <input
+                        type="number"
+                        value={config.lapseLong}
                         onChange={e => setConfig({...config, lapseLong: parseInt(e.target.value)})}
                         className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-2xl font-black text-white w-24 text-center"
                      />
                      <span className="text-slate-500 font-black text-[14px] uppercase">Days</span>
                   </div>
-                  <p className="text-[14px] text-slate-500 font-bold leading-relaxed ">设置“短周期失联”与“长周期沉睡”的计算阈值，用于差异化券包派发。</p>
+                  <p className="text-[14px] text-slate-500 font-bold leading-relaxed ">{t('automationThresholdDesc')}</p>
                </div>
 
                <div className="flex flex-col justify-end">
@@ -99,7 +99,7 @@ export default function MarketingAutomation({ hideHeader }) {
              </div>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {automations.map(auto => (
             <div key={auto.id} className="card-premium !p-8 border-slate-100 bg-white group hover:border-orange-500/20 transition-all">
@@ -118,17 +118,17 @@ export default function MarketingAutomation({ hideHeader }) {
                      <div className="text-[14px] text-slate-400 font-black uppercase tracking-widest mt-1">Conv. Rate</div>
                   </div>
                </div>
-               
+
                {/* 自动生成的文案预览 (Content Generation) */}
                <div className="bg-slate-50/50 border border-slate-100 rounded-2xl p-5 relative mb-8 ">
                   <div className="absolute top-2 right-4 text-[8px] font-black text-slate-300 uppercase tracking-widest">AI Preview</div>
                   <div className="text-[13px] text-slate-500 leading-relaxed font-bold pr-10">
-                     {auto.id === 1 ? '“感谢您支持 Bubble Tea。为您准备了一份老会员专属回馈礼：4.8折券已到账。期待您的再次光临！”' : 
-                      auto.id === 2 ? '“温馨提示：您已有7天未光顾。点击领取买一赠一专属权益，开启美好的午后奶茶时光吧！”' :
-                      '“欢迎成为品牌高级会员！总价值 Rp 30,000 的入会专属礼包已派发至您的账户...”'}
+                     {auto.id === 1 ? '"感谢您支持 Bubble Tea。为您准备了一份老会员专属回馈礼:4.8折券已到账。期待您的再次光临!"' :
+                      auto.id === 2 ? '"温馨提示:您已有7天未光顾。点击领取买一赠一专属权益,开启美好的午后奶茶时光吧!"' :
+                      '"欢迎成为品牌高级会员!总价值 Rp 30,000 的入会专属礼包已派发至您的账户..."'}
                   </div>
                </div>
- 
+
                <div className="flex gap-3">
                   <button className="flex-1 btn-premium active !bg-slate-900 !text-white !h-12 border-none text-[14px] font-black uppercase tracking-widest">
                      策略分析
