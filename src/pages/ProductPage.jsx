@@ -148,11 +148,11 @@ export default function ProductPage() {
                     <input className="input-premium !text-2xl !font-black !text-indigo-600" type="number" value={bulkForm.percentage} onChange={e => setBulkForm({...bulkForm, percentage: parseInt(e.target.value) || 0})} />
                     <span className="absolute right-4 top-4 text-slate-300 font-bold">%</span>
                   </div>
-                  <p className="text-[14px] text-slate-400 mt-2  font-medium">提示：正数加价，负数降价。例如输入 10 即全系加价 10%。</p>
+                  <p className="text-[14px] text-slate-400 mt-2 font-medium">{t('bulkPriceHint')}</p>
                </div>
                <div className="flex gap-2 pt-2">
-                  <button onClick={handleBulkPriceUpdate} className="btn-action btn-primary-dark flex-1">执行全系调价</button>
-                  <button onClick={() => setShowBulkPrice(false)} className="btn-action bg-slate-50 text-slate-400">关闭</button>
+                  <button onClick={handleBulkPriceUpdate} className="btn-action btn-primary-dark flex-1">{t('executeBulkPrice')}</button>
+                  <button onClick={() => setShowBulkPrice(false)} className="btn-action bg-slate-50 text-slate-400">{t('close')}</button>
                </div>
             </div>
           </div>
