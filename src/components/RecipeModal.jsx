@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../context/AuthContext';
+import { api, useAuth } from '../context/AuthContext';
 
 export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
+  const { lang, t } = useAuth();
   const [name, setName] = useState('');
   const [sellingPrice, setSellingPrice] = useState('');
   const [ingredients, setIngredients] = useState([{ inventoryId: '', usageAmount: '' }]);
@@ -63,7 +64,7 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim()) {
-      setError(lang === 'zh' ? '请输入产品名称' : 'Masukkan nama produk');
+      setError(t('enterProductName'));
       return;
     }
 
@@ -114,8 +115,8 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-bold">
             {editRecipe 
-              ? (lang === 'zh' ? '编辑配方' : 'Edit Resep')
-              : (lang === 'zh' ? '添加配方' : 'Tambah Resep')}
+              ? t('editRecipe')
+              : t('addRecipe')}
           </h3>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-xl">×</button>
         </div>
