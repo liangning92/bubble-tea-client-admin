@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { i18n } from '../i18n';
 
 let _errorCounter = 0; // 模块级唯一计数器，避免 Date.now() 同毫秒 key 冲突
 
@@ -14,7 +15,8 @@ export default function GlobalErrorToast() {
   useEffect(() => {
     const handler = (e) => {
       const errorDetail = e.detail;
-      let errorMessage = '发生错误';
+      const lang = localStorage.getItem('lang') || 'zh';
+      let errorMessage = i18n[lang]?.errorOccurred || i18n.zh.errorOccurred;
       let errorType = 'error';
       
       if (typeof errorDetail === 'string') {
@@ -27,7 +29,7 @@ export default function GlobalErrorToast() {
       }
       // 最终保障：确保 errorMessage 绝对是字符串
       if (typeof errorMessage !== 'string') {
-        errorMessage = JSON.stringify(errorMessage) || '发生错误';
+        errorMessage = JSON.stringify(errorMessage) || i18n[lang]?.errorOccurred || i18n.zh.errorOccurred;
       }
       
       const newError = {

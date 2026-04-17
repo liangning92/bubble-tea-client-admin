@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { i18n } from '../i18n';
 
 /**
  * 全局成功 Toast 组件 (Renamed for cache busting)
@@ -10,7 +11,8 @@ export default function SuccessNotification() {
 
   useEffect(() => {
     const handler = (e) => {
-      setMsg(e.detail || '成功');
+      const lang = localStorage.getItem('lang') || 'zh';
+      setMsg(e.detail || i18n[lang]?.successGeneric || i18n.zh.successGeneric);
       setVisible(true);
       setTimeout(() => setVisible(false), 2500);
     };
