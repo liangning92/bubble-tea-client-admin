@@ -129,14 +129,14 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
           {/* 产品名称 */}
           <div>
             <label className="block text-sm font-medium mb-1">
-              {lang === 'zh' ? '产品名称' : 'Nama Produk'} *
+              {t('productName')} *
             </label>
             <input
               type="text"
               className="input w-full"
               value={name}
               onChange={e => setName(e.target.value)}
-              placeholder={lang === 'zh' ? '例如：珍珠奶茶' : 'Contoh: Thai Tea'}
+              placeholder={t('productNamePlaceholder')}
               required
               disabled={!!editRecipe}
             />

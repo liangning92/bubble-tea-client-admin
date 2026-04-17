@@ -54,10 +54,7 @@ export default function GlobalErrorToast() {
     const handleUnhandledRejection = (event) => {
       console.error('Unhandled Promise Rejection:', event.reason);
       window.dispatchEvent(new CustomEvent('app:error', {
-        detail: { 
-          message: `未处理的Promise错误: ${event.reason?.message || event.reason}`,
-          type: 'error'
-        }
+        detail: { message: `${t('unhandledPromiseError')}: ${event.reason?.message || event.reason}`, type: 'error' }
       }));
     };
     
