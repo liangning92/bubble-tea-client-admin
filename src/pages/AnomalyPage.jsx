@@ -33,7 +33,7 @@ export default function AnomalyPage() {
   };
 
   const formatGap = (gap, unit) => {
-    if (gap < 0) return `${Math.abs(gap).toLocaleString()} ${unit} 不足`;
+    if (gap < 0) return `${Math.abs(gap).toLocaleString()} ${unit} ${t('insufficient') || '不足'}`;
     return `+${gap.toLocaleString()} ${unit}`;
   };
 
@@ -91,7 +91,7 @@ export default function AnomalyPage() {
                     </div>
                     {item.productBreakdown && item.productBreakdown.length > 0 && (
                       <div className="mt-2 text-[14px] text-gray-500">
-                        影响产品: {item.productBreakdown.map(p => p.productName).join(', ')}
+                        {t('productsAffected') || '影响产品'}: {item.productBreakdown.map(p => p.productName).join(', ')}
                       </div>
                     )}
                   </div>
