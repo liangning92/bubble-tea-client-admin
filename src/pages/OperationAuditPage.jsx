@@ -202,7 +202,7 @@ export default function OperationAuditPage() {
                   <p className="text-[13px] text-slate-400 font-bold leading-relaxed line-clamp-3">{task.desc}</p>
                </div>
                <div className="pt-6 border-t border-slate-50 flex justify-between items-center mt-6">
-                  <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">TAP TO EDIT</span>
+                  <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{t('tapToEdit')}</span>
                   <div className="w-10 h-10 bg-slate-50 text-slate-300 rounded-lg flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all">✏️</div>
                </div>
             </div>
@@ -230,7 +230,7 @@ export default function OperationAuditPage() {
                {isEditing ? (
                   <div className="space-y-8">
                      <div className="space-y-4">
-                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">TASK TITLE</label>
+                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">{t('taskTitle')}</label>
                         <input 
                            type="text"
                            value={selectedTask.title}
@@ -239,7 +239,7 @@ export default function OperationAuditPage() {
                         />
                      </div>
                      <div className="space-y-4">
-                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">SOP DESCRIPTION</label>
+                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">{t('taskDesc')}</label>
                         <textarea 
                            value={selectedTask.desc}
                            onChange={e => handleUpdateTask(selectedTask.id, 'desc', e.target.value)}
@@ -255,7 +255,7 @@ export default function OperationAuditPage() {
                      </div>
                      <div className="aspect-video bg-slate-900 rounded-[48px] flex flex-col items-center justify-center text-white space-y-4 border-4 border-white shadow-2xl relative group cursor-pointer" onClick={() => showToast('📷 Camera logic initialized...')}>
                         <span className="text-7xl group-hover:scale-110 transition-all">📷</span>
-                        <p className="text-[12px] font-black uppercase tracking-widest opacity-50">CLICK TO SUBMIT PHOTO</p>
+                        <p className="text-[12px] font-black uppercase tracking-widest opacity-50">{t('clickToSubmitPhoto')}</p>
                      </div>
                   </div>
                )}

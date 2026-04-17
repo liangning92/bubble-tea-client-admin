@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 export default function CouponFactory({ hideHeader }) {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [coupons, setCoupons] = useState([
     { id: 1, name: '新人专享大额券', type: 'fixed', value: 10000, minSpend: 25000, expires: '2026-12-31', status: 'active', usedCount: 45, totalCount: 200 },
     { id: 2, name: '全场 8.5 折', type: 'percent', value: 15, minSpend: 15000, expires: '2026-05-01', status: 'active', usedCount: 120, totalCount: 500 },
@@ -102,7 +102,7 @@ export default function CouponFactory({ hideHeader }) {
                     <div className="text-3xl font-black text-blue-600 tracking-tighter">
                        {cp.type === 'fixed' ? `Rp ${(cp.value / 1000).toFixed(0)}K` : `${cp.value}%`}
                     </div>
-                    <div className="text-[14px] font-black text-blue-400 bg-blue-50 px-1.5 py-0.5 rounded inline-block mt-1">OFFER READY</div>
+                    <div className="text-[14px] font-black text-blue-400 bg-blue-50 px-1.5 py-0.5 rounded inline-block mt-1">{t('offerReady')}</div>
                  </div>
               </div>
 

@@ -63,7 +63,7 @@ export default function ProfitPage() {
           <div key={i} className="card-premium !p-8 space-y-4">
             <div className="flex justify-between items-center">
                <span className="text-2xl">{item.icon}</span>
-               <span className="text-[11px] font-black uppercase tracking-widest text-slate-400">KPI Metric</span>
+               <span className="text-[11px] font-black uppercase tracking-widest text-slate-400">{t('kpiMetric')}</span>
             </div>
             <div>
                <h4 className="text-label-caps !text-slate-400">{item.label}</h4>
