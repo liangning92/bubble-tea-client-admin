@@ -10,7 +10,7 @@ export default function InventoryAnomalyPage({ mode = 'alert', hideHeader = fals
     const loadAnomalies = async () => {
       setLoading(true);
       try {
-        const res = await api('GET', '/inventory/anomalies');
+        const res = await api('GET', '/anomalies');
         setAnomalies(res?.items || [
           { id: 1, name: '鲜奶 (Fresh Milk)', deviation: '-8.5%', type: 'usage', severity: 'warning', date: '今日 14:00' },
           { id: 2, name: '冷冻珍珠 (Frozen Pearls)', deviation: '+12.3%', type: 'audit', severity: 'critical', date: '昨日 18:00' },
