@@ -39,7 +39,7 @@ export default function AttendancePage() {
     setExporting(true);
     setTimeout(() => {
       setExporting(false);
-      showToast('✅ 考勤月度报表已生成并导出');
+      showToast(t('attendanceReportExported'));
     }, 2000);
   };
 
@@ -55,7 +55,7 @@ export default function AttendancePage() {
       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
-             <span className="text-3xl">⏱️</span> 门店员工考勤实时看板
+             <span className="text-3xl">⏱️</span> {t('attendanceDashboardTitle')}
           </h2>
         </div>
         <div className="flex gap-4">
@@ -64,10 +64,10 @@ export default function AttendancePage() {
             disabled={exporting}
             className="h-14 bg-white border border-slate-200 text-slate-500 rounded-[20px] px-8 font-black uppercase tracking-widest text-[12px] hover:text-slate-900 transition-all active:scale-95 disabled:opacity-50"
           >
-            {exporting ? '正在导出数据...' : '导出考勤月报'}
+            {exporting ? t('exportingData') : t('exportAttendanceReport')}
           </button>
           <button 
-            onClick={() => showToast('⚙️ 请在下方列表中选择员工进行人工修正')}
+            onClick={() => showToast(t('attendanceCorrectionHint'))}
             className="h-14 bg-slate-900 text-white rounded-[20px] px-10 font-black uppercase tracking-widest text-[12px] shadow-2xl shadow-slate-900/10 active:scale-95 transition-all"
           >
             考勤人工修正
@@ -78,7 +78,7 @@ export default function AttendancePage() {
       <div className="p-10 rounded-[48px] border-2 border-dashed border-red-100 bg-red-50/20 flex flex-col md:flex-row gap-10 items-center group">
         <div className="w-20 h-20 bg-white rounded-3xl shadow-xl flex items-center justify-center text-4xl animate-pulse">🧹</div>
         <div className="flex-1 space-y-4 text-center md:text-left">
-          <h4 className="text-[16px] font-black text-red-600 uppercase tracking-widest">强制卫生关联核查模式已开启</h4>
+          <h4 className="text-[16px] font-black text-red-600 uppercase tracking-widest">{t('hygieneCheckModeActive')}</h4>
           <p className="text-[14px] text-slate-500 font-bold leading-relaxed tracking-tight">
             根据品牌SOP要求，员工在“签退”前必须通过 POS 端实时拍摄并上传操作间环境照片。系统将自动比对【卫生自查单】完成情况，若未关联有效记录，该笔考勤将自动标记为“异常”。
           </p>
@@ -91,9 +91,9 @@ export default function AttendancePage() {
             <thead>
               <tr className="bg-slate-50/50">
                 <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest">{t('optionStaffName')}</th>
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">签入/签退时间</th>
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">系统判定</th>
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">卫生档案</th>
+                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('checkInOutTime')}</th>
+                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('systemJudgment')}</th>
+                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">{t('healthArchive')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
@@ -142,24 +142,24 @@ export default function AttendancePage() {
            <div className="bg-white rounded-[72px] shadow-3xl w-full max-w-2xl overflow-hidden animate-soft border-8 border-white" onClick={e => e.stopPropagation()}>
               <div className="p-14 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
                  <div>
-                    <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase mb-1">卫生巡检存证</h3>
+                    <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase mb-1">{t('healthInspectionRecord')}</h3>
                     <p className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">{selectedDoc.name} · {selectedDoc.date}</p>
                  </div>
                  <button onClick={() => setSelectedDoc(null)} className="w-16 h-16 rounded-full bg-white border border-slate-100 flex items-center justify-center text-slate-200 hover:text-slate-900 transition-all hover:rotate-90">✕</button>
               </div>
               <div className="p-14 space-y-10">
                  <div className="aspect-video bg-slate-900 rounded-[48px] flex flex-col items-center justify-center text-white space-y-4 border-4 border-slate-50 overflow-hidden relative group">
-                    <span className="text-7xl group-hover:scale-110 transition-transform cursor-pointer" onClick={() => showToast('🔍 原始图片正在从云端加密加载...')}>📷</span>
+                    <span className="text-7xl group-hover:scale-110 transition-transform cursor-pointer" onClick={() => showToast(t('originalPhotoLoading'))}>📷</span>
                     <div className="text-center px-10">
-                       <p className="text-[14px] font-black uppercase tracking-widest">操作间环境核验照片</p>
-                       <p className="text-[11px] opacity-40 uppercase tracking-[0.3em] mt-2">拍摄地点: POS 终端 01 · 拍摄日期: {selectedDoc.date} {selectedDoc.time}</p>
+                       <p className="text-[14px] font-black uppercase tracking-widest">{t('envCheckPhoto')}</p>
+                       <p className="text-[11px] opacity-40 uppercase tracking-[0.3em] mt-2">{t('photoLocationPOS')} · {t('photoDate')}: {selectedDoc.date} {selectedDoc.time}</p>
                     </div>
-                    <div className="absolute top-8 left-8 px-4 py-3 bg-emerald-500 rounded-full text-[10px] font-black tracking-widest">水印已验证</div>
+                    <div className="absolute top-8 left-8 px-4 py-3 bg-emerald-500 rounded-full text-[10px] font-black tracking-widest">{t('watermarkVerified')}</div>
                  </div>
               </div>
               <div className="p-14 bg-slate-50 border-t border-slate-100 flex gap-6">
-                 <button onClick={() => setSelectedDoc(null)} className="flex-1 h-20 bg-slate-900 text-white rounded-[32px] font-black uppercase tracking-widest shadow-2xl shadow-slate-900/20 active:scale-95 transition-all text-[15px]">确认关闭</button>
-                 <button onClick={() => showToast('🖨️ 指令已下发至默认网络打印机')} className="px-12 h-20 bg-white border border-slate-200 text-slate-900 rounded-[32px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all text-[20px]">🖨️</button>
+                 <button onClick={() => setSelectedDoc(null)} className="flex-1 h-20 bg-slate-900 text-white rounded-[32px] font-black uppercase tracking-widest shadow-2xl shadow-slate-900/20 active:scale-95 transition-all text-[15px]">{t('confirmClose')}</button>
+                 <button onClick={() => showToast(t('printInstructionSent'))} className="px-12 h-20 bg-white border border-slate-200 text-slate-900 rounded-[32px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all text-[20px]">🖨️</button>
               </div>
            </div>
         </div>
@@ -169,7 +169,7 @@ export default function AttendancePage() {
       {showCorrection && (
         <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[250] flex items-center justify-center p-8 animate-soft" onClick={() => setShowCorrection(null)}>
            <div className="bg-white rounded-[64px] shadow-3xl w-full max-w-xl overflow-hidden animate-soft border-8 border-white p-14 space-y-10" onClick={e => e.stopPropagation()}>
-              <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase text-center">考勤合规性人工修正</h3>
+              <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase text-center">{t('attendanceComplianceCorrection')}</h3>
               
               <div className="space-y-4">
                  <div className="bg-slate-50 p-6 rounded-3xl flex justify-between items-center border border-slate-100">
@@ -185,7 +185,7 @@ export default function AttendancePage() {
                     </select>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-3xl space-y-4 border border-slate-100">
-                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">修正事由 (行政审计必填)</span>
+                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('placeholderAttendanceReason').replace(/\([^)]*\)/, '')}</span>
                     <textarea 
                       placeholder={t('placeholderAttendanceReason')}
                       className="w-full h-32 bg-white border-2 border-slate-200 rounded-2xl p-4 text-[14px] font-bold outline-none focus:border-slate-900 transition-all"
@@ -197,13 +197,13 @@ export default function AttendancePage() {
                  <button 
                   onClick={() => {
                     setShowCorrection(null);
-                    showToast(`✅ 已更新 ${showCorrection.name} 的考勤状态为已修正`);
+                    showToast(t('attendanceStatusUpdated', { name: showCorrection.name }));
                   }}
                   className="flex-1 h-20 bg-slate-900 text-white rounded-[32px] font-black uppercase tracking-widest text-[14px] active:scale-95 transition-all shadow-2xl shadow-slate-900/30"
                  >
                     确认提交变更
                  </button>
-                 <button onClick={() => setShowCorrection(null)} className="px-10 h-20 bg-slate-50 text-slate-400 rounded-[32px] font-black uppercase tracking-widest text-[14px]">放弃</button>
+                 <button onClick={() => setShowCorrection(null)} className="px-10 h-20 bg-slate-50 text-slate-400 rounded-[32px] font-black uppercase tracking-widest text-[14px]">{t('abandon')}</button>
               </div>
            </div>
         </div>

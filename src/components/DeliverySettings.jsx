@@ -56,12 +56,12 @@ export default function DeliverySettings() {
       const res = await api('POST', '/system/config', payload);
       if (!res.error) {
         window.dispatchEvent(new CustomEvent('app:success', { 
-          detail: lang === 'zh' ? '配置已同步至后台' : 'Settings synced' 
+          detail: t('settingsSynced') 
         }));
         if (updatedConfig) setConfig(updatedConfig);
       }
     } catch (err) {
-      window.dispatchEvent(new CustomEvent('app:error', { detail: '保存失败' }));
+      window.dispatchEvent(new CustomEvent('app:error', { detail: t('saveFailed') }));
     } finally {
       setSaving(false);
     }
@@ -91,12 +91,12 @@ export default function DeliverySettings() {
       {/* 1. 平台状态与 API 管理 */}
       <section className="space-y-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-black text-slate-800 tracking-tight">平台集成与 API 托管</h3>
+          <h3 className="text-2xl font-black text-slate-800 tracking-tight">{t('platformIntegration')}</h3>
           <button 
             onClick={() => setShowKeys(!showKeys)}
             className="px-4 py-2 bg-slate-100 text-slate-600 text-[14px] font-black rounded-xl hover:bg-slate-200 transition-all uppercase tracking-widest"
           >
-            {showKeys ? '🙈 隐藏密钥' : '👁️ 管理接口密钥'}
+            {showKeys ? '🙈 ' + t('hideKeys') : '👁️ ' + t('manageKeys')}
           </button>
         </div>
         

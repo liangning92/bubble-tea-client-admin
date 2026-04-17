@@ -67,7 +67,7 @@ export default function ExpirationWatch() {
                          <span className="text-red-500 text-3xl mb-2">⚠️</span>
                          <h3 className="font-bold text-slate-800 mb-3">{t('materialExpired')}</h3>
                          <button onClick={() => handleDestroy(v.id)} className="px-4 py-1.5 bg-white border border-red-500 text-red-600 hover:bg-red-50 rounded text-sm font-medium transition">
-                           处理废料
+                           {t('handleWaste')}
                          </button>
                       </div>
                    )}

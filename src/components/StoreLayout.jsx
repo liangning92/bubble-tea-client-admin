@@ -30,7 +30,7 @@ export default function StoreLayout() {
   return (
     <SidebarLayout 
       menuItems={filteredMenu} 
-      title="Shopwise 门店智能管理" 
+      title={t('storeTitle')} 
       accentColor="#f27a1a"
       topAlert={<DashboardHeaderAlert />} 
     />

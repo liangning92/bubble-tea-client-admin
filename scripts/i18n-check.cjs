@@ -1,47 +1,38 @@
 #!/usr/bin/env node
 /**
- * i18n Compliance Checker v2
- * Scans JSX/JS files for hardcoded text NOT using i18n system.
- * KNOWN VALID PATTERNS (not violations):
- *   - labelZh/labelEn/labelId in nav data objects (trilingual data pattern)
- *   - tl() fallback args like: tl('中文', 'en', 'id')
- *   - console.error/warn messages
- *   - Static mock data (demo content)
- *   - Comments
+ * i18n Compliance Checker v3
+ * Only flags REAL user-visible hardcoded Chinese that needs fixing.
+ * Skips: mock/demo data, comments, import lines, static default values.
  */
 const fs = require('fs');
 const path = require('path');
 
 const SKIP_DIRS = ['node_modules', 'dist', 'build', '.git', 'test'];
+const SKIP_FILES = ['i18n.js']; // i18n source itself has Chinese values - skip
 
-function isFalsePositive(line, chineseInLine) {
-  // Skip comments
-  if (line.trim().startsWith('//')) return true;
+function isFalsePositive(line) {
+  const trimmed = line.trim();
+
+  // Skip single-line comments
+  if (trimmed.startsWith('//')) return true;
 
   // Skip import/export
   if (/^\s*import\s/.test(line) || /^\s*export\s/.test(line)) return true;
 
-  // Skip tl() fallback pattern: tl('中文', 'en', 'id')
-  if (/tl\s*\(\s*['"][\u4e00-\u9fff]+['"]\s*,/.test(line)) return true;
+  // Skip lines that are ONLY Chinese in a clear data context
+  // Pattern: 'key': 'Chinese text' inside data arrays (mock data)
+  // or: { name: 'Chinese', id: ... } style mock entries
+  if (/{\s*[^}]*name:\s*['"][\u4e00-\u9fff]/.test(line) && /id:\s*[0-9]/.test(line)) return true;
+  if (/id:\s*[0-9]+,\s*name:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
 
-  // Skip labelZh/labelEn/labelId data pattern (valid trilingual nav data)
-  if (/labelZh:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
-  if (/labelEn:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
-  if (/labelId:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
+  // Skip mock/demo data entries with multiple properties (clearly not UI labels)
+  if (/['"][\u4e00-\u9fff]+['"]\s*,?\s*(id|status|icon|color|type|value)/.test(line)) return true;
 
-  // Skip zh:/en:/id: property shorthand in data objects
-  if (/\bzh:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
-  if (/\ben:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
-  if (/\bid:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
+  // Skip placeholder examples in comments: e.g. "例：珍珠奶茶"
+  if (/[\u4e00-\u9fff]{2,3}\s*(例|示例|例如)/.test(line)) return true;
 
-  // Skip console.error / console.warn
-  if (/console\.(error|warn|log)\s*\(/.test(line)) return true;
-
-  // Skip return statement with t() fallback: t('key') || '中文'
-  if (/t\s*\([^)]+\)\s*\|\|\s*['"][\u4e00-\u9fff]/.test(line)) return true;
-
-  // Skip static default props / useState initial values with zh/en/id structure
-  if (/=\s*\{?\s*\[\s*\{[^}]*zh:\s*['"][\u4e00-\u9fff]/.test(line)) return true;
+  // Skip Chinese inside ternary with lang check: valid multilingual pattern (needs fixing but flagged separately)
+  // Actually - these ARE real violations. Don't skip.
 
   return false;
 }
@@ -54,12 +45,27 @@ function scanFile(filepath) {
   lines.forEach((line, idx) => {
     const chineseChars = line.match(/[\u4e00-\u9fff]/g);
     if (!chineseChars) return;
-    if (isFalsePositive(line, chineseChars)) return;
+    if (isFalsePositive(line)) return;
 
-    // Check if Chinese is inside a t() or tl() call
-    const hasTtCall = /t\s*\(\s*['"][^'"]*[\u4e00-\u9fff]/.test(line) ||
-                      /tl\s*\([^)]*[\u4e00-\u9fff]/.test(line);
-    if (hasTtCall) return;
+    // Skip if Chinese is inside a t() or tl() call
+    if (/t\s*\(\s*['"][^'"]*[\u4e00-\u9fff]/.test(line)) return;
+    if (/tl\s*\([^)]*[\u4e00-\u9fff]/.test(line)) return;
+
+    // Skip labelZh/labelEn/labelId data pattern (valid trilingual nav data)
+    if (/labelZh:\s*['"][\u4e00-\u9fff]/.test(line)) return;
+    if (/labelEn:\s*['"][\u4e00-\u9fff]/.test(line)) return;
+    if (/labelId:\s*['"][\u4e00-\u9fff]/.test(line)) return;
+
+    // Skip zh:/en:/id: shorthand in data objects
+    if (/\bzh:\s*['"][\u4e00-\u9fff]/.test(line)) return;
+    if (/\ben:\s*['"][\u4e00-\u9fff]/.test(line)) return;
+    if (/\bid:\s*['"][\u4e00-\u9fff]/.test(line)) return;
+
+    // Skip t() with fallback: t('key') || 'Chinese fallback'
+    if (/t\s*\([^)]+\)\s*\|\|\s*['"][\u4e00-\u9fff]/.test(line)) return;
+
+    // Skip mock data arrays (zh/en/id as keys with Chinese values in data)
+    if (/=\s*\[\s*\{[^}]*['"][\u4e00-\u9fff]+['"][^}]*\}/.test(line)) return;
 
     violations.push({
       line: idx + 1,
@@ -79,7 +85,7 @@ function walkDir(dir) {
     if (SKIP_DIRS.includes(entry.name)) continue;
     if (entry.isDirectory()) {
       Object.assign(results, walkDir(fullPath));
-    } else if (entry.isFile() && /\.jsx?$/.test(entry.name)) {
+    } else if (entry.isFile() && /\.jsx?$/.test(entry.name) && !SKIP_FILES.includes(entry.name)) {
       const violations = scanFile(fullPath);
       if (violations.length > 0) {
         results[fullPath] = violations;

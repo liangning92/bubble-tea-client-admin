@@ -29,7 +29,7 @@ export default function TranslationSettings() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm(lang === 'zh' ? '确定删除此翻译映射？' : 'Delete mapping?')) {
+    if (window.confirm(t('confirmDeleteMapping'))) {
        await api('DELETE', `/system/mappings/${id}`);
        loadData();
     }
@@ -39,11 +39,11 @@ export default function TranslationSettings() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-           <h3 className="text-xl font-bold text-slate-800 tracking-tight">{lang === 'zh' ? '双语词典管控' : 'Dictionary Control'}</h3>
+           <h3 className="text-xl font-bold text-slate-800 tracking-tight">{t('dictControl')}</h3>
            <p className="text-[14px] text-slate-400 mt-1">{lang === 'zh' ? '自定义产品名或 UI 标签的翻译映射。' : 'Override system labels or product names with custom translations.'}</p>
         </div>
         <button onClick={() => setShowAdd(true)} className="px-5 py-2.5 bg-slate-900 text-white rounded-xl font-black text-[14px] uppercase tracking-widest hover:scale-105 transition shadow-xl">
-           + {lang === 'zh' ? '新增映射' : 'Add Entry'}
+           + {t('addEntry')}
         </button>
       </div>
 
