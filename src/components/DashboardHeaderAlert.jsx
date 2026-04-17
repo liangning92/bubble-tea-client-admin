@@ -42,7 +42,7 @@ const DashboardHeaderAlert = () => {
       }
     } catch (err) {
       console.error('获取异常数据失败:', err);
-      setError(t?.dashboardAlertError || '加载异常数据失败');
+      setError(t('dashboardAlertError'));
       // 设置默认数据用于演示
       setAlertsData({
         counts: {
@@ -98,27 +98,27 @@ const DashboardHeaderAlert = () => {
   const categories = [
     {
       key: 'inventory',
-      label: t?.inventoryAlert || '库存预警',
+      label: t('inventoryAlert'),
       color: 'bg-red-500',
       hoverColor: 'hover:bg-red-600',
       icon: '📦',
-      description: t?.inventoryAlertDesc || '库存不足或即将过期'
+      description: t('inventoryAlertDesc')
     },
     {
       key: 'attendance',
-      label: t?.attendanceAlert || '考勤异常',
+      label: t('attendanceAlert'),
       color: 'bg-orange-500',
       hoverColor: 'hover:bg-orange-600',
       icon: '📋',
-      description: t?.attendanceAlertDesc || '迟到、早退或未打卡'
+      description: t('attendanceAlertDesc')
     },
     {
       key: 'hygiene',
-      label: t?.hygieneAlert || '卫生超时',
+      label: t('hygieneAlert'),
       color: 'bg-amber-500',
       hoverColor: 'hover:bg-amber-600',
       icon: '🧹',
-      description: t?.hygieneAlertDesc || '清洁任务未按时完成'
+      description: t('hygieneAlertDesc')
     }
   ];
 

@@ -28,24 +28,20 @@ export default function LoginPage() {
     if (ok) {
       navigate('/', { replace: true });
     } else {
-      setError(
-        lang === 'zh' ? '账号或密码不正确，请重试' :
-        lang === 'id' ? 'Akun atau kata sandi salah' :
-        'Incorrect username or password'
-      );
+      setError(t('invalidCredentials'));
     }
   };
 
   const langs = [
     { code: 'zh', label: '中文' },
-    { code: 'id', label: 'Bahasa' },
+    { code: 'id', label: 'Indonesia' },
     { code: 'en', label: 'English' },
   ];
 
   const features = [
-    { icon: '💰', title: lang === 'zh' ? '实时财务核算' : 'Real-time Finance', desc: lang === 'zh' ? '毫秒级利润追踪与成本管控' : 'Millisecond profit tracking' },
-    { icon: '📦', title: lang === 'zh' ? '智能库存系统' : 'Smart Inventory', desc: lang === 'zh' ? '原料入库·出库·效期预警' : 'Stock-in · out · expiry alerts' },
-    { icon: '👥', title: lang === 'zh' ? '全员绩效管理' : 'Staff Performance', desc: lang === 'zh' ? '考勤·排班·薪资一体化' : 'Attendance · schedule · pay' },
+    { icon: '💰', title: t('loginFeature1Title'), desc: t('loginFeature1Desc') },
+    { icon: '📦', title: t('loginFeature2Title'), desc: t('loginFeature2Desc') },
+    { icon: '👥', title: t('loginFeature3Title'), desc: t('loginFeature3Desc') },
   ];
 
   return (

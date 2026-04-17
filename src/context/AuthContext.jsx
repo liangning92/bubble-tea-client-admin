@@ -128,8 +128,8 @@ function AuthProvider({ children }) {
 
 function ProtectedRoute() {
   const { user, loading } = useAuth();
-  if (loading) return <div className="loading">加载中...</div>;
-  if (loading) return null; // 确保在加载完成前不跳转
+  if (loading) return <div className="loading">{t('loading') || 'Loading...'}</div>;
+  if (loading) return null;
   if (!user) return <Navigate to="/login" replace />;
   return <Outlet />;
 }
