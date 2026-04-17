@@ -145,8 +145,8 @@ export default function PosTerminalPage() {
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-4">
            <div className="bg-white p-12 rounded-[50px] text-center max-w-xs">
               <div className="text-5xl mb-6">✅</div>
-              <h3 className="text-xl font-black text-slate-900 uppercase mb-8">支付成功</h3>
-              <button onClick={() => setSuccessModal(null)} className="px-12 py-3 bg-slate-900 text-white rounded-full font-black uppercase tracking-widest">完成</button>
+              <h3 className="text-xl font-black text-slate-900 uppercase mb-8">{t('paymentSuccess')}</h3>
+              <button onClick={() => setSuccessModal(null)} className="px-12 py-3 bg-slate-900 text-white rounded-full font-black uppercase tracking-widest">{t('done')}</button>
            </div>
         </div>
       )}
