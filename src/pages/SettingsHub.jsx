@@ -9,6 +9,7 @@ import PermissionMatrix from './PermissionMatrix';
 import SupplierManagement from './SupplierManagement';
 import POSHardwareConfig from './POSHardwareConfig';
 import POSSettingsPage from './POSSettingsPage';
+import POSCategoriesPage from './POSCategoriesPage';
 
 export default function SettingsHub() {
   const { t } = useAuth();
@@ -19,6 +20,7 @@ export default function SettingsHub() {
     { key: 'suppliers', label: t('tabSuppliers'), icon: '🚛' },
     { key: 'pos', label: t('tabPOS'), icon: '🖥️' },
     { key: 'posSettings', label: t('tabPOSSettings') || 'POS设置', icon: '⚙️' },
+    { key: 'posCategories', label: t('posCategoriesTitle') || 'POS分类配置', icon: '🧋' },
     { key: 'rbac', label: t('tabSecurity'), icon: '🛡️' },
     { key: 'system', label: t('tabSystem'), icon: '⚙️' },
   ];
@@ -56,6 +58,7 @@ export default function SettingsHub() {
           {tab === 'suppliers' && <SupplierManagement />}
           {tab === 'pos' && <POSHardwareConfig />}
           {tab === 'posSettings' && <POSSettingsPage />}
+          {tab === 'posCategories' && <POSCategoriesPage />}
           {tab === 'rbac' && <PermissionMatrix />}
           {tab === 'system' && <SystemGeneralSettings />}
         </div>

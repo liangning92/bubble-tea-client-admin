@@ -22,6 +22,7 @@ import AdManagement from './pages/AdManagement';
 import PosTerminalPage from './pages/PosTerminalPage';
 import POSDualScreenConfig from './pages/POSDualScreenConfig';
 import POSSettingsPage from './pages/POSSettingsPage';
+import POSCategoriesPage from './pages/POSCategoriesPage';
 
 import Layout from './components/Layout';
 
@@ -65,6 +66,7 @@ export default function App() {
               <Route path="/pos" element={<PosTerminalPage />} />
               <Route path="/pos/dual-config" element={<POSDualScreenConfig />} />
               <Route path="/pos/settings" element={<POSSettingsPage />} />
+              <Route path="/pos-categories" element={<POSCategoriesPage />} />
               <Route path="/sales" element={<SalesPage />} />
               <Route path="/purchase" element={<PurchasePage />} />
               <Route path="/expense" element={<ExpensePage />} />
