@@ -16,7 +16,7 @@ export default function PosTerminalPage() {
   const [selectedSpecs, setSelectedSpecs] = useState(null);
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [sugarLevel, setSugarLevel] = useState("100%");
-  const [iceLevel, setIceLevel] = useState("正常冰");
+  const [iceLevel, setIceLevel] = useState(t('iceNormal'));
   const [successModal, setSuccessModal] = useState(null);
 
   const subtotal = useMemo(() => cart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0), [cart]);
@@ -53,7 +53,7 @@ export default function PosTerminalPage() {
         productName: configProduct.name,
         unitPrice,
         quantity: 1,
-        config: { spec: selectedSpecs?.name || "标准", sugar: sugarLevel, ice: iceLevel, addons: selectedAddons.map(a => a.name) }
+        config: { spec: selectedSpecs?.name || t('standard'), sugar: sugarLevel, ice: iceLevel, addons: selectedAddons.map(a => a.name) }
       }]);
     }
     setConfigProduct(null);
