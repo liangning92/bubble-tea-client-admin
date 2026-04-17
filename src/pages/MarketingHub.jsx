@@ -8,16 +8,16 @@ import AutomationPage from './MarketingAutomation';
 import DeliveryHub from './DeliveryHub';
 
 export default function MarketingHub() {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const tabs = [
-    { key: 'members', icon: '👥', label: '会员中心' },
-    { key: 'calendar', icon: '📅', label: '营销活动日历' },
-    { key: 'automate', icon: '🤖', label: '自动化营销漏斗' },
-    { key: 'delivery', icon: '🛵', label: '外卖平台对账' },
-    { key: 'loyalty', icon: '🎁', label: '会员分销权益' },
-    { key: 'assets', icon: '🖼️', label: '品牌视觉资产' },
+    { key: 'members', icon: '👥', label: t('members') },
+    { key: 'calendar', icon: '📅', label: t('calendar') },
+    { key: 'automate', icon: '🤖', label: t('automate') },
+    { key: 'delivery', icon: '🛵', label: t('delivery') },
+    { key: 'loyalty', icon: '🎁', label: t('loyalty') },
+    { key: 'assets', icon: '🖼️', label: t('assets') },
   ];
 
   let tab = searchParams.get('tab') || 'members';

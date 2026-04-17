@@ -13,12 +13,12 @@ export default function InventoryHub() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const tabs = [
-    { key: 'stockList', icon: '📋', label: '实时库存' },
-    { key: 'stockIn', icon: '📥', label: '原材料入库' },
-    { key: 'stockOut', icon: '📤', label: '领料/调拨' },
-    { key: 'physicalAudit', icon: '🔍', label: '实地盘点' },
-    { key: 'anomalyWarning', icon: '⚠️', label: '库存异动预警' },
-    { key: 'reorderList', icon: '🚚', label: '智能补货清单' },
+    { key: 'stockList', icon: '📋', label: t('stockList') },
+    { key: 'stockIn', icon: '📥', label: t('stockIn') },
+    { key: 'stockOut', icon: '📤', label: t('stockOut') },
+    { key: 'physicalAudit', icon: '🔍', label: t('physicalAudit') },
+    { key: 'anomalyWarning', icon: '⚠️', label: t('anomalyWarning') },
+    { key: 'reorderList', icon: '🚚', label: t('reorderList') },
   ];
 
   let tab = searchParams.get('tab') || 'stockList';
