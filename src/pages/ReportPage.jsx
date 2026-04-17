@@ -69,7 +69,7 @@ export default function ReportPage() {
               <div className="space-y-4">
                 {report.alerts.lowStock.map((item, i) => (
                   <div key={i} className="text-sm text-red-600">
-                    {item.name}: {item.current}{item.unit} (安全: {item.safe}{item.unit})
+                    {item.name}: {item.current}{item.unit} ({t('safeLevel')}: {item.safe}{item.unit})
                   </div>
                 ))}
               </div>
@@ -83,10 +83,7 @@ export default function ReportPage() {
                 {report.suggestions.map((s, i) => (
                   <div key={i} className="text-sm">
                     <span className="font-medium">{s.ingredient}</span>:
-                    {lang === 'zh'
-                      ? ` 建议订购 ${s.suggested}${s.unit} (当前: ${s.current}${s.unit})`
-                      : ` Saran pesan ${s.suggested}${s.unit} (Saat ini: ${s.current}${s.unit})`
-                    }
+                    {`${t('suggestOrderPrefix')} ${s.suggested}${s.unit} (${t('currentStock')}: ${s.current}${s.unit})`}
                   </div>
                 ))}
               </div>
