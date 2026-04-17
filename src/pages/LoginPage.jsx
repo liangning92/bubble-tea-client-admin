@@ -33,9 +33,9 @@ export default function LoginPage() {
   };
 
   const langs = [
-    { code: 'zh', label: '中文' },
-    { code: 'id', label: 'Indonesia' },
-    { code: 'en', label: 'English' },
+    { code: 'zh', label: t('langZh') },
+    { code: 'id', label: t('langId') },
+    { code: 'en', label: t('langEn') },
   ];
 
   const features = [
