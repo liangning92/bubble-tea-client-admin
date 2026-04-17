@@ -21,6 +21,7 @@ import ReportPage from './pages/ReportPage';
 import AdManagement from './pages/AdManagement';
 import PosTerminalPage from './pages/PosTerminalPage';
 import POSDualScreenConfig from './pages/POSDualScreenConfig';
+import POSSettingsPage from './pages/POSSettingsPage';
 
 import Layout from './components/Layout';
 
@@ -32,6 +33,8 @@ import SettingsHub from './pages/SettingsHub';
 import SchedulePage from './pages/SchedulePage';
 import TrainingPage from './pages/TrainingPage';
 import RewardPage from './pages/RewardPage';
+import AttendancePage from './pages/AttendancePage';
+import PayrollRulesPage from './pages/PayrollRulesPage';
 import StaffPortal from './pages/StaffPortal';
 import MarketingHub from './pages/MarketingHub';
 
@@ -61,6 +64,7 @@ export default function App() {
               <Route path="/settings" element={<SettingsHub />} />
               <Route path="/pos" element={<PosTerminalPage />} />
               <Route path="/pos/dual-config" element={<POSDualScreenConfig />} />
+              <Route path="/pos/settings" element={<POSSettingsPage />} />
               <Route path="/sales" element={<SalesPage />} />
               <Route path="/purchase" element={<PurchasePage />} />
               <Route path="/expense" element={<ExpensePage />} />
@@ -75,6 +79,8 @@ export default function App() {
               <Route path="/report" element={<ReportPage />} />
               <Route path="/training" element={<TrainingPage />} />
               <Route path="/reward" element={<RewardPage />} />
+              <Route path="/attendance" element={<AttendancePage />} />
+              <Route path="/payroll" element={<PayrollRulesPage />} />
             </Route>
           </Route>
           </Routes>
