@@ -30,9 +30,9 @@ export default function DeliveryHub({ hideHeader }) {
   };
 
   const tabs = [
-    { key: 'pipeline', zh: '全域流水线', en: 'Pipeline', icon: '📺' },
-    { key: 'smartops', zh: 'AI 调度中心', en: 'Smart Ops', icon: '🧠' },
-    { key: 'settings', zh: '渠道接入配置', en: 'Integrations', icon: '⚙️' },
+    { key: 'pipeline', label: t('pipelineTab'), icon: '📺' },
+    { key: 'smartops', label: t('smartOpsTab'), icon: '🧠' },
+    { key: 'settings', label: t('channelConfig'), icon: '⚙️' },
   ];
 
   const PipelineColumn = ({ title, status, icon }) => {
@@ -114,7 +114,7 @@ export default function DeliveryHub({ hideHeader }) {
 
       <div className="overflow-x-auto no-scrollbar pb-2 px-1">
         <SubNav 
-          tabs={tabs.map(t => ({ ...t, label: lang === 'zh' ? t.zh : t.en }))} 
+          tabs={tabs} 
           activeTab={activeTab} 
           onTabChange={setActiveTab} 
         />

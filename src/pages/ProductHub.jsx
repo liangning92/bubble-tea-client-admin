@@ -12,8 +12,8 @@ export default function ProductHub() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const tabs = [
-    { key: 'products', zh: '产品直营库', en: 'Products', icon: '🧋' },
-    { key: 'bom', zh: '配方树矩阵', en: 'BOM Matrix', icon: '🧬' },
+    { key: 'products', label: t('productDirect'), icon: '🧋' },
+    { key: 'bom', label: t('bomMatrix'), icon: '🧬' },
   ];
 
   let tab = searchParams.get('tab') || 'products';
@@ -32,7 +32,7 @@ export default function ProductHub() {
       {/* 统一二级导航 (采用标准 SubNav 组件) */}
       <div className="overflow-x-auto no-scrollbar pb-2">
         <SubNav 
-          tabs={tabs.map(t => ({ ...t, label: lang === 'zh' ? t.zh : t.en }))} 
+          tabs={tabs} 
           activeTab={tab} 
           onTabChange={handleTabChange} 
         />
