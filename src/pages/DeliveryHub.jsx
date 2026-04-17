@@ -18,10 +18,10 @@ export default function DeliveryHub({ hideHeader }) {
   ]);
 
   const stats = [
-    { label: lang === 'zh' ? '今日订单 (DPU)' : lang === 'en' ? 'Orders Today (DPU)' : 'Pesanan Hari Ini (DPU)', value: '142', sub: t('totalOrderVolume'), icon: '🛵', color: 'text-orange-600' },
-    { label: lang === 'zh' ? '峰值出餐 (Peak)' : lang === 'en' ? 'Peak Dispatch' : 'Waktu Saji Peak', value: '6.4min', sub: t('efficiency'), icon: '⏱️', color: 'text-slate-900' },
-    { label: lang === 'zh' ? '实到利润 (NTP)' : lang === 'en' ? 'Net Profit (NTP)' : 'Laba Bersih (NTP)', value: 'Rp 2.4M', sub: t('netProfit'), icon: '💰', color: 'text-orange-600' },
-    { label: '顾客好评 (CSAT)', value: '98.5%', sub: t('satisfaction'), icon: '⭐', color: 'text-slate-900' },
+    { label: t('ordersTodayDPU'), value: '142', sub: t('totalOrderVolume'), icon: '🛵', color: 'text-orange-600' },
+    { label: t('peakDispatch'), value: '6.4min', sub: t('efficiency'), icon: '⏱️', color: 'text-slate-900' },
+    { label: t('actualProfitNTP'), value: 'Rp 2.4M', sub: t('netProfit'), icon: '💰', color: 'text-orange-600' },
+    { label: t('customerCSAT'), value: '98.5%', sub: t('satisfaction'), icon: '⭐', color: 'text-slate-900' },
   ];
 
   const updateStatus = (id, nextStatus) => {
