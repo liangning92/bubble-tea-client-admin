@@ -35,11 +35,11 @@ export default function PayrollRulesPage() {
       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
-             <span className="text-3xl">⚙️</span> 薪资提成与结算标准配置
+             <span className="text-3xl">⚙️</span> {t('salaryConfigTitle')}
           </h2>
         </div>
         <button onClick={handleSave} className="btn-premium active !bg-slate-900 !text-white !px-12 !h-16 border-none shadow-2xl text-[14px] font-black uppercase tracking-widest !rounded-[24px]">
-           保存并下发全局规则
+           {t('saveAndDeployRules')}
         </button>
       </div>
 

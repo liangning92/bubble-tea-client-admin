@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
 export default function Leaderboard({ hideHeader }) {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [loading, setLoading] = useState(true);
   const [staff, setStaff] = useState([]);
 
@@ -37,12 +37,12 @@ export default function Leaderboard({ hideHeader }) {
       {!hideHeader && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
-            <h3 className="text-h2">🏆 全能效能精英榜</h3>
+            <h3 className="text-h2">🏆 {t('leaderboardTitle')}
             <p className="text-label-caps mt-1">Multi-dimensional Performance Leaderboard</p>
           </div>
           <div className="flex gap-4">
-             <button className="px-4 py-3.5 bg-slate-50 text-slate-400 text-[14px] font-black uppercase tracking-widest border border-slate-100 rounded-xl hover:bg-slate-100 transition-all">规则设置</button>
-             <button className="btn-premium active !bg-orange-500 !text-white !px-8 !py-3 shadow-lg shadow-orange-500/20 border-none">🎁 发放奖惩</button>
+             <button className="px-4 py-3.5 bg-slate-50 text-slate-400 text-[14px] font-black uppercase tracking-widest border border-slate-100 rounded-xl hover:bg-slate-100 transition-all">{t('ruleSettings')}</button>
+             <button className="btn-premium active !bg-orange-500 !text-white !px-8 !py-3 shadow-lg shadow-orange-500/20 border-none">🎁 {t('grantRewards')}</button>
           </div>
         </div>
       )}

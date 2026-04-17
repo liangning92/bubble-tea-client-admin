@@ -27,7 +27,7 @@ export default function MarketingHub() {
     <div className="animate-soft space-y-10 focus:outline-none text-slate-900 pb-20">
       <div className="flex flex-col gap-2 px-4">
         <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
-           <span className="text-3xl">🚀</span> 智慧营销与品牌增长引擎
+           <span className="text-3xl">🚀</span> {t('marketingHub')}
         </h2>
       </div>
 
@@ -55,9 +55,9 @@ function LoyaltyProgram({ hideHeader }) {
   return (
     <div className="space-y-10 animate-soft text-slate-900">
        <div className="flex flex-col md:flex-row justify-between items-end gap-6">
-          <h3 className="text-xl font-black text-slate-900 uppercase">会员成长与分销矩阵</h3>
+          <h3 className="text-xl font-black text-slate-900 uppercase">{t('memberGrowthMatrix')}</h3>
           <button className="btn-premium active !bg-slate-900 !text-white !px-10 !h-14 border-none shadow-xl !rounded-[20px] text-[13px] font-black uppercase tracking-widest">
-             + 设定新权益
+             + {t('addNewBenefit')}
           </button>
        </div>
        

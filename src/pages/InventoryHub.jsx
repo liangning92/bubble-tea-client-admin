@@ -29,17 +29,17 @@ export default function InventoryHub() {
       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
-             <span className="text-3xl">📦</span> 智能库存与仓储管理中心
+             <span className="text-3xl">📦</span> {t('inventoryHub')}
           </h2>
         </div>
         
         <div className="flex items-center gap-6 bg-slate-900 text-white p-5 rounded-[28px] shadow-xl shadow-slate-900/10">
            <div className="flex items-center gap-4 pr-6 border-r border-white/20">
               <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-[12px] font-black uppercase tracking-widest">终端实时联动已激活</span>
+              <span className="text-[12px] font-black uppercase tracking-widest">{t('terminalConnected') || '终端实时联动已激活'}</span>
            </div>
            <div className="flex items-center gap-4">
-              <span className="text-[12px] font-black text-white/50 uppercase tracking-widest">预防超卖预警: 5%</span>
+              <span className="text-[12px] font-black text-white/50 uppercase tracking-widest">{t('oversellWarning') || '预防超卖预警'}: 5%</span>
               <button className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-slate-900 transition-all">⚙️</button>
            </div>
         </div>
