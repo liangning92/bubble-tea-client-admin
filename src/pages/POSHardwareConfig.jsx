@@ -30,7 +30,15 @@ export default function POSHardwareConfig() {
     setLoading(true);
     try {
       const res = await api('GET', '/system/config');
-      if (res && !res.error) setConfig(res);
+      if (res && !res.error) {
+        setConfig({
+          ...config,
+          ...res,
+          modules: res.modules || config.modules,
+          customerDisplay: res.customerDisplay || config.customerDisplay,
+          permissions: res.permissions || config.permissions,
+        });
+      }
     } catch (e) {
       console.error(e);
     } finally {
