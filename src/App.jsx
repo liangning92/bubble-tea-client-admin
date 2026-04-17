@@ -20,6 +20,7 @@ import AnomalyPage from './pages/AnomalyPage';
 import ReportPage from './pages/ReportPage';
 import AdManagement from './pages/AdManagement';
 import PosTerminalPage from './pages/PosTerminalPage';
+import POSDualScreenConfig from './pages/POSDualScreenConfig';
 
 import Layout from './components/Layout';
 
@@ -59,6 +60,7 @@ export default function App() {
               <Route path="/schedule" element={<SchedulePage />} />
               <Route path="/settings" element={<SettingsHub />} />
               <Route path="/pos" element={<PosTerminalPage />} />
+              <Route path="/pos/dual-config" element={<POSDualScreenConfig />} />
               <Route path="/sales" element={<SalesPage />} />
               <Route path="/purchase" element={<PurchasePage />} />
               <Route path="/expense" element={<ExpensePage />} />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { api, useAuth } from '../context/AuthContext';
 
 export default function POSHardwareConfig() {
@@ -139,6 +140,29 @@ export default function POSHardwareConfig() {
                  <span className="text-[13px] font-black uppercase tracking-widest">{item.label}</span>
               </div>
             ))}
+         </div>
+      </div>
+
+      {/* 双屏详细配置入口 */}
+      <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+         <div className="flex items-center gap-4 mb-8">
+            <div className="w-1.5 h-6 bg-orange-500 rounded-full" />
+            <h4 className="text-[16px] font-black text-slate-900 uppercase tracking-widest">{t('dualScreenAdvanced') || '双屏高级配置'}</h4>
+         </div>
+         <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-3xl p-6 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center text-3xl">💻</div>
+               <div>
+                  <h5 className="text-lg font-black text-slate-900">{t('dualScreenConfigTitle') || '副屏显示与提醒设置'}</h5>
+                  <p className="text-sm text-slate-400">{t('dualScreenConfigSubtitle') || '配置顾客显示屏内容、员工考勤二维码、定时提醒'}</p>
+               </div>
+            </div>
+            <Link
+               to="/pos/dual-config"
+               className="btn-premium active !bg-orange-500 !text-white !px-8 !py-4 border-none shadow-xl shadow-orange-500/20 uppercase tracking-widest text-[13px] font-black"
+            >
+               {t('configure') || '配置' } →
+            </Link>
          </div>
       </div>
     </div>
