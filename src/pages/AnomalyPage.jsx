@@ -84,10 +84,10 @@ export default function AnomalyPage() {
                       {getSeverityBadge(item.status)}
                     </div>
                     <div className="text-sm text-gray-600 mb-2">
-                      库存: {item.actualStock || 0}{item.unit} / 预期: {item.expectedUsage || 0}{item.unit}
+                      {t('actualStock')}: {item.actualStock || 0}{item.unit} / {t('expectedUsage')}: {item.expectedUsage || 0}{item.unit}
                     </div>
                     <div className="text-sm text-gray-600">
-                      差额: {formatGap(item.gap || 0, item.unit || '')} ({item.gapPercent || 0}%)
+                      {t('gapValue')}: {formatGap(item.gap || 0, item.unit || '')} ({item.gapPercent || 0}%)
                     </div>
                     {item.productBreakdown && item.productBreakdown.length > 0 && (
                       <div className="mt-2 text-[14px] text-gray-500">

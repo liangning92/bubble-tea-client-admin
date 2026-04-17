@@ -115,9 +115,9 @@ export default function InventoryPage({ readOnly = false }) {
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('category')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('onHand')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('costPerKg')}</th>
-                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">浓缩比</th>
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('concentrateRatio')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">{t('status')}</th>
-                {!readOnly && <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right rounded-tr-[40px]">权限</th>}
+                {!readOnly && <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right rounded-tr-[40px]">{t('actions')}</th>}
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
@@ -196,16 +196,16 @@ export default function InventoryPage({ readOnly = false }) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('materialUnitLabel')}</label>
-                  <input required className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" placeholder="g / ml / pcs" value={newMat.unit} onChange={e => setNewMat({...newMat, unit: e.target.value})} />
+                  <input required className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" placeholder={t('placeholderUnit')} value={newMat.unit} onChange={e => setNewMat({...newMat, unit: e.target.value})} />
                 </div>
                 <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('materialCategoryLabel')}</label>
                   <select className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px] appearance-none" value={newMat.category} onChange={e => setNewMat({...newMat, category: e.target.value})}>
-                    <option value="茶汤">茶汤</option>
-                    <option value="鲜奶">鲜奶</option>
-                    <option value="糖浆">糖浆</option>
-                    <option value="小料">小料</option>
-                    <option value="其他">其他</option>
+                    <option value="茶汤">{t('catTea')}</option>
+                    <option value="鲜奶">{t('catFreshMilk')}</option>
+                    <option value="糖浆">{t('catSyrup')}</option>
+                    <option value="小料">{t('catTopping')}</option>
+                    <option value="其他">{t('catOther')}</option>
                   </select>
                 </div>
               </div>
@@ -217,13 +217,13 @@ export default function InventoryPage({ readOnly = false }) {
                 </div>
                 <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('concentrateRatioLabel', '浓缩比 (1kg=?)')}</label>
-                  <input type="number" step="0.1" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.concentrateRatio} onChange={e => setNewMat({...newMat, concentrateRatio: parseFloat(e.target.value) || 1})} placeholder="默认1（无稀释）" />
+                  <input type="number" step="0.1" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.concentrateRatio} onChange={e => setNewMat({...newMat, concentrateRatio: parseFloat(e.target.value) || 1})} placeholder={t('placeholderRatio')} />
                 </div>
               </div>
               <p className="text-[12px] text-slate-400 font-medium pl-2">
                 {newMat.concentrateRatio > 1
-                  ? `💡 1kg原料可制 ${newMat.concentrateRatio}kg 成品，每kg成本 Rp ${newMat.costPerKg > 0 ? (newMat.costPerKg / newMat.concentrateRatio).toLocaleString() : 0}`
-                  : '💡 每kg原料 = 每kg成品，无稀释'
+                  ? t('hintConcentrate').replace('{ratio}', newMat.concentrateRatio).replace('{cost}', newMat.costPerKg > 0 ? (newMat.costPerKg / newMat.concentrateRatio).toLocaleString() : '0')
+                  : t('hintNoConcentrate')
                 }
               </p>
 
