@@ -70,7 +70,7 @@ export default function AttendancePage() {
             onClick={() => showToast(t('attendanceCorrectionHint'))}
             className="h-14 bg-slate-900 text-white rounded-[20px] px-10 font-black uppercase tracking-widest text-[12px] shadow-2xl shadow-slate-900/10 active:scale-95 transition-all"
           >
-            考勤人工修正
+            {t('attendanceCorrection')}
           </button>
         </div>
       </div>
