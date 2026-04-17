@@ -8,7 +8,7 @@ export default function InventoryPage({ readOnly = false }) {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [newMat, setNewMat] = useState({ name: '', unit: '', category: '其他', costPerUnit: 0 });
+  const [newMat, setNewMat] = useState({ name: '', unit: '', category: '其他', costPerKg: 0, concentrateRatio: 1 });
 
   const loadData = async () => {
     setLoading(true);
@@ -43,13 +43,20 @@ export default function InventoryPage({ readOnly = false }) {
     if (!newMat.name || !newMat.unit) return;
     setSubmitting(true);
     try {
-      const res = await api('POST', '/inventory', newMat);
+      // costPerKg: Rp/kg, concentrateRatio: 1kg原料产出多少kg成品
+      const res = await api('POST', '/inventory', {
+        name: newMat.name,
+        unit: newMat.unit,
+        category: newMat.category,
+        costPerKg: newMat.costPerKg,
+        concentrateRatio: newMat.concentrateRatio
+      });
       if (res.error) {
         window.dispatchEvent(new CustomEvent('app:error', { detail: res.error }));
       } else {
         window.dispatchEvent(new CustomEvent('app:success', { detail: t('success') }));
         setIsModalOpen(false);
-        setNewMat({ name: '', unit: '', category: '其他', costPerUnit: 0 });
+        setNewMat({ name: '', unit: '', category: '其他', costPerKg: 0, concentrateRatio: 1 });
         loadData();
       }
     } catch (e) {
@@ -107,6 +114,8 @@ export default function InventoryPage({ readOnly = false }) {
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('materialName')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('category')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('onHand')}</th>
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('costPerKg')}</th>
+                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">浓缩比</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">{t('status')}</th>
                 {!readOnly && <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right rounded-tr-[40px]">权限</th>}
               </tr>
@@ -136,6 +145,16 @@ export default function InventoryPage({ readOnly = false }) {
                         <span className={`text-[16px] font-black tracking-tighter ${low ? 'text-red-600' : 'text-slate-900'}`}>
                           {(item.stock || 0).toLocaleString()} <span className="text-[14px] text-slate-300 ml-1 font-bold uppercase">{item.unit || 'kg'}</span>
                         </span>
+                     </td>
+                     <td className="px-4 py-3 text-center">
+                       <span className="text-[14px] font-black text-blue-600">
+                         {parseFloat(item.costPerKg || 0) > 0 ? `${t('currencySymbol')}${parseFloat(item.costPerKg).toLocaleString()}/kg` : <span className="text-slate-300">-</span>}
+                       </span>
+                     </td>
+                     <td className="px-4 py-3 text-center">
+                       <span className={`text-[14px] font-black ${(item.concentrateRatio || 1) > 1 ? 'text-orange-500' : 'text-slate-300'}`}>
+                         {(item.concentrateRatio || 1) > 1 ? `×${item.concentrateRatio}` : '-'}
+                       </span>
                      </td>
                      <td className="px-4 py-3 text-right">
                         <span className={`px-5 py-3 rounded-full text-[14px] font-black uppercase tracking-widest border transition-all ${low ? 'bg-red-50 text-red-600 border-red-100 shadow-sm' : 'bg-emerald-50 text-emerald-600 border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white'}`}>
@@ -191,10 +210,22 @@ export default function InventoryPage({ readOnly = false }) {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('materialPriceLabel')}</label>
-                <input type="number" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.costPerUnit} onChange={e => setNewMat({...newMat, costPerUnit: parseFloat(e.target.value)})} />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('costPerKgLabel', '采购价 (Rp/kg)')}</label>
+                  <input type="number" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.costPerKg} onChange={e => setNewMat({...newMat, costPerKg: parseFloat(e.target.value) || 0})} placeholder="Rp/kg" />
+                </div>
+                <div className="space-y-4">
+                  <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('concentrateRatioLabel', '浓缩比 (1kg=?)')}</label>
+                  <input type="number" step="0.1" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.concentrateRatio} onChange={e => setNewMat({...newMat, concentrateRatio: parseFloat(e.target.value) || 1})} placeholder="默认1（无稀释）" />
+                </div>
               </div>
+              <p className="text-[12px] text-slate-400 font-medium pl-2">
+                {newMat.concentrateRatio > 1
+                  ? `💡 1kg原料可制 ${newMat.concentrateRatio}kg 成品，每kg成本 Rp ${newMat.costPerKg > 0 ? (newMat.costPerKg / newMat.concentrateRatio).toLocaleString() : 0}`
+                  : '💡 每kg原料 = 每kg成品，无稀释'
+                }
+              </p>
 
               <div className="pt-4">
                 <button type="submit" disabled={submitting} className="w-full py-5 bg-slate-900 text-white font-black uppercase tracking-widest rounded-[24px] shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
