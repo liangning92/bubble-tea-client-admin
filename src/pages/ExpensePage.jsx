@@ -145,12 +145,12 @@ export default function ExpensePage() {
       </div>
 
       <div className="card mb-4">
-        <h3 className="font-bold mb-3">📅 按日期筛选</h3>
+        <h3 className="font-bold mb-3">📅 {t.filterByDate}</h3>
         <div className="flex gap-2 items-center">
           <input type="date" className="input flex-1" value={startDate} onChange={e => setStartDate(e.target.value)} />
           <span className="text-gray-400">-</span>
           <input type="date" className="input flex-1" value={endDate} onChange={e => setEndDate(e.target.value)} />
-          <button onClick={() => { setStartDate(''); setEndDate(''); }} className="btn btn-secondary btn-sm">清除</button>
+          <button onClick={() => { setStartDate(''); setEndDate(''); }} className="btn btn-secondary btn-sm">{t.clear}</button>
         </div>
       </div>
 
