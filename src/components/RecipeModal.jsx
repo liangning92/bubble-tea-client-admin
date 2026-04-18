@@ -145,7 +145,7 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
           {/* 售价 */}
           <div>
             <label className="block text-sm font-medium mb-1">
-              {lang === 'zh' ? '售价 (Rp)' : 'Harga Jual (Rp)'}
+              {t('sellingPrice')}
             </label>
             <input
               type="number"
@@ -161,14 +161,14 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
           <div>
             <div className="flex justify-between items-center mb-2">
               <label className="block text-sm font-medium">
-                {lang === 'zh' ? '原料配方' : 'Bahan Resep'}
+                {t('recipeIngredients')}
               </label>
               <button
                 type="button"
                 onClick={addIngredient}
                 className="text-sm text-blue-500 hover:text-blue-700"
               >
-                + {lang === 'zh' ? '添加原料' : 'Tambah Bahan'}
+                + {t('addIngredient')}
               </button>
             </div>
 
@@ -181,7 +181,7 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
                     onChange={e => updateIngredient(index, 'inventoryId', e.target.value)}
                   >
                     <option value="">
-                      {lang === 'zh' ? '选择原料' : 'Pilih Bahan'}
+                      {t('selectIngredient')}
                     </option>
                     {inventoryList.map(item => (
                       <option key={item.id} value={item.id}>
@@ -194,7 +194,7 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
                     className="input w-24"
                     value={ing.usageAmount}
                     onChange={e => updateIngredient(index, 'usageAmount', e.target.value)}
-                    placeholder={lang === 'zh' ? '用量' : 'Jumlah'}
+                    placeholder={t('usageAmount')}
                     min="0"
                     step="0.1"
                   />
@@ -218,12 +218,12 @@ export default function RecipeModal({ show, onClose, editRecipe, onSaved }) {
           {/* 按钮 */}
           <div className="flex gap-3 justify-end pt-4 border-t">
             <button type="button" onClick={onClose} className="btn btn-secondary">
-              {lang === 'zh' ? '取消' : 'Batal'}
+              {t('cancel')}
             </button>
             <button type="submit" className="btn btn-primary" disabled={loading}>
               {loading 
-                ? (lang === 'zh' ? '保存中...' : 'Menyimpan...')
-                : (lang === 'zh' ? '保存' : 'Simpan')}
+                ? t('saving')
+                : t('save')}
             </button>
           </div>
         </form>

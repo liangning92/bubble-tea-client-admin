@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { i18n } from '../i18n';
 
 /**
@@ -6,13 +7,14 @@ import { i18n } from '../i18n';
  * 用法：window.dispatchEvent(new CustomEvent('app:success', { detail: '操作成功' }))
  */
 export default function SuccessNotification() {
+  const { t } = useAuth();
   const [msg, setMsg] = useState('');
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const handler = (e) => {
       const lang = localStorage.getItem('lang') || 'zh';
-      setMsg(e.detail || i18n[lang]?.successGeneric || i18n.zh.successGeneric);
+      setMsg(e.detail || i18n[lang]?.successGeneric || i18n.zh.successGeneric || t('successGeneric'));
       setVisible(true);
       setTimeout(() => setVisible(false), 2500);
     };
@@ -32,6 +34,7 @@ export default function SuccessNotification() {
         <button
           onClick={() => setVisible(false)}
           className="text-green-400 hover:text-green-600 text-lg leading-none"
+          aria-label={t('close')}
         >
           ×
         </button>

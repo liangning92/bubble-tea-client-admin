@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PermissionModules, PermissionOptions, PermissionLevel, SalaryViewLevel } from '../utils/permissions';
+import { useAuth } from '../context/AuthContext';
 
 /**
  * 权限设置面板
@@ -10,7 +11,8 @@ import { PermissionModules, PermissionOptions, PermissionLevel, SalaryViewLevel 
  * @param {Function} props.onSalaryViewChange - 薪资查看权限变更回调 (salaryView) => void
  * @param {string} props.lang - 当前语言
  */
-export default function PermissionPanel({ permissions = {}, onChange, salaryView = 'all', onSalaryViewChange, lang = 'zh' }) {
+export default function PermissionPanel({ permissions = {}, onChange, salaryView = 'all', onSalaryViewChange, lang }) {
+  const { t } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
 
   const getLabel = (item, field) => {
@@ -62,7 +64,7 @@ export default function PermissionPanel({ permissions = {}, onChange, salaryView
     <div className="permission-panel border rounded-2xl p-3 bg-gray-50/50">
       <div className="flex justify-between items-center mb-2">
         <h4 className="font-black text-slate-900 text-[13px] uppercase tracking-widest outline-none">
-          🔐 {lang === 'zh' ? '权限设置' : lang === 'en' ? 'Permission Settings' : 'Pengaturan Izin'}
+          🔐 {t('permissionSettings')}
         </h4>
         <div className="flex gap-1.5 flex-wrap">
           <button
@@ -70,14 +72,14 @@ export default function PermissionPanel({ permissions = {}, onChange, salaryView
             onClick={() => setCollapsed(!collapsed)}
             className="text-[12px] font-black text-slate-400 hover:text-slate-900 uppercase tracking-widest px-2"
           >
-            {collapsed ? (lang === 'zh' ? '展开' : 'Expand') : (lang === 'zh' ? '收起' : 'Collapse')}
+            {collapsed ? t('expand') : t('collapse')}
           </button>
           <button
             type="button"
             onClick={resetToNewHire}
             className="px-2 py-1 bg-white border border-slate-100 text-slate-400 hover:text-rose-500 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all"
           >
-            🌱 {lang === 'zh' ? '清空' : lang === 'en' ? 'Clear' : 'Bersihkan'}
+            🌱 {t('clear')}
           </button>
           <button
             type="button"
@@ -89,7 +91,7 @@ export default function PermissionPanel({ permissions = {}, onChange, salaryView
             }}
             className="px-2 py-1 bg-slate-900 text-white hover:bg-black rounded-lg text-[11px] font-black uppercase tracking-widest transition-all"
           >
-             👑 {lang === 'zh' ? '店长' : 'Manager'}
+             👑 {t('roleManager')}
           </button>
           <button
             type="button"
@@ -104,7 +106,7 @@ export default function PermissionPanel({ permissions = {}, onChange, salaryView
             }}
             className="px-2 py-1 bg-white border border-slate-100 text-slate-500 hover:border-slate-900 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all"
           >
-             ☕ {lang === 'zh' ? '店员' : 'Staff'}
+             ☕ {t('roleCrew')}
           </button>
         </div>
       </div>
@@ -136,7 +138,7 @@ export default function PermissionPanel({ permissions = {}, onChange, salaryView
           <div className="mt-2 pt-2 border-t border-slate-100">
             <div className="flex items-center gap-2 bg-white/50 p-2 rounded-xl border border-slate-50">
               <span className="text-[12px] font-bold text-slate-600 w-24">
-                {lang === 'zh' ? '薪资查看权限' : lang === 'en' ? 'Salary View' : 'Akses Gaji'}
+                {t('salaryViewPermission')}
               </span>
               <select
                 className="bg-transparent text-[12px] font-black text-slate-900 flex-1 outline-none appearance-none cursor-pointer"
@@ -156,9 +158,7 @@ export default function PermissionPanel({ permissions = {}, onChange, salaryView
 
       {collapsed && (
         <div className="text-sm text-gray-500">
-          {lang === 'zh' ? `已设置 ${Object.keys(permissions).length} 个模块权限`
-            : lang === 'en' ? `${Object.keys(permissions).length} modules configured`
-            : `${Object.keys(permissions).length} modul dikonfigurasi`}
+          {t('modulesConfigured', { count: Object.keys(permissions).length })}
         </div>
       )}
     </div>

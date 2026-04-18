@@ -18,12 +18,14 @@ export default function AttendancePage() {
   const loadAttendance = async () => {
     setLoading(true);
     try {
-      const res = await api('GET', '/staff/attendance');
-      if (res && !res.error) setRecords(res);
-      else {
+      const res = await api('GET', '/attendance');
+      if (Array.isArray(res)) {
+        setRecords(res);
+      } else {
+        // API error or non-array response — use demo data
         setRecords([
-          { id: 1, name: '梁宁 (店长)', date: '2024-04-14', in: '09:00', out: '21:05', status: '正常', photo: '✅ 环境图已验', time: '21:05' },
-          { id: 2, name: '收银员 A', date: '2024-04-14', in: '10:15', out: '18:10', status: '迟到', photo: '❌ 缺卫生图', time: '18:10' },
+          { id: 1, name: '梁宁 (店长)', date: '2024-04-14', in: '09:00', out: '21:05', status: '正常', photo: '✅ 环境图已验' },
+          { id: 2, name: '收银员 A', date: '2024-04-14', in: '10:15', out: '18:10', status: '迟到', photo: '❌ 缺卫生图' },
         ]);
       }
     } catch (e) {
@@ -119,7 +121,7 @@ export default function AttendancePage() {
                     </span>
                   </td>
                   <td className="p-8 text-right">
-                    <div className={`text-[12px] font-black uppercase tracking-widest flex items-center justify-end gap-2 ${rec.photo.includes('✅') ? 'text-emerald-500' : 'text-orange-500 animate-pulse'}`}>
+                    <div className={`text-[12px] font-black uppercase tracking-widest flex items-center justify-end gap-2 ${(rec.photo || '').includes('✅') ? 'text-emerald-500' : 'text-orange-500 animate-pulse'}`}>
                       {rec.photo}
                       <button 
                         onClick={() => setSelectedDoc(rec)}

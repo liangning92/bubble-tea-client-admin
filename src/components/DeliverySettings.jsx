@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { api, useAuth } from '../context/AuthContext';
 
 export default function DeliverySettings() {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [showKeys, setShowKeys] = useState(false);
@@ -144,14 +144,14 @@ export default function DeliverySettings() {
         {/* 全局加价控制 */}
         <div className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm space-y-8">
           <div className="flex justify-between items-start">
-            <h4 className="text-xl font-black text-slate-800">全局调价中心</h4>
+            <h4 className="text-xl font-black text-slate-800">{t('globalPriceCenter')}</h4>
             <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[14px] font-black rounded-full uppercase tracking-widest">Base Layer</span>
           </div>
           
           <div className="space-y-8">
             <div className="space-y-4">
                <div className="flex justify-between items-end px-2">
-                 <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest">一键全局加价比例 (Common %)</label>
+                 <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('globalMarkupRatio')}</label>
                  <span className="text-3xl font-black text-indigo-600">{config.deliveryPriceMarkup}%</span>
                </div>
                <input 
@@ -161,13 +161,13 @@ export default function DeliverySettings() {
                  onChange={(e) => setConfig({ ...config, deliveryPriceMarkup: parseInt(e.target.value) })}
                  className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                />
-               <p className="text-[14px] text-slate-400 font-medium ">此比例将应用于所有未设置独立加价的品类。</p>
+               <p className="text-[14px] text-slate-400 font-medium ">{t('globalMarkupDesc')}</p>
             </div>
 
             <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100 flex items-center justify-between">
               <div>
-                <p className="font-bold text-slate-800 text-sm">自动确认接单 (Auto-Process)</p>
-                <p className="text-[14px] text-slate-400 font-medium mt-0.5">自动处理待接订单，减少人工漏单</p>
+                <p className="font-bold text-slate-800 text-sm">{t('autoAcceptOrders')}</p>
+                <p className="text-[14px] text-slate-400 font-medium mt-0.5">{t('autoAcceptOrdersDesc')}</p>
               </div>
               <button 
                 onClick={() => handleSave({ ...config, deliveryAutoAccept: !config.deliveryAutoAccept })}
@@ -183,10 +183,10 @@ export default function DeliverySettings() {
         <div className="bg-slate-950 p-10 rounded-[48px] text-white shadow-2xl space-y-8 relative overflow-hidden">
           <div className="relative z-10">
             <div className="flex justify-between items-start">
-               <h4 className="text-xl font-black text-white">品类独立加价</h4>
+               <h4 className="text-xl font-black text-white">{t('categoryMarkup')}</h4>
                <span className="px-3 py-1 bg-white/10 text-white/60 text-[14px] font-black rounded-full uppercase tracking-widest border border-white/10">Priority Override</span>
             </div>
-            <p className="text-[14px] text-slate-400 font-medium mt-2">品类加价优先级最高。若此处有值，则该品类忽略全局加价。</p>
+            <p className="text-[14px] text-slate-400 font-medium mt-2">{t('categoryMarkupDesc')}</p>
           </div>
 
           <div className="relative z-10 space-y-4 max-h-[300px] overflow-y-auto pr-4 custom-scrollbar">
@@ -222,7 +222,7 @@ export default function DeliverySettings() {
       <div className="p-8 bg-amber-50 rounded-[40px] border border-amber-100 flex items-center gap-6">
          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl shadow-sm">⚠️</div>
          <p className="text-[13px] text-amber-900 font-bold leading-relaxed">
-           <b>价格同步警告：</b> 调价生效可能受外卖平台接口限频影响。大面积调价建议在非高峰期进行。更改后的价格将自动更新至门店收银端及关联的所有外卖渠道。
+           <b>{t('priceSyncWarning')}</b> {t('priceSyncWarningDesc')}
          </p>
       </div>
 

@@ -20,9 +20,9 @@ export default function POSQuickActions({
 
   // 支付方式列表
   const paymentMethods = [
-    { key: 'cash', label: t('cash') || '现金', icon: '💵', color: 'bg-green-500' },
-    { key: 'qrcode', label: t('qrCode') || '二维码', icon: '📱', color: 'bg-blue-500' },
-    { key: 'card', label: t('card') || '银行卡', icon: '💳', color: 'bg-purple-500' },
+    { key: 'cash', label: t('cash'), icon: '💵', color: 'bg-green-500' },
+    { key: 'qrcode', label: t('qrCode'), icon: '📱', color: 'bg-blue-500' },
+    { key: 'card', label: t('card'), icon: '💳', color: 'bg-purple-500' },
   ];
 
   // 处理支付方式切换
@@ -51,12 +51,12 @@ export default function POSQuickActions({
       
       // 显示成功提示
       window.dispatchEvent(new CustomEvent('app:success', { 
-        detail: t('cashDrawerOpened') || '钱箱已打开' 
+        detail: t('cashDrawerOpened') 
       }));
     } catch (err) {
       console.error('Cash drawer error:', err);
       window.dispatchEvent(new CustomEvent('app:error', { 
-        detail: t('cashDrawerFailed') || '钱箱打开失败' 
+        detail: t('cashDrawerFailed') 
       }));
     } finally {
       setLoading(null);
@@ -91,12 +91,12 @@ export default function POSQuickActions({
       if (onPrintReceipt) onPrintReceipt();
       
       window.dispatchEvent(new CustomEvent('app:success', { 
-        detail: t('printStarted') || '打印中...' 
+        detail: t('printStarted') 
       }));
     } catch (err) {
       console.error('Print error:', err);
       window.dispatchEvent(new CustomEvent('app:error', { 
-        detail: t('printFailed') || '打印失败' 
+        detail: t('printFailed') 
       }));
     } finally {
       setLoading(null);
@@ -109,7 +109,7 @@ export default function POSQuickActions({
         {/* 支付方式切换 */}
         <div className="flex items-center gap-2">
           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mr-2">
-            {t('paymentMethod') || '支付':
+            {t('paymentMethod')
             </span>
           {paymentMethods.map((method) => (
             <button
@@ -138,10 +138,10 @@ export default function POSQuickActions({
             onClick={handleOpenCashDrawer}
             disabled={disabled || loading === 'cashdrawer'}
             className="flex items-center gap-2 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-bold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            title={t('openCashDrawer') || '开钱箱'}
+            title={t('openCashDrawer')}
           >
             <span className="text-lg">{loading === 'cashdrawer' ? '⏳' : '💰'}</span>
-            <span>{t('cashDrawer') || '钱箱'}</span>
+            <span>{t('cashDrawer')}</span>
           </button>
 
           {/* 打印小票 */}
@@ -149,10 +149,10 @@ export default function POSQuickActions({
             onClick={handlePrintReceipt}
             disabled={disabled || loading === 'print'}
             className="flex items-center gap-2 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-bold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            title={t('printReceipt') || '打印小票'}
+            title={t('printReceipt')}
           >
             <span className="text-lg">{loading === 'print' ? '⏳' : '🧾'}</span>
-            <span>{t('print') || '打印'}</span>
+            <span>{t('print')}</span>
           </button>
 
           {/* 取消订单 */}
@@ -160,10 +160,10 @@ export default function POSQuickActions({
             onClick={handleCancelOrder}
             disabled={disabled}
             className="flex items-center gap-2 px-4 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-2xl font-bold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            title={t('cancelOrder') || '取消订单'}
+            title={t('cancelOrder')}
           >
             <span className="text-lg">❌</span>
-            <span>{t('cancel') || '取消'}</span>
+            <span>{t('cancel')}</span>
           </button>
         </div>
       </div>
@@ -174,21 +174,21 @@ export default function POSQuickActions({
           <div className="bg-white rounded-[40px] p-8 w-full max-w-sm text-slate-900 animate-soft">
             <div className="text-center mb-6">
               <div className="text-5xl mb-4">⚠️</div>
-              <h3 className="text-xl font-black uppercase">{t('confirmCancelOrder') || '确认取消订单'}</h3>
-              <p className="text-sm text-slate-400 mt-2">{t('cancelOrderWarning') || '此操作不可恢复，订单将被清空'}</p>
+              <h3 className="text-xl font-black uppercase">{t('confirmCancelOrder')}</h3>
+              <p className="text-sm text-slate-400 mt-2">{t('cancelOrderWarning')}</p>
             </div>
             <div className="flex gap-4">
               <button
                 onClick={() => setShowCancelConfirm(false)}
                 className="flex-1 py-4 bg-slate-100 hover:bg-slate-200 rounded-2xl font-black uppercase tracking-widest transition-all"
               >
-                {t('back') || '返回'}
+                {t('back')}
               </button>
               <button
                 onClick={confirmCancelOrder}
                 className="flex-1 py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-black uppercase tracking-widest transition-all"
               >
-                {t('confirmCancel') || '确认取消'}
+                {t('confirmCancel')}
               </button>
             </div>
           </div>

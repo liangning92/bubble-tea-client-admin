@@ -6,7 +6,14 @@ const TABS = [
   { id: "quickActions", label: "快捷按钮" },
   { id: "payment", label: "支付设置" },
   { id: "receipt", label: "小票设置" },
-  { id: "categories", label: "分类配置" }
+  { id: "categories", label: "分类配置" },
+  { id: "language", label: "语言设置" }
+];
+
+const LANGUAGE_OPTIONS = [
+  { value: 'zh', label: '中文', flag: '🇨🇳', description: '简体中文界面' },
+  { value: 'en', label: 'English', flag: '🇬🇧', description: 'English interface' },
+  { value: 'id', label: 'Bahasa Indonesia', flag: '🇮🇩', description: 'Antarmuka Bahasa Indonesia' },
 ];
 
 const DEFAULT_CONFIG = {
@@ -22,8 +29,10 @@ const DEFAULT_CONFIG = {
     showCategoryBar: true,
     showQuickActions: true,
     showTodayStats: true,
-    showHygieneAlerts: true
+    showHygieneAlerts: true,
+    theme: 'dark'
   },
+  language: 'zh',
   categories: [
     { id: 1, name: "奶茶", icon: "🧋", enabled: true, sortOrder: 1 },
     { id: 2, name: "果汁", icon: "🍹", enabled: true, sortOrder: 2 },
@@ -454,6 +463,67 @@ export default function POSSettingsPage() {
             >
               + 添加分类
             </button>
+          </div>
+        )}
+
+        {/* Language Tab */}
+        {activeTab === "language" && (
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-black text-slate-900 mb-2">界面语言</h3>
+              <p className="text-sm text-slate-500 mb-6">设置收银机POS显示的语言</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {LANGUAGE_OPTIONS.map(langOpt => (
+                  <button
+                    key={langOpt.value}
+                    onClick={() => updateConfig("language", langOpt.value)}
+                    className={`p-6 rounded-2xl border-4 text-center transition-all ${
+                      config.language === langOpt.value
+                        ? "border-orange-500 bg-orange-50 shadow-lg"
+                        : "border-slate-200 hover:border-slate-300"
+                    }`}
+                  >
+                    <div className="text-4xl mb-3">{langOpt.flag}</div>
+                    <div className="font-black text-lg text-slate-900 mb-1">{langOpt.label}</div>
+                    <div className="text-sm text-slate-500">{langOpt.description}</div>
+                    {config.language === langOpt.value && (
+                      <div className="mt-3 text-orange-600 font-black text-sm">✓ 已选择</div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-slate-200 pt-6">
+              <h3 className="text-lg font-black text-slate-900 mb-2">主题颜色</h3>
+              <p className="text-sm text-slate-500 mb-4">设置收银机的主题外观</p>
+              <div className="grid grid-cols-3 gap-4">
+                {[
+                  { id: 'light', name: '纯净白', preview: '#f8fafc' },
+                  { id: 'dark', name: '深邃黑', preview: '#0f172a' },
+                  { id: 'orange', name: '活力橙', preview: '#fff7ed' },
+                ].map(themeOpt => (
+                  <button
+                    key={themeOpt.id}
+                    onClick={() => updateConfig("display.theme", themeOpt.id)}
+                    className={`p-4 rounded-2xl border-4 text-center transition-all ${
+                      config.display?.theme === themeOpt.id
+                        ? "border-orange-500 shadow-lg"
+                        : "border-slate-200 hover:border-slate-300"
+                    }`}
+                  >
+                    <div
+                      className="w-full h-16 rounded-xl mb-3"
+                      style={{ backgroundColor: themeOpt.preview, border: '1px solid #e2e8f0' }}
+                    />
+                    <div className="font-black text-sm text-slate-900">{themeOpt.name}</div>
+                    {config.display?.theme === themeOpt.id && (
+                      <div className="mt-2 text-orange-600 font-black text-sm">✓ 已选择</div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>

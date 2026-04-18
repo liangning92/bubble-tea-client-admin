@@ -25,29 +25,29 @@ export default function StaffReminderPopover({ config = {}, onDismiss }) {
     {
       key: 'clean',
       icon: '🧹',
-      title: t('cleanReminder') || '清洁提醒',
-      desc: t('cleanReminderDesc') || '请检查柜台、地面、设备清洁状态',
+      title: t('cleanReminder'),
+      desc: t('cleanReminderDesc'),
       color: 'from-blue-500 to-blue-600',
     },
     {
       key: 'shift',
       icon: '👥',
-      title: t('shiftReminder') || '交接班提醒',
-      desc: t('shiftReminderDesc') || '检查交接班记录，确保工作交接完整',
+      title: t('shiftReminder'),
+      desc: t('shiftReminderDesc'),
       color: 'from-purple-500 to-purple-600',
     },
     {
       key: 'ingredient',
       icon: '📦',
-      title: t('ingredientReminder') || '食材检查提醒',
-      desc: t('ingredientReminderDesc') || '请检查库存，及时补货',
+      title: t('ingredientReminder'),
+      desc: t('ingredientReminderDesc'),
       color: 'from-green-500 to-green-600',
     },
     {
       key: 'device',
       icon: '⚙️',
-      title: t('deviceReminder') || '设备巡检提醒',
-      desc: t('deviceReminderDesc') || '请检查制冰机、茶汤保温桶等设备状态',
+      title: t('deviceReminder'),
+      desc: t('deviceReminderDesc'),
       color: 'from-orange-500 to-orange-600',
     },
   ];
@@ -125,14 +125,14 @@ export default function StaffReminderPopover({ config = {}, onDismiss }) {
           <span className="text-xl">⏰</span>
         </div>
         <div className="text-right">
-          <div className="text-xs text-slate-400 font-bold uppercase">{t('nextReminder') || '下次提醒'}</div>
+          <div className="text-xs text-slate-400 font-bold uppercase">{t('nextReminder')}</div>
           <div className="text-lg font-black text-white tabular-nums">{formatTime(timeLeft)}</div>
         </div>
         <button
           onClick={handleTest}
           className="ml-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-xs font-bold text-slate-400 transition-all"
         >
-          {t('test') || '测试'}
+          {t('test')}
         </button>
       </div>
 
@@ -193,7 +193,7 @@ export default function StaffReminderPopover({ config = {}, onDismiss }) {
             {/* 设置提示 */}
             <div className="mt-6 pt-6 border-t border-slate-700/50">
               <p className="text-xs text-slate-500 text-center">
-                {t('reminderInterval') || '提醒间隔'}: {reminderConfig.intervalMinutes} {t('minutes') || '分钟'}
+                {t('reminderInterval')}: {reminderConfig.intervalMinutes} {t('minutes') || '分钟'}
               </p>
             </div>
           </div>

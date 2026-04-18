@@ -101,12 +101,12 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
         <div className="flex-1 p-8 flex flex-col">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-2 h-10 bg-orange-500 rounded-full" />
-            <h2 className="text-2xl font-black uppercase tracking-widest">{t('orderDetails') || '订单明细'}</h2>
+            <h2 className="text-2xl font-black uppercase tracking-widest">{t('orderDetails')}</h2>
           </div>
 
           {orderData?.orderNo && (
             <div className="mb-4 px-4 py-2 bg-slate-800/50 rounded-2xl inline-block">
-              <span className="text-sm text-slate-400">{t('orderNo') || '订单号'}: </span>
+              <span className="text-sm text-slate-400">{t('orderNo')}: </span>
               <span className="font-black text-orange-500">{orderData.orderNo}</span>
             </div>
           )}
@@ -135,7 +135,7 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center text-slate-500">
                 <div className="text-6xl mb-4">🛒</div>
-                <div className="text-xl font-black">{t('waitingForOrder') || '等待下单'}</div>
+                <div className="text-xl font-black">{t('waitingForOrder')}</div>
               </div>
             </div>
           )}
@@ -143,22 +143,22 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
           {/* 合计区域 */}
           <div className="mt-auto pt-6 border-t border-slate-700">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-lg text-slate-400">{t('subtotal') || '小计'}</span>
+              <span className="text-lg text-slate-400">{t('subtotal')}</span>
               <span className="text-xl font-black">¥{orderData?.subtotal || 0}</span>
             </div>
             {orderData?.discount > 0 && (
               <div className="flex justify-between items-center mb-2">
-                <span className="text-lg text-green-400">{t('discount') || '优惠'}</span>
+                <span className="text-lg text-green-400">{t('discount')}</span>
                 <span className="text-xl font-black text-green-400">-¥{orderData.discount}</span>
               </div>
             )}
             <div className="flex justify-between items-center">
-              <span className="text-2xl font-black">{t('total') || '合计'}</span>
+              <span className="text-2xl font-black">{t('total')}</span>
               <span className="text-4xl font-black text-orange-500">¥{orderData?.totalAmount || 0}</span>
             </div>
             {orderData?.change !== undefined && orderData?.change > 0 && (
               <div className="flex justify-between items-center mt-2 text-slate-400">
-                <span>{t('change') || '找零'}</span>
+                <span>{t('change')}</span>
                 <span className="text-lg font-black">¥{orderData.change}</span>
               </div>
             )}
@@ -168,7 +168,7 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
         {/* 右侧：支付二维码 */}
         {displayConfig.showQR && (
           <div className="w-80 p-6 flex flex-col items-center justify-center bg-slate-800/30 rounded-3xl border border-slate-700/30 m-4">
-            <div className="text-xl font-black uppercase tracking-widest mb-6">{t('scanToPay') || '扫码支付'}</div>
+            <div className="text-xl font-black uppercase tracking-widest mb-6">{t('scanToPay')}</div>
             <div className="w-48 h-48 bg-white rounded-3xl p-4 mb-6">
               {/* 模拟二维码 */}
               <div className="w-full h-full bg-slate-900 rounded-2xl flex items-center justify-center">
@@ -180,7 +180,7 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
               </div>
             </div>
             <div className="text-2xl font-black text-orange-500">¥{orderData?.totalAmount || 0}</div>
-            <div className="text-sm text-slate-400 mt-2">{t('paymentQRDesc') || '请使用微信/支付宝扫码支付'}</div>
+            <div className="text-sm text-slate-400 mt-2">{t('paymentQRDesc')}</div>
           </div>
         )}
       </div>
@@ -200,7 +200,7 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
 
         {/* 动态考勤码 */}
         <div className="w-80 p-6 flex flex-col items-center justify-center bg-slate-950/50 m-4 rounded-3xl border border-slate-700/30">
-          <div className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">{t('staffCheckIn') || '员工考勤'}</div>
+          <div className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">{t('staffCheckIn')}</div>
           <div className="w-32 h-32 bg-white rounded-2xl p-2 mb-4">
             <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center">
               <div className="grid grid-cols-5 gap-0.5 p-1">
@@ -210,7 +210,7 @@ export default function CustomerDisplayScreen({ orderData, config = {} }) {
               </div>
             </div>
           </div>
-          <div className="text-xs text-slate-500">{t('refreshInterval') || '每30秒刷新'}</div>
+          <div className="text-xs text-slate-500">{t('refreshInterval')}</div>
         </div>
       </div>
     </div>

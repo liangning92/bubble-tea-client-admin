@@ -32,12 +32,13 @@ export default function POSHardwareConfig() {
     try {
       const res = await api('GET', '/system/config');
       if (res && !res.error) {
+        const dualConfig = res.posDualConfig || {};
         setConfig({
-          ...config,
-          ...res,
-          modules: res.modules || config.modules,
-          customerDisplay: res.customerDisplay || config.customerDisplay,
-          permissions: res.permissions || config.permissions,
+          mode: dualConfig.mode || res.posDisplayMode || 'dual',
+          modules: dualConfig.modules || config.modules,
+          customerDisplay: dualConfig.customerDisplay || config.customerDisplay,
+          permissions: dualConfig.permissions || config.permissions,
+          posHardwareLogs: [],
         });
       }
     } catch (e) {
@@ -51,10 +52,20 @@ export default function POSHardwareConfig() {
 
   const handleSave = async (newCfg = config) => {
     try {
-      await api('POST', '/system/config', newCfg);
+      const payload = {
+        posDisplayMode: newCfg.mode,
+        posDualConfig: {
+          mode: newCfg.mode,
+          modules: newCfg.modules,
+          customerDisplay: newCfg.customerDisplay,
+          permissions: newCfg.permissions,
+        },
+      };
+      await api('POST', '/system/config', payload);
       window.dispatchEvent(new CustomEvent('app:success', { detail: t('syncSuccess') }));
     } catch (e) {
       console.error(e);
+      window.dispatchEvent(new CustomEvent('app:error', { detail: t('syncFailed') }));
     }
   };
 

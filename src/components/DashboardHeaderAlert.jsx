@@ -144,17 +144,17 @@ const DashboardHeaderAlert = () => {
               
               <div>
                 <h3 className="font-bold text-lg">
-                  {t?.dashboardAlerts || '异常提醒'}
+                  {t('dashboardAlerts')}
                 </h3>
                 <p className="text-sm text-red-100 opacity-90">
-                  {t?.dashboardAlertsDesc || '点击查看详细分类'}
+                  {t('dashboardAlertsDesc')}
                 </p>
               </div>
             </div>
             
             <div className="flex items-center gap-2">
               <span className="text-sm">
-                {expanded ? (t?.collapse || '收起') : (t?.expand || '展开')}
+                {expanded ? t('collapse') : t('expand')}
               </span>
               <svg 
                 className={`w-5 h-5 transform transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`}
@@ -197,7 +197,7 @@ const DashboardHeaderAlert = () => {
                   </p>
                   <div className="flex items-center justify-between text-[14px]">
                     <span className="opacity-80">
-                      {t?.clickToView || '点击查看详情'}
+                      {t('clickToView')}
                     </span>
                     <svg 
                       className="w-4 h-4" 
@@ -230,7 +230,7 @@ const DashboardHeaderAlert = () => {
             <div className="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
               <div className="flex items-center gap-2 text-gray-600">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
-                <span className="text-sm">{t?.loading || '加载中...'}</span>
+                <span className="text-sm">{t('loading')}</span>
               </div>
             </div>
           )}

@@ -1,145 +1,242 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth, api } from '../context/AuthContext';
+import { api } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
-export default function TrainingPage({ hideHeader }) {
+export default function TrainingPage() {
   const { t } = useAuth();
   const [courses, setCourses] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [form, setForm] = useState({
+    title: '', content: '', category: 'general', difficulty: 'basic',
+    duration: 30, passingScore: 60, questions: [], examTitle: ''
+  });
+  const [questionForm, setQuestionForm] = useState({ question: '', options: ['', '', '', ''], answer: 0, score: 10 });
   const [loading, setLoading] = useState(true);
-  const [selectedCourse, setSelectedCourse] = useState(null);
-  const [quiz, setQuiz] = useState(null);
 
-  const loadData = async () => {
-    setLoading(true);
+  useEffect(() => { loadCourses(); }, []);
+
+  async function loadCourses() {
     try {
-      const res = await api('GET', '/training');
-      if (res && !res.error) {
-        const results = Array.isArray(res) ? res : (res?.data || []);
-        setCourses([
-          { id: 'sop', title: t('sopTitle'), category: t('productCategory'), enrolled: 12, completed: results.filter(r => r.title.includes('SOP')).length },
-          { id: 'hygiene', title: t('hygieneTitle'), category: t('hygieneCategory'), enrolled: 15, completed: results.filter(r => r.title.includes('Hygiene')).length },
-          { id: 'service', title: t('serviceTitle'), category: t('serviceCategory'), enrolled: 8, completed: results.filter(r => r.title.includes('Service')).length },
-        ]);
-      } else {
-        setCourses([]);
-      }
-    } catch (e) {
-      console.error(e);
-      setCourses([]);
-    } finally {
-      setLoading(false);
+      const res = await api('GET', '/training/courses');
+      setCourses(res?.data || []);
+    } catch {}
+    setLoading(false);
+  }
+
+  function openAdd() {
+    setEditingId(null);
+    setForm({ title: '', content: '', category: 'general', difficulty: 'basic', duration: 30, passingScore: 60, questions: [], examTitle: '' });
+    setShowModal(true);
+  }
+
+  function openEdit(c) {
+    setEditingId(c.id);
+    setForm({
+      title: c.title, content: c.content, category: c.category,
+      difficulty: c.difficulty, duration: c.duration, passingScore: c.passingScore,
+      questions: [], examTitle: c.exam?.title || ''
+    });
+    setShowModal(true);
+  }
+
+  function addQuestion() {
+    if (!questionForm.question.trim()) return;
+    setForm(f => ({
+      ...f,
+      questions: [...f.questions, { ...questionForm }]
+    }));
+    setQuestionForm({ question: '', options: ['', '', '', ''], answer: 0, score: 10 });
+  }
+
+  function removeQuestion(idx) {
+    setForm(f => ({ ...f, questions: f.questions.filter((_, i) => i !== idx) }));
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const payload = { ...form };
+    if (editingId) {
+      await api('PUT', `/training/courses/${editingId}`, payload);
+    } else {
+      await api('POST', '/training/courses', payload);
     }
+    setShowModal(false);
+    loadCourses();
+  }
+
+  async function handleDelete(id) {
+    if (!confirm(t('deleteConfirmGeneric') || '确定删除吗？')) return;
+    await api('DELETE', `/training/courses/${id}`);
+    loadCourses();
+  }
+
+  const categories = {
+    general: t('catGeneral') || '通用',
+    hygiene: t('hygiene') || '卫生',
+    ops: t('catOps') || '操作',
+    safety: t('safety') || '安全'
   };
-
-  useEffect(() => { loadData(); }, []);
-
-  const generateQuiz = async (course) => {
-    setSelectedCourse(course);
-    try {
-      // Functional Fix: Backend expects 'content', not 'title'
-      const res = await api('POST', '/training/generate-exam', { content: course.title });
-      if (res && !res.error) {
-        setQuiz({
-          title: course.title + ' - AI 审计',
-          questions: res.questions || [
-            { q: '珍珠波霸的储藏温度应保持在多少摄氏度？', a: '65-70C' }
-          ]
-        });
-        window.dispatchEvent(new CustomEvent('app:success', { detail: t('quizSuccess') }));
-      }
-    } catch (e) {
-      console.error(e);
-    }
+  const difficulties = {
+    basic: t('levelBasic') || '基础',
+    intermediate: t('levelIntermediate') || '进阶',
+    advanced: t('levelAdvanced') || '高级'
   };
-
-  if (loading) return <div className="py-24 text-center text-label-caps animate-pulse tracking-widest">{t('initializingLearning')}</div>;
 
   return (
-    <div className="space-y-12 animate-soft text-slate-900">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 px-4">
-        {!hideHeader ? (
-          <div className="space-y-4">
-            <h3 className="text-h1 uppercase  tracking-tight">{t('trainingHub')}</h3>
-            <p className="text-label-caps !text-slate-400">{t('trainingSubtitle')}</p>
-          </div>
-        ) : <div className="flex-1" />}
-        <button className="btn-premium active !bg-slate-900 !text-white !px-10 !py-3 !scale-100 hover:scale-105 active:scale-95 transition-all border-none font-black text-[13px] uppercase tracking-widest shadow-xl shadow-slate-900/10">
-           ➕ {t('uploadCourse')}
+    <div className="p-6">
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-black text-slate-800">📚 {t('trainingManagement') || '培训管理'}</h1>
+        <button onClick={openAdd} className="px-4 py-2 bg-orange-500 text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-colors">
+          + {t('createCourse') || '创建课程'}
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="lg:col-span-2 space-y-8">
-           {courses.map(course => (
-             <div key={course.id} className="card-premium !p-10 group hover:border-slate-300 transition-all border-slate-50 bg-white !rounded-[40px] shadow-sm hover:shadow-xl">
-                <div className="flex justify-between items-start flex-wrap gap-6">
-                   <div className="space-y-4">
-                      <span className="px-3 py-1 bg-slate-100 text-slate-400 text-[14px] font-black rounded-lg uppercase tracking-widest border border-slate-200">{course.category}</span>
-                      <h4 className="text-2xl font-black text-slate-900 tracking-tighter">{course.title}</h4>
-                   </div>
-                    <div className="text-right">
-                       <p className="text-label-caps mb-1">{t('completion')}</p>
-                       <div className="text-3xl font-black text-slate-900 tracking-tighter">{Math.round((course.completed/course.enrolled)*100)}%</div>
-                    </div>
-                </div>
-
-                 <div className="mt-10 flex flex-col md:flex-row justify-between items-center bg-slate-50/50 p-8 rounded-[32px] border border-slate-100 gap-8 group-hover:bg-slate-50 transition-colors">
-                    <div className="flex items-center gap-4">
-                       <span className="text-label-caps text-slate-900 border-r border-slate-200 pr-5">{t('enrolledStaff')}</span>
-                       <span className="text-2xl font-black text-slate-900">{course.enrolled}</span>
-                    </div>
-                   <div className="flex gap-4 w-full md:w-auto">
-                      <button className="flex-1 md:flex-none px-8 py-3.5 bg-white text-[14px] font-black uppercase tracking-widest border border-slate-200 rounded-2xl hover:bg-slate-100 transition-all shadow-sm active:scale-95">{t('previewContent')}</button>
-                      <button onClick={() => generateQuiz(course)} className="flex-1 md:flex-none px-8 py-3.5 bg-slate-900 text-marigold text-[14px] font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all shadow-2xl shadow-slate-900/10 active:scale-95">⚡ {t('generateQuiz')}</button>
-                   </div>
-                </div>
-             </div>
-           ))}
+      {loading ? (
+        <div className="text-center py-20 text-slate-400">{t('loading') || '加载中...'}</div>
+      ) : courses.length === 0 ? (
+        <div className="text-center py-20 text-slate-400 bg-white rounded-2xl shadow-sm">
+          <div className="text-5xl mb-4">📚</div>
+          <div>{t('noData') || '暂无培训课程'}</div>
+          <button onClick={openAdd} className="mt-4 px-6 py-2 bg-orange-500 text-white rounded-xl font-bold">{t('createFirstCourse') || '创建第一个课程'}</button>
         </div>
+      ) : (
+        <div className="grid gap-4">
+          {courses.map(c => (
+            <div key={c.id} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="font-black text-lg text-slate-800">{c.title}</h3>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${c.status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>
+                      {c.status === 'active' ? (t('active') || '启用') : (t('archived') || '已归档')}
+                    </span>
+                  </div>
+                  <div className="flex gap-3 text-xs text-slate-400 mb-2">
+                    <span>{categories[c.category] || c.category}</span>
+                    <span>·</span>
+                    <span>{difficulties[c.difficulty] || c.difficulty}</span>
+                    <span>·</span>
+                    <span>{c.duration}{t('minutes') || '分钟'}</span>
+                    <span>·</span>
+                    <span>{t('passScore') || '及格'}{c.passingScore}{t('scoreUnit') || '分'}</span>
+                  </div>
+                  <div className="text-sm text-slate-500 line-clamp-2">{c.content?.substring(0, 100)}</div>
+                  {c.exam && (
+                    <div className="mt-2 flex items-center gap-2">
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">
+                        📝 {c.exam.questions ? JSON.parse(c.exam.questions).length : 0} {t('questions') || '题'}
+                      </span>
+                      <span className="text-xs text-slate-400">{c.exam.title}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="flex gap-2 ml-4">
+                  <button onClick={() => openEdit(c)} className="px-3 py-1.5 text-xs font-bold bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200">{t('edit') || '编辑'}</button>
+                  <button onClick={() => handleDelete(c.id)} className="px-3 py-1.5 text-xs font-bold bg-red-50 text-red-600 rounded-lg hover:bg-red-100">{t('delete') || '删除'}</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
-        <div className="space-y-10">
-           {quiz ? (
-              <div className="card-premium border-slate-900/10 bg-slate-50/20 !p-10 space-y-8 animate-soft shadow-2xl !rounded-[48px] relative overflow-hidden">
-                 <div className="absolute top-0 right-0 w-32 h-32 bg-slate-900 opacity-5 blur-[60px] rounded-full -mr-16 -mt-16"></div>
-                 <div className="flex justify-between items-center border-b border-slate-100 pb-6 relative z-10">
-                    <h4 className="text-xl font-black text-slate-900  tracking-tighter uppercase">{t('quizPreview')}</h4>
-                    <button onClick={() => setQuiz(null)} className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-[14px] font-black text-slate-400 hover:bg-slate-900 hover:text-white transition-all shadow-sm">✕</button>
-                 </div>
-                 <div className="space-y-4 relative z-10">
-                    {quiz.questions.map((q, i) => (
-                      <div key={i} className="space-y-4 bg-white p-6 rounded-[28px] border border-slate-100 shadow-sm">
-                         <p className="text-[14px] font-black text-slate-800 leading-relaxed uppercase tracking-tight">Q{i+1}: {q.q}</p>
-                         <p className="text-[14px] text-slate-400 font-black uppercase mt-2 pt-2 border-t border-slate-50 tracking-widest">
-                           <span className="text-emerald-500">{t('correctAnswer')}</span> <span className="text-slate-900 font-mono">{q.a}</span>
-                         </p>
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowModal(false)}>
+          <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6" onClick={e => e.stopPropagation()}>
+            <h2 className="text-lg font-black mb-4">{editingId ? (t('editCourse') || '编辑课程') : (t('createNewCourse') || '创建新课程')}</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('courseTitle') || '课程标题'} *</label>
+                <input className="input-premium w-full" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} required placeholder={t('courseTitlePlaceholder') || '如：卫生清洁操作规范'} />
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('category') || '分类'}</label>
+                  <select className="input-premium w-full" value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
+                    <option value="general">{t('catGeneral') || '通用'}</option>
+                    <option value="hygiene">{t('hygiene') || '卫生'}</option>
+                    <option value="ops">{t('catOps') || '操作'}</option>
+                    <option value="safety">{t('safety') || '安全'}</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('difficulty') || '难度'}</label>
+                  <select className="input-premium w-full" value={form.difficulty} onChange={e => setForm(f => ({ ...f, difficulty: e.target.value }))}>
+                    <option value="basic">{t('levelBasic') || '基础'}</option>
+                    <option value="intermediate">{t('levelIntermediate') || '进阶'}</option>
+                    <option value="advanced">{t('levelAdvanced') || '高级'}</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('duration') || '时长'}({t('minutes') || '分钟'})</label>
+                  <input type="number" className="input-premium w-full" value={form.duration} onChange={e => setForm(f => ({ ...f, duration: parseInt(e.target.value) || 30 }))} />
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('trainingContent') || '培训内容'} *</label>
+                <textarea className="input-premium w-full h-32 resize-none" value={form.content} onChange={e => setForm(f => ({ ...f, content: e.target.value }))} placeholder={t('trainingContentPlaceholder') || '请输入培训内容...'} required />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('passScore') || '及格分数'}</label>
+                  <input type="number" className="input-premium w-full" value={form.passingScore} onChange={e => setForm(f => ({ ...f, passingScore: parseInt(e.target.value) || 60 }))} />
+                </div>
+                <div>
+                  <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('examTitle') || '考试标题'}</label>
+                  <input className="input-premium w-full" value={form.examTitle} onChange={e => setForm(f => ({ ...f, examTitle: e.target.value }))} placeholder={t('examTitlePlaceholder') || '如：卫生规范考试'} />
+                </div>
+              </div>
+
+              <div className="border-t border-slate-100 pt-4">
+                <div className="text-xs font-black text-slate-400 uppercase mb-3">📝 {t('questionEntry') || '试题录入'}</div>
+                <div className="bg-slate-50 rounded-xl p-4 space-y-3">
+                  <input className="input-premium w-full" value={questionForm.question} onChange={e => setQuestionForm(q => ({ ...q, question: e.target.value }))} placeholder={t('questionContent') || '题目内容'} />
+                  <div className="grid grid-cols-2 gap-2">
+                    {questionForm.options.map((opt, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer ${questionForm.answer === i ? 'bg-emerald-500 text-white' : 'bg-slate-200 text-slate-500'}`}
+                          onClick={() => setQuestionForm(q => ({ ...q, answer: i }))}>{String.fromCharCode(65 + i)}</span>
+                        <input className="input-premium flex-1 text-sm" value={opt} onChange={e => {
+                          const opts = [...questionForm.options]; opts[i] = e.target.value; setQuestionForm(q => ({ ...q, options: opts }));
+                        }} placeholder={`${t('option') || '选项'}${String.fromCharCode(65 + i)}`} />
                       </div>
                     ))}
-                 </div>
-                 <button className="w-full btn-premium active !bg-slate-900 !text-white border-none mt-4 text-[14px] font-black uppercase tracking-widest !h-16 shadow-2xl shadow-slate-900/20 !rounded-[28px] hover:scale-105 transition-all relative z-10">
-                    {t('activateAssessment')}
-                 </button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-slate-500">{t('score') || '分值'}:</span>
+                    <input type="number" className="input-premium w-20 text-sm" value={questionForm.score} onChange={e => setQuestionForm(q => ({ ...q, score: parseInt(e.target.value) || 10 }))} />
+                    <button type="button" onClick={addQuestion} className="px-4 py-1.5 bg-emerald-500 text-white rounded-lg text-sm font-bold">+ {t('add') || '添加'}</button>
+                  </div>
+                </div>
+                {form.questions.length > 0 && (
+                  <div className="mt-3 space-y-2">
+                    {form.questions.map((q, i) => (
+                      <div key={i} className="bg-white rounded-xl p-3 border border-slate-200 text-sm">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <span className="font-bold text-orange-600 mr-2">Q{i + 1}.</span>
+                            <span>{q.question}</span>
+                            <div className="text-xs text-slate-400 mt-1">
+                              {t('answer') || '答案'}: {String.fromCharCode(65 + q.answer)} · {q.options[q.answer] || `(${t('notFilled') || '未填写'})`} · {q.score}{t('scoreUnit') || '分'}
+                            </div>
+                          </div>
+                          <button type="button" onClick={() => removeQuestion(i)} className="text-red-500 text-xs font-bold ml-2">{t('delete') || '删除'}</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-           ) : (
-              <div className="card-premium bg-slate-50 border border-slate-100 !p-12 text-center space-y-10 shadow-sm !rounded-[48px] relative overflow-hidden group">
-                 <div className="absolute top-0 left-0 w-2 h-full bg-slate-900 opacity-80"></div>
-                 <div className="w-24 h-24 bg-white shadow-sm rounded-[40px] flex items-center justify-center text-4xl mx-auto border border-white relative z-10 group-hover:rotate-12 transition-transform">🤖</div>
-                 <div className="space-y-4 relative z-10">
-                    <h4 className="text-2xl font-black tracking-tighter  uppercase text-slate-900">{t('aiTrainingHub')}</h4>
-                    <p className="text-[13px] text-slate-400 font-bold leading-relaxed uppercase tracking-tight">{t('aiTrainingDesc')}</p>
-                 </div>
-              </div>
-           )}
 
-           <div className="p-10 bg-white rounded-[40px] border border-slate-100 shadow-sm flex items-start gap-6 hover:shadow-md transition-shadow">
-              <span className="text-3xl mt-1">💡</span>
-              <div className="space-y-4">
-                 <h5 className="text-[15px] font-black text-slate-900 uppercase tracking-tighter ">{t('certificationTitle')}</h5>
-                 <p className="text-[14px] text-slate-400 font-bold leading-relaxed  uppercase tracking-tighter">
-                    {t('certificationDesc')}
-                 </p>
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-3 rounded-xl font-bold bg-slate-100 text-slate-600">{t('cancel') || '取消'}</button>
+                <button type="submit" className="flex-1 py-3 rounded-xl font-bold bg-orange-500 text-white">{editingId ? (t('saveChanges') || '保存修改') : (t('createCourse') || '创建课程')}</button>
               </div>
-           </div>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

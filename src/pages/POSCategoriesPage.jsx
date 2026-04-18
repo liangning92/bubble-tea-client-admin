@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, api } from '../context/AuthContext';
 
 const TABS = [
   { id: 'categories', label: '产品分类' },
@@ -54,14 +54,36 @@ export default function POSCategoriesPage() {
     loadConfig();
   }, []);
 
+  // 将API返回的字符串名称转换为对象格式
+  function normalizeName(name) {
+    if (typeof name === 'string') return { zh: name, en: name, id: name };
+    if (typeof name === 'object' && name !== null) return name;
+    return { zh: '', en: '', id: '' };
+  }
+
   async function loadConfig() {
     setLoading(true);
     try {
       const res = await api('GET', '/pos/config');
       if (res?.config) {
-        if (res.config.categories) setCategories(res.config.categories);
-        if (res.config.functions) setFunctions(res.config.functions);
-        if (res.config.payments) setPayments(res.config.payments);
+        if (res.config.categories?.length) {
+          setCategories(res.config.categories.map(c => ({
+            ...c,
+            name: normalizeName(c.name),
+          })));
+        }
+        if (res.config.quickActions?.length) {
+          setFunctions(res.config.quickActions.map(f => ({
+            ...f,
+            name: normalizeName(f.label || f.name),
+          })));
+        }
+        if (res.config.paymentMethods?.length) {
+          setPayments(res.config.paymentMethods.map(p => ({
+            ...p,
+            name: normalizeName(p.label || p.name),
+          })));
+        }
       }
     } catch (e) {
       console.error('Failed to load POS config:', e);
@@ -73,10 +95,15 @@ export default function POSCategoriesPage() {
     setSaving(true);
     setSaveMsg('');
     try {
+      // 将对象名称转换回字符串格式
+      const catPayload = categories.map(c => ({ ...c, name: c.name?.zh || c.name || '' }));
+      const fnPayload = functions.map(f => ({ ...f, label: f.name?.zh || f.name || '', name: undefined }));
+      const pmPayload = payments.map(p => ({ ...p, label: p.name?.zh || p.name || '', name: undefined }));
+
       const res = await api('POST', '/api/pos/config', {
-        categories,
-        functions,
-        payments,
+        categories: catPayload,
+        quickActions: fnPayload,
+        paymentMethods: pmPayload,
       });
       if (res?.success) {
         setSaveMsg('✅ 保存成功');

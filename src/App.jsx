@@ -38,6 +38,20 @@ import AttendancePage from './pages/AttendancePage';
 import PayrollRulesPage from './pages/PayrollRulesPage';
 import StaffPortal from './pages/StaffPortal';
 import MarketingHub from './pages/MarketingHub';
+import POSHardwareConfig from './pages/POSHardwareConfig';
+import ProductPage from './pages/ProductPage';
+import InventoryAnomalyPage from './pages/InventoryAnomalyPage';
+import StaffPage from './pages/StaffPage';
+import CouponFactory from './pages/CouponFactory';
+import MarketingAutomation from './pages/MarketingAutomation';
+import MarketingCalendar from './pages/MarketingCalendar';
+import Leaderboard from './pages/Leaderboard';
+import OperationAuditPage from './pages/OperationAuditPage';
+import PermissionMatrix from './pages/PermissionMatrix';
+import SettingsPage from './pages/SettingsPage';
+import PlatformDashboard from './pages/PlatformDashboard';
+import AboutPage from './pages/AboutPage';
+import CRMHub from './pages/CRMHub';
 
 export default function App() {
   return (
@@ -67,6 +81,8 @@ export default function App() {
               <Route path="/pos/dual-config" element={<POSDualScreenConfig />} />
               <Route path="/pos/settings" element={<POSSettingsPage />} />
               <Route path="/pos-categories" element={<POSCategoriesPage />} />
+              <Route path="/pos-terminal" element={<PosTerminalPage />} />
+              <Route path="/pos-display" element={<POSDualScreenConfig />} />
               <Route path="/sales" element={<SalesPage />} />
               <Route path="/purchase" element={<PurchasePage />} />
               <Route path="/expense" element={<ExpensePage />} />
@@ -83,6 +99,20 @@ export default function App() {
               <Route path="/reward" element={<RewardPage />} />
               <Route path="/attendance" element={<AttendancePage />} />
               <Route path="/payroll" element={<PayrollRulesPage />} />
+              <Route path="/pos-hardware" element={<POSHardwareConfig />} />
+              <Route path="/products" element={<ProductPage />} />
+              <Route path="/inventory-anomaly" element={<InventoryAnomalyPage />} />
+              <Route path="/staff-page" element={<StaffPage />} />
+              <Route path="/coupon-factory" element={<CouponFactory />} />
+              <Route path="/marketing-automation" element={<MarketingAutomation />} />
+              <Route path="/marketing-calendar" element={<MarketingCalendar />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/operation-audit" element={<OperationAuditPage />} />
+              <Route path="/permission-matrix" element={<PermissionMatrix />} />
+              <Route path="/settings-page" element={<SettingsPage />} />
+              <Route path="/platform-dashboard" element={<PlatformDashboard />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/member" element={<CRMHub />} />
             </Route>
           </Route>
           </Routes>

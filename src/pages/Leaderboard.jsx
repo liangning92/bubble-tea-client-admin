@@ -37,7 +37,7 @@ export default function Leaderboard({ hideHeader }) {
       {!hideHeader && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
-            <h3 className="text-h2">🏆 {t('leaderboardTitle')}
+            <h3 className="text-h2">🏆 {t('leaderboardTitle')}</h3>
             <p className="text-label-caps mt-1">Multi-dimensional Performance Leaderboard</p>
           </div>
           <div className="flex gap-4">

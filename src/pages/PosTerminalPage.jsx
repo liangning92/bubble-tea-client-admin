@@ -30,8 +30,28 @@ export default function PosTerminalPage() {
 
   async function loadProducts() {
     try {
-      const [pRes, aRes] = await Promise.all([api("GET", "/products"), api("GET", "/addons")]);
+      // 并行获取产品、销量数据
+      const [pRes, aRes, sRes] = await Promise.all([
+        api("GET", "/products"),
+        api("GET", "/addons"),
+        api("GET", "/sales?limit=2000").catch(() => ({ data: [] }))
+      ]);
       const list = Array.isArray(pRes) ? pRes : (pRes?.data || pRes?.items || []);
+      
+      // 按销量排序：热销产品排在前面
+      const salesItems = Array.isArray(sRes) ? sRes : (sRes?.data || []);
+      const salesCount = {};
+      for (const o of salesItems) {
+        const name = o.productName || o.name || '';
+        salesCount[name] = (salesCount[name] || 0) + (o.quantity || 1);
+      }
+      list.sort((a, b) => {
+        const aQty = salesCount[a.name] || 0;
+        const bQty = salesCount[b.name] || 0;
+        if (bQty !== aQty) return bQty - aQty;
+        return (a.name || '').localeCompare(b.name || '');
+      });
+      
       setProducts(list);
       setAddons(Array.isArray(aRes) ? aRes : []);
       setCategories([t('all'), ...new Set(list.map(p => p.category || t('catOther')) || [])]);

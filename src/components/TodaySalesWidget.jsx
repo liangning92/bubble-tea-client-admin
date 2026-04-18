@@ -120,14 +120,14 @@ export default function TodaySalesWidget({ config = {} }) {
             📊
           </div>
           <div>
-            <h3 className="text-lg font-black uppercase tracking-widest">{t('todaySales') || '今日营业'}</h3>
-            <p className="text-xs text-slate-400">{t('realTimeData') || '实时数据'}</p>
+            <h3 className="text-lg font-black uppercase tracking-widest">{t('todaySales')}</h3>
+            <p className="text-xs text-slate-400">{t('realTimeData')}</p>
           </div>
         </div>
         <button
           onClick={fetchTodayStats}
           className="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl transition-all"
-          title={t('refresh') || '刷新'}
+          title={t('refresh')}
         >
           <span className={`text-lg ${loading ? 'animate-spin' : ''}`}>🔄</span>
         </button>
@@ -137,23 +137,23 @@ export default function TodaySalesWidget({ config = {} }) {
       <div className="grid grid-cols-2 gap-4 mb-6">
         {/* 销售额 */}
         <div className="bg-gradient-to-br from-slate-800 to-slate-800/50 rounded-2xl p-5 border border-slate-700/30">
-          <div className="text-sm text-slate-400 mb-2 font-bold">{t('revenue') || '销售额'}</div>
+          <div className="text-sm text-slate-400 mb-2 font-bold">{t('revenue')}</div>
           <div className="text-3xl font-black text-orange-500 tabular-nums tracking-tighter">
             {loading ? '---' : formatCurrency(countUp.revenue)}
           </div>
           <div className="text-xs text-slate-500 mt-1">
-            {t('orders') || '订单'}: {loading ? '---' : countUp.orders}
+            {t('orders')}: {loading ? '---' : countUp.orders}
           </div>
         </div>
 
         {/* 订单数 */}
         <div className="bg-gradient-to-br from-slate-800 to-slate-800/50 rounded-2xl p-5 border border-slate-700/30">
-          <div className="text-sm text-slate-400 mb-2 font-bold">{t('orderCount') || '订单数'}</div>
+          <div className="text-sm text-slate-400 mb-2 font-bold">{t('orderCount')}</div>
           <div className="text-3xl font-black text-white tabular-nums tracking-tighter">
             {loading ? '---' : countUp.orders}
           </div>
           <div className="text-xs text-slate-500 mt-1">
-            {t('avgPerOrder') || '均单价'}: {loading ? '---' : countUp.orders > 0 ? formatCurrency(Math.round(countUp.revenue / countUp.orders)) : '¥0'}
+            {t('avgPerOrder')}: {loading ? '---' : countUp.orders > 0 ? formatCurrency(Math.round(countUp.revenue / countUp.orders)) : '¥0'}
           </div>
         </div>
       </div>
@@ -162,7 +162,7 @@ export default function TodaySalesWidget({ config = {} }) {
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-1 h-5 bg-orange-500 rounded-full" />
-          <h4 className="text-sm font-black uppercase tracking-widest text-slate-400">{t('topProducts') || '热销TOP3'}</h4>
+          <h4 className="text-sm font-black uppercase tracking-widest text-slate-400">{t('topProducts')}</h4>
         </div>
 
         {loading ? (
@@ -182,7 +182,7 @@ export default function TodaySalesWidget({ config = {} }) {
                 <div className="flex-1 min-w-0">
                   <div className="font-black text-sm truncate">{product.name}</div>
                   <div className="text-xs text-slate-400">
-                    {t('sold') || '售出'}: {product.count} {t('cups') || '杯'}
+                    {t('sold')}: {product.count} {t('cups')}
                   </div>
                 </div>
                 <div className="text-right">
@@ -194,7 +194,7 @@ export default function TodaySalesWidget({ config = {} }) {
         ) : (
           <div className="text-center py-8 text-slate-500">
             <div className="text-4xl mb-2">📭</div>
-            <div className="text-sm">{t('noDataYet') || '暂无数据'}</div>
+            <div className="text-sm">{t('noDataYet')}</div>
           </div>
         )}
       </div>
@@ -203,10 +203,10 @@ export default function TodaySalesWidget({ config = {} }) {
       <div className="pt-4 border-t border-slate-700/30 flex justify-between items-center">
         <div className="flex items-center gap-2 text-xs text-slate-500">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span>{t('lastUpdate') || '更新时间'}: {formatTime(lastUpdate)}</span>
+          <span>{t('lastUpdate')}: {formatTime(lastUpdate)}</span>
         </div>
         <div className="text-xs text-slate-600">
-          {t('autoRefresh') || '自动刷新'}: {widgetConfig.refreshInterval / 1000}s
+          {t('autoRefresh')}: {widgetConfig.refreshInterval / 1000}s
         </div>
       </div>
     </div>

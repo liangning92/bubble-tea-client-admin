@@ -27,7 +27,7 @@ export default function SidebarLayout({ menuItems, title, topAlert }) {
             </div>
             <div className="flex flex-col">
               <span className="font-black text-2xl text-slate-900 tracking-tight leading-tight uppercase">Shopwise</span>
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.1em] opacity-80">{t('storeMgmtSystem') || '门店智能管理系统'}</span>
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.1em] opacity-80">{t('storeMgmtSystem')}</span>
             </div>
           </div>
         </div>

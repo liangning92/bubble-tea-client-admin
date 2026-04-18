@@ -67,12 +67,12 @@ export default function DynamicQRCheckIn({ staffId, shiftStart, shiftId, onCheck
             <span className="text-2xl">👤</span>
           </div>
           <div>
-            <div className="text-sm font-bold text-slate-400">{t('staffCheckIn') || '员工考勤'}</div>
-            <div className="text-lg font-black">{staffId || t('staff') || '员工'}</div>
+            <div className="text-sm font-bold text-slate-400">{t('staffCheckIn')}</div>
+            <div className="text-lg font-black">{staffId || t('staff')}</div>
           </div>
         </div>
         <div className={`px-4 py-2 rounded-full text-sm font-black uppercase ${shiftStatus === 'working' ? 'bg-green-500/20 text-green-400' : 'bg-slate-700/50 text-slate-400'}`}>
-          {shiftStatus === 'working' ? (t('working') || '上班中') : (t('offDuty') || '下班')}
+          {shiftStatus === 'working' ? t('working') : t('offDuty')}
         </div>
       </div>
 
@@ -118,11 +118,11 @@ export default function DynamicQRCheckIn({ staffId, shiftStart, shiftId, onCheck
         {/* 刷新倒计时 */}
         <div className="flex items-center gap-2 text-slate-400 mb-4">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-sm">{t('autoRefresh') || '自动刷新'}: 30s</span>
+          <span className="text-sm">{t('autoRefresh')}: 30s</span>
         </div>
 
         <div className="text-xs text-slate-500 mb-6">
-          {t('scanToCheckIn') || '请扫描二维码打卡'}
+          {t('scanToCheckIn')}
         </div>
 
         {/* 打卡按钮 */}
@@ -130,7 +130,7 @@ export default function DynamicQRCheckIn({ staffId, shiftStart, shiftId, onCheck
           onClick={handleScan}
           className="w-full py-4 bg-orange-500 hover:bg-orange-600 rounded-2xl font-black uppercase tracking-widest transition-all active:scale-95"
         >
-          {t('clockIn') || '打卡上班'}
+          {t('clockIn')}
         </button>
       </div>
 
@@ -138,11 +138,11 @@ export default function DynamicQRCheckIn({ staffId, shiftStart, shiftId, onCheck
       <div className="mt-6 pt-6 border-t border-slate-700/50">
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
-            <div className="text-sm text-slate-400 mb-1">{t('shiftStart') || '上班时间'}</div>
+            <div className="text-sm text-slate-400 mb-1">{t('shiftStart')}</div>
             <div className="text-lg font-black">{shiftStart ? new Date(shiftStart).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : '--:--'}</div>
           </div>
           <div className="text-center">
-            <div className="text-sm text-slate-400 mb-1">{t('shiftDuration') || '工作时长'}</div>
+            <div className="text-sm text-slate-400 mb-1">{t('shiftDuration')}</div>
             <div className="text-lg font-black text-orange-500">{shiftDuration}</div>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function DynamicQRCheckIn({ staffId, shiftStart, shiftId, onCheck
           onClick={toggleShift}
           className="w-full mt-4 py-3 bg-slate-800 hover:bg-slate-700 rounded-2xl text-sm font-bold text-slate-400 transition-all"
         >
-          {shiftStatus === 'working' ? (t('endShift') || '结束班次') : (t('startShift') || '开始班次')}
+          {shiftStatus === 'working' ? t('endShift') : t('startShift')}
         </button>
       </div>
     </div>

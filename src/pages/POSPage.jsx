@@ -64,10 +64,31 @@ export default function POSPage() {
 
   const loadProducts = async () => {
     try {
-      const res = await api('GET', '/products');
-      if (res?.error) throw new Error(res.error);
+      // 并行获取产品和销量数据
+      const [prodRes, salesRes] = await Promise.all([
+        api('GET', '/products'),
+        api('GET', '/sales?limit=2000').catch(() => ({ data: [] }))
+      ]);
       
-      const list = Array.isArray(res) ? res : (res?.data || res?.items || []);
+      if (prodRes?.error) throw new Error(prodRes.error);
+      const list = Array.isArray(prodRes) ? prodRes : (prodRes?.data || prodRes?.items || []);
+      
+      // 按销量排序：热销产品排在前面
+      const salesItems = Array.isArray(salesRes) ? salesRes : (salesRes?.data || []);
+      const salesCount = {};
+      for (const o of salesItems) {
+        const name = o.productName || o.name || '';
+        salesCount[name] = (salesCount[name] || 0) + (o.quantity || 1);
+      }
+      
+      // 按销量降序排列，销量相同的按名称排序
+      list.sort((a, b) => {
+        const aQty = salesCount[a.name] || 0;
+        const bQty = salesCount[b.name] || 0;
+        if (bQty !== aQty) return bQty - aQty;
+        return (a.name || '').localeCompare(b.name || '');
+      });
+      
       setProducts(list);
       localStorage.setItem('pos_offline_products', JSON.stringify(list)); // 离线缓存
 

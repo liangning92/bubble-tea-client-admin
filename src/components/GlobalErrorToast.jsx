@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { i18n } from '../i18n';
 
 let _errorCounter = 0; // 模块级唯一计数器，避免 Date.now() 同毫秒 key 冲突
@@ -10,13 +11,14 @@ let _errorCounter = 0; // 模块级唯一计数器，避免 Date.now() 同毫秒
  * 支持字符串或对象格式：{ message: '错误信息', type: 'error|warning|info' }
  */
 export default function GlobalErrorToast() {
+  const { t } = useAuth();
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     const handler = (e) => {
       const errorDetail = e.detail;
       const lang = localStorage.getItem('lang') || 'zh';
-      let errorMessage = i18n[lang]?.errorOccurred || i18n.zh.errorOccurred;
+      let errorMessage = i18n[lang]?.errorOccurred || i18n.zh.errorOccurred || t('errorOccurred');
       let errorType = 'error';
       
       if (typeof errorDetail === 'string') {
@@ -29,7 +31,7 @@ export default function GlobalErrorToast() {
       }
       // 最终保障：确保 errorMessage 绝对是字符串
       if (typeof errorMessage !== 'string') {
-        errorMessage = JSON.stringify(errorMessage) || i18n[lang]?.errorOccurred || i18n.zh.errorOccurred;
+        errorMessage = JSON.stringify(errorMessage) || i18n[lang]?.errorOccurred || i18n.zh.errorOccurred || t('errorOccurred');
       }
       
       const newError = {
@@ -103,7 +105,7 @@ export default function GlobalErrorToast() {
             <button
               onClick={() => removeError(error.id)}
               className="text-gray-400 hover:text-gray-600 text-lg leading-none"
-              aria-label="关闭"
+              aria-label={t('close')}
             >
               ×
             </button>

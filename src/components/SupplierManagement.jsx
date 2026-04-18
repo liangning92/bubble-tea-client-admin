@@ -23,7 +23,7 @@ export default function SupplierManagement() {
       <div className="flex justify-between items-center">
         <div>
            <h3 className="text-xl font-bold text-slate-800 tracking-tight">{t('supplierTitle')}</h3>
-           <p className="text-[14px] text-slate-400 mt-1">{lang === 'zh' ? '管理所有物料供应源头及紧急联系方式。' : 'Manage your supply chain sources and emergency contact information.'}</p>
+           <p className="text-[14px] text-slate-400 mt-1">{t('supplierManagementDesc')}</p>
         </div>
         <button onClick={() => setShowAdd(true)} className="px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-black text-[14px] uppercase tracking-widest hover:scale-105 transition shadow-xl shadow-indigo-500/10">
            + {t('addSupplier')}
