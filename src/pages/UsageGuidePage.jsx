@@ -60,16 +60,17 @@ export default function UsageGuidePage() {
       {/* 底部信息 */}
       <div className="card mt-6 bg-gray-50 text-center">
         <div className="text-sm text-gray-500">
-          <>
+          {lang === 'zh' ? (
+            <>
               <div className="font-medium mb-1">🧋 {t('appName')}</div>
               <div>{t('contactAdmin')}</div>
               <div className="text-[14px] mt-1">{t('supportedBrowsers')}</div>
             </>
           ) : (
             <>
-              <div className="font-medium mb-1">🧋 Sistem Manajemen Bubble Tea v2.0</div>
-              <div>Hubungi administrator jika ada pertanyaan</div>
-              <div className="text-[14px] mt-1">Browser yang didukung: Chrome, Safari, Edge (versi terbaru)</div>
+              <div className="font-medium mb-1">🧋 {t('appName')}</div>
+              <div>{t('contactAdmin')}</div>
+              <div className="text-[14px] mt-1">{t('supportedBrowsers')}</div>
             </>
           )}
         </div>

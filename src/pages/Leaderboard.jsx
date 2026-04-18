@@ -103,9 +103,9 @@ export default function Leaderboard({ hideHeader }) {
            <div className="p-8 bg-slate-50 rounded-[32px] border border-slate-100 flex items-start gap-4">
               <span className="text-2xl mt-1">🏆</span>
               <div className="space-y-4">
-                 <h5 className="text-[13px] font-black text-slate-800 uppercase tracking-tight">激励计划说明 (INCENTIVE PROGRAM)</h5>
+                 <h5 className="text-[13px] font-black text-slate-800 uppercase tracking-tight">{t('incentiveProgramTitle')}</h5>
                  <p className="text-[13px] text-slate-400 font-bold leading-relaxed  uppercase tracking-tight">
-                    积分排行榜每月 1 号重置进入新赛季。排名前 3 的优秀员工将获得“绩效奖金 (Bonus)”并自动归集到本月薪酬单中，且个人星级将提升。
+                    {t('incentiveProgramDesc')}
                  </p>
               </div>
            </div>

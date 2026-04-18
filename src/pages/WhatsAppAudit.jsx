@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
 export default function WhatsAppAudit({ hideHeader }) {
-  const { lang } = useAuth();
+  const { lang, t } = useAuth();
   const [logs, setLogs] = useState([]);
   const [engineStatus, setEngineStatus] = useState({ status: 'LOADING' });
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ export default function WhatsAppAudit({ hideHeader }) {
   const tl = (id_text, zh_text) => (lang === 'zh' ? zh_text : id_text);
 
   if (loading && logs.length === 0) {
-    return <div className="py-20 text-center text-slate-400 font-bold animate-pulse">正在连接触达助手...</div>;
+    return <div className="py-20 text-center text-slate-400 font-bold animate-pulse">{t('connectingReachAssistant')}</div>;
   }
 
   // 辅助函数：计算每个接收人的发送总次数
@@ -55,22 +55,22 @@ export default function WhatsAppAudit({ hideHeader }) {
       {!hideHeader && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
            <div>
-              <h2 className="text-3xl font-black text-slate-800 tracking-tight">WhatsApp 会员触达日志</h2>
-              <p className="text-slate-500 font-medium">查看发送给顾客的每一条关怀消息与营销内容</p>
+              <h2 className="text-3xl font-black text-slate-800 tracking-tight">{t('whatsappReachLog')}</h2>
+              <p className="text-slate-500 font-medium">{t('whatsappReachLogDesc')}</p>
            </div>
            <div className="flex items-center gap-3">
               <div className={`flex items-center gap-2 px-4 py-3 rounded-2xl border ${
                  engineStatus.status === 'READY' ? 'bg-emerald-50 border-emerald-100 text-emerald-600' : 'bg-rose-50 border-rose-100 text-rose-600'
               }`}>
                  <div className={`w-2 h-2 rounded-full ${engineStatus.status === 'READY' ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`}></div>
-                 <span className="text-[14px] font-black uppercase tracking-widest">服务引擎: {engineStatus.status === 'READY' ? '就绪' : '未连接'}</span>
+                 <span className="text-[14px] font-black uppercase tracking-widest">{t('serviceEngine')}: {engineStatus.status === 'READY' ? t('ready') : t('disconnected')}</span>
               </div>
               {engineStatus.qrCode && engineStatus.status === 'QR_READY' && (
                  <div className="relative group">
-                    <button className="px-4 py-3 bg-indigo-600 text-white rounded-2xl text-[14px] font-black shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all">扫码登录</button>
+                    <button className="px-4 py-3 bg-indigo-600 text-white rounded-2xl text-[14px] font-black shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all">{t('scanQRLogin')}</button>
                     <div className="absolute top-full right-0 mt-2 p-2 bg-white border border-slate-200 rounded-2xl shadow-2xl z-[60] hidden group-hover:block transition-all">
                        <img src={engineStatus.qrCode} alt="QR" className="w-32 h-32" />
-                       <p className="text-[14px] text-slate-400 text-center mt-1 font-bold">店长使用 WhatsApp 扫码</p>
+                       <p className="text-[14px] text-slate-400 text-center mt-1 font-bold">{t('scanQRHint')}</p>
                     </div>
                  </div>
               )}
@@ -86,15 +86,15 @@ export default function WhatsAppAudit({ hideHeader }) {
                <table className="w-full text-left border-collapse">
                   <thead>
                      <tr className="bg-slate-50/50 border-b border-slate-100 ">
-                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">接收人信息</th>
-                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">发送次数</th>
-                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">消息内容</th>
-                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">阅读状态</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('recipientInfo')}</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('sendCount')}</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('messageContent')}</th>
+                        <th className="py-3 px-4 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">{t('readStatus')}</th>
                      </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
                      {logs.length === 0 ? (
-                        <tr><td colSpan="4" className="py-20 text-center text-slate-400 ">暂无消息发送记录</td></tr>
+                        <tr><td colSpan="4" className="py-20 text-center text-slate-400 ">{t('noMessageRecords')}</td></tr>
                      ) : (
                         logs.map(log => (
                            <tr 
@@ -106,14 +106,14 @@ export default function WhatsAppAudit({ hideHeader }) {
                                  <div className="flex items-center gap-3">
                                     <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-[14px]">👤</div>
                                     <div>
-                                       <div className="text-sm font-bold text-slate-800">{log.name || '顾客'}</div>
+                                       <div className="text-sm font-bold text-slate-800">{log.name || t('customer')}</div>
                                        <div className="text-[14px] font-medium text-slate-400 font-mono tracking-tighter">{log.recipient}</div>
                                     </div>
                                  </div>
                               </td>
                               <td className="py-5 px-4">
                                  <span className="text-[14px] font-black text-slate-700 bg-slate-100 px-4.5 py-1 rounded-lg">
-                                    {getSendCount(log.recipient)} 次
+                                    {getSendCount(log.recipient)} {t('times')}
                                  </span>
                               </td>
                               <td className="py-5 px-4">
@@ -128,7 +128,7 @@ export default function WhatsAppAudit({ hideHeader }) {
                                        log.status === 'read' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 
                                        log.status === 'failed' ? 'bg-rose-50 text-rose-600 border-rose-100' : 'bg-blue-50 text-blue-600 border-blue-100'
                                     }`}>
-                                       {log.status === 'read' ? '已读' : log.status === 'delivered' ? '已送达' : log.status === 'sent' ? '已发送' : '发送失败'}
+                                       {log.status === 'read' ? t('statusRead') : log.status === 'delivered' ? t('statusDelivered') : log.status === 'sent' ? t('statusSent') : t('statusFailed')}
                                     </span>
                                     <div className="text-[14px] font-bold text-slate-300">
                                        {new Date(log.occurredAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -145,7 +145,7 @@ export default function WhatsAppAudit({ hideHeader }) {
 
          {/* 右侧：手机预览 (Smartphone Mockup) */}
          <div className="lg:col-span-4 flex flex-col items-center">
-            <h4 className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-6">手机端预览</h4>
+            <h4 className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-6">{t('phonePreview')}</h4>
             
             <div className="w-64 h-[460px] bg-slate-800 rounded-[48px] p-2.5 shadow-2xl relative border-[6px] border-slate-900 overflow-hidden">
                {/* 屏幕内屏 */}
@@ -162,7 +162,7 @@ export default function WhatsAppAudit({ hideHeader }) {
                   <div className="bg-[#075e54] p-3 flex items-center gap-2 text-white shadow-md">
                      <div className="w-6 h-6 rounded-full bg-white opacity-20"></div>
                      <div className="flex-1">
-                        <div className="text-[14px] font-bold">门店触达中心</div>
+                        <div className="text-[14px] font-bold">{t('reachCenter')}</div>
                         <div className="text-[7px] opacity-70">在线</div>
                      </div>
                   </div>
@@ -186,7 +186,7 @@ export default function WhatsAppAudit({ hideHeader }) {
                            <div className="absolute top-0 -left-2 border-[8px] border-transparent border-t-white"></div>
                         </div>
                      ) : (
-                        <div className="h-full flex items-center justify-center text-[14px] text-slate-400 ">选择左侧列表预览详细内容</div>
+                        <div className="h-full flex items-center justify-center text-[14px] text-slate-400 ">{t('selectLeftToPreview')}</div>
                      )}
                   </div>
 
@@ -202,8 +202,8 @@ export default function WhatsAppAudit({ hideHeader }) {
             </div>
             
             <div className="mt-8 bg-blue-50 border border-blue-100 p-4 rounded-2xl max-w-[280px]">
-               <h5 className="text-[14px] font-black text-blue-700 uppercase tracking-widest mb-1">店长贴士</h5>
-               <p className="text-[14px] text-blue-600 leading-relaxed font-medium">预览效果可能受手机字体大小影响，实际多语言文案（印尼语/中文）会自动根据客户系统语言智能适配。</p>
+               <h5 className="text-[14px] font-black text-blue-700 uppercase tracking-widest mb-1">{t('managerTip')}</h5>
+               <p className="text-[14px] text-blue-600 leading-relaxed font-medium">{t('previewNote')}</p>
             </div>
          </div>
       </div>
