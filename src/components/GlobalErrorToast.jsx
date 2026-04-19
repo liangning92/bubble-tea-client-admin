@@ -29,6 +29,10 @@ export default function GlobalErrorToast() {
         errorMessage = typeof rawMsg === 'string' ? rawMsg : (rawMsg?.message || JSON.stringify(rawMsg));
         errorType = errorDetail.type || 'error';
       }
+      // 翻译 ERR_* 错误码为人类可读文本
+      if (/^ERR_/.test(errorMessage)) {
+        errorMessage = t(errorMessage) || errorMessage;
+      }
       // 最终保障：确保 errorMessage 绝对是字符串
       if (typeof errorMessage !== 'string') {
         errorMessage = JSON.stringify(errorMessage) || i18n[lang]?.errorOccurred || i18n.zh.errorOccurred || t('errorOccurred');

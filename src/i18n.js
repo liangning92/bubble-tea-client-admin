@@ -921,6 +921,7 @@ export const i18n = {
     errorOccurred: '发生错误',
     ERR_NO_STORE: '未获取到门店信息',
     unhandledPromiseError: '未处理的Promise错误',
+    notConfigured: '未配置',
     close: '关闭',
     // POS Quick Actions
     cash: '现金',
@@ -3386,6 +3387,7 @@ export const i18n = {
     // Global Error Toast
     errorOccurred: 'Error Occurred',
     unhandledPromiseError: 'Unhandled Promise Error',
+    notConfigured: 'Not Configured',
     close: 'Close',
     // POS Quick Actions
     cash: 'Cash',
@@ -4803,6 +4805,7 @@ export const i18n = {
     // Global Error Toast
     errorOccurred: 'Kesalahan Terjadi',
     unhandledPromiseError: 'Kesalahan Promise yang Tidak Ditangani',
+    notConfigured: 'Belum Dikonasikan',
     close: 'Tutup',
     // POS Quick Actions
     cash: 'Tunai',
