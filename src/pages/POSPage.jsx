@@ -735,7 +735,7 @@ export default function POSPage() {
         <div className="fixed top-8 left-8 z-[100] w-72 bg-white shadow-2xl rounded-sm border border-slate-200 p-4 font-mono text-[14px] animate-in slide-in-from-top-10">
           <div className="text-center border-b border-dashed border-slate-300 pb-2 mb-2">
             <h3 className="font-bold text-[14px]">{t('digitalReceiptInternal')}</h3>
-            <p>Order: {printReceipt.orderNo}</p>
+            <p>{t('orderLabel')}: {printReceipt.orderNo}</p>
             <p>{printReceipt.time}</p>
           </div>
           <div className="space-y-4 mb-2">
@@ -748,17 +748,17 @@ export default function POSPage() {
           </div>
           <div className="border-t border-dashed border-slate-300 pt-2 space-y-4">
             <div className="flex justify-between font-bold">
-              <span>应收总额</span>
-              <span>Rp {printReceipt.total.toLocaleString()}</span>
+              <span>{t('subtotal')}</span>
+              <span>{t('currencySymbol')} {printReceipt.total.toLocaleString()}</span>
             </div>
             {printReceipt.discount > 0 && (
               <div className="flex justify-between text-red-500">
-                <span>减免优惠</span>
-                <span>- {printReceipt.discount.toLocaleString()}</span>
+                <span>{t('discountLabel')}</span>
+                <span>- Rp {printReceipt.discount.toLocaleString()}</span>
               </div>
             )}
             <div className="flex justify-between font-black text-[14px] pt-1">
-              <span>待付结算</span>
+              <span>{t('totalDue')}</span>
               <span>Rp {printReceipt.final.toLocaleString()}</span>
             </div>
           </div>

@@ -86,9 +86,9 @@ function SystemGeneralSettings() {
                 <div className="flex justify-between items-center bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm">
                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('defaultInterfaceLabel')}</span>
                    <select className="input-premium !py-3 !px-4 w-56 font-black text-slate-900 bg-slate-50 border-none appearance-none cursor-pointer hover:bg-slate-100 transition-all rounded-xl  uppercase text-[13px]">
-                      <option>{t('simplifiedChinese')}</option>
-                      <option>English (EN)</option>
-                      <option>Bahasa Indonesia (ID)</option>
+                      <option>{tl('简体中文 (ZH)', 'Simplified Chinese (ZH)', 'Mandarin (ZH)')}</option>
+                      <option>{tl('English (EN)', 'English (EN)', 'Inggris (EN)')}</option>
+                      <option>{tl('Bahasa Indonesia (ID)', 'Indonesian (ID)', 'Bahasa Indonesia (ID)')}</option>
                    </select>
                 </div>
                 <div className="flex justify-between items-center bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm">
