@@ -518,7 +518,7 @@ export default function POSPage() {
                 <>
                   <span className="relative z-10">{t('cashReceived')}</span>
                   <span className="text-[14px] font-semibold opacity-80 mt-1 relative z-10 flex items-center gap-1">
-                    <kbd className="bg-white/20 px-1.5 py-0.5 rounded text-[14px]">Space</kbd> 极速结单
+                    <kbd className="bg-white/20 px-1.5 py-0.5 rounded text-[14px]">{t('space')}</kbd> 极速结单
                   </span>
                 </>
               )}

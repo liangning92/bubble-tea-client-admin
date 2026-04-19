@@ -71,7 +71,7 @@ export default function MarketingAutomation({ hideHeader }) {
                         onChange={e => setConfig({...config, lapseLong: parseInt(e.target.value)})}
                         className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-2xl font-black text-white w-24 text-center"
                      />
-                     <span className="text-slate-500 font-black text-[14px] uppercase">Days</span>
+                     <span className="text-slate-500 font-black text-[14px] uppercase">{t('days')}</span>
                   </div>
                   <p className="text-[14px] text-slate-500 font-bold leading-relaxed ">{t('automationThresholdDesc')}</p>
                </div>

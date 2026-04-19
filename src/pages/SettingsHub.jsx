@@ -108,7 +108,7 @@ function SystemGeneralSettings() {
                    <div className="w-14 h-7 bg-slate-900 rounded-full relative cursor-pointer shadow-lg shadow-slate-900/10"><div className="w-5 h-5 bg-white rounded-full absolute right-1 top-1 shadow-sm" /></div>
                 </div>
                 <div className="flex justify-between items-center bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm">
-                   <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">Session Timeout</span>
+                   <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('sessionTimeout')}</span>
                    <span className="text-[13px] font-black text-slate-900 tracking-tight pr-4  uppercase">24 Hours (Persistent)</span>
                 </div>
              </div>

@@ -106,9 +106,9 @@ export default function BusinessAnalysisPage() {
                     <div className="flex justify-between items-center mb-10">
                         <div>
                             <h3 className="text-h2">🕒 {t('peakHours')}</h3>
-                            <p className="text-label-caps mt-1">Order Density Matrix</p>
+                            <p className="text-label-caps mt-1">{t('orderDensityMatrix')}</p>
                         </div>
-                        <span className="px-3 py-1.5 bg-blue-50 text-blue-600 text-[14px] font-black rounded-xl border border-blue-100 uppercase tracking-widest">Live Flow</span>
+                        <span className="px-3 py-1.5 bg-blue-50 text-blue-600 text-[14px] font-black rounded-xl border border-blue-100 uppercase tracking-widest">{t('liveFlow')}</span>
                     </div>
                     
                     <div className="flex items-end justify-between h-48 gap-1.5 px-4">
@@ -133,9 +133,9 @@ export default function BusinessAnalysisPage() {
                     <div className="flex justify-between items-center mb-10">
                         <div>
                             <h3 className="text-h2">📦 {t('productPerformance')}</h3>
-                            <p className="text-label-caps mt-1">Revenue Contribution</p>
+                            <p className="text-label-caps mt-1">{t('revenueContribution')}</p>
                         </div>
-                        <span className="px-3 py-1.5 bg-emerald-50 text-emerald-600 text-[14px] font-black rounded-xl border border-emerald-100 uppercase tracking-widest">Profitable</span>
+                        <span className="px-3 py-1.5 bg-emerald-50 text-emerald-600 text-[14px] font-black rounded-xl border border-emerald-100 uppercase tracking-widest">{t('profitable')}</span>
                     </div>
 
                     <div className="space-y-4">

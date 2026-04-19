@@ -121,8 +121,8 @@ export default function WhatsAppConnector({ hideHeader }) {
                      系统现在可以使用您的手机号正式下发自动化营销、优惠券及裂变奖励通知。
                   </p>
                   <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
-                     <p className="text-[14px] font-black text-emerald-600 uppercase tracking-widest">Linked Number</p>
-                     <p className="text-lg font-black text-emerald-800">Verified by WA Protocol</p>
+                     <p className="text-[14px] font-black text-emerald-600 uppercase tracking-widest">{t('linkedNumber')}</p>
+                     <p className="text-lg font-black text-emerald-800">{t('verifiedByWA')}</p>
                   </div>
                </div>
             ) : status.qrCode ? (
@@ -210,7 +210,7 @@ export default function WhatsAppConnector({ hideHeader }) {
             </div>
             <div className="flex gap-4">
                <div className="bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-3xl text-center">
-                  <p className="text-[14px] font-black text-emerald-400 uppercase tracking-widest mb-1">Growth Safety Score</p>
+                  <p className="text-[14px] font-black text-emerald-400 uppercase tracking-widest mb-1">{t('growthSafetyScore')}</p>
                   <p className="text-3xl font-black text-emerald-400">{status.safetyScore || 98}%</p>
                   <div className="mt-2 w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
                      <div className="h-full bg-emerald-500" style={{ width: `${status.safetyScore || 98}%` }}></div>

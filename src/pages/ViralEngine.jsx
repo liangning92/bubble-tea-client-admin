@@ -184,11 +184,11 @@ export default function ViralEngine({ hideHeader }) {
                   </div>
                   <div className="mt-6 grid grid-cols-2 gap-4">
                      <div className="bg-slate-50 p-3 rounded-2xl">
-                        <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest">Participants</p>
+                        <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('participants')}</p>
                         <p className="text-xl font-black text-slate-800">{c.participants}</p>
                      </div>
                      <div className="bg-slate-50 p-3 rounded-2xl">
-                        <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest">Success</p>
+                        <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('success')}</p>
                         <p className="text-xl font-black text-blue-600">{c.success}</p>
                      </div>
                   </div>

@@ -73,7 +73,7 @@ export default function SalesAnalysisPage() {
                      <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">{t('peakHoursDistribution')}</h3>
                      <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mt-1">{t('trafficDensityIndex')}</p>
                   </div>
-                  <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-indigo-100">Peak Hour Matrix</span>
+                  <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-indigo-100">{t('peakHourMatrix')}</span>
                </div>
                
                <div className="flex items-end justify-between h-48 gap-1.5 md:gap-2.5 px-4">
@@ -106,7 +106,7 @@ export default function SalesAnalysisPage() {
                      <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">{t('categoryPerformanceMatrix')}</h3>
                      <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mt-1">{t('productRevenueContribution')}</p>
                   </div>
-                  <span className="text-[14px] font-black text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-emerald-100">Growth Index</span>
+                  <span className="text-[14px] font-black text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-emerald-100">{t('growthIndex')}</span>
                </div>
 
                <div className="space-y-4">
@@ -134,13 +134,13 @@ export default function SalesAnalysisPage() {
          {/* 3. 总趋势看板 */}
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="card-premium !p-8 border-slate-200 bg-white group hover:border-indigo-500">
-               <p className="text-[14px] font-black text-slate-500 uppercase tracking-widest mb-4 group-hover:text-indigo-600 transition-colors">Period Aggregate Gross</p>
+               <p className="text-[14px] font-black text-slate-500 uppercase tracking-widest mb-4 group-hover:text-indigo-600 transition-colors">{t('periodAggregateGross')}</p>
                <p className="text-3xl font-black text-slate-900 tracking-tighter">
                   Rp {(data.trend || []).reduce((s, t) => s + (t.revenue || 0), 0).toLocaleString()}
                </p>
             </div>
             <div className="card-premium !p-8 border-indigo-100 bg-white group hover:border-indigo-500 shadow-indigo-50/50">
-               <p className="text-[14px] font-black text-slate-500 uppercase tracking-widest mb-4 group-hover:text-indigo-600 transition-colors">Average Daily Velocity</p>
+               <p className="text-[14px] font-black text-slate-500 uppercase tracking-widest mb-4 group-hover:text-indigo-600 transition-colors">{t('avgDailyVelocity')}</p>
                <p className="text-3xl font-black text-indigo-600 tracking-tighter">
                   {Math.round((data.trend || []).reduce((s, t) => s + (t.count || 0), 0) / (data.trend?.length || 1))} <span className="text-[14px] text-slate-400 font-bold uppercase ml-2">Units / Day</span>
                </p>

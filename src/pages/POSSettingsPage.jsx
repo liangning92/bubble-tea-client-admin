@@ -495,7 +495,7 @@ export default function POSSettingsPage() {
             </div>
 
             <div className="border-t border-slate-200 pt-6">
-              <h3 className="text-lg font-black text-slate-900 mb-2">Theme</h3>
+              <h3 className="text-lg font-black text-slate-900 mb-2">{t('theme')}</h3>
               <p className="text-sm text-slate-500 mb-4">POS theme</p>
               <div className="grid grid-cols-3 gap-4">
                 {[

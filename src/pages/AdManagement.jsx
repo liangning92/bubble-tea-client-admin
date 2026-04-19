@@ -108,7 +108,7 @@ export default function AdManagement() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
         <div>
           <h1 className="text-4xl font-black text-slate-800 tracking-tight">t('screenDeviceCenter')</h1>
-          <p className="text-slate-500 font-medium mt-1 uppercase tracking-widest text-[14px]">Hardware & Screen Configuration</p>
+          <p className="text-slate-500 font-medium mt-1 uppercase tracking-widest text-[14px]">{t('hardwareScreenConfig')}</p>
         </div>
 
         <div className="bg-white border-2 border-slate-100 p-2 rounded-[24px] flex gap-2 shadow-xl shadow-slate-200/50">

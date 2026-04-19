@@ -157,7 +157,7 @@ export default function SupplierManagement() {
               </div>
               {s.email && (
                 <div className="space-y-4.5 col-span-2">
-                  <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Email</p>
+                  <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{t('email')}</p>
                   <p className="font-black text-slate-700 text-[13px]">{s.email}</p>
                 </div>
               )}
@@ -219,7 +219,7 @@ export default function SupplierManagement() {
                 </div>
               </div>
               <div className="space-y-4">
-                <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">Email</label>
+                <label className="text-[13px] font-black text-slate-400 uppercase tracking-widest">{t('email')}</label>
                 <input className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} placeholder="supplier@example.com" />
               </div>
               <div className="space-y-4">

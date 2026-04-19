@@ -223,7 +223,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(trainings || []).length === 0 ? (
-              <div className="col-span-full py-20 text-center text-slate-600 font-bold uppercase tracking-[0.3em]">No Training Logs Yet</div>
+              <div className="col-span-full py-20 text-center text-slate-600 font-bold uppercase tracking-[0.3em]">{t('noTrainingLogsYet')}</div>
             ) : (
               (trainings || []).map(t => (
                 <div key={t.id} className="card-premium group relative hover:border-indigo-200 transition-all bg-white border-slate-200">
@@ -428,9 +428,9 @@ export default function StaffPage({ defaultTab: initialTab }) {
              <table className="w-full text-left">
                 <thead>
                    <tr className="bg-slate-50 border-b border-slate-100">
-                      <th className="p-4 text-[12px] font-black text-slate-400 uppercase tracking-widest">Employee & Month</th>
-                      <th className="p-4 text-[12px] font-black text-slate-400 uppercase tracking-widest">Breakdown</th>
-                      <th className="p-4 text-right text-[12px] font-black text-slate-400 uppercase tracking-widest">Net Payable</th>
+                      <th className="p-4 text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('employeeMonth')}</th>
+                      <th className="p-4 text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('breakdown')}</th>
+                      <th className="p-4 text-right text-[12px] font-black text-slate-400 uppercase tracking-widest">{t('netPayable')}</th>
                    </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">

@@ -87,7 +87,7 @@ export default function MarketingCalendar({ hideHeader }) {
             </p>
             <div className="mt-10 pt-8 border-t border-white/5 space-y-4">
                <div className="flex justify-between items-center">
-                  <span className="text-[14px] font-black uppercase text-slate-500 tracking-widest">Growth Confidence</span>
+                  <span className="text-[14px] font-black uppercase text-slate-500 tracking-widest">{t('growthConfidence')}</span>
                   <span className="text-[14px] font-black text-orange-500">92%</span>
                </div>
                <div className="h-1 bg-white/5 rounded-full overflow-hidden">
