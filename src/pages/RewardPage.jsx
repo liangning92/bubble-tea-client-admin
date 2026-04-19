@@ -87,7 +87,7 @@ export default function RewardPage() {
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
             <span className="text-3xl">⚖️</span> {t('rewardPenaltyTitle')}
           </h2>
-          <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest pl-1">Performance transparency & incentive matrix</p>
+          <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest pl-1">{t('performanceMatrix')}</p>
         </div>
         <div className="flex gap-4 w-full md:w-auto">
            <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
@@ -126,7 +126,7 @@ export default function RewardPage() {
                   </div>
                   <div>
                      <div className="flex items-center gap-3 mb-1">
-                        <span className="text-[18px] font-black text-slate-900 tracking-tighter">{r.User?.username || 'Staff'}</span>
+                        <span className="text-[18px] font-black text-slate-900 tracking-tighter">{r.User?.username || t('staffDefault')}</span>
                         <span className={`px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${r.category === 'reward' ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20' : 'bg-rose-500 text-white shadow-lg shadow-rose-500/20'}`}>
                            {r.category === 'reward' ? t('rewardCategory') : t('penaltyCategory')}
                         </span>
