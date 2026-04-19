@@ -100,15 +100,15 @@ export default function MarketingCalendar({ hideHeader }) {
             <h3 className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-6">{t('executionPipeline')}</h3>
             <div className="space-y-4">
                {[
-                 { label: 'POS Terminal Sync', status: 'Ready' },
-                 { label: 'Stock Reservation', status: 'Ready' },
-                 { label: 'Staff Campaign Notice', status: 'Pending' },
-                 { label: 'WhatsApp Automation', status: 'Active' },
+                 { label: t('posTerminalSync'), status: 'Ready' },
+                 { label: t('stockReservation'), status: 'Ready' },
+                 { label: t('staffCampaignNotice'), status: 'Pending' },
+                 { label: t('whatsappAutomation'), status: 'Active' },
                ].map((item, i) => (
                  <div key={i} className="flex justify-between items-center border-b border-slate-50 last:border-none pb-3 mb-3 last:pb-0 last:mb-0">
                     <span className="text-[13px] font-bold text-slate-600">{item.label}</span>
                     <span className={`text-[14px] font-black uppercase px-4.5 py-1 rounded-lg border ${item.status === 'Ready' || item.status === 'Active' ? 'bg-orange-50 text-orange-600 border-orange-100' : 'bg-slate-50 text-slate-300 border-slate-100'}`}>
-                      {item.status}
+                      {item.status === 'Ready' ? t('statusReady') : item.status === 'Pending' ? t('statusPending') : item.status === 'Active' ? t('statusActive') : item.status}
                     </span>
                  </div>
                ))}
