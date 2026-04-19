@@ -134,7 +134,7 @@ export default function ProductPage() {
   const categories = ['ALL', ...new Set(products.map(p => p.category))];
 
   return (
-    <div className="page animate-soft space-y-8">
+    <div className="page animate-soft space-y-4">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
@@ -142,7 +142,7 @@ export default function ProductPage() {
              <span className="w-10 h-10 bg-orange-100 rounded-2xl flex items-center justify-center text-xl">🧋</span>
              {t('productHubTitle')}
           </h2>
-          <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest mt-1">Global Product Portfolio Management</p>
+          <p className="text-[14px] font-black text-slate-400 uppercase tracking-widest mt-1">{t('productPortfolioManagement')}</p>
         </div>
         <div className="flex gap-3">
           <button onClick={() => setShowBulkPrice(true)} className="btn-action bg-slate-100 text-slate-600 border border-slate-200 !px-4">
@@ -209,7 +209,7 @@ export default function ProductPage() {
                   </select>
                </div>
                <div>
-                  <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">调价比例 (±%)</label>
+                  <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">{t('priceAdjustmentRatio')}</label>
                   <div className="relative">
                     <input className="input-premium !text-2xl !font-black !text-indigo-600" type="text" inputMode="numeric" value={bulkForm.percentage || ''} onChange={e => { const v = e.target.value.replace(/[^0-9]/g,''); setBulkForm({...bulkForm, percentage: v ? parseInt(v) : 0}); }} />
                     <span className="absolute right-4 top-4 text-slate-300 font-bold">%</span>
@@ -233,15 +233,15 @@ export default function ProductPage() {
              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-3 gap-3">
                    <div>
-                      <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">🇨🇳 中文名称 *</label>
+                      <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">{t('chineseName')} *</label>
                       <input className="input-premium" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder="如：波霸奶茶" />
                    </div>
                    <div>
-                      <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">🇬🇧 English</label>
+                      <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">🇬🇧 {t('langEN')}</label>
                       <input className="input-premium" value={form.nameEn} onChange={e => setForm({...form, nameEn: e.target.value})} placeholder="如：Boba Milk Tea" />
                    </div>
                    <div>
-                      <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">🇮🇩 Bahasa</label>
+                      <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">🇮🇩 {t('langID')}</label>
                       <input className="input-premium" value={form.nameId} onChange={e => setForm({...form, nameId: e.target.value})} placeholder="如：Teh Susu Boba" />
                    </div>
                 </div>
@@ -283,9 +283,9 @@ export default function ProductPage() {
 
                    <div className="flex gap-2">
                      <select className="input-premium flex-1" value={selectedIngredient} onChange={e => setSelectedIngredient(e.target.value)}>
-                       <option value="">-- 选择原料 --</option>
+                       <option value="">{t('selectIngredient')}</option>
                        {inventory.map(inv => (
-                         <option key={inv.id} value={inv.id}>{inv.name} ({inv.category || '其它'})</option>
+                         <option key={inv.id} value={inv.id}>{inv.name} ({inv.category || t('catOther')})</option>
                        ))}
                      </select>
                      <button type="button" onClick={handleAddBomItem} disabled={!selectedIngredient}
@@ -294,7 +294,7 @@ export default function ProductPage() {
                      </button>
                    </div>
                    {inventory.length === 0 && (
-                     <p className="text-xs text-slate-400 mt-2">原料库为空，请先到库存管理添加原料</p>
+                     <p className="text-xs text-slate-400 mt-2">{t('inventoryEmpty')}</p>
                    )}
                 </div>
 

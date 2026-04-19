@@ -308,7 +308,7 @@ export default function POSPage() {
         {/* 顶部悬浮导航 */}
         <div className="relative z-10 px-8 py-6 flex items-center justify-between bg-white/60 backdrop-blur-md border-b border-white/50 sticky top-0 shadow-sm">
           <div>
-            <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">智能收银中枢</h1>
+            <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">{t('spaceCheckout')}</h1>
             <p className="text-sm text-slate-500 font-medium mt-1">SaaS Edition • 极速点单</p>
           </div>
           <div className="flex gap-3">
@@ -361,7 +361,7 @@ export default function POSPage() {
           {filteredProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full opacity-50">
               <div className="text-6xl mb-4">🧋</div>
-              <p className="text-xl font-bold">该分类下暂无商品</p>
+              <p className="text-xl font-bold">{t('noProductsInCategory')}</p>
             </div>
           ) : (
             <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 p-1">
@@ -407,7 +407,7 @@ export default function POSPage() {
         <div className="px-4 py-6 border-b border-slate-100/80 bg-slate-50/50">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-black text-slate-800 flex items-center gap-2">
-              <span>当前账单</span>
+              <span>{t('currentBill')}</span>
               <span className="bg-indigo-100 text-indigo-700 text-sm py-0.5 px-4.5 rounded-full">{cart.length} 项</span>
             </h2>
             {cart.length > 0 && (
@@ -423,7 +423,7 @@ export default function POSPage() {
           {cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full opacity-40 text-center">
               <span className="text-6xl mb-4 grayscale">🛒</span>
-              <p className="font-bold text-slate-600">等待顾客点单...</p>
+              <p className="font-bold text-slate-600"{t('waitForOrder')}</p>
             </div>
           ) : (
             cart.map(item => (
@@ -451,7 +451,7 @@ export default function POSPage() {
         {/* 高级吸底计算与支付面板 */}
           <div className="space-y-4 mb-6 bg-slate-50/80 p-5 rounded-2xl border border-slate-100">
             <div className="flex justify-between text-sm font-bold text-slate-500">
-              <span className="text-label-caps">小计</span>
+              <span className="text-label-caps">{t('subtotal')}</span>
               <span>Rp {subtotal.toLocaleString()}</span>
             </div>
             {discountInfo && (
@@ -462,7 +462,7 @@ export default function POSPage() {
             )}
             <div className="h-px bg-slate-200 my-2"></div>
             <div className="flex justify-between items-end">
-              <span className="text-label-caps !text-slate-800">总计</span>
+              <span className="text-label-caps !text-slate-800">{t('grandTotal')}</span>
               <div className="text-4xl font-black text-slate-900 tracking-tighter">Rp {totalAmount.toLocaleString()}</div>
             </div>
           </div>
@@ -486,7 +486,7 @@ export default function POSPage() {
           
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 col-span-2">
-              <p className="text-label-caps mb-4">渠道</p>
+              <p className="text-label-caps mb-4">{t('channel')}</p>
               <div className="grid grid-cols-4 gap-2">
                 {[
                   { id: 'offline', label: '堂食/自提', color: 'bg-white text-slate-800' },
@@ -516,7 +516,7 @@ export default function POSPage() {
             >
               {loading ? <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div> : (
                 <>
-                  <span className="relative z-10">💵 现金入账</span>
+                  <span className="relative z-10">{t('cashReceived')}</span>
                   <span className="text-[14px] font-semibold opacity-80 mt-1 relative z-10 flex items-center gap-1">
                     <kbd className="bg-white/20 px-1.5 py-0.5 rounded text-[14px]">Space</kbd> 极速结单
                   </span>
@@ -531,7 +531,7 @@ export default function POSPage() {
                 cart.length === 0 ? 'bg-slate-100 text-slate-400' : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-200 active:scale-[0.98]'
               }`}
             >
-              <span>💳 数字聚合</span>
+              <span>{t('digitalAggregation')}</span>
               <span className="text-[14px] font-semibold opacity-70 mt-1">Digital QR/Card</span>
             </button>
           </div>
@@ -548,7 +548,7 @@ export default function POSPage() {
             <div className="p-10">
               <div className="flex flex-col items-center text-center mb-8">
                 <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center text-4xl mb-4 border border-emerald-100 shadow-inner">💎</div>
-                <h3 className="text-3xl font-black text-slate-800 tracking-tighter">会员办理引导</h3>
+                <h3 className="text-3xl font-black text-slate-800 tracking-tighter">{t('membershipGuide')}</h3>
                 <p className="text-sm text-slate-500 font-medium px-4 mt-2">
                   该订单已达标，建议邀请顾客加入会员并领取专属权益礼包。
                 </p>
@@ -596,7 +596,7 @@ export default function POSPage() {
                 >
                   {localStorage.getItem('wa_comm_mode') === 'safe' ? '通过链接触达' : '确认转化并发送'}
                 </button>
-                <button onClick={() => setSuccessModal(null)} className="w-full py-3 text-slate-400 font-bold text-sm">暂不办理</button>
+                <button onClick={() => setSuccessModal(null)} className="w-full py-3 text-slate-400 font-bold text-sm">{t('skipMembership')}</button>
               </div>
             </div>
           </div>
@@ -655,14 +655,14 @@ export default function POSPage() {
                        <span className="font-black text-slate-800">Rp {shiftResult.actual.toLocaleString()}</span>
                     </div>
                     <div className="border-t border-slate-200 my-3 pt-3 flex justify-between">
-                       <span className="text-slate-500 font-bold">飞单 / 差额款：</span>
+                       <span className="text-slate-500 font-bold">{t('varianceAccount')}:</span>
                        <span className={`font-black text-xl ${shiftResult.diff === 0 ? 'text-green-500' : 'text-red-500'}`}>
                          {shiftResult.diff > 0 ? '+' : ''}{shiftResult.diff.toLocaleString()}
                        </span>
                     </div>
                   </div>
                   {shiftResult.diff !== 0 && (
-                     <p className="text-red-500 text-sm font-bold mb-6">⚠️ 差额账目已通过系统上报并锁定至今日日志台！</p>
+                     <p className="text-red-500 text-sm font-bold mb-6">{t('varianceReported')}</p>
                   )}
                   <button 
                     onClick={() => {
@@ -701,7 +701,7 @@ export default function POSPage() {
                   />
                 ) : (
                   <div className="w-[200px] h-[200px] flex items-center justify-center bg-slate-100 rounded-xl animate-pulse">
-                    <span className="text-slate-400 font-bold">生成中...</span>
+                    <span className="text-slate-400 font-bold">{t('generating')}</span>
                   </div>
                 )}
                 <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[14px] font-black px-4 py-1 rounded-full shadow-lg border-2 border-white">
@@ -734,7 +734,7 @@ export default function POSPage() {
       {printReceipt && (
         <div className="fixed top-8 left-8 z-[100] w-72 bg-white shadow-2xl rounded-sm border border-slate-200 p-4 font-mono text-[14px] animate-in slide-in-from-top-10">
           <div className="text-center border-b border-dashed border-slate-300 pb-2 mb-2">
-            <h3 className="font-bold text-[14px]">数字化收据 (Internal Copy)</h3>
+            <h3 className="font-bold text-[14px]">{t('digitalReceiptInternal')}</h3>
             <p>Order: {printReceipt.orderNo}</p>
             <p>{printReceipt.time}</p>
           </div>

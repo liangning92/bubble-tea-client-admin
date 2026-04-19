@@ -77,7 +77,7 @@ export default function CRMHub({ mode = 'page', hideHeader }) {
   if (loading) return <div className="py-24 text-center text-label-caps animate-pulse tracking-widest text-[13px]">{t('syncingGrowthAssets')}</div>;
  
   return (
-    <div className="animate-soft space-y-12 focus:outline-none text-slate-900">
+    <div className="animate-soft space-y-6 focus:outline-none text-slate-900">
       
       {/* Conditionally show header/nav based on mode and hideHeader */}
       {mode === 'page' && !hideHeader && (
@@ -97,14 +97,14 @@ export default function CRMHub({ mode = 'page', hideHeader }) {
       )}
  
       {tab === 'members' && (
-        <div className="space-y-12">
+        <div className="space-y-6">
           {/* Stats Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-             <div className="card-premium !p-10 border-slate-50 hover:bg-slate-50/50 transition-colors">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+             <div className="card-premium !p-6 border-slate-50 hover:bg-slate-50/50 transition-colors">
                 <p className="text-label-caps mb-4 uppercase tracking-widest">{t('totalMembers')}</p>
                 <div className="text-4xl font-black text-slate-900 tracking-tighter">{members.length}</div>
              </div>
-             <div className="card-premium border-red-50 !p-10 bg-red-50/10">
+             <div className="card-premium border-red-50 !p-6 bg-red-50/10">
                 <p className="text-label-caps !text-red-600 mb-4 tracking-tighter uppercase tracking-widest">{t('lapseRisks')}</p>
                 <div className="text-4xl font-black text-red-700 tracking-tighter">1</div>
              </div>
@@ -116,7 +116,7 @@ export default function CRMHub({ mode = 'page', hideHeader }) {
           </div>
  
           {/* Members Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-12">
             {members.map(m => {
                const rank = calculateRank(m.totalSpent);
                return (
@@ -167,9 +167,9 @@ export default function CRMHub({ mode = 'page', hideHeader }) {
       {/* Add Form Portal */}
       {showAddForm && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-md animate-soft">
-           <div className="card-premium w-full max-w-md m-0 shadow-2xl animate-soft !p-12 border-none">
+           <div className="card-premium w-full max-w-md m-0 shadow-2xl animate-soft !p-6 border-none">
               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter mb-10">{t('quickAddMember')}</h3>
-              <form onSubmit={handleAddMember} className="space-y-8">
+              <form onSubmit={handleAddMember} className="space-y-4">
                  <div className="space-y-4">
                     <label className="text-label-caps block pl-1 uppercase tracking-widest">{t('phoneNumber')}</label>
                     <input className="input-premium w-full font-mono text-xl !p-6" placeholder="08XXXXXXXX" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} required />

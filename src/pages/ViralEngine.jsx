@@ -47,7 +47,7 @@ export default function ViralEngine({ hideHeader }) {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-4 animate-in fade-in duration-500">
       {!hideHeader && (
         <div className="flex justify-between items-start">
           <div>
@@ -68,8 +68,8 @@ export default function ViralEngine({ hideHeader }) {
 
       {isEditingStrategy ? (
         /* 策略管理面板 (Strategy Management Panel) */
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-in slide-in-from-bottom-5 duration-500">
-          <div className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 animate-in slide-in-from-bottom-5 duration-500">
+          <div className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm space-y-4">
             <h4 className="text-xl font-black text-slate-800 flex items-center gap-3">
                <span className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">🎯</span>
                {t('coreIncentiveRules')}
@@ -107,8 +107,8 @@ export default function ViralEngine({ hideHeader }) {
             </div>
           </div>
 
-          <div className="bg-slate-900 p-10 rounded-[48px] text-white shadow-2xl space-y-8 flex flex-col justify-between">
-            <div className="space-y-8">
+          <div className="bg-slate-900 p-10 rounded-[48px] text-white shadow-2xl space-y-4 flex flex-col justify-between">
+            <div className="space-y-4">
                <h4 className="text-xl font-black flex items-center gap-3">
                   <span className="w-10 h-10 rounded-2xl bg-white/10 text-white flex items-center justify-center">📊</span>
                   {t('cycleAndRiskControl')}
@@ -153,7 +153,7 @@ export default function ViralEngine({ hideHeader }) {
         </div>
       ) : (
         /* 数据展示面板 (Stats Display Panel) - 原有逻辑 */
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in duration-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in duration-500">
           <div className="space-y-4">
              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {[

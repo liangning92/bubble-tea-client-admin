@@ -15,10 +15,10 @@ export default function SchedulePage({ hideHeader }) {
   ]);
 
   const [staffList] = useState([
-    { id: 1, name: '梁宁 (店长)', roleKey: 'roleStoreManager' },
-    { id: 2, name: '收银员 A', roleKey: 'roleCashier' },
-    { id: 3, name: '咖啡师 B', roleKey: 'roleBarista' },
-    { id: 4, name: '物流专员 C', roleKey: 'roleLogistics' }
+    { id: 1, name: '梁宁', roleKey: 'roleStoreManager' },
+    { id: 2, name: 'Staff A', roleKey: 'roleCashier' },
+    { id: 3, name: 'Barista B', roleKey: 'roleBarista' },
+    { id: 4, name: 'Logistics C', roleKey: 'roleLogistics' }
   ]);
 
   const [scheduleData, setScheduleData] = useState({});
@@ -35,7 +35,7 @@ export default function SchedulePage({ hideHeader }) {
       d.setDate(startOfWeek.getDate() + i);
       return {
         iso: d.toISOString().split('T')[0],
-        label: d.toLocaleDateString(t('zh-cn'), { weekday: 'short' }),
+        label: d.toLocaleDateString(lang === 'zh' ? 'zh-CN' : lang === 'id' ? 'id-ID' : 'en-US', { weekday: 'short' }),
         day: d.getDate(),
         month: d.getMonth() + 1
       };
@@ -75,14 +75,14 @@ export default function SchedulePage({ hideHeader }) {
       {!hideHeader && (
         <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center bg-white p-6 md:p-10 rounded-[48px] border border-slate-100 shadow-xl gap-6 relative overflow-hidden">
            <div className="relative z-10">
-              <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase whitespace-nowrap">门店员工周度排班矩阵</h2>
-              <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mt-2">劳动力精细化管控与成本优化系统</p>
+              <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase whitespace-nowrap">{t('weeklyScheduleMatrix')}</h2>
+              <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mt-2">{t('laborCostControl')}</p>
            </div>
            <div className="flex flex-wrap gap-4 relative z-10 w-full xl:w-auto">
               <div className="flex bg-slate-100 p-2 rounded-[24px] border border-slate-200 shadow-inner">
-                <button className="px-4 py-3.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest bg-white text-slate-900 shadow-md">周视图</button>
+                <button className="px-4 py-3.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest bg-white text-slate-900 shadow-md">{t('weekView')}</button>
                 <div className="w-px h-5 bg-slate-200 mx-2 self-center"></div>
-                <button className="px-4 py-3.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest text-slate-400">月视图</button>
+                <button className="px-4 py-3.5 rounded-[18px] text-[11px] font-black uppercase tracking-widest text-slate-400">{t('monthView')}</button>
               </div>
               <button className="btn-premium active !bg-slate-900 !text-white !px-12 !h-14 border-none shadow-2xl shadow-slate-900/10 text-[12px] font-black uppercase tracking-widest !rounded-[20px]">
                  发布确认排班
@@ -96,14 +96,14 @@ export default function SchedulePage({ hideHeader }) {
            <table className="w-full text-left border-collapse">
              <thead>
                <tr className="bg-slate-50/50 border-b border-slate-100">
-                 <th className="p-10 font-black text-[11px] uppercase tracking-widest w-[240px] sticky left-0 bg-white z-20 border-r border-slate-100 text-slate-400">员工团队 Roster</th>
+                 <th className="p-10 font-black text-[11px] uppercase tracking-widest w-[240px] sticky left-0 bg-white z-20 border-r border-slate-100 text-slate-400">{t('staffManagement')} Roster</th>
                  {currentWeekDays.map(day => (
                    <th key={day.iso} className="p-10 text-center border-l border-slate-100 min-w-[150px]">
                       <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300 mb-1">{day.label}</div>
                       <div className="text-[18px] font-black tracking-tighter text-slate-900">{day.day}/{day.month}</div>
                    </th>
                  ))}
-                 <th className="p-10 text-center border-l border-slate-100 w-32 font-black text-[11px] uppercase tracking-widest text-slate-400">工时预估</th>
+                 <th className="p-10 text-center border-l border-slate-100 w-32 font-black text-[11px] uppercase tracking-widest text-slate-400">{t('estimatedHours')}</th>
                </tr>
              </thead>
              <tbody className="divide-y divide-slate-50">
@@ -135,7 +135,7 @@ export default function SchedulePage({ hideHeader }) {
                                `}
                                style={shift ? { borderLeft: `10px solid ${shift.color}` } : {}}
                              >
-                                <option value="">轮休 (OFF)</option>
+                                <option value="">{t('staffOff')}</option>
                                 {shifts.map(s => <option key={s.id} value={s.id}>{t(s.nameKey)} ({s.startTime})</option>)}
                              </select>
                           </td>

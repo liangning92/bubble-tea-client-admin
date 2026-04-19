@@ -133,7 +133,7 @@ export default function ExpenseReimbursement({ hideHeader }) {
             ⚡ {t('claimSubmission')}
           </h3>
           <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-4">
                 <label className="text-label-caps block pl-2">{t('expenseCategory')}</label>
                 <select className="input-premium w-full !p-4 font-black text-slate-900 text-[14px] bg-slate-50 border-transparent" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
@@ -156,7 +156,7 @@ export default function ExpenseReimbursement({ hideHeader }) {
             </div>
 
             <div className="pt-4">
-              <button type="submit" disabled={isUploading} className="w-full btn-premium active !bg-[#FF7700] !text-white !h-16 border-none shadow-3xl shadow-orange-500/20 text-sm font-black uppercase tracking-widest !rounded-[24px] hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50">
+              <button type="submit" disabled={isUploading} className="w-full btn-premium active !bg-[#FF7700] !text-white !h-11 border-none shadow-3xl shadow-orange-500/20 text-sm font-black uppercase tracking-widest !rounded-xl hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50">
                 {isUploading ? t('syncingEvidence') : t('commitClaim')}
               </button>
             </div>
@@ -166,7 +166,7 @@ export default function ExpenseReimbursement({ hideHeader }) {
 
       <div className="space-y-5">
         <h3 className="text-[14px] font-black text-slate-400 uppercase tracking-widest ml-4">{t('auditHistory')}</h3>
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 gap-4">
           {(expenses || []).map(ex => (
             <div key={ex.id} className={`group relative card-premium !p-6 md:!p-8 border-slate-50 bg-white hover:border-slate-200 transition-all !rounded-[40px] shadow-sm hover:shadow-xl ${ex.status === 'rejected' ? 'opacity-40 grayscale' : ''}`}>
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -218,7 +218,7 @@ export default function ExpenseReimbursement({ hideHeader }) {
             </div>
           ))}
           {(expenses || []).length === 0 && !loading && (
-            <div className="text-center py-40 card-premium !bg-slate-50 border-2 border-dashed border-slate-100 !rounded-[56px] group transition-all">
+            <div className="text-center py-40 card-premium !bg-slate-50 border-2 border-dashed border-slate-100 !rounded-3xl group transition-all">
               <div className="text-7xl mb-10 grayscale opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700">📂</div>
               <p className="text-slate-300 font-black uppercase tracking-widest text-sm">{t('auditRecordsClean')}</p>
             </div>

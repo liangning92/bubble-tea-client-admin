@@ -26,7 +26,7 @@ export default function HygieneHub({ hideHeader }) {
   
   return (
     <div className="w-full bg-slate-50 text-slate-800">
-      <div className="max-w-[1600px] mx-auto space-y-10">
+      <div className="max-w-[1600px] mx-auto space-y-5">
         
         {!hideHeader && (
           <div className="flex flex-col gap-2 px-4">

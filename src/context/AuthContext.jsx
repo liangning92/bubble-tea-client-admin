@@ -109,13 +109,17 @@ function AuthProvider({ children }) {
       setStoreMappings,
       storeConfig,
       setStoreConfig,
-      t: (key) => {
+      t: (key, params) => {
         const parts = key.split('.');
         let val = i18n[lang];
         for (const part of parts) {
           val = val?.[part];
         }
-        return val || key;
+        if (!val) return key;
+        if (params) {
+          return val.replace(/\{(\w+)\}/g, (match, k) => params[k] !== undefined ? params[k] : match);
+        }
+        return val;
       },
       canAccess: (moduleKey) => { if (loading) return true; if (!permissions) return true; return canAccess(permissions, moduleKey); },
       canEdit: (moduleKey) => canEdit(permissions, moduleKey),

@@ -54,7 +54,7 @@ export default function SalaryPage() {
   );
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900 !max-w-full pb-32">
+    <div className="space-y-5 animate-soft text-slate-900 !max-w-full pb-32">
        <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
          <div className="space-y-4">
             <h2 className="text-3xl font-black tracking-tighter uppercase flex items-center gap-4">
@@ -126,7 +126,7 @@ export default function SalaryPage() {
 
         {data.length > 0 && (
           <div className="p-12 bg-slate-900 flex flex-col md:flex-row items-center justify-between gap-12">
-             <div className="flex items-center gap-8">
+             <div className="flex items-center gap-4">
                 <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center text-4xl border border-white/10 backdrop-blur-md">🏦</div>
                 <div className="space-y-4">
                    {formatCurrency(summary.totalNet)}

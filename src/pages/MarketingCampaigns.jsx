@@ -12,7 +12,7 @@ export default function MarketingCampaigns({ hideHeader }) {
   ];
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900 pb-12">
+    <div className="space-y-5 animate-soft text-slate-900 pb-12">
        {!hideHeader && (
          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
@@ -25,7 +25,7 @@ export default function MarketingCampaigns({ hideHeader }) {
         </div>
        )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {campaigns.map(c => (
           <div key={c.id} className="card-premium !p-8 border-slate-100 bg-white group hover:border-orange-500/20 transition-all relative overflow-hidden">
              {/* 状态徽章 */}

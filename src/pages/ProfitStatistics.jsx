@@ -50,9 +50,9 @@ export default function ProfitStatistics({ hideHeader }) {
   );
 
   return (
-    <div className="space-y-12 animate-soft text-slate-900 pb-24">
+    <div className="space-y-6 animate-soft text-slate-900 pb-24">
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-end gap-10 px-4">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
           <div className="space-y-4.5">
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase ">{t('profitHub')}</h3>
             <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em]  opacity-60 leading-none">{t('profitSubtitle')}</p>
@@ -71,8 +71,8 @@ export default function ProfitStatistics({ hideHeader }) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div className="card-premium border-slate-50 !p-10 group hover:border-slate-300 transition-all bg-white shadow-sm hover:shadow-xl !rounded-[40px] relative overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="card-premium border-slate-50 !p-6 group hover:border-slate-300 transition-all bg-white shadow-sm hover:shadow-xl !rounded-[40px] relative overflow-hidden">
            <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-full blur-[40px] -mr-12 -mt-12 opacity-60" />
            <p className="text-[14px] font-black text-slate-400 mb-6 uppercase tracking-[0.2em] group-hover:text-slate-900 transition-colors  relative z-10">{t('grossOperatingIncome')}</p>
            <p className="text-3xl font-black text-slate-900 tracking-tighter  relative z-10 font-mono">
@@ -80,7 +80,7 @@ export default function ProfitStatistics({ hideHeader }) {
              {(data?.revenue || 0).toLocaleString()}
            </p>
         </div>
-        <div className="card-premium border-slate-50 !p-10 group hover:border-orange-200 transition-all bg-white shadow-sm hover:shadow-xl !rounded-[40px] relative overflow-hidden">
+        <div className="card-premium border-slate-50 !p-6 group hover:border-orange-200 transition-all bg-white shadow-sm hover:shadow-xl !rounded-[40px] relative overflow-hidden">
            <div className="absolute top-0 right-0 w-24 h-24 bg-orange-50 rounded-full blur-[40px] -mr-12 -mt-12 opacity-40" />
            <p className="text-[14px] font-black text-slate-400 mb-6 uppercase tracking-[0.2em] group-hover:text-orange-600 transition-colors  relative z-10">{t('expenditure')}</p>
            <p className="text-3xl font-black text-orange-600 tracking-tighter  opacity-80 relative z-10 font-mono">
@@ -88,7 +88,7 @@ export default function ProfitStatistics({ hideHeader }) {
              {(data?.cost || 0).toLocaleString()})
            </p>
         </div>
-        <div className="card-premium border-slate-50 !p-10 group hover:shadow-2xl transition-all bg-white shadow-sm !rounded-[40px] ring-1 ring-slate-900/5 relative overflow-hidden">
+        <div className="card-premium border-slate-50 !p-6 group hover:shadow-2xl transition-all bg-white shadow-sm !rounded-[40px] ring-1 ring-slate-900/5 relative overflow-hidden">
            <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-full blur-[40px] -mr-12 -mt-12 opacity-40" />
            <p className="text-[14px] font-black text-slate-900 mb-6 uppercase tracking-[0.2em]  relative z-10">{t('netProfitEbitda')}</p>
            <p className="text-4xl font-black text-slate-900 tracking-tighter underline decoration-emerald-500 decoration-8 underline-offset-8 decoration-white group-hover:decoration-emerald-500/20 transition-all relative z-10 font-mono">
@@ -96,7 +96,7 @@ export default function ProfitStatistics({ hideHeader }) {
              {(data?.profit || 0).toLocaleString()}
            </p>
         </div>
-        <div className="card-premium bg-slate-900 border-none shadow-3xl shadow-slate-900/20 !p-10 group !rounded-[40px] relative overflow-hidden">
+        <div className="card-premium bg-slate-900 border-none shadow-3xl shadow-slate-900/20 !p-6 group !rounded-[40px] relative overflow-hidden">
            <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-[40px] -mr-12 -mt-12 transition-transform group-hover:scale-150" />
            <p className="text-[14px] font-black text-slate-500 mb-6 uppercase tracking-[0.2em]  relative z-10">{t('profitabilityRatio')}</p>
            <p className="text-4xl font-black text-white tracking-tighter  group-hover:scale-110 transition-transform origin-left relative z-10 font-mono underline decoration-slate-800 underline-offset-4">{data?.margin || 0}%</p>
@@ -104,7 +104,7 @@ export default function ProfitStatistics({ hideHeader }) {
       </div>
 
       <div className="card-premium border-slate-50 !p-0 overflow-hidden shadow-sm bg-white !rounded-[48px] group/ledger">
-        <div className="bg-slate-50/50 p-12 border-b border-slate-50 flex justify-between items-center flex-wrap gap-10 backdrop-blur-md">
+        <div className="bg-slate-50/50 p-12 border-b border-slate-50 flex justify-between items-center flex-wrap gap-6 backdrop-blur-md">
            <div className="flex items-center gap-6">
               <div className="w-16 h-16 bg-white rounded-[28px] flex items-center justify-center border border-slate-100 shadow-sm text-3xl group-hover/ledger:rotate-6 transition-transform shrink-0">📑</div>
               <h4 className="text-2xl font-black text-slate-900 uppercase tracking-tighter  flex items-center gap-4">
@@ -130,7 +130,7 @@ export default function ProfitStatistics({ hideHeader }) {
                 { label: t('advertLabel'), sub: t('advertSub'), value: (data?.cost || 0) * 0.05, auto: true },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col sm:flex-row justify-between items-center group/item px-10 py-10 hover:bg-slate-50 transition-all cursor-default">
-                   <div className="flex gap-10 items-center w-full sm:w-auto mb-8 sm:mb-0">
+                   <div className="flex gap-6 items-center w-full sm:w-auto mb-8 sm:mb-0">
                       <div className="w-3 h-3 bg-slate-100 rounded-full group-hover/item:bg-slate-900 transition-all group-hover/item:scale-150 shrink-0" />
                       <div className="space-y-4">
                          <div className="flex items-center gap-4">
@@ -153,7 +153,7 @@ export default function ProfitStatistics({ hideHeader }) {
         </div>
       </div>
 
-      <div className="p-20 rounded-[80px] bg-white border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center space-y-12 group hover:shadow-3xl transition-all duration-700 relative overflow-hidden">
+      <div className="p-20 rounded-[80px] bg-white border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center space-y-6 group hover:shadow-3xl transition-all duration-700 relative overflow-hidden">
          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-slate-50 rounded-full blur-[160px] -mr-96 -mt-96 opacity-60 transition-transform group-hover:scale-125 duration-1000"></div>
          <div className="w-32 h-32 bg-white shadow-2xl border border-slate-100 rounded-[48px] flex items-center justify-center text-6xl group-hover:rotate-12 transition-transform relative z-10 shadow-inner">💎</div>
          <div className="space-y-4 relative z-10">

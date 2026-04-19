@@ -60,7 +60,7 @@ export default function BusinessAnalysisPage() {
     );
 
     return (
-        <div className="space-y-10 animate-soft text-slate-900">
+        <div className="space-y-5 animate-soft text-slate-900">
             {/* Header & Filter */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
@@ -100,9 +100,9 @@ export default function BusinessAnalysisPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 {/* Hourly peak */}
-                <div className="card-premium border-slate-200 !p-10 bg-white">
+                <div className="card-premium border-slate-200 !p-6 bg-white">
                     <div className="flex justify-between items-center mb-10">
                         <div>
                             <h3 className="text-h2">🕒 {t('peakHours')}</h3>
@@ -129,7 +129,7 @@ export default function BusinessAnalysisPage() {
                 </div>
 
                 {/* Category Breakdown */}
-                <div className="card-premium border-slate-200 !p-10 bg-white">
+                <div className="card-premium border-slate-200 !p-6 bg-white">
                     <div className="flex justify-between items-center mb-10">
                         <div>
                             <h3 className="text-h2">📦 {t('productPerformance')}</h3>

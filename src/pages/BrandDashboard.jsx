@@ -36,9 +36,9 @@ export default function BrandDashboard() {
   const bottomStores = [...stores].reverse().slice(0, 3); // Bottom 3
 
   return (
-    <div className="space-y-8 animate-soft text-slate-900">
+    <div className="space-y-4 animate-soft text-slate-900">
       {/* 头部指挥控制台 */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-10 rounded-[48px] border border-slate-100 shadow-sm gap-8 transition-all">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-10 rounded-[48px] border border-slate-100 shadow-sm gap-4 transition-all">
         <div className="space-y-4">
           <h2 className="text-h1 uppercase  tracking-tight">{t('hqDashboard')}</h2>
           <p className="text-label-caps !text-slate-400">{t('hqSubtitle')}</p>
@@ -78,9 +78,9 @@ export default function BrandDashboard() {
       </div>
 
       {/* 第二维度：赛马机制 (Leaderboards) */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {/* 黑马榜 */}
-        <div className="card-premium !p-10 border-emerald-50 shadow-emerald-500/5 bg-emerald-50/10">
+        <div className="card-premium !p-6 border-emerald-50 shadow-emerald-500/5 bg-emerald-50/10">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm border border-emerald-100">🔥</div>
             <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight">{t('performanceRank')}</h3>
@@ -109,7 +109,7 @@ export default function BrandDashboard() {
         </div>
 
         {/* 辅导榜 */}
-        <div className="card-premium !p-10 border-red-50 shadow-red-500/5 bg-red-50/10">
+        <div className="card-premium !p-6 border-red-50 shadow-red-500/5 bg-red-50/10">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm border border-red-100">🆘</div>
             <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight">{t('hqAlerts')}</h3>

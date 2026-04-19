@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 6060",
-    "build": "vite build --outDir dist-admin",
+    "build": "node scripts/i18n-ast-check.mjs && vite build --outDir dist-admin",
     "i18n:check": "node scripts/i18n-check.cjs",
     "test": "vitest",
     "test:ui": "vitest --ui",

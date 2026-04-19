@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, api } from '../context/AuthContext';
 
 const TABS = [
-  { id: 'categories', label: '产品分类' },
-  { id: 'functions', label: '功能按钮' },
-  { id: 'payments', label: '支付方式' },
+  { id: 'categories', labelKey: 'productCategory' },
+  { id: 'functions', labelKey: 'quickActionsTab' },
+  { id: 'payments', labelKey: 'paymentMethodsConfig' },
 ];
 
 const DEFAULT_DATA = {
@@ -186,7 +186,7 @@ export default function POSCategoriesPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-slate-400">加载中...</div>
+        <div className="text-slate-400">{t('loading')}</div>
       </div>
     );
   }
@@ -196,8 +196,8 @@ export default function POSCategoriesPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-black text-slate-900">📱 POS分类配置</h1>
-          <p className="text-sm text-slate-500 mt-1">配置POS收银机的产品分类、功能按钮和支付方式</p>
+          <h1 className="text-2xl font-black text-slate-900">📱 {t('posCategoriesTitle')}</h1>
+          <p className="text-sm text-slate-500 mt-1">{t('categoryConfigDesc')}</p>
         </div>
         <div className="flex items-center gap-4">
           {saveMsg && <span className="text-sm font-bold">{saveMsg}</span>}
@@ -206,7 +206,7 @@ export default function POSCategoriesPage() {
             disabled={saving}
             className="px-6 py-3 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-500 transition-all disabled:opacity-50"
           >
-            {saving ? '保存中...' : '💾 保存全部'}
+            {saving ? t('saving') : `💾 ${t('saveConfig')}`}
           </button>
         </div>
       </div>
@@ -219,7 +219,7 @@ export default function POSCategoriesPage() {
             activeTab === 'categories' ? 'bg-white text-slate-900 shadow-md' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
-          🧋 {lang === 'zh' ? '产品分类' : lang === 'en' ? 'Categories' : 'Kategori'}
+          🧋 {t('productCategory')}
         </button>
         <button
           onClick={() => setActiveTab('functions')}
@@ -227,7 +227,7 @@ export default function POSCategoriesPage() {
             activeTab === 'functions' ? 'bg-white text-slate-900 shadow-md' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
-          🔘 {lang === 'zh' ? '功能按钮' : lang === 'en' ? 'Functions' : 'Fungsi'}
+          🔘 {t('quickActionsTab')}
         </button>
         <button
           onClick={() => setActiveTab('payments')}
@@ -235,7 +235,7 @@ export default function POSCategoriesPage() {
             activeTab === 'payments' ? 'bg-white text-slate-900 shadow-md' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
-          💳 {lang === 'zh' ? '支付方式' : lang === 'en' ? 'Payments' : 'Pembayaran'}
+          💳 {t('paymentMethodsConfig')}
         </button>
       </div>
 
@@ -246,28 +246,28 @@ export default function POSCategoriesPage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-lg font-black text-slate-900">产品分类</h3>
-                <p className="text-sm text-slate-500">设置POS左侧显示的产品分类，支持排序和启用/禁用</p>
+                <h3 className="text-lg font-black text-slate-900">{t('categoryConfig')}</h3>
+                <p className="text-sm text-slate-500">{t('categoryConfigDesc')}</p>
               </div>
               <button
                 onClick={() => openCategoryModal()}
                 className="px-4 py-2 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-500 transition-all text-sm"
               >
-                + 添加分类
+                + {t('addButton')}
               </button>
             </div>
 
             <table className="w-full table-auto">
               <thead>
                 <tr className="text-left text-sm font-bold text-slate-500 border-b border-slate-100">
-                  <th className="pb-3 w-24">排序</th>
-                  <th className="pb-3 w-16">图标</th>
-                  <th className="pb-3">中文名</th>
-                  <th className="pb-3">English</th>
-                  <th className="pb-3">Bahasa</th>
-                  <th className="pb-3 w-20">颜色</th>
-                  <th className="pb-3 w-20">启用</th>
-                  <th className="pb-3 w-24">操作</th>
+                  <th className="pb-3 w-24">{t('sortOrder')}</th>
+                  <th className="pb-3 w-16">{t('icon')}</th>
+                  <th className="pb-3">{t('nameZh')}</th>
+                  <th className="pb-3">EN</th>
+                  <th className="pb-3">ID</th>
+                  <th className="pb-3 w-20">{t('color')}</th>
+                  <th className="pb-3 w-20">{t('enabled')}</th>
+                  <th className="pb-3 w-24">{t('operation')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -316,13 +316,13 @@ export default function POSCategoriesPage() {
                           onClick={() => openCategoryModal(cat)}
                           className="px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold hover:bg-slate-200"
                         >
-                          编辑
+                          ✏️
                         </button>
                         <button
                           onClick={() => deleteCategory(cat.id)}
                           className="px-3 py-1 bg-red-100 text-red-600 rounded-lg text-xs font-bold hover:bg-red-200"
                         >
-                          删除
+                          🗑️
                         </button>
                       </div>
                     </td>
@@ -337,19 +337,19 @@ export default function POSCategoriesPage() {
         {activeTab === 'functions' && (
           <div className="space-y-4">
             <div className="mb-4">
-              <h3 className="text-lg font-black text-slate-900">功能按钮</h3>
-              <p className="text-sm text-slate-500">配置POS显示的功能按钮（挂单/取单/小票/报表/考勤/交接）</p>
+              <h3 className="text-lg font-black text-slate-900">{t('quickActionsConfig')}</h3>
+              <p className="text-sm text-slate-500">{t('quickActionsConfigDesc')}</p>
             </div>
 
             <table className="w-full table-auto">
               <thead>
                 <tr className="text-left text-sm font-bold text-slate-500 border-b border-slate-100">
-                  <th className="pb-3 w-24">排序</th>
-                  <th className="pb-3 w-16">图标</th>
-                  <th className="pb-3">中文名</th>
-                  <th className="pb-3">English</th>
-                  <th className="pb-3">Bahasa</th>
-                  <th className="pb-3 w-20">启用</th>
+                  <th className="pb-3 w-24">{t('sortOrder')}</th>
+                  <th className="pb-3 w-16">{t('icon')}</th>
+                  <th className="pb-3">{t('nameZh')}</th>
+                  <th className="pb-3">EN</th>
+                  <th className="pb-3">ID</th>
+                  <th className="pb-3 w-20">{t('enabled')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -396,18 +396,18 @@ export default function POSCategoriesPage() {
         {activeTab === 'payments' && (
           <div className="space-y-4">
             <div className="mb-4">
-              <h3 className="text-lg font-black text-slate-900">支付方式</h3>
-              <p className="text-sm text-slate-500">配置POS支持的支付方式（现金/DANA/OVO/GoPay/BCA/Mandiri/微信/支付宝/QRIS）</p>
+              <h3 className="text-lg font-black text-slate-900">{t('paymentMethodsConfig')}</h3>
+              <p className="text-sm text-slate-500">{t('paymentMethodsConfigDesc')}</p>
             </div>
 
             <table className="w-full table-auto">
               <thead>
                 <tr className="text-left text-sm font-bold text-slate-500 border-b border-slate-100">
-                  <th className="pb-3 w-16">图标</th>
-                  <th className="pb-3">中文名</th>
-                  <th className="pb-3">English</th>
-                  <th className="pb-3">Bahasa</th>
-                  <th className="pb-3 w-20">启用</th>
+                  <th className="pb-3 w-16">{t('icon')}</th>
+                  <th className="pb-3">{t('nameZh')}</th>
+                  <th className="pb-3">EN</th>
+                  <th className="pb-3">ID</th>
+                  <th className="pb-3 w-20">{t('enabled')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -438,13 +438,13 @@ export default function POSCategoriesPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
             <h3 className="text-xl font-black text-slate-900 mb-6">
-              {categories.find(c => c.id === editingItem.id) ? '编辑分类' : '添加分类'}
+              {categories.find(c => c.id === editingItem.id) ? t('edit') : t('addButton')}
             </h3>
 
             <div className="space-y-4">
               {/* Icon Picker */}
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">图标</label>
+                <label className="block text-sm font-bold text-slate-700 mb-2">{t('icon')}</label>
                 <div className="flex flex-wrap gap-2">
                   {ICON_OPTIONS.map(icon => (
                     <button

@@ -31,21 +31,21 @@ export default function PayrollRulesPage() {
   };
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900 pb-24 !max-w-7xl">
+    <div className="space-y-5 animate-soft text-slate-900 pb-24 !max-w-7xl">
       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
              <span className="text-3xl">⚙️</span> {t('salaryConfigTitle')}
           </h2>
         </div>
-        <button onClick={handleSave} className="btn-premium active !bg-slate-900 !text-white !px-12 !h-16 border-none shadow-2xl text-[14px] font-black uppercase tracking-widest !rounded-[24px]">
+        <button onClick={handleSave} className="btn-premium active !bg-slate-900 !text-white !px-12 !h-11 border-none shadow-2xl text-[14px] font-black uppercase tracking-widest !rounded-xl">
            {t('saveAndDeployRules')}
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 1. 基础福利设置 */}
-        <div className="card-premium border-slate-50 !p-12 space-y-10 bg-white shadow-xl !rounded-[48px]">
+        <div className="card-premium border-slate-50 !p-6 space-y-5 bg-white shadow-xl !rounded-2xl">
            <h4 className="text-xl font-black uppercase tracking-tight border-b border-slate-50 pb-8 text-slate-900">
              岗位基础福利设定
            </h4>
@@ -70,7 +70,7 @@ export default function PayrollRulesPage() {
         </div>
 
         {/* 2. 核心：阶梯提成设置 */}
-        <div className="card-premium border-orange-100 !p-12 space-y-10 bg-orange-50/20 shadow-xl !rounded-[48px] relative overflow-hidden">
+        <div className="card-premium border-orange-100 !p-6 space-y-5 bg-orange-50/20 shadow-xl !rounded-2xl relative overflow-hidden">
            <div className="absolute top-0 right-0 p-8">
               <div className="w-32 h-32 bg-orange-500 rounded-full blur-[80px] opacity-10" />
            </div>
@@ -93,7 +93,7 @@ export default function PayrollRulesPage() {
 
               <div className="p-8 bg-white rounded-[40px] border-2 border-orange-500 flex justify-between items-center shadow-2xl shadow-orange-500/10 scale-[1.05]">
                  <div className="space-y-4">
-                    <span className="text-[11px] font-black text-orange-500 uppercase tracking-widest">第二阶梯 (活跃推荐)</span>
+                    <span className="text-[11px] font-black text-orange-500 uppercase tracking-widest">{t('tier2ActiveReferral')}</span>
                     <h5 className="text-[15px] font-black text-slate-900">单日 101 - 300 杯</h5>
                  </div>
                  <div className="flex items-center gap-4">

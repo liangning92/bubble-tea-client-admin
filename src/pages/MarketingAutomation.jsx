@@ -22,12 +22,12 @@ export default function MarketingAutomation({ hideHeader }) {
   const tl = (id_text, zh_text) => (lang === 'zh' ? zh_text : id_text);
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900 pb-12">
+    <div className="space-y-5 animate-soft text-slate-900 pb-12">
 
       {/* 漏斗全局参数配置 (Lock-in & Trigger Settings) */}
       <div className="bg-slate-900 rounded-[40px] p-12 text-white shadow-2xl relative overflow-hidden border border-white/5">
          <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 rounded-full blur-[100px] -mr-40 -mt-40 pointer-events-none"></div>
-         <div className="relative z-10 space-y-10">
+         <div className="relative z-10 space-y-5">
             <div className="flex items-center gap-4">
                <span className="w-12 h-12 bg-orange-600/20 text-orange-500 rounded-2xl flex items-center justify-center text-2xl border border-orange-500/30">⚙️</span>
                <div>
@@ -77,7 +77,7 @@ export default function MarketingAutomation({ hideHeader }) {
                </div>
 
                <div className="flex flex-col justify-end">
-                  <button className="btn-primary w-full !h-16">
+                  <button className="btn-primary w-full !h-11">
                      {tl('Apply & Sync', '全域同步策略配置')}
                   </button>
                </div>
@@ -86,7 +86,7 @@ export default function MarketingAutomation({ hideHeader }) {
       </div>
 
       {/* 自动化任务列表 */}
-      <div className="space-y-8">
+      <div className="space-y-4">
         <div className="flex justify-between items-end px-4">
           <div>
              <h4 className="text-h3">{tl('Agentic Automations', '执行中的智能策略')}</h4>
@@ -100,7 +100,7 @@ export default function MarketingAutomation({ hideHeader }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {automations.map(auto => (
             <div key={auto.id} className="card-premium !p-8 border-slate-100 bg-white group hover:border-orange-500/20 transition-all">
                <div className="flex justify-between items-start mb-6">
@@ -124,7 +124,7 @@ export default function MarketingAutomation({ hideHeader }) {
                   <div className="absolute top-2 right-4 text-[8px] font-black text-slate-300 uppercase tracking-widest">AI Preview</div>
                   <div className="text-[13px] text-slate-500 leading-relaxed font-bold pr-10">
                      {auto.id === 1 ? '"感谢您支持 Bubble Tea。为您准备了一份老会员专属回馈礼:4.8折券已到账。期待您的再次光临!"' :
-                      auto.id === 2 ? '"温馨提示:您已有7天未光顾。点击领取买一赠一专属权益,开启美好的午后奶茶时光吧!"' :
+                      auto.id === 2 ? `"温馨提示:您已有7天未光顾。点击领取买一赠一专属权益,${t('teaTimeReminder')}!"` :
                       '"欢迎成为品牌高级会员!总价值 Rp 30,000 的入会专属礼包已派发至您的账户..."'}
                   </div>
                </div>

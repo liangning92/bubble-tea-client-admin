@@ -264,7 +264,7 @@ export default function PurchaseDetailPage() {
   ];
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900">
+    <div className="space-y-5 animate-soft text-slate-900">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tighter">{tl('库存采购运营明细', 'Purchase Operations', 'Rincian Pembelian')}</h2>
@@ -362,13 +362,13 @@ export default function PurchaseDetailPage() {
                   <table className="w-full text-[14px]">
                     <thead>
                       <tr className="bg-slate-50 border-b border-slate-100">
-                        <th className="p-8 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('核销日期', 'Date', 'Tgl')}</th>
-                        <th className="p-8 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('原料品项', 'Ingredient', 'Bahan')}</th>
-                        <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('入库量', 'Qty', 'Jml')}</th>
-                        <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('当前单价', 'Price', 'Harga')}</th>
-                        <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('资金流转合计', 'Total', 'Total')}</th>
-                        <th className="p-8 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('交付状态', 'Status', 'Status')}</th>
-                        <th className="p-8 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('操作管理', 'Action', 'Aksi')}</th>
+                        <th className="p-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('核销日期', 'Date', 'Tgl')}</th>
+                        <th className="p-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('原料品项', 'Ingredient', 'Bahan')}</th>
+                        <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('入库量', 'Qty', 'Jml')}</th>
+                        <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('当前单价', 'Price', 'Harga')}</th>
+                        <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('资金流转合计', 'Total', 'Total')}</th>
+                        <th className="p-4 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('交付状态', 'Status', 'Status')}</th>
+                        <th className="p-4 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('操作管理', 'Action', 'Aksi')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -426,7 +426,7 @@ export default function PurchaseDetailPage() {
 
       {/* ========== Tab2: 自动生成采购清单 ========== */}
       {activeTab === 'auto-generate' && (
-        <div className="space-y-8 animate-soft">
+        <div className="space-y-4 animate-soft">
           <div className="card-premium border-slate-200 bg-white shadow-lg p-8">
             <h3 className="text-[14px] font-black mb-6 text-slate-800 uppercase tracking-widest">{tl('⚡ 智能补货策略引擎', '⚡ AI Restock Engine', '⚡ Generate Daftar Pembelian Otomatis')}</h3>
             <div className="flex flex-col gap-6">
@@ -542,32 +542,32 @@ export default function PurchaseDetailPage() {
               <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-slate-50">
                 <h3 className="text-[14px] font-black text-slate-800 uppercase tracking-widest">
                   ⚡ {tl('AI 推荐采购清单', 'AI Suggested List', 'Daftar Pembelian Otomatis')}
-                  <span className="ml-3 px-4 py-0.5 bg-indigo-600 text-white rounded text-[14px]">{autoSuggestions.length} 条建议</span>
+                  <span className="ml-3 px-4 py-0.5 bg-indigo-600 text-white rounded text-[14px]">{autoSuggestions.length} {t('suggestions')}</span>
                 </h3>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
                     <tr className="bg-white border-b border-slate-100">
-                      <th className="p-8 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('原料名称', 'Ingredient', 'Bahan')}</th>
-                      <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('当前剩余', 'Current', 'Saat Ini')}</th>
-                      <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('在途库存', 'On Order', 'Dipesan')}</th>
-                      <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('日均估算', 'Est. Daily', 'Per Hari')}</th>
-                      <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('建议采购', 'Suggested', 'Saran')}</th>
-                      <th className="p-8 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('核准', 'Action', 'Aksi')}</th>
+                      <th className="p-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('原料名称', 'Ingredient', 'Bahan')}</th>
+                      <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('当前剩余', 'Current', 'Saat Ini')}</th>
+                      <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('在途库存', 'On Order', 'Dipesan')}</th>
+                      <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('日均估算', 'Est. Daily', 'Per Hari')}</th>
+                      <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('建议采购', 'Suggested', 'Saran')}</th>
+                      <th className="p-4 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('核准', 'Action', 'Aksi')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {autoSuggestions.map((item, i) => (
                       <tr key={i} className={`hover:bg-slate-50 transition-colors ${item.suggestedOrder > 0 ? 'bg-rose-50/20' : 'bg-green-50/20'}`}>
-                        <td className="p-8 font-black text-slate-900">{item.name}</td>
-                        <td className="p-8 text-right font-bold text-slate-600">{item.stock}{item.unit}</td>
-                        <td className="p-8 text-right text-indigo-500 font-bold">{item.orderedQty}{item.unit}</td>
-                        <td className="p-8 text-right text-slate-400 text-[14px] font-bold">{item.estimatedDailyUsage?.toFixed(2)}{item.unit}/天</td>
+                        <td className="p-4 font-black text-slate-900">{item.name}</td>
+                        <td className="p-4 text-right font-bold text-slate-600">{item.stock}{item.unit}</td>
+                        <td className="p-4 text-right text-indigo-500 font-bold">{item.orderedQty}{item.unit}</td>
+                        <td className="p-4 text-right text-slate-400 text-[14px] font-bold">{item.estimatedDailyUsage?.toFixed(2)}{item.unit}/天</td>
                         <td className={`p-8 text-right font-black ${item.suggestedOrder > 0 ? 'text-rose-600 text-lg' : 'text-emerald-600'}`}>
                           {item.suggestedOrder > 0 ? `+ ${item.suggestedOrder.toFixed(0)}${item.unit}` : '充足'}
                         </td>
-                        <td className="p-8 text-center">
+                        <td className="p-4 text-center">
                           {item.suggestedOrder > 0 && (
                             <button
                               onClick={async () => {
@@ -607,7 +607,7 @@ export default function PurchaseDetailPage() {
 
       {/* ========== Tab3: 安全库存/目标周期设置 ========== */}
       {activeTab === 'settings' && (
-        <div className="space-y-8 animate-soft">
+        <div className="space-y-4 animate-soft">
           <div className="card-premium border-slate-200 bg-white shadow-sm p-8">
             <h3 className="text-[14px] font-black mb-4 text-slate-800 uppercase tracking-widest">{tl('💡 库存策略说明', '💡 Strategy Info', '💡 Info')}</h3>
             <div className="text-[14px] text-slate-400 font-bold space-y-4 uppercase tracking-widest">
@@ -631,12 +631,12 @@ export default function PurchaseDetailPage() {
                 <table className="w-full text-left">
                   <thead>
                     <tr className="bg-white border-b border-slate-100">
-                      <th className="p-8 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('原料品项', 'Ingredient', 'Bahan')}</th>
-                      <th className="p-8 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('当前结存', 'Current', 'Stok')}</th>
-                      <th className="p-8 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('安全防御天数', 'Safe Days', 'Hari Aman')}</th>
-                      <th className="p-8 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('补货目标周期', 'Target Cycle', 'Siklus Target')}</th>
-                      <th className="p-8 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('健康度监测', 'Status', 'Status')}</th>
-                      <th className="p-8 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('交互', 'Action', 'Aksi')}</th>
+                      <th className="p-4 text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('原料品项', 'Ingredient', 'Bahan')}</th>
+                      <th className="p-4 text-right text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('当前结存', 'Current', 'Stok')}</th>
+                      <th className="p-4 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('安全防御天数', 'Safe Days', 'Hari Aman')}</th>
+                      <th className="p-4 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('补货目标周期', 'Target Cycle', 'Siklus Target')}</th>
+                      <th className="p-4 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('健康度监测', 'Status', 'Status')}</th>
+                      <th className="p-4 text-center text-[14px] font-black text-slate-400 uppercase tracking-widest">{tl('交互', 'Action', 'Aksi')}</th>
                     </tr>
                   </thead>
                   <tbody>

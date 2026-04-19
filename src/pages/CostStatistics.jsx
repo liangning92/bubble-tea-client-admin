@@ -107,9 +107,9 @@ export default function CostStatistics({ hideHeader }) {
   );
 
   return (
-    <div className="space-y-12 animate-soft text-slate-900 pb-24">
+    <div className="space-y-6 animate-soft text-slate-900 pb-24">
       {/* Header row */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-10 px-4">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-4">
         <div className="bg-emerald-50 px-8 py-3 rounded-[24px] flex items-center gap-4 border border-emerald-100 shadow-sm transition-all hover:bg-emerald-100/50 cursor-help">
           <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(16,185,129,0.4)]"></span>
           <span className="text-[14px] font-black text-emerald-700 uppercase tracking-widest">{t('coreSyncActive')}</span>
@@ -125,9 +125,9 @@ export default function CostStatistics({ hideHeader }) {
       </div>
 
       {/* Summary grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {costCategories.map(item => (
-          <div key={item.key} className="card-premium group hover:border-slate-300 transition-all !p-10 border-slate-50 bg-white !rounded-[40px] shadow-sm hover:shadow-xl relative overflow-hidden">
+          <div key={item.key} className="card-premium group hover:border-slate-300 transition-all !p-6 border-slate-50 bg-white !rounded-[40px] shadow-sm hover:shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-full blur-[40px] -mr-12 -mt-12 opacity-60 group-hover:scale-150 transition-transform" />
             <div className="flex justify-between items-start mb-10 relative z-10">
               <div className="w-16 h-16 rounded-[24px] bg-slate-50 flex items-center justify-center text-3xl shadow-sm border border-slate-100 group-hover:scale-110 group-hover:rotate-6 transition-transform">
@@ -146,7 +146,7 @@ export default function CostStatistics({ hideHeader }) {
       </div>
 
       {/* Total bar */}
-      <div className="card-premium bg-slate-900 text-white !p-16 border-none shadow-3xl shadow-slate-900/10 !rounded-[56px] relative overflow-hidden group">
+      <div className="card-premium bg-slate-900 text-white !p-6 border-none shadow-3xl shadow-slate-900/10 !rounded-3xl relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-slate-800 rounded-full blur-[140px] opacity-40 -mr-80 -mt-80 transition-transform group-hover:scale-110 duration-1000" />
         <div className="flex flex-col xl:flex-row justify-between items-center gap-16 relative z-10">
           <div className="space-y-4 text-center xl:text-left">
@@ -156,7 +156,7 @@ export default function CostStatistics({ hideHeader }) {
               {formatCurrency(summary?.total || 0)}
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-8 w-full xl:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 w-full xl:w-auto">
             <button className="flex-1 sm:flex-none btn-premium active !px-16 !py-6 !bg-white !text-slate-900 border-none shadow-3xl shadow-white/5 text-[14px] font-black uppercase tracking-[0.2em] !scale-100 hover:scale-105 active:scale-95 transition-all rounded-[32px]">
               {t('costReportExcel')}
             </button>
@@ -185,7 +185,7 @@ export default function CostStatistics({ hideHeader }) {
 
           {/* Add form */}
           {showAddForm && (
-            <div className="card-premium border-slate-100 !p-10 bg-white !rounded-[40px] shadow-xl">
+            <div className="card-premium border-slate-100 !p-6 bg-white !rounded-[40px] shadow-xl">
               <div className="flex justify-between items-center mb-8">
                 <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight">{t('addNew') || '新增成本录入'}</h4>
                 <button onClick={() => { setShowAddForm(false); setNewEntry({ category: 'rent', amount: '', description: '', date: new Date().toISOString().split('T')[0] }); }} className="text-slate-400 hover:text-slate-900 text-2xl font-black">&times;</button>
@@ -210,7 +210,7 @@ export default function CostStatistics({ hideHeader }) {
                   <input type="text" value={newEntry.description} onChange={e => setNewEntry(p => ({ ...p, description: e.target.value }))} placeholder={t('auditReasonPlaceholder') || '备注...'} className="input-premium w-full !bg-slate-50 !rounded-[20px] !p-5 font-black text-[15px] border-none" />
                 </div>
               </div>
-              <button onClick={handleAddEntry} disabled={saving} className="w-full btn-premium active !bg-[#FF7700] !text-white !h-16 border-none shadow-xl text-[14px] font-black uppercase tracking-[0.2em] !rounded-[24px] active:scale-95 disabled:opacity-50">
+              <button onClick={handleAddEntry} disabled={saving} className="w-full btn-premium active !bg-[#FF7700] !text-white !h-11 border-none shadow-xl text-[14px] font-black uppercase tracking-[0.2em] !rounded-xl active:scale-95 disabled:opacity-50">
                 {saving ? (t('processingDatabase') || '处理中...') : (t('submitFiscalEntry') || '提交记录')}
               </button>
             </div>

@@ -133,7 +133,7 @@ export default function POSSettingsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-slate-400">加载中...</div>
+        <div className="text-slate-400">{t('loading')}</div>
       </div>
     );
   }
@@ -142,8 +142,8 @@ export default function POSSettingsPage() {
     <div className="p-6 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-black text-slate-900">📱 POS收银机设置</h1>
-          <p className="text-sm text-slate-500 mt-1">配置POS收银机的界面和功能</p>
+          <h1 className="text-2xl font-black text-slate-900">📱 {t('posSettings')}</h1>
+          <p className="text-sm text-slate-500 mt-1">{t('posSettingsDesc')}</p>
         </div>
         <div className="flex items-center gap-4">
           {saveMsg && <span className="text-sm font-bold">{saveMsg}</span>}
@@ -152,7 +152,7 @@ export default function POSSettingsPage() {
             disabled={saving}
             className="px-6 py-3 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-500 transition-all disabled:opacity-50"
           >
-            {saving ? "保存中..." : "💾 保存配置"}
+            {saving ? t('saving') : `💾 ${t('saveConfig')}`}
           </button>
         </div>
       </div>
@@ -169,7 +169,7 @@ export default function POSSettingsPage() {
                 : "text-slate-500 hover:text-slate-700"
             }`}
           >
-            {tab.label}
+            {t(tab.label)}
           </button>
         ))}
       </div>
@@ -178,30 +178,30 @@ export default function POSSettingsPage() {
       <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
         {/* Layout Tab */}
         {activeTab === "layout" && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-lg font-black text-slate-900 mb-4">界面布局</h3>
+              <h3 className="text-lg font-black text-slate-900 mb-4">{t('layoutTab')}</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">布局方式</label>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">{t('layoutMethod')}</label>
                   <select
                     value={config.display?.layout || "grid"}
                     onChange={e => updateConfig("display.layout", e.target.value)}
                     className="w-full p-3 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
                   >
-                    <option value="grid">网格布局</option>
-                    <option value="list">列表布局</option>
+                    <option value="grid">{t('gridLayout')}</option>
+                    <option value="list">{t('listLayout')}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">每行产品数量</label>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">{t('columnsPerRow')}</label>
                   <select
                     value={config.display?.columnsCount || 4}
                     onChange={e => updateConfig("display.columnsCount", Number(e.target.value))}
                     className="w-full p-3 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
                   >
                     {[3, 4, 5, 6].map(n => (
-                      <option key={n} value={n}>{n} 列</option>
+                      <option key={n} value={n}>{n} {t('cols')}</option>
                     ))}
                   </select>
                 </div>
@@ -209,12 +209,12 @@ export default function POSSettingsPage() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-bold text-slate-700">显示选项</h4>
+              <h4 className="font-bold text-slate-700">{t('displayOptions')}</h4>
               {[
-                { key: "showCategoryBar", label: "显示分类栏" },
-                { key: "showQuickActions", label: "显示快捷按钮" },
-                { key: "showTodayStats", label: "显示今日统计" },
-                { key: "showHygieneAlerts", label: "显示卫生提醒" }
+                { key: "showCategoryBar", labelKey: "showCategoryBar" },
+                { key: "showQuickActions", labelKey: "showQuickActions" },
+                { key: "showTodayStats", labelKey: "showTodayStats" },
+                { key: "showHygieneAlerts", labelKey: "showHygieneAlerts" }
               ].map(item => (
                 <label key={item.key} className="flex items-center gap-3 cursor-pointer">
                   <input
@@ -223,14 +223,14 @@ export default function POSSettingsPage() {
                     onChange={e => updateConfig(`display.${item.key}`, e.target.checked)}
                     className="w-5 h-5 accent-orange-600"
                   />
-                  <span className="font-bold text-slate-700">{item.label}</span>
+                  <span className="font-bold text-slate-700">{t(item.labelKey)}</span>
                 </label>
               ))}
             </div>
 
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">店名</label>
+                <label className="block text-sm font-bold text-slate-700 mb-2">{t('shopName')}</label>
                 <input
                   type="text"
                   value={config.general?.shopName || ""}
@@ -239,7 +239,7 @@ export default function POSSettingsPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">终端编号</label>
+                <label className="block text-sm font-bold text-slate-700 mb-2">{t('terminalId')}</label>
                 <input
                   type="text"
                   value={config.general?.terminalId || ""}
@@ -254,8 +254,8 @@ export default function POSSettingsPage() {
         {/* Quick Actions Tab */}
         {activeTab === "quickActions" && (
           <div className="space-y-4">
-            <h3 className="text-lg font-black text-slate-900 mb-4">快捷按钮配置</h3>
-            <p className="text-sm text-slate-500 mb-4">设置左侧快捷操作按钮</p>
+            <h3 className="text-lg font-black text-slate-900 mb-4">{t('quickActionsConfig')}</h3>
+            <p className="text-sm text-slate-500 mb-4">{t('quickActionsConfigDesc')}</p>
             <div className="space-y-3">
               {(config.quickActions || []).map((action, index) => (
                 <div key={action.id} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl">
@@ -265,25 +265,25 @@ export default function POSSettingsPage() {
                       value={action.label}
                       onChange={e => updateArrayItem("quickActions", index, "label", e.target.value)}
                       className="p-2 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
-                      placeholder="标签"
+                      placeholder={t('label')}
                     />
                     <input
                       type="text"
                       value={action.icon}
                       onChange={e => updateArrayItem("quickActions", index, "icon", e.target.value)}
                       className="p-2 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
-                      placeholder="图标"
+                      placeholder={t('icon')}
                     />
                     <select
                       value={action.color}
                       onChange={e => updateArrayItem("quickActions", index, "color", e.target.value)}
                       className="p-2 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
                     >
-                      <option value="red">红色</option>
-                      <option value="blue">蓝色</option>
-                      <option value="yellow">黄色</option>
-                      <option value="green">绿色</option>
-                      <option value="gray">灰色</option>
+                      <option value="red">{t('red')}</option>
+                      <option value="blue">{t('blue')}</option>
+                      <option value="yellow">{t('yellow')}</option>
+                      <option value="green">{t('green')}</option>
+                      <option value="gray">{t('gray')}</option>
                     </select>
                     <label className="flex items-center gap-2">
                       <input
@@ -292,7 +292,7 @@ export default function POSSettingsPage() {
                         onChange={e => updateArrayItem("quickActions", index, "enabled", e.target.checked)}
                         className="w-5 h-5 accent-orange-600"
                       />
-                      <span className="font-bold">启用</span>
+                      <span className="font-bold">{t('enabled')}</span>
                     </label>
                   </div>
                   <button
@@ -305,10 +305,10 @@ export default function POSSettingsPage() {
               ))}
             </div>
             <button
-              onClick={() => addArrayItem("quickActions", { id: Date.now(), label: "新按钮", icon: "⭐", enabled: true, color: "gray" })}
+              onClick={() => addArrayItem("quickActions", { id: Date.now(), label: t('newButton'), icon: "⭐", enabled: true, color: "gray" })}
               className="mt-4 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all"
             >
-              + 添加按钮
+              + {t('addButton')}
             </button>
           </div>
         )}
@@ -316,8 +316,8 @@ export default function POSSettingsPage() {
         {/* Payment Tab */}
         {activeTab === "payment" && (
           <div className="space-y-4">
-            <h3 className="text-lg font-black text-slate-900 mb-4">支付方式配置</h3>
-            <p className="text-sm text-slate-500 mb-4">设置支持的支付方式</p>
+            <h3 className="text-lg font-black text-slate-900 mb-4">{t('paymentMethodsConfig')}</h3>
+            <p className="text-sm text-slate-500 mb-4">{t('paymentMethodsConfigDesc')}</p>
             <div className="space-y-3">
               {(config.paymentMethods || []).map((method, index) => (
                 <div key={method.id} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl">
@@ -327,7 +327,7 @@ export default function POSSettingsPage() {
                       value={method.label}
                       onChange={e => updateArrayItem("paymentMethods", index, "label", e.target.value)}
                       className="p-2 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
-                      placeholder="支付方式名称"
+                      placeholder={t('paymentMethodName')}
                     />
                     <label className="flex items-center gap-2">
                       <input
@@ -336,7 +336,7 @@ export default function POSSettingsPage() {
                         onChange={e => updateArrayItem("paymentMethods", index, "enabled", e.target.checked)}
                         className="w-5 h-5 accent-orange-600"
                       />
-                      <span className="font-bold">启用</span>
+                      <span className="font-bold">{t('enabled')}</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -352,7 +352,7 @@ export default function POSSettingsPage() {
                         }}
                         className="w-5 h-5 accent-orange-600"
                       />
-                      <span className="font-bold">默认</span>
+                      <span className="font-bold">{t('default')}</span>
                     </label>
                   </div>
                   <button
@@ -365,24 +365,24 @@ export default function POSSettingsPage() {
               ))}
             </div>
             <button
-              onClick={() => addArrayItem("paymentMethods", { id: Date.now(), label: "新支付方式", enabled: true, isDefault: false })}
+              onClick={() => addArrayItem("paymentMethods", { id: Date.now(), label: t('newPaymentMethod'), enabled: true, isDefault: false })}
               className="mt-4 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all"
             >
-              + 添加支付方式
+              + {t('addButton')}
             </button>
           </div>
         )}
 
         {/* Receipt Tab */}
         {activeTab === "receipt" && (
-          <div className="space-y-6">
-            <h3 className="text-lg font-black text-slate-900 mb-4">小票设置</h3>
+          <div className="space-y-3">
+            <h3 className="text-lg font-black text-slate-900 mb-4">{t('receiptSettings')}</h3>
             <div className="space-y-4">
               {[
-                { key: "showLogo", label: "显示Logo" },
-                { key: "showQR", label: "显示二维码" },
-                { key: "showOrderNo", label: "显示订单号" },
-                { key: "showDateTime", label: "显示日期时间" }
+                { key: "showLogo", label: "Logo" },
+                { key: "showQR", label: "QR Code" },
+                { key: "showOrderNo", label: "Order No" },
+                { key: "showDateTime", label: "Date/Time" }
               ].map(item => (
                 <label key={item.key} className="flex items-center gap-3 cursor-pointer">
                   <input
@@ -396,13 +396,13 @@ export default function POSSettingsPage() {
               ))}
             </div>
             <div>
-              <label className="block text-sm font-bold text-slate-700 mb-2">小票页脚欢迎语</label>
+              <label className="block text-sm font-bold text-slate-700 mb-2">{t('receiptFooter')}</label>
               <input
                 type="text"
                 value={config.receipt?.footerMessage || ""}
                 onChange={e => updateConfig("receipt.footerMessage", e.target.value)}
                 className="w-full p-3 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
-                placeholder="例如：欢迎下次光临"
+                placeholder={t('receiptFooter')}
               />
             </div>
           </div>
@@ -411,8 +411,8 @@ export default function POSSettingsPage() {
         {/* Categories Tab */}
         {activeTab === "categories" && (
           <div className="space-y-4">
-            <h3 className="text-lg font-black text-slate-900 mb-4">产品分类配置</h3>
-            <p className="text-sm text-slate-500 mb-4">设置POS左侧显示的产品分类</p>
+            <h3 className="text-lg font-black text-slate-900 mb-4">{t('categoryConfig')}</h3>
+            <p className="text-sm text-slate-500 mb-4">{t('categoryConfigDesc')}</p>
             <div className="space-y-3">
               {(config.categories || []).map((cat, index) => (
                 <div key={cat.id} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl">
@@ -422,21 +422,21 @@ export default function POSSettingsPage() {
                       value={cat.icon}
                       onChange={e => updateArrayItem("categories", index, "icon", e.target.value)}
                       className="p-2 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none text-center text-xl"
-                      placeholder="图标"
+                      placeholder={t('icon')}
                     />
                     <input
                       type="text"
                       value={cat.name}
                       onChange={e => updateArrayItem("categories", index, "name", e.target.value)}
                       className="p-2 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
-                      placeholder="分类名称"
+                      placeholder={t('categoryName')}
                     />
                     <input
                       type="number"
                       value={cat.sortOrder || index + 1}
                       onChange={e => updateArrayItem("categories", index, "sortOrder", Number(e.target.value))}
                       className="p-2 border-2 border-slate-200 rounded-xl font-bold focus:border-orange-500 focus:outline-none"
-                      placeholder="排序"
+                      placeholder={t('sortOrder')}
                     />
                     <label className="flex items-center gap-2">
                       <input
@@ -445,7 +445,7 @@ export default function POSSettingsPage() {
                         onChange={e => updateArrayItem("categories", index, "enabled", e.target.checked)}
                         className="w-5 h-5 accent-orange-600"
                       />
-                      <span className="font-bold">启用</span>
+                      <span className="font-bold">{t('enabled')}</span>
                     </label>
                   </div>
                   <button
@@ -458,20 +458,20 @@ export default function POSSettingsPage() {
               ))}
             </div>
             <button
-              onClick={() => addArrayItem("categories", { id: Date.now(), name: "新分类", icon: "📦", enabled: true, sortOrder: (config.categories?.length || 0) + 1 })}
+              onClick={() => addArrayItem("categories", { id: Date.now(), name: t('categoryName'), icon: "📦", enabled: true, sortOrder: (config.categories?.length || 0) + 1 })}
               className="mt-4 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all"
             >
-              + 添加分类
+              + {t('addButton')}
             </button>
           </div>
         )}
 
         {/* Language Tab */}
         {activeTab === "language" && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-lg font-black text-slate-900 mb-2">界面语言</h3>
-              <p className="text-sm text-slate-500 mb-6">设置收银机POS显示的语言</p>
+              <h3 className="text-lg font-black text-slate-900 mb-2">{t('language')}</h3>
+              <p className="text-sm text-slate-500 mb-6">{t('language')} POS</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {LANGUAGE_OPTIONS.map(langOpt => (
                   <button
@@ -487,7 +487,7 @@ export default function POSSettingsPage() {
                     <div className="font-black text-lg text-slate-900 mb-1">{langOpt.label}</div>
                     <div className="text-sm text-slate-500">{langOpt.description}</div>
                     {config.language === langOpt.value && (
-                      <div className="mt-3 text-orange-600 font-black text-sm">✓ 已选择</div>
+                      <div className="mt-3 text-orange-600 font-black text-sm">✓</div>
                     )}
                   </button>
                 ))}
@@ -495,13 +495,13 @@ export default function POSSettingsPage() {
             </div>
 
             <div className="border-t border-slate-200 pt-6">
-              <h3 className="text-lg font-black text-slate-900 mb-2">主题颜色</h3>
-              <p className="text-sm text-slate-500 mb-4">设置收银机的主题外观</p>
+              <h3 className="text-lg font-black text-slate-900 mb-2">Theme</h3>
+              <p className="text-sm text-slate-500 mb-4">POS theme</p>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { id: 'light', name: '纯净白', preview: '#f8fafc' },
-                  { id: 'dark', name: '深邃黑', preview: '#0f172a' },
-                  { id: 'orange', name: '活力橙', preview: '#fff7ed' },
+                  { id: 'light', name: 'White', preview: '#f8fafc' },
+                  { id: 'dark', name: 'Dark', preview: '#0f172a' },
+                  { id: 'orange', name: 'Orange', preview: '#fff7ed' },
                 ].map(themeOpt => (
                   <button
                     key={themeOpt.id}
@@ -518,7 +518,7 @@ export default function POSSettingsPage() {
                     />
                     <div className="font-black text-sm text-slate-900">{themeOpt.name}</div>
                     {config.display?.theme === themeOpt.id && (
-                      <div className="mt-2 text-orange-600 font-black text-sm">✓ 已选择</div>
+                      <div className="mt-2 text-orange-600 font-black text-sm">✓</div>
                     )}
                   </button>
                 ))}

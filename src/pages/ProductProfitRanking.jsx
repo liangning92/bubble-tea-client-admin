@@ -33,7 +33,7 @@ export default function ProductProfitRanking() {
   );
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-4 animate-in fade-in duration-500">
       {/* 筛选与头部 */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
          <div>
@@ -59,7 +59,7 @@ export default function ProductProfitRanking() {
           <div key={item.id} className="group bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:border-marigold transition-all hover:shadow-md relative overflow-hidden">
              <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-100 group-hover:bg-marigold transition-colors"></div>
              
-             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 {/* 左侧：排名与名称 */}
                 <div className="flex items-center gap-6 flex-1 min-w-0">
                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl shadow-inner ${idx === 0 ? 'bg-amber-100 text-amber-600' : idx === 1 ? 'bg-slate-100 text-slate-600' : 'bg-slate-50 text-slate-400'}`}>
@@ -108,7 +108,7 @@ export default function ProductProfitRanking() {
       </div>
       
       <div className="p-8 bg-slate-900 rounded-3xl text-white relative overflow-hidden shadow-2xl">
-         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="max-w-md">
                <h4 className="text-xl font-black tracking-tight mb-2">{t('aiStrategicAdviceTitle')}</h4>
                <p className="text-sm text-slate-400 font-medium leading-relaxed">

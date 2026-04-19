@@ -16,7 +16,6 @@ export default function InventoryHub() {
     { key: 'stockList', icon: '📋', label: t('stockList') },
     { key: 'stockIn', icon: '📥', label: t('stockIn') },
     { key: 'stockOut', icon: '📤', label: t('stockOut') },
-    { key: 'physicalAudit', icon: '🔍', label: t('physicalAudit') },
     { key: 'anomalyWarning', icon: '⚠️', label: t('anomalyWarning') },
     { key: 'reorderList', icon: '🚚', label: t('reorderList') },
   ];
@@ -25,7 +24,7 @@ export default function InventoryHub() {
   const handleTabChange = (key) => setSearchParams({ tab: key });
 
   return (
-    <div className="animate-soft space-y-8 focus:outline-none text-slate-900 pb-20">
+    <div className="animate-soft space-y-4 focus:outline-none text-slate-900 pb-20">
       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
@@ -57,7 +56,6 @@ export default function InventoryHub() {
         {tab === 'stockList' && <InventoryPage readOnly={true} hideHeader={true} />}
         {tab === 'stockIn' && <StockInPage hideHeader={true} />}
         {tab === 'stockOut' && <StockOutPage hideHeader={true} />}
-        {tab === 'physicalAudit' && <InventoryAnomalyPage mode="audit" hideHeader={true} />}
         {tab === 'anomalyWarning' && <InventoryAnomalyPage mode="alert" hideHeader={true} />}
         {tab === 'reorderList' && <SmartRestock hideHeader={true} />}
       </div>

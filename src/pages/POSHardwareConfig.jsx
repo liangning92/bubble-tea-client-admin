@@ -79,7 +79,7 @@ export default function POSHardwareConfig() {
   if (loading && !config.posHardwareLogs.length) return <div className="py-24 text-center text-label-caps animate-pulse">{t('loading') || '正在同步...'}</div>;
 
   return (
-    <div className="space-y-12 animate-soft text-slate-900 pb-24">
+    <div className="space-y-6 animate-soft text-slate-900 pb-24">
       {/* 统一页头 - 纯净汉化 */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 px-4 gap-6">
         <div className="space-y-4">
@@ -95,7 +95,7 @@ export default function POSHardwareConfig() {
       </div>
 
       {/* 模式选择 - 纯汉化 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
         <div 
           onClick={() => { setConfig({...config, mode: 'single'}); handleSave({...config, mode: 'single'}); }}
           className={`card-premium !p-8 flex items-center gap-6 cursor-pointer transition-all !rounded-[40px] border-2 ${config.mode === 'single' ? 'border-primary bg-primary/5' : 'border-slate-50 hover:border-slate-200 bg-white'}`}
@@ -130,12 +130,12 @@ export default function POSHardwareConfig() {
       </div>
 
       {/* 模块可见性 */}
-      <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+      <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm">
          <div className="flex items-center gap-4 mb-10">
             <div className="w-1.5 h-6 bg-slate-900 rounded-full" />
             <h4 className="text-[16px] font-black text-slate-900 uppercase tracking-widest">{t('interfaceConfiguration') || '收银员交互界面配置'}</h4>
          </div>
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { key: 'member', label: t('clerkMemberModule') || '会员管理模块', icon: '👤' },
               { key: 'discount', label: t('clerkDiscountModule') || '折扣与代金券', icon: '🏷️' },
@@ -155,7 +155,7 @@ export default function POSHardwareConfig() {
       </div>
 
       {/* 双屏详细配置入口 */}
-      <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+      <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm">
          <div className="flex items-center gap-4 mb-8">
             <div className="w-1.5 h-6 bg-orange-500 rounded-full" />
             <h4 className="text-[16px] font-black text-slate-900 uppercase tracking-widest">{t('dualScreenAdvanced') || '双屏高级配置'}</h4>

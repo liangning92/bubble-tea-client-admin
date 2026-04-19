@@ -146,7 +146,7 @@ export default function AdManagement() {
           <div className="flex justify-between items-end mb-8">
             <div>
               <h2 className="text-2xl font-black text-slate-800">t('adCenter')</h2>
-              <p className="text-slate-400 text-sm font-bold uppercase tracking-tighter">Manage Secondary Display Content</p>
+              <p className="text-slate-400 text-sm font-bold uppercase tracking-tighter">{t('manageSecondaryDisplay')}</p>
             </div>
             <div className="flex gap-3">
               <button
@@ -170,9 +170,9 @@ export default function AdManagement() {
           </div>
 
           {loading && ads.length === 0 ? (
-            <div className="flex justify-center p-20 text-slate-400 font-bold ">Loading Asset Matrix...</div>
+            <div className="flex justify-center p-20 text-slate-400 font-bold ">{t('loadingAssetMatrix')}</div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {ads.map(ad => (
                 <div key={ad.id} className="bg-white rounded-[32px] overflow-hidden shadow-sm border border-slate-100 flex flex-col group hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300">
                   <div className="h-56 overflow-hidden relative bg-slate-200">

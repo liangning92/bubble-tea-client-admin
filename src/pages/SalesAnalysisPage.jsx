@@ -47,7 +47,7 @@ export default function SalesAnalysisPage() {
    );
 
    return (
-      <div className="space-y-10 animate-soft text-slate-900">
+      <div className="space-y-5 animate-soft text-slate-900">
          {/* Date Filter */}
          <div className="flex flex-col md:flex-row items-center gap-4 p-2 bg-slate-100 rounded-3xl border border-slate-200 w-fit shadow-sm">
             <input
@@ -65,13 +65,13 @@ export default function SalesAnalysisPage() {
             />
          </div>
 
-         <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
+         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             {/* 1. 时段分布 - 识别营业高峰 */}
-            <div className="card-premium border-slate-200 !p-10 bg-white">
+            <div className="card-premium border-slate-200 !p-6 bg-white">
                <div className="flex justify-between items-center mb-10">
                   <div>
-                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">🕒 营业高峰时段分布</h3>
-                     <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mt-1">Real-time Traffic Density Index</p>
+                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">{t('peakHoursDistribution')}</h3>
+                     <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mt-1">{t('trafficDensityIndex')}</p>
                   </div>
                   <span className="text-[14px] font-black text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-indigo-100">Peak Hour Matrix</span>
                </div>
@@ -100,22 +100,22 @@ export default function SalesAnalysisPage() {
             </div>
 
             {/* 2. 分类构成 - 业绩贡献分析 */}
-            <div className="card-premium border-slate-200 !p-10 bg-white">
+            <div className="card-premium border-slate-200 !p-6 bg-white">
                <div className="flex justify-between items-center mb-10">
                   <div>
-                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">📦 品类业绩贡献矩阵</h3>
-                     <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mt-1">Product Revenue Contribution</p>
+                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">{t('categoryPerformanceMatrix')}</h3>
+                     <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mt-1">{t('productRevenueContribution')}</p>
                   </div>
                   <span className="text-[14px] font-black text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-xl uppercase tracking-widest border border-emerald-100">Growth Index</span>
                </div>
 
-               <div className="space-y-8">
+               <div className="space-y-4">
                   {(data?.categoryBreakdown || []).sort((a, b) => (b.revenue || 0) - (a.revenue || 0)).map(c => (
                      <div key={c.category} className="space-y-4 group">
                         <div className="flex justify-between items-end">
                            <div className="space-y-4">
                               <span className="text-[14px] font-black text-slate-800 group-hover:text-indigo-600 transition-colors uppercase tracking-widest">{c.category}</span>
-                              <div className="text-[14px] font-black text-slate-400 uppercase tracking-[0.2em]">{c.quantity} Units Shipped</div>
+                              <div className="text-[14px] font-black text-slate-400 uppercase tracking-[0.2em]">{c.quantity} {t('unitsShipped')}</div>
                            </div>
                            <span className="text-sm font-black text-slate-900">Rp {(c.revenue || 0).toLocaleString()}</span>
                         </div>
@@ -132,7 +132,7 @@ export default function SalesAnalysisPage() {
          </div>
 
          {/* 3. 总趋势看板 */}
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="card-premium !p-8 border-slate-200 bg-white group hover:border-indigo-500">
                <p className="text-[14px] font-black text-slate-500 uppercase tracking-widest mb-4 group-hover:text-indigo-600 transition-colors">Period Aggregate Gross</p>
                <p className="text-3xl font-black text-slate-900 tracking-tighter">

@@ -73,13 +73,13 @@ export default function CouponFactory({ hideHeader }) {
                     <input type="number" className="input w-full bg-white" required value={newCoupon.minSpend} onChange={e=>setNewCoupon({...newCoupon, minSpend: e.target.value})} />
                  </div>
                  <div>
-                    <label className="block text-[14px] font-bold text-slate-500 mb-1">发行总量 (Qnty)</label>
+                    <label className="block text-[14px] font-bold text-slate-500 mb-1">{t('totalIssuance')}</label>
                     <input type="number" className="input w-full bg-white" required value={newCoupon.totalCount} onChange={e=>setNewCoupon({...newCoupon, totalCount: e.target.value})} />
                  </div>
               </div>
               <div className="flex gap-2 pt-2">
-                 <button type="submit" className="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold">发步券码 (Deploy)</button>
-                 <button type="button" onClick={()=>setShowConfig(false)} className="px-4 bg-white border border-slate-200 rounded-xl font-bold">取消</button>
+                 <button type="submit" className="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold">{t('deployCoupon')}</button>
+                 <button type="button" onClick={()=>setShowConfig(false)} className="px-4 bg-white border border-slate-200 rounded-xl font-bold">{t('cancel')}</button>
               </div>
            </form>
         </div>
@@ -94,9 +94,9 @@ export default function CouponFactory({ hideHeader }) {
               
               <div className="p-5 pl-8 pr-8 flex items-center justify-between">
                  <div className="flex-1">
-                    <div className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-1">{cp.type === 'fixed' ? 'Direct Discount' : 'Rebate Promo'}</div>
+                    <div className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-1">{cp.type === 'fixed' ? t('directDiscount') : t('rebatePromo')}</div>
                     <h4 className="font-black text-slate-800 text-lg leading-tight">{cp.name}</h4>
-                    <p className="text-[14px] text-slate-500 font-bold mt-1 uppercase">门槛: 满 {cp.minSpend.toLocaleString()} 可用 · 有效期至 {cp.expires}</p>
+                    <p className="text-[14px] text-slate-500 font-bold mt-1 uppercase">{t('threshold')}: {t('minSpend')}</p>
                  </div>
                  <div className="text-right pl-4">
                     <div className="text-3xl font-black text-blue-600 tracking-tighter">
@@ -109,7 +109,7 @@ export default function CouponFactory({ hideHeader }) {
               <div className="bg-slate-50 px-5 py-3 flex justify-between items-center border-t border-slate-100">
                  <div className="flex-1">
                     <div className="flex justify-between text-[14px] font-black text-slate-400 mb-1 uppercase">
-                       <span>核销进度 ({cp.usedCount}/{cp.totalCount})</span>
+                       <span>{t('redemptionProgress')}</span>
                        <span>{Math.round((cp.usedCount / cp.totalCount) * 100)}%</span>
                     </div>
                     <div className="h-1 bg-slate-200 rounded-full overflow-hidden">

@@ -25,7 +25,7 @@ export default function StaffHub() {
   ];
 
   return (
-    <div className="space-y-10 pb-32">
+    <div className="space-y-5 pb-32">
       <div className="flex flex-col gap-2">
         <h1 className="text-h1">{t('staffHub', '人员与运营管理系统')}</h1>
         <p className="text-label-caps">{t('staffSubtitle', 'Training, Attendance, Payroll & Compliance')}</p>

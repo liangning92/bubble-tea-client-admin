@@ -47,7 +47,7 @@ export default function SmartOpsHub() {
   const tl = (id_text, zh_text) => (lang === 'zh' ? zh_text : id_text);
 
   return (
-    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
+    <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
       
       {/* 核心看板：SKU 可售状态实时熔断 */}
       <section className="space-y-4">
@@ -97,8 +97,8 @@ export default function SmartOpsHub() {
       </section>
 
       {/* 智能模块：利润护航 & 营销策略 (Margin Guard) */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-         <div className="lg:col-span-2 bg-slate-950 p-10 rounded-[48px] shadow-2xl space-y-8 relative overflow-hidden">
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+         <div className="lg:col-span-2 bg-slate-950 p-10 rounded-[48px] shadow-2xl space-y-4 relative overflow-hidden">
             <div className="relative z-10">
                <span className="px-4 py-1.5 bg-indigo-500/20 text-indigo-400 text-[14px] font-black rounded-full border border-indigo-500/30 uppercase tracking-widest">{t('growthEnginePlugin')}</span>
                <h3 className="text-4xl font-black text-white tracking-tighter mt-4 mb-2">{t('marginGuardAI')}</h3>

@@ -50,9 +50,9 @@ export default function SmartRestock({ hideHeader }) {
   );
 
   return (
-    <div className="space-y-12 animate-soft text-slate-900 pb-24">
+    <div className="space-y-6 animate-soft text-slate-900 pb-24">
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 px-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div className="space-y-4.5">
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase ">{t('smartRestockHub')}</h3>
             <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em]  opacity-60 leading-none">{t('supplyChainVelocitySubtitle')}</p>
@@ -73,7 +73,7 @@ export default function SmartRestock({ hideHeader }) {
       )}
 
       <div className="card-premium border-slate-50 !p-0 overflow-hidden shadow-sm hover:border-slate-300 transition-all !rounded-[48px] bg-white group/table">
-         <div className="bg-slate-50/50 p-6 border-b border-slate-50 flex justify-between items-center flex-wrap gap-8 backdrop-blur-md">
+         <div className="bg-slate-50/50 p-6 border-b border-slate-50 flex justify-between items-center flex-wrap gap-4 backdrop-blur-md">
             <div className="flex items-center gap-4">
                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-2xl shadow-sm border border-slate-100 group-hover/table:rotate-6 transition-transform">🛒</div>
                {!hideHeader && <h4 className="text-[14px] font-black text-slate-900 uppercase tracking-widest ">{t('procurementAdvice')}</h4>}

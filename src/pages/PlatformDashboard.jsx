@@ -23,7 +23,7 @@ export default function PlatformDashboard() {
   const { metrics, tenants } = data;
 
   return (
-    <div className="space-y-10 animate-in fade-in duration-700 pb-20">
+    <div className="space-y-5 animate-in fade-in duration-700 pb-20">
       
       {/* 核心指标卡片 (SaaS Metrics) */}
       <section>

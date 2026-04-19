@@ -102,10 +102,10 @@ export default function TaxReporter({ hideHeader }) {
   const taxAmount = calcResult?.taxAmount || calcResult?.totalTaxPayable || 0;
 
   return (
-    <div className="space-y-12 animate-soft text-slate-900 pb-24">
+    <div className="space-y-6 animate-soft text-slate-900 pb-24">
       {/* Header */}
       {!hideHeader && (
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 px-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div className="space-y-4.5">
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">{t('taxHub')}</h3>
             <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em] opacity-60 leading-none">{t('taxSubtitle')}</p>
@@ -119,7 +119,7 @@ export default function TaxReporter({ hideHeader }) {
       {/* NPWP + PB1 two-column */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left: NPWP Config */}
-        <div className="card-premium border-slate-50 space-y-12 !p-12 transition-all hover:border-slate-300 bg-white shadow-sm !rounded-[48px] group/ident relative overflow-hidden">
+        <div className="card-premium border-slate-50 space-y-6 !p-6 transition-all hover:border-slate-300 bg-white shadow-sm !rounded-2xl group/ident relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full blur-[80px] -mr-32 -mt-32 opacity-40 group-hover/ident:scale-150 transition-transform duration-1000" />
           <div className="flex items-center gap-6 border-b border-slate-50 pb-8 relative z-10">
             <span className="text-3xl shrink-0">🏛️</span>
@@ -129,20 +129,20 @@ export default function TaxReporter({ hideHeader }) {
             </h4>
           </div>
 
-          <div className="grid grid-cols-1 gap-10 relative z-10">
+          <div className="grid grid-cols-1 gap-6 relative z-10">
             <div className="space-y-4">
               <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('storeNameLabel')}</label>
-              <input className="input-premium w-full !bg-slate-50 focus:!bg-white border-none !rounded-[24px] !p-6 font-black text-[16px] shadow-inner"
+              <input className="input-premium w-full !bg-slate-50 focus:!bg-white border-none !rounded-xl !p-6 font-black text-[16px] shadow-inner"
                 value={storeInfo.name} onChange={e => setStoreInfo(p => ({ ...p, name: e.target.value }))} placeholder={t('placeholderStoreName')} />
             </div>
             <div className="space-y-4">
               <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('merchantAddressLabel')}</label>
-              <input className="input-premium w-full !bg-slate-50 focus:!bg-white border-none !rounded-[24px] !p-6 font-black text-[16px] shadow-inner"
+              <input className="input-premium w-full !bg-slate-50 focus:!bg-white border-none !rounded-xl !p-6 font-black text-[16px] shadow-inner"
                 value={storeInfo.address} onChange={e => setStoreInfo(p => ({ ...p, address: e.target.value }))} placeholder={t('placeholderStoreAddress')} />
             </div>
             <div className="space-y-4">
               <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('taxpayerIdLabel')}</label>
-              <input className="input-premium w-full !bg-slate-50 focus:!bg-white font-mono tracking-[0.2em] text-slate-900 border-none !rounded-[24px] !p-6 font-black text-[16px] shadow-inner"
+              <input className="input-premium w-full !bg-slate-50 focus:!bg-white font-mono tracking-[0.2em] text-slate-900 border-none !rounded-xl !p-6 font-black text-[16px] shadow-inner"
                 value={storeInfo.taxId} onChange={e => setStoreInfo(p => ({ ...p, taxId: e.target.value }))}
                 placeholder={t('taxIdPlaceholder') || 'XX.XXX.XXX.X-XXX.XXX'} />
             </div>
@@ -156,7 +156,7 @@ export default function TaxReporter({ hideHeader }) {
         </div>
 
         {/* Right: PB1 Calculation */}
-        <div className="card-premium border-none bg-slate-900 text-white space-y-12 shadow-3xl !p-16 relative overflow-hidden group/audit !rounded-[56px]">
+        <div className="card-premium border-none bg-slate-900 text-white space-y-6 shadow-3xl !p-6 relative overflow-hidden group/audit !rounded-3xl">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[140px] -mr-64 -mt-64 transition-transform group-hover/audit:scale-125 duration-1000" />
 
           <div className="flex items-center gap-6 border-b border-white/5 pb-8 relative z-10">
@@ -228,7 +228,7 @@ export default function TaxReporter({ hideHeader }) {
       </div>
 
       {/* Compliance notice */}
-      <div className="card-premium border-slate-50 bg-white !p-16 hover:border-slate-300 transition-all shadow-sm !rounded-[56px] relative overflow-hidden group/notice">
+      <div className="card-premium border-slate-50 bg-white !p-6 hover:border-slate-300 transition-all shadow-sm !rounded-3xl relative overflow-hidden group/notice">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-slate-50 rounded-full blur-[100px] -mr-48 -mt-48 opacity-60 transition-transform group-hover/notice:scale-125 duration-1000" />
         <div className="flex flex-col xl:flex-row gap-12 items-center relative z-10">
           <div className="w-24 h-24 bg-white rounded-[40px] flex items-center justify-center text-5xl shadow-xl border border-slate-50 group-hover/notice:rotate-12 transition-transform relative z-10 shadow-inner shrink-0">📜</div>
@@ -238,7 +238,7 @@ export default function TaxReporter({ hideHeader }) {
               {t('complianceNoticeDesc')}
             </p>
           </div>
-          <button onClick={handleDownloadPdf} className="w-full xl:w-auto btn-premium active !bg-slate-900 !text-white !h-20 border-none text-[14px] font-black tracking-[0.3em] uppercase !rounded-[28px] shadow-2xl shadow-slate-900/10 !scale-100 hover:scale-105 active:scale-95 transition-all xl:px-16">
+          <button onClick={handleDownloadPdf} className="w-full xl:w-auto btn-premium active !bg-slate-900 !text-white !h-11 border-none text-[14px] font-black tracking-[0.3em] uppercase !rounded-[28px] shadow-2xl shadow-slate-900/10 !scale-100 hover:scale-105 active:scale-95 transition-all xl:px-16">
             {t('lockExportPdf')}
           </button>
         </div>

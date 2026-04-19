@@ -128,7 +128,7 @@ export default function PurchasePage() {
   };
 
   return (
-    <div className="page animate-soft space-y-12 pb-24 !max-w-7xl">
+    <div className="page animate-soft space-y-6 pb-24 !max-w-7xl">
       <div className="flex flex-col gap-2 px-4">
         <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase ">{t('purchaseHubTitle')}</h1>
         <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.4em]  opacity-60">{t('purchaseHubSubtitle')}</p>
@@ -151,13 +151,13 @@ export default function PurchasePage() {
 
       {activeTab === 'orders' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-12">
-            <div className="card-premium !p-12 border-slate-50 shadow-sm bg-white !rounded-[48px] hover:border-slate-200 transition-all group">
+          <div className="space-y-6">
+            <div className="card-premium !p-6 border-slate-50 shadow-sm bg-white !rounded-2xl hover:border-slate-200 transition-all group">
               <h3 className="text-xl font-black text-slate-900 mb-10  uppercase tracking-tight flex items-center gap-4">
                 <span className="w-12 h-px bg-slate-900"></span>
                 {t('addNew')}
               </h3>
-              <form onSubmit={handleAddOrder} className="space-y-8">
+              <form onSubmit={handleAddOrder} className="space-y-4">
                 <div className="space-y-4">
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('ingredient')}</label>
                   <select className="input-premium w-full !p-5 !rounded-2xl bg-slate-50 border-none appearance-none cursor-pointer  font-black uppercase text-[14px]" value={inventoryId} onChange={e => setInventoryId(e.target.value)} required>
@@ -165,7 +165,7 @@ export default function PurchasePage() {
                     {inventory.map(i => <option key={i.id} value={i.id}>{t('lang') === 'zh' ? i.zhName || i.name : i.name} ({t('onHandLabel')}: {i.stock}{i.unit})</option>)}
                   </select>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-4">
                     <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2 ">{t('quantity')}</label>
                     <input className="input-premium w-full !p-5 !rounded-2xl bg-slate-50 border-none font-black text-[16px]" type="number" step="0.01" min="1" placeholder="0.00" value={quantity} onChange={e => setQuantity(e.target.value)} required />
@@ -183,16 +183,16 @@ export default function PurchasePage() {
                     <input className="input-premium w-full !p-5 !rounded-2xl bg-slate-50 border-none font-black text-[16px] no-spinners" type="number" step="0.01" placeholder="0.00" value={unitPrice} onChange={e => setUnitPrice(e.target.value)} />
                   </div>
                 </div>
-                <button type="submit" className="w-full btn-premium active !bg-slate-900 !text-white !h-20 !rounded-[24px] border-none shadow-2xl text-[14px] font-black uppercase tracking-widest  active:scale-95 transition-all">
+                <button type="submit" className="w-full btn-premium active !bg-slate-900 !text-white !h-11 !rounded-xl border-none shadow-2xl text-[14px] font-black uppercase tracking-widest  active:scale-95 transition-all">
                    {t('purchaseOrders')}
                 </button>
               </form>
             </div>
 
-            <div className="card-premium !p-12 border-slate-50 shadow-sm bg-slate-50/30 !rounded-[48px] hover:border-slate-200 transition-all">
+            <div className="card-premium !p-6 border-slate-50 shadow-sm bg-slate-50/30 !rounded-2xl hover:border-slate-200 transition-all">
               <h3 className="text-xl font-black text-slate-900 mb-10  uppercase tracking-tight">{t('batchPurchaseImport')}</h3>
 
-              <div className="space-y-8">
+              <div className="space-y-4">
                 <div className="p-10 bg-white rounded-[32px] border-2 border-slate-100 border-dashed text-center group transition-all hover:border-slate-900">
                   <p className="text-[13px] font-black text-slate-400 uppercase tracking-widest mb-6  opacity-60">📁 {t('uploadExcel')} (.xlsx / .csv)</p>
                   <label className="btn-premium active !bg-slate-900 !text-white !px-10 !py-3 inline-block cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-slate-900/10  font-black uppercase text-[14px] rounded-[18px]">
@@ -243,7 +243,7 @@ export default function PurchasePage() {
             </div>
           </div>
 
-          <div className="card-premium !p-0 overflow-hidden bg-white border-slate-50 !rounded-[48px] shadow-sm min-h-[800px] hover:border-slate-200 transition-all">
+          <div className="card-premium !p-0 overflow-hidden bg-white border-slate-50 !rounded-2xl shadow-sm min-h-[800px] hover:border-slate-200 transition-all">
             <div className="p-10 border-b border-slate-50 bg-slate-50/30 backdrop-blur-md flex justify-between items-center">
               <h3 className="text-xl font-black text-slate-900  uppercase tracking-tight">{t('pendingOrdersTitle')}</h3>
               <span className="px-4 py-1.5 bg-slate-900 text-white text-[14px] font-black rounded-full uppercase  shadow-lg shadow-slate-900/10">{(pendingOrders || []).length}</span>
@@ -260,7 +260,7 @@ export default function PurchasePage() {
                   {(pendingOrders || []).map(order => (
                     <div key={order.id} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 group hover:bg-white hover:shadow-3xl hover:shadow-slate-900/5 transition-all relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-48 h-48 bg-slate-900/5 rounded-full blur-[80px] -mr-24 -mt-24 pointer-events-none" />
-                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 relative z-10">
+                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
                         <div>
                           <div className="font-black text-slate-900 text-3xl tracking-tighter  mb-2 uppercase">
                              <BusinessDataTranslator text={order.inventory?.name} />
@@ -273,7 +273,7 @@ export default function PurchasePage() {
                         </div>
                         <button
                           onClick={() => handleReceive(order.id)}
-                          className="w-full md:w-auto btn-premium active !bg-slate-900 !text-white !px-12 !h-16 shadow-2xl shadow-slate-900/10 hover:scale-105 active:scale-95 text-[14px] font-black uppercase tracking-widest  !rounded-[20px]"
+                          className="w-full md:w-auto btn-premium active !bg-slate-900 !text-white !px-12 !h-11 shadow-2xl shadow-slate-900/10 hover:scale-105 active:scale-95 text-[14px] font-black uppercase tracking-widest  !rounded-[20px]"
                         >
                           📦 {t('receiveStockAction')}
                         </button>
@@ -288,7 +288,7 @@ export default function PurchasePage() {
       )}
 
       {activeTab === 'history' && (
-        <div className="card-premium !p-0 overflow-hidden border-slate-50 shadow-sm animate-soft bg-white !rounded-[48px] hover:border-slate-200 transition-all">
+        <div className="card-premium !p-0 overflow-hidden border-slate-50 shadow-sm animate-soft bg-white !rounded-2xl hover:border-slate-200 transition-all">
           <div className="p-12 border-b border-slate-50 bg-slate-50/30 backdrop-blur-md">
             <h3 className="text-2xl font-black text-slate-900  uppercase tracking-tighter">{t('purchaseHistoryTitle')}</h3>
           </div>
@@ -300,7 +300,7 @@ export default function PurchasePage() {
                  <p className="text-[14px] font-black uppercase tracking-[0.4em] ">{t('noRecordsFound')}</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {(orderHistory || []).map(order => (
                   <div key={order.id} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 flex flex-col justify-between group hover:bg-white hover:shadow-3xl transition-all relative overflow-hidden h-[340px]">
                     <div className="absolute top-0 right-0 p-8 opacity-5 text-4xl font-black grayscale pointer-events-none ">#{order.id}</div>

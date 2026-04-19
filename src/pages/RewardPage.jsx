@@ -81,7 +81,7 @@ export default function RewardPage() {
   const formatCurrency = (num) => 'Rp ' + Math.round(num || 0).toLocaleString();
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900 pb-20">
+    <div className="space-y-5 animate-soft text-slate-900 pb-20">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-3">
@@ -120,7 +120,7 @@ export default function RewardPage() {
         ) : (
           filtered.map(r => (
             <div key={r.id} className="card-premium !p-8 group hover:border-slate-300 transition-all border-slate-50 bg-white !rounded-[40px] shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
-               <div className="flex items-center gap-8 w-full md:w-auto">
+               <div className="flex items-center gap-4 w-full md:w-auto">
                   <div className={`w-20 h-20 rounded-[32px] flex items-center justify-center text-3xl shadow-2xl ${r.category === 'reward' ? 'bg-emerald-50 text-emerald-500 shadow-emerald-500/10' : 'bg-rose-50 text-rose-500 shadow-rose-500/10'}`}>
                     {r.category === 'reward' ? '🏆' : '⚠️'}
                   </div>
@@ -135,7 +135,7 @@ export default function RewardPage() {
                      <div className="text-[10px] text-slate-300 font-black uppercase tracking-widest mt-2">{new Date(r.createdAt).toLocaleString()}</div>
                   </div>
                </div>
-               <div className="flex items-center gap-10 w-full md:w-auto justify-between md:justify-end">
+               <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
                   <div className={`text-3xl font-black font-mono tracking-tighter ${r.category === 'reward' ? 'text-emerald-500' : 'text-rose-500'}`}>
                      {r.category === 'reward' ? '+' : '-'}{formatCurrency(r.amount)}
                   </div>
@@ -159,7 +159,7 @@ export default function RewardPage() {
               <button onClick={() => setShowAddForm(false)} className="w-12 h-12 rounded-full bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-900 transition-all shadow-sm text-xl font-black">✕</button>
             </div>
             <div className="p-10">
-              <form onSubmit={handleSubmit} className="space-y-10 text-slate-400">
+              <form onSubmit={handleSubmit} className="space-y-5 text-slate-400">
                 <div className="space-y-4">
                    <label className="text-[11px] font-black uppercase tracking-widest ml-1">{t('staffMember')}</label>
                    <select 
@@ -173,7 +173,7 @@ export default function RewardPage() {
                    </select>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
                      <label className="text-[11px] font-black uppercase tracking-widest ml-1">{t('type')}</label>
                      <div className="grid grid-cols-2 gap-2 bg-slate-50 p-1.5 rounded-3xl shadow-inner border border-slate-100">

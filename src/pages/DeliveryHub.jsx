@@ -83,7 +83,7 @@ export default function DeliveryHub({ hideHeader }) {
                            >
                               {t('notifyRider')}
                            </button>
-                           <button onClick={() => updateStatus(order.id, 'DELIVERY')} className="btn-primary">骑手已取</button>
+                           <button onClick={() => updateStatus(order.id, 'DELIVERY')} className="btn-primary">{t('riderPickedUp')}</button>
                         </div>
                       )}
                    </div>
@@ -102,7 +102,7 @@ export default function DeliveryHub({ hideHeader }) {
   };
 
   return (
-    <div className="animate-soft space-y-10 focus:outline-none">
+    <div className="animate-soft space-y-5 focus:outline-none">
       
       {/* Premium Header Header */}
       {!hideHeader && (
@@ -121,7 +121,7 @@ export default function DeliveryHub({ hideHeader }) {
       </div>
 
       {activeTab === 'pipeline' ? (
-        <div className="space-y-12">
+        <div className="space-y-6">
           {/* 实时统计矩阵 */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
              {stats.map((s, i) => (
@@ -136,7 +136,7 @@ export default function DeliveryHub({ hideHeader }) {
 
           {/* 交互流水线看板 */}
           <div className="overflow-x-auto pb-4 no-scrollbar">
-             <div className="flex gap-10 min-w-max">
+             <div className="flex gap-6 min-w-max">
                 <PipelineColumn title={t('statusPending')} status="PENDING" icon="🆕" />
                 <PipelineColumn title={t('statusMaking')} status="MAKING" icon="🔥" />
                 <PipelineColumn title={t('statusReady')} status="READY" icon="✅" />
@@ -145,20 +145,20 @@ export default function DeliveryHub({ hideHeader }) {
           </div>
 
           {/* 运营控制底部 */}
-          <div className="bg-slate-900 rounded-[56px] p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10 border border-white/5">
+          <div className="bg-slate-900 rounded-[56px] p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border border-white/5">
              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/10 blur-[120px] -mr-64 -mt-64"></div>
-             <div className="relative z-10 flex items-center gap-10">
+             <div className="relative z-10 flex items-center gap-6">
                 <div className="w-20 h-20 bg-white/5 rounded-[32px] flex items-center justify-center text-4xl border border-white/10 shadow-inner">🛵</div>
                 <div>
-                   <h4 className="text-2xl font-black tracking-tight mb-2 uppercase ">外卖链路策略中心</h4>
-                   <p className="text-[14px] text-slate-500 font-bold leading-relaxed max-w-md">当前有 8 名专送骑手在线，核心配送区覆盖良好。系统已自动根据高峰期延迟情况动态调整 Grab/GoJek 预计送达时间。</p>
+                   <h4 className="text-2xl font-black tracking-tight mb-2 uppercase ">{t('deliveryStrategyCenter')}</h4>
+                   <p className="text-[14px] text-slate-500 font-bold leading-relaxed max-w-md">{t('riderOnline')}，核心配送区覆盖良好。系统已自动根据高峰期延迟情况动态调整 Grab/GoJek 预计送达时间。</p>
                 </div>
              </div>
              <div className="relative z-10 flex gap-4 w-full md:w-auto">
-                <button className="flex-1 md:flex-none btn-premium active !bg-white/5 !text-slate-400 border border-white/10 !px-10 hover:!bg-white/10 transition-all">导出对账报告</button>
+                <button className="flex-1 md:flex-none btn-premium active !bg-white/5 !text-slate-400 border border-white/10 !px-10 hover:!bg-white/10 transition-all">{t('exportReconciliation')}</button>
                 <button 
                   onClick={() => setActiveTab('settings')}
-                  className="flex-1 md:flex-none btn-premium active !bg-white !text-slate-900 !px-12 shadow-2xl !scale-100 hover:!scale-105 transition-all text-[14px] font-black uppercase tracking-widest border-none">运营策略配置</button>
+                  className="flex-1 md:flex-none btn-premium active !bg-white !text-slate-900 !px-12 shadow-2xl !scale-100 hover:!scale-105 transition-all text-[14px] font-black uppercase tracking-widest border-none">{t('opsStrategyConfig')}</button>
              </div>
           </div>
         </div>

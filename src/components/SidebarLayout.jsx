@@ -125,17 +125,17 @@ export default function SidebarLayout({ menuItems, title, topAlert }) {
         </div>
 
         {/* Mobile Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-3xl border-t border-slate-100 flex justify-around items-center px-6 py-6 md:hidden z-[100] shadow-3xl shadow-slate-900/10">
-          {(menuItems || []).slice(0, 5).map(item => {
+        <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-3xl border-t border-slate-100 flex justify-between items-center px-4 py-3 md:hidden z-[100] shadow-3xl shadow-slate-900/10">
+          {(menuItems || []).slice(0, 7).map(item => {
             const active = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
             return (
               <button
                 key={item.path}
                 onClick={() => navigate(item.path)}
-                className={`flex flex-col items-center gap-2 transition-all ${active ? 'text-slate-900 scale-110' : 'text-slate-300 opacity-60'}`}
+                className={`flex flex-col items-center gap-1 transition-all ${active ? 'text-slate-900 scale-105' : 'text-slate-300 opacity-50'}`}
               >
-                <span className="text-3xl">{item.icon}</span>
-                <span className="text-[14px] font-black uppercase tracking-widest">{item.label}</span>
+                <span className="text-2xl">{item.icon}</span>
+                <span className="text-[10px] font-black uppercase tracking-tight">{item.label}</span>
               </button>
             );
           })}

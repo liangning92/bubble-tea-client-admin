@@ -88,7 +88,7 @@ export default function TrainingPage() {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-black text-slate-800">📚 {t('trainingManagement') || '培训管理'}</h1>
         <button onClick={openAdd} className="px-4 py-2 bg-orange-500 text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-colors">
-          + {t('createCourse') || '创建课程'}
+          + {t('createCourse')}
         </button>
       </div>
 
@@ -144,7 +144,7 @@ export default function TrainingPage() {
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowModal(false)}>
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6" onClick={e => e.stopPropagation()}>
-            <h2 className="text-lg font-black mb-4">{editingId ? (t('editCourse') || '编辑课程') : (t('createNewCourse') || '创建新课程')}</h2>
+            <h2 className="text-lg font-black mb-4">{editingId ? (t('editCourse')) : (t('createNewCourse'))}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="text-xs font-black text-slate-400 uppercase mb-1 block">{t('courseTitle') || '课程标题'} *</label>
@@ -231,7 +231,7 @@ export default function TrainingPage() {
 
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-3 rounded-xl font-bold bg-slate-100 text-slate-600">{t('cancel') || '取消'}</button>
-                <button type="submit" className="flex-1 py-3 rounded-xl font-bold bg-orange-500 text-white">{editingId ? (t('saveChanges') || '保存修改') : (t('createCourse') || '创建课程')}</button>
+                <button type="submit" className="flex-1 py-3 rounded-xl font-bold bg-orange-500 text-white">{editingId ? (t('saveChanges')) : (t('createCourse'))}</button>
               </div>
             </form>
           </div>

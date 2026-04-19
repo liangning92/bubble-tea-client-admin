@@ -137,7 +137,7 @@ export default function POSDualScreenConfig() {
   }
 
   return (
-    <div className="space-y-8 pb-24">
+    <div className="space-y-4 pb-24">
       {/* 页头 */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 px-4 gap-6">
         <div className="space-y-4">
@@ -152,7 +152,7 @@ export default function POSDualScreenConfig() {
       </div>
 
       {/* 主屏配置 */}
-      <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+      <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-2xl">📱</div>
           <div>
@@ -186,7 +186,7 @@ export default function POSDualScreenConfig() {
       </div>
 
       {/* 副屏配置 */}
-      <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+      <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-2xl">💻</div>
           <div>
@@ -258,7 +258,7 @@ export default function POSDualScreenConfig() {
       </div>
 
       {/* 店员提醒配置 */}
-      <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+      <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center text-2xl">⏰</div>
           <div>
@@ -365,7 +365,7 @@ export default function POSDualScreenConfig() {
       </div>
 
       {/* 快捷操作栏配置 */}
-      <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+      <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center text-2xl">⚡</div>
           <div>

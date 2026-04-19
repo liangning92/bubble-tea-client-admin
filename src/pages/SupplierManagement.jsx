@@ -114,7 +114,7 @@ export default function SupplierManagement() {
   );
 
   return (
-    <div className="space-y-8 animate-soft pb-24 !max-w-7xl">
+    <div className="space-y-4 animate-soft pb-24 !max-w-7xl">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-end gap-6 px-4">
         <div className="space-y-4">
@@ -122,7 +122,7 @@ export default function SupplierManagement() {
             <span className="text-4xl">🚛</span>
             <div>
               <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">{t('tabSuppliers') || '供应链管理'}</h2>
-              <p className="text-[12px] font-black text-slate-400 uppercase tracking-widest mt-1">{suppliers.length} 家合作伙伴</p>
+              <p className="text-[12px] font-black text-slate-400 uppercase tracking-widest mt-1">{suppliers.length} {t('partnerCompanies')}</p>
             </div>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function SupplierManagement() {
       </div>
 
       {/* Supplier Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {suppliers.map(s => (
           <div key={s.id} className="card-premium !p-8 !rounded-[40px] bg-white border-slate-50 shadow-sm hover:shadow-xl hover:border-slate-200 transition-all group overflow-hidden relative">
             <div className="flex justify-between items-start mb-6">
@@ -190,7 +190,7 @@ export default function SupplierManagement() {
       {/* Add/Edit Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="card-premium w-full max-w-md m-0 shadow-2xl animate-soft bg-white !rounded-[40px] !p-10 max-h-[90vh] overflow-y-auto">
+          <div className="card-premium w-full max-w-md m-0 shadow-2xl animate-soft bg-white !rounded-[40px] !p-6 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-8">
               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">
                 {editId ? '✏️ 编辑供应商' : '+ 新增供应商'}

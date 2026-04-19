@@ -20,7 +20,7 @@ export default function MarketingCalendar({ hideHeader }) {
   };
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900 pb-20">
+    <div className="space-y-5 animate-soft text-slate-900 pb-20">
       {!hideHeader && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
@@ -36,11 +36,11 @@ export default function MarketingCalendar({ hideHeader }) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        <div className="lg:col-span-2 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-4">
           {events.map((event) => (
             <div key={event.id} className="card-premium !p-8 border-slate-100 bg-white group hover:border-orange-500/20 transition-all">
-              <div className="flex items-start gap-8">
+              <div className="flex items-start gap-4">
                 <div className={`w-20 h-20 ${event.color} rounded-[28px] flex flex-col items-center justify-center text-white shrink-0 shadow-lg border-2 border-white/20`}>
                   <div className="text-[14px] font-black uppercase opacity-70">{new Date(event.date).toLocaleString('default', { month: 'short' })}</div>
                   <div className="text-2xl font-black">{new Date(event.date).getDate()}</div>
@@ -79,7 +79,7 @@ export default function MarketingCalendar({ hideHeader }) {
         </div>
 
         <div className="space-y-4">
-          <div className="card-premium !p-10 bg-slate-900 border-none shadow-2xl text-white relative overflow-hidden">
+          <div className="card-premium !p-6 bg-slate-900 border-none shadow-2xl text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 blur-[60px] rounded-full" />
             <h3 className="text-[14px] font-black tracking-widest mb-6 border-b border-white/5 pb-4 uppercase text-slate-400">{t('quarterlyAIInsight')}</h3>
             <p className="text-sm font-bold leading-relaxed text-slate-300 ">
@@ -97,7 +97,7 @@ export default function MarketingCalendar({ hideHeader }) {
           </div>
 
           <div className="card-premium !p-8 border-slate-100 bg-white shadow-sm">
-            <h3 className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-6">Execution Pipeline / 执行状态</h3>
+            <h3 className="text-[14px] font-black text-slate-400 uppercase tracking-widest mb-6">{t('executionPipeline')}</h3>
             <div className="space-y-4">
                {[
                  { label: 'POS Terminal Sync', status: 'Ready' },

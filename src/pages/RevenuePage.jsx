@@ -296,7 +296,7 @@ function RevenuePage() {
   const formatCurrency = (num) => `Rp ${num.toLocaleString()}`;
 
   return (
-    <div className="space-y-10 animate-soft">
+    <div className="space-y-5 animate-soft">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-black text-slate-900 tracking-tight">{t.title}</h2>
         <button onClick={() => setShowImport(true)} className="btn-premium active !px-8 shadow-sm">
@@ -315,7 +315,7 @@ function RevenuePage() {
       {loading ? (
         <div className="py-20 text-center text-[14px] font-black text-indigo-400 animate-pulse tracking-[0.3em]">{t('calculatingRevenue')}</div>
       ) : data ? (
-        <div className="space-y-10">
+        <div className="space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="card-premium p-8 border-emerald-500/10">
               <p className="text-label-caps mb-4 uppercase tracking-widest">{t.totalRevenue}</p>

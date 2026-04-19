@@ -177,7 +177,7 @@ function TopBar({ onRefresh, refreshing }) {
            <img src="/shopwise-brand-logo.png" className="w-full h-full object-contain rounded-full" alt="Shopwise" />
         </div>
         <div>
-          <div className="top-bar-title">店智汇 AI 智能生产管理终端</div>
+          <div className="top-bar-title">{t('storeAIHub')}</div>
           <div className="top-bar-subtitle uppercase tracking-widest text-[10px] opacity-60">SaaS 门店全链路智能控制系统</div>
         </div>
       </div>
@@ -192,7 +192,7 @@ function TopBar({ onRefresh, refreshing }) {
         </div>
         <div className="system-status">
           <div className="status-dot" />
-          <span>系统在线运行</span>
+          <span>{t('systemOnline')}</span>
         </div>
       </div>
     </div>
@@ -261,7 +261,7 @@ function P0Alerts({ anomalies, attendance, hygiene, onAction }) {
     <div className="p0-alerts-container animate-fade-in">
       <div className="section-header">
         <span className="section-icon">🚨</span>
-        <span className="section-title">待处理异常 (P0)</span>
+        <span className="section-title">{t('pendingExceptions')}</span>
         <div className="section-line"></div>
       </div>
       <div className="p0-alerts-grid">
@@ -337,10 +337,10 @@ function AgentCard({ agent, expanded, onToggle, statusInfo, cronJobs = [] }) {
       {expanded && (
         <div className="expand-content agent-details">
           <div className="detail-divider" />
-          <div className="detail-section-title">📋 最近任务 (Cron Jobs)</div>
+          <div className="detail-section-title">{t('recentTasks')}</div>
           <div className="cron-job-list">
             {cronJobs.length === 0 && (
-              <div style={{ fontSize: 12, color: 'rgba(224,232,255,0.3)', padding: '8px 0' }}>暂无定时任务</div>
+              <div style={{ fontSize: 12, color: 'rgba(224,232,255,0.3)', padding: '8px 0' }}>{t('noScheduledTasks')}</div>
             )}
             {cronJobs.map((job, i) => {
               const runStatus = job.state?.lastRunStatus || job.state?.lastStatus || 'idle';
@@ -369,26 +369,26 @@ function AgentCard({ agent, expanded, onToggle, statusInfo, cronJobs = [] }) {
           <div className="stats-row-mini">
             <div className="stat-mini-item">
               <span className="stat-mini-value green">{agentStats.successCount}</span>
-              <span className="stat-mini-label">成功</span>
+              <span className="stat-mini-label">{t('success')}</span>
             </div>
             <div className="stat-mini-item">
               <span className="stat-mini-value red">{agentStats.failCount}</span>
-              <span className="stat-mini-label">失败</span>
+              <span className="stat-mini-label">{t('failed')}</span>
             </div>
             <div className="stat-mini-item">
               <span className="stat-mini-value cyan">{agentStats.totalCount}</span>
-              <span className="stat-mini-label">总计</span>
+              <span className="stat-mini-label">{t('total')}</span>
             </div>
           </div>
 
           <div className="detail-divider" />
 
-          <div className="detail-section-title">🧠 学习进度</div>
+          <div className="detail-section-title">{t('learningProgress')}</div>
           <div className="learning-progress-bar">
             <div className="learning-progress-fill" style={{ width: `${learningProgress}%` }} />
           </div>
           <div className="learning-progress-label">
-            <span>知识库学习</span>
+            <span>{t('knowledgeBase')}</span>
             <span style={{ color: '#00ff88' }}>{learningProgress}%</span>
           </div>
           <div className="learning-meta" style={{ marginTop: 6 }}>
@@ -419,7 +419,7 @@ function SystemPanel({ anomalies, pendingOrders, salesSummary, loading, expanded
       <div className="glass-card panel">
         <div className="panel-title">
           <span>🖥️</span>
-          <span className="section-title">系统状态</span>
+          <span className="section-title">{t('systemStatus')}</span>
         </div>
         {[1, 2, 3, 4].map(i => (
           <div key={i} className="skeleton" style={{ height: 36, marginBottom: 8, borderRadius: 6 }} />
@@ -455,7 +455,7 @@ function SystemPanel({ anomalies, pendingOrders, salesSummary, loading, expanded
     <div className={`glass-card panel expandable-panel ${expanded ? 'expanded' : ''}`} onClick={onToggle} style={{ cursor: 'pointer' }}>
       <div className="panel-title">
         <span>🖥️</span>
-        <span className="section-title">系统状态</span>
+        <span className="section-title">{t('systemStatus')}</span>
         <span className="expand-arrow" style={{ marginLeft: 'auto', fontSize: 11, opacity: 0.6 }}>
           {expanded ? '▲ 收起' : '▼ 展开'}
         </span>
@@ -470,7 +470,7 @@ function SystemPanel({ anomalies, pendingOrders, salesSummary, loading, expanded
 
       <div className="system-metric">
         <span className="metric-label">
-          <span style={{ opacity: 0.5 }}>📊</span> 库存异常项
+          <span style={{ opacity: 0.5 }}{t('inventoryAnomalyItems')}</span>
         </span>
         <span className={`metric-value ${abnormalCount > 0 ? 'orange' : 'green'}`}>
           {abnormalCount} {abnormalCount > 0 && '⚠'}
@@ -488,14 +488,14 @@ function SystemPanel({ anomalies, pendingOrders, salesSummary, loading, expanded
 
       <div className="system-metric">
         <span className="metric-label">
-          <span style={{ opacity: 0.5 }}>📦</span> 待入库订单
+          <span style={{ opacity: 0.5 }}{t('pendingOrders')}</span>
         </span>
         <span className="metric-value cyan">{pendingOrders || 0}</span>
       </div>
 
       <div className="system-metric">
         <span className="metric-label">
-          <span style={{ opacity: 0.5 }}>💰</span> 今日销售额
+          <span style={{ opacity: 0.5 }}{t('todaySales')}</span>
         </span>
         <span className="metric-value green">
           {salesSummary ? `Rp ${Math.round(salesSummary).toLocaleString('id-ID')}` : '—'}
@@ -514,7 +514,7 @@ function SystemPanel({ anomalies, pendingOrders, salesSummary, loading, expanded
         <div className="expand-content">
           <div className="detail-divider" />
 
-          <div className="detail-section-title">📦 库存异常详细</div>
+          <div className="detail-section-title">{t('inventoryAnomalyDetail')}</div>
           <div className="anomaly-list">
             {mockInventoryAnomalies.map((item, i) => (
               <div key={i} className="anomaly-item">
@@ -529,7 +529,7 @@ function SystemPanel({ anomalies, pendingOrders, salesSummary, loading, expanded
 
           <div className="detail-divider" />
 
-          <div className="detail-section-title">💰 销售明细 (按产品)</div>
+          <div className="detail-section-title">{t('salesByProduct')}</div>
           <div className="sales-detail-list">
             {mockSalesByProduct.map((item, i) => (
               <div key={i} className="sales-detail-item">
@@ -546,14 +546,14 @@ function SystemPanel({ anomalies, pendingOrders, salesSummary, loading, expanded
 
           <div className="detail-divider" />
 
-          <div className="detail-section-title">📦 待入库订单</div>
+          <div className="detail-section-title">{t('pendingOrders')}</div>
           <div className="pending-po-list">
             {mockPendingPurchases.map((po, i) => (
               <div key={i} className="pending-po-item">
                 <div className="pending-po-id">{po.id}</div>
                 <div className="pending-po-supplier">{po.supplier}</div>
                 <div className="pending-po-items">{po.items}</div>
-                <div className="pending-po-eta">预计 {po.eta}</div>
+                <div className="pending-po-eta">{t('estimatedETA')}: {po.eta}</div>
               </div>
             ))}
           </div>
@@ -625,7 +625,7 @@ function InsightsPanel({ loading, expanded, onToggle }) {
       {expanded && (
         <div className="expand-content">
           <div className="detail-divider" />
-          <div className="detail-section-title">📄 完整学习报告</div>
+          <div className="detail-section-title"{t('fullLearningReport')}</div></div>
           <div className="full-report">
             {fullReport.split('\n').map((line, i) => (
               <div key={i} style={{
@@ -751,7 +751,7 @@ function TaskStatusPanel({ stats, expanded, onToggle }) {
       {expanded && (
         <div className="expand-content">
           <div className="detail-divider" />
-          <div className="detail-section-title">📋 所有任务详细列表</div>
+          <div className="detail-section-title">{t('allTaskDetails')}</div>
           <div className="task-detail-list">
             {mockTaskList.map((task, i) => (
               <div key={i} className="task-detail-item">
@@ -971,28 +971,28 @@ export default function DashboardTeam() {
               <StatCard
                 icon="💰"
                 value={(todaySales?.total || 0).toLocaleString()}
-                label="今日营收 (Rp)"
+                label={t("todayRevenue")}
                 color="#00f0ff"
                 glow="rgba(0,240,255,0.5)"
               />
               <StatCard
                 icon="📈"
                 value={((todaySales?.total || 0) * 0.4).toLocaleString()}
-                label="预计净利 (Rp)"
+                label={t('estimatedProfit')}
                 color="#00ff88"
                 glow="rgba(0,255,136,0.5)"
               />
               <StatCard
                 icon="🚀"
                 value={((dashboardAlerts?.counts?.marketingTips || 0) * 12.5).toFixed(1) + "x"}
-                label="营销 ROI"
+                label={t("marketingROI")}
                 color="#ff2d78"
                 glow="rgba(255,45,120,0.5)"
               />
               <StatCard
                 icon="👥"
                 value={dashboardAlerts?.counts?.memberGain || 0}
-                label="新增会员"
+                label={t("newMembers")}
                 color="#00ff88"
                 glow="rgba(0,255,136,0.5)"
               />

@@ -153,7 +153,7 @@ export default function OperationAuditPage() {
   const filteredTasks = sopTasks.filter(task => task.category === activeTab);
 
   return (
-    <div className="space-y-8 pb-32 animate-soft text-slate-900 !max-w-full relative">
+    <div className="space-y-4 pb-32 animate-soft text-slate-900 !max-w-full relative">
        {toast && (
         <div className="fixed top-12 left-1/2 -translate-x-1/2 z-[300] bg-slate-900 text-white px-10 py-5 rounded-[24px] shadow-3xl font-black text-[14px] animate-soft border-4 border-white">
           <span>{toast}</span>
@@ -190,7 +190,7 @@ export default function OperationAuditPage() {
           <p className="text-slate-400 font-black uppercase tracking-widest">{t('loading', '加载中...')}</p>
         </div>
       ) : (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
          {filteredTasks.length > 0 ? filteredTasks.map(task => (
             <div key={task.id} className="card-premium group hover:border-slate-900 transition-all cursor-pointer p-8 flex flex-col justify-between min-h-[280px]" onClick={() => { setSelectedTask(task); setIsEditing(false); }}>
                <div className="space-y-4">
@@ -216,7 +216,7 @@ export default function OperationAuditPage() {
 
        {selectedTask && (
          <div className="fixed inset-0 bg-slate-900/95 backdrop-blur-2xl z-[250] flex items-center justify-center p-8 animate-soft" onClick={() => setSelectedTask(null)}>
-            <div className="bg-white rounded-[64px] shadow-3xl w-full max-w-2xl overflow-hidden animate-soft border-8 border-white p-14 space-y-10" onClick={e => e.stopPropagation()}>
+            <div className="bg-white rounded-3xl shadow-3xl w-full max-w-2xl overflow-hidden animate-soft border-8 border-white p-6 space-y-5" onClick={e => e.stopPropagation()}>
                <div className="flex justify-between items-center bg-slate-50 -m-14 mb-10 p-10">
                   <button onClick={() => setIsEditing(!isEditing)} className={`text-[12px] font-black uppercase tracking-widest px-8 h-12 rounded-full transition-all ${isEditing ? 'bg-orange-500 text-white' : 'bg-white text-slate-900 border border-slate-200'}`}>
                      {isEditing ? t('previewHygieneTask', '🔍 查看预览') : t('editHygieneTask', '⚙️ 编辑任务')}
@@ -228,7 +228,7 @@ export default function OperationAuditPage() {
                </div>
 
                {isEditing ? (
-                  <div className="space-y-8">
+                  <div className="space-y-4">
                      <div className="space-y-4">
                         <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">{t('taskTitle')}</label>
                         <input 
@@ -248,7 +248,7 @@ export default function OperationAuditPage() {
                      </div>
                   </div>
                ) : (
-                  <div className="space-y-10">
+                  <div className="space-y-5">
                      <div className="text-center space-y-4">
                         <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">{selectedTask.title}</h3>
                         <p className="text-[16px] text-slate-500 font-bold leading-relaxed px-4">{selectedTask.desc}</p>

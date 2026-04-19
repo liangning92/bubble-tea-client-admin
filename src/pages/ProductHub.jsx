@@ -22,7 +22,7 @@ export default function ProductHub() {
   const handleTabChange = (key) => setSearchParams({ tab: key });
 
   return (
-    <div className="animate-soft space-y-10 focus:outline-none text-slate-900">
+    <div className="animate-soft space-y-5 focus:outline-none text-slate-900">
       {/* 统一页头 */}
       <div className="flex flex-col gap-2 px-4">
         <h1 className="text-h1">{t('productHubTitle')}</h1>

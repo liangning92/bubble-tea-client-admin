@@ -34,21 +34,21 @@ export default function UnifiedRevenuePage() {
   if (loading) return <div className="p-20 text-center animate-pulse text-slate-400">{t('syncingRevenueData')}</div>;
 
   return (
-    <div className="space-y-8 animate-soft pb-20">
+    <div className="space-y-4 animate-soft pb-20">
       <div className="flex justify-between items-end px-4">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">{t('revenueChannelDeepDive')}</h2>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* 左侧：渠道拆分 - 纯净化覆盖 */}
-        <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm transition-all hover:border-slate-200">
+        <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm transition-all hover:border-slate-200">
           <h3 className="text-[16px] font-black text-slate-900 mb-10 flex items-center gap-3">
              <div className="w-1.5 h-6 bg-slate-900 rounded-full" />
              {t('revenueChannelRatio')}
           </h3>
-          <div className="space-y-8">
+          <div className="space-y-4">
             {(() => {
               const total = Object.values(data.channels).reduce((s, v) => s + (v || 0), 0);
               return [
@@ -82,7 +82,7 @@ export default function UnifiedRevenuePage() {
 
         {/* 右侧：预警 - 纯净化覆盖 */}
         <div className="space-y-4">
-           <div className="card-premium !p-10 !rounded-[48px] bg-white border-slate-50 shadow-sm">
+           <div className="card-premium !p-6 !rounded-[48px] bg-white border-slate-50 shadow-sm">
               <h3 className="text-[16px] font-black text-orange-600 mb-10 flex items-center gap-3">
                  <div className="w-1.5 h-6 bg-orange-600 rounded-full" />
                  {t('deliveryAlertTitle')}

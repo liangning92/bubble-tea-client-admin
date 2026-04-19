@@ -33,7 +33,7 @@ export default function Leaderboard({ hideHeader }) {
   if (loading) return <div className="py-24 text-center text-label-caps animate-pulse">Calculating Performance Matrix...</div>;
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900">
+    <div className="space-y-5 animate-soft text-slate-900">
       {!hideHeader && (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
@@ -47,10 +47,10 @@ export default function Leaderboard({ hideHeader }) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
            {staff.map((member, i) => (
-             <div key={member.id} className="card-premium !p-8 group hover:border-orange-500/30 transition-all flex items-center gap-8 relative overflow-hidden border-slate-100">
+             <div key={member.id} className="card-premium !p-8 group hover:border-orange-500/30 transition-all flex items-center gap-4 relative overflow-hidden border-slate-100">
                 <div className="text-4xl font-black  text-slate-100 group-hover:text-orange-500 transition-colors absolute -left-2 top-2 select-none opacity-20">#{i+1}</div>
                 <div className="w-16 h-16 rounded-[24px] bg-slate-100 flex items-center justify-center text-2xl border border-slate-200 relative z-10">👤</div>
                 <div className="flex-1 space-y-4 relative z-10">
@@ -65,7 +65,7 @@ export default function Leaderboard({ hideHeader }) {
                    </div>
                 </div>
                 <div className="text-right space-y-4 relative z-10">
-                   <p className="text-label-caps !text-slate-400">Total Points</p>
+                   <p className="text-label-caps !text-slate-400">{t('totalPoints')}</p>
                    <p className="text-3xl font-black text-slate-900 tracking-tighter">{member.points}</p>
                    <div className={`text-[14px] font-black uppercase ${member.trend === 'up' ? 'text-emerald-500' : member.trend === 'down' ? 'text-rose-500' : 'text-slate-300'}`}>
                       {member.trend === 'up' ? '▲ Climing' : member.trend === 'down' ? '▼ Falling' : '● Stable'}
@@ -76,7 +76,7 @@ export default function Leaderboard({ hideHeader }) {
         </div>
 
         <div className="space-y-4">
-           <div className="card-premium !bg-slate-900 text-white !p-10 shadow-2xl relative overflow-hidden">
+           <div className="card-premium !bg-slate-900 text-white !p-6 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-[60px] rounded-full" />
               <h4 className="text-h3 text-slate-400 mb-8 border-b border-white/5 pb-4">📈 {t('scoreCompositionLogic')}</h4>
               <div className="space-y-4 relative z-10">

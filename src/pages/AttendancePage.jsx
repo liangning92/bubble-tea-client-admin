@@ -46,7 +46,7 @@ export default function AttendancePage() {
   };
 
   return (
-    <div className="space-y-10 animate-soft text-slate-900 pb-24 !max-w-7xl relative">
+    <div className="space-y-5 animate-soft text-slate-900 pb-24 !max-w-7xl relative">
       {/* 全局反馈 Toast */}
       {toast && (
         <div className="fixed top-10 left-1/2 -translate-x-1/2 z-[300] bg-slate-900 text-white px-10 py-5 rounded-[24px] shadow-3xl font-black text-[14px] animate-soft flex items-center gap-4 border-4 border-white">
@@ -77,7 +77,7 @@ export default function AttendancePage() {
         </div>
       </div>
 
-      <div className="p-10 rounded-[48px] border-2 border-dashed border-red-100 bg-red-50/20 flex flex-col md:flex-row gap-10 items-center group">
+      <div className="p-10 rounded-[48px] border-2 border-dashed border-red-100 bg-red-50/20 flex flex-col md:flex-row gap-6 items-center group">
         <div className="w-20 h-20 bg-white rounded-3xl shadow-xl flex items-center justify-center text-4xl animate-pulse">🧹</div>
         <div className="flex-1 space-y-4 text-center md:text-left">
           <h4 className="text-[16px] font-black text-red-600 uppercase tracking-widest">{t('hygieneCheckModeActive')}</h4>
@@ -92,27 +92,27 @@ export default function AttendancePage() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-50/50">
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest">{t('optionStaffName')}</th>
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('checkInOutTime')}</th>
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('systemJudgment')}</th>
-                <th className="p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">{t('healthArchive')}</th>
+                <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">{t('optionStaffName')}</th>
+                <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('checkInOutTime')}</th>
+                <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('systemJudgment')}</th>
+                <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">{t('healthArchive')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
               {records.map((rec, i) => (
                 <tr key={i} className="hover:bg-slate-50/50 transition-all select-none group">
-                  <td className="p-8">
+                  <td className="p-4">
                      <p className="font-black text-slate-900 text-[16px]">{rec.name}</p>
                      <p className="text-[11px] font-black text-slate-300 mt-1 uppercase tracking-widest">{rec.date}</p>
                   </td>
-                  <td className="p-8 text-center" onClick={() => setShowCorrection(rec)}>
+                  <td className="p-4 text-center" onClick={() => setShowCorrection(rec)}>
                     <div className="flex items-center justify-center gap-3 cursor-pointer hover:scale-105 transition-all">
                        <span className="px-4 py-3 bg-slate-100 rounded-xl font-mono font-black text-[13px]">{rec.in}</span>
                        <span className="text-slate-200">→</span>
                        <span className="px-4 py-3 bg-slate-100 rounded-xl font-mono font-black text-[13px]">{rec.out}</span>
                     </div>
                   </td>
-                  <td className="p-8 text-center child-center">
+                  <td className="p-4 text-center child-center">
                     <span 
                       onClick={() => setShowCorrection(rec)}
                       className={`cursor-pointer px-5 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all hover:scale-110 ${rec.status === '正常' ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20' : 'bg-red-500 text-white shadow-lg shadow-red-500/20'}`}
@@ -120,7 +120,7 @@ export default function AttendancePage() {
                       {rec.status}
                     </span>
                   </td>
-                  <td className="p-8 text-right">
+                  <td className="p-4 text-right">
                     <div className={`text-[12px] font-black uppercase tracking-widest flex items-center justify-end gap-2 ${(rec.photo || '').includes('✅') ? 'text-emerald-500' : 'text-orange-500 animate-pulse'}`}>
                       {rec.photo}
                       <button 
@@ -142,14 +142,14 @@ export default function AttendancePage() {
       {selectedDoc && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xl z-[200] flex items-center justify-center p-8 animate-soft" onClick={() => setSelectedDoc(null)}>
            <div className="bg-white rounded-[72px] shadow-3xl w-full max-w-2xl overflow-hidden animate-soft border-8 border-white" onClick={e => e.stopPropagation()}>
-              <div className="p-14 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+              <div className="p-6 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
                  <div>
                     <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase mb-1">{t('healthInspectionRecord')}</h3>
                     <p className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">{selectedDoc.name} · {selectedDoc.date}</p>
                  </div>
                  <button onClick={() => setSelectedDoc(null)} className="w-16 h-16 rounded-full bg-white border border-slate-100 flex items-center justify-center text-slate-200 hover:text-slate-900 transition-all hover:rotate-90">✕</button>
               </div>
-              <div className="p-14 space-y-10">
+              <div className="p-6 space-y-5">
                  <div className="aspect-video bg-slate-900 rounded-[48px] flex flex-col items-center justify-center text-white space-y-4 border-4 border-slate-50 overflow-hidden relative group">
                     <span className="text-7xl group-hover:scale-110 transition-transform cursor-pointer" onClick={() => showToast(t('originalPhotoLoading'))}>📷</span>
                     <div className="text-center px-10">
@@ -159,7 +159,7 @@ export default function AttendancePage() {
                     <div className="absolute top-8 left-8 px-4 py-3 bg-emerald-500 rounded-full text-[10px] font-black tracking-widest">{t('watermarkVerified')}</div>
                  </div>
               </div>
-              <div className="p-14 bg-slate-50 border-t border-slate-100 flex gap-6">
+              <div className="p-6 bg-slate-50 border-t border-slate-100 flex gap-6">
                  <button onClick={() => setSelectedDoc(null)} className="flex-1 h-20 bg-slate-900 text-white rounded-[32px] font-black uppercase tracking-widest shadow-2xl shadow-slate-900/20 active:scale-95 transition-all text-[15px]">{t('confirmClose')}</button>
                  <button onClick={() => showToast(t('printInstructionSent'))} className="px-12 h-20 bg-white border border-slate-200 text-slate-900 rounded-[32px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all text-[20px]">🖨️</button>
               </div>
@@ -170,16 +170,16 @@ export default function AttendancePage() {
       {/* 考勤人工修正弹窗 */}
       {showCorrection && (
         <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[250] flex items-center justify-center p-8 animate-soft" onClick={() => setShowCorrection(null)}>
-           <div className="bg-white rounded-[64px] shadow-3xl w-full max-w-xl overflow-hidden animate-soft border-8 border-white p-14 space-y-10" onClick={e => e.stopPropagation()}>
+           <div className="bg-white rounded-3xl shadow-3xl w-full max-w-xl overflow-hidden animate-soft border-8 border-white p-6 space-y-5" onClick={e => e.stopPropagation()}>
               <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase text-center">{t('attendanceComplianceCorrection')}</h3>
               
               <div className="space-y-4">
                  <div className="bg-slate-50 p-6 rounded-3xl flex justify-between items-center border border-slate-100">
-                    <span className="text-[14px] font-black text-slate-400">当前员工</span>
+                    <span className="text-[14px] font-black text-slate-400">{t('currentStaff')}</span>
                     <span className="text-[16px] font-black text-slate-900">{showCorrection.name}</span>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-3xl flex justify-between items-center border border-slate-100">
-                    <span className="text-[14px] font-black text-slate-400">判定结果修正</span>
+                    <span className="text-[14px] font-black text-slate-400">{t('verdictCorrection')}</span>
                     <select className="bg-white border-2 border-slate-200 rounded-xl px-4 py-3 font-black text-[14px] outline-none focus:border-slate-900 transition-all">
                        <option>{t('optionAttendanceNormal')}</option>
                        <option>{t('optionAttendanceAbnormal')}</option>

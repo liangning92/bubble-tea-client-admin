@@ -49,7 +49,7 @@ export default function WhatsAppAudit({ hideHeader }) {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500 pb-20">
+    <div className="space-y-4 animate-in fade-in duration-500 pb-20">
       
       {/* 头部摘要 */}
       {!hideHeader && (
@@ -78,7 +78,7 @@ export default function WhatsAppAudit({ hideHeader }) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
          
          {/* 左侧：精简列表 (Row List) */}
          <div className="lg:col-span-8 bg-white border border-slate-200 rounded-[32px] overflow-hidden shadow-sm self-start">
@@ -163,7 +163,7 @@ export default function WhatsAppAudit({ hideHeader }) {
                      <div className="w-6 h-6 rounded-full bg-white opacity-20"></div>
                      <div className="flex-1">
                         <div className="text-[14px] font-bold">{t('reachCenter')}</div>
-                        <div className="text-[7px] opacity-70">在线</div>
+                        <div className="text-[7px] opacity-70">{t('online')}</div>
                      </div>
                   </div>
                   
@@ -175,9 +175,9 @@ export default function WhatsAppAudit({ hideHeader }) {
                               {activePreview.content}
                            </div>
                            <div className="w-full h-28 bg-slate-50 rounded-xl flex flex-col items-center justify-center border border-slate-100 p-2 group hover:bg-white transition-all">
-                              <div className="text-[14px] font-black text-indigo-600 mb-1 uppercase tracking-tighter">会员专享通道</div>
+                              <div className="text-[14px] font-black text-indigo-600 mb-1 uppercase tracking-tighter">{t('memberExclusive')}</div>
                               <div className="bg-white px-4 py-1.5 rounded-lg text-[8px] font-mono text-slate-400 w-full truncate mb-2 border border-slate-100">https://bbt.io/voucher/...</div>
-                              <button className="w-full py-1.5 bg-indigo-600 text-white text-[14px] font-black rounded-lg shadow-sm active:scale-95 transition-all">立即领取</button>
+                              <button className="w-full py-1.5 bg-indigo-600 text-white text-[14px] font-black rounded-lg shadow-sm active:scale-95 transition-all">{t('claimNow')}</button>
                            </div>
                            <div className="flex justify-end items-center gap-1 text-[7px] text-slate-400 mt-2">
                               {new Date(activePreview.occurredAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

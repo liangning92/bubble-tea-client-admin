@@ -38,7 +38,7 @@ export default function HeatmapSchedule({ staff }) {
      const expected = Math.ceil(load / 30); // 假设每小时30杯是单人极限
      if (covered < expected) return 'bg-red-50 text-red-600 border-red-200'; // 严重缺人
      if (covered === expected) return 'bg-emerald-50 text-emerald-600 border-emerald-200'; // 恰到好处
-     return 'bg-amber-50 text-amber-600 border-amber-200'; // 人员冗余 (浪费人工成本)
+     return 'bg-amber-50 text-amber-600 border-amber-200'; // 人员冗余 ({t('laborCostWaste')})
   };
 
   return (

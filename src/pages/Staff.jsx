@@ -214,8 +214,8 @@ export default function StaffPage({ defaultTab: initialTab }) {
                   <input className="input-premium w-full" type="date" value={trainingForm.date} onChange={e => setTrainingForm({...trainingForm, date: e.target.value})} />
                 </div>
                 <div className="flex gap-4">
-                  <button type="submit" className="flex-1 px-8 py-3 bg-indigo-500 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest">确认发布</button>
-                  <button type="button" onClick={() => setShowAddTraining(false)} className="flex-1 px-8 py-3 bg-white/5 text-slate-400 rounded-2xl font-black text-[14px] uppercase tracking-widest">取消</button>
+                  <button type="submit" className="flex-1 px-8 py-3 bg-indigo-500 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest">{t('confirmAction')}</button>
+                  <button type="button" onClick={() => setShowAddTraining(false)} className="flex-1 px-8 py-3 bg-white/5 text-slate-400 rounded-2xl font-black text-[14px] uppercase tracking-widest">{t('cancel')}</button>
                 </div>
               </form>
             </div>
@@ -236,7 +236,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                   </h4>
                   <div className="flex items-center gap-2 mt-4">
                     <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-[14px]">👤</div>
-                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t.assignedUser?.username || '全员'}</span>
+                    <span className="text-[14px] font-black text-slate-400 uppercase tracking-widest">{t.assignedUser?.username || t('allStaff')}</span>
                   </div>
                   <button onClick={async () => { if(confirm(t('deleteConfirm'))) await api('DELETE', `/staff/training/${t.id}`); loadTrainings(); }} className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 text-rose-500 transition-opacity">✕</button>
                 </div>
@@ -289,7 +289,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
               <div key={date} className="card-premium !p-0 overflow-hidden border-slate-200 bg-white">
                 <div className="p-3 bg-slate-50 border-b border-slate-100 flex justify-between items-center text-[12px]">
                   <h3 className="text-[14px] font-black text-slate-800 tracking-widest">{date}</h3>
-                  <span className="text-[14px] font-bold text-slate-400 uppercase">{items.length} 班次</span>
+                  <span className="text-[14px] font-bold text-slate-400 uppercase">{items.length} {t('shifts')}</span>
                 </div>
                 <div className="p-3 space-y-4">
                   {(items || []).map(item => (
@@ -336,7 +336,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                 <input className="input-premium w-full text-[14px]" placeholder={t('placeholderIncidentReason')} value={rewardForm.reason} onChange={e => setRewardForm({...rewardForm, reason: e.target.value})} />
                 <div className="flex gap-4">
                    <button type="submit" className={`flex-1 px-8 py-3 rounded-2xl font-black text-[14px] uppercase ${rewardForm.type === 'reward' ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'}`}>提交记录</button>
-                   <button type="button" onClick={() => setShowAddReward(false)} className="flex-1 px-8 py-3 bg-white/5 text-slate-500 rounded-2xl font-black text-[14px] uppercase">取消</button>
+                   <button type="button" onClick={() => setShowAddReward(false)} className="flex-1 px-8 py-3 bg-white/5 text-slate-500 rounded-2xl font-black text-[14px] uppercase">{t('cancel')}</button>
                 </div>
               </form>
             </div>
@@ -363,7 +363,7 @@ export default function StaffPage({ defaultTab: initialTab }) {
                       </div>
                     </div>
                   </div>
-                  <div className="text-right flex items-center gap-8">
+                  <div className="text-right flex items-center gap-4">
                      <div className={`text-lg font-black ${r.category === 'reward' ? 'text-emerald-400' : 'text-rose-400'}`}>
                         {r.category === 'reward' ? '+' : '-'}{formatCurrency(r.amount)}
                      </div>
@@ -388,37 +388,37 @@ export default function StaffPage({ defaultTab: initialTab }) {
           {showAddSalary && (
             <div className="card-premium border-slate-200 bg-white mb-8">
                <h3 className="text-[14px] font-black text-slate-800 mb-8 uppercase tracking-widest px-4">{t('titlePayrollCalculation')}</h3>
-               <form onSubmit={handleAddSalary} className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <form onSubmit={handleAddSalary} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                      <div className="space-y-4">
-                        <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">选择发放员工</label>
+                        <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">{t('selectStaff')}</label>
                         <select className="input-premium w-full text-[14px]" value={salaryForm.staffId} onChange={e => setSalaryForm({...salaryForm, staffId: e.target.value})} required>
                            <option value="">{t('optionStaffName')}</option>
                            {(staffList || []).map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
                         </select>
                      </div>
                      <div className="space-y-4">
-                        <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">结算周期</label>
+                        <label className="text-[14px] font-black text-slate-500 uppercase tracking-widest ml-2">{t('settlementCycle')}</label>
                         <input className="input-premium w-full !p-3 text-[14px]" type="month" value={salaryForm.month} onChange={e => setSalaryForm({...salaryForm, month: e.target.value})} required />
                      </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                      <div className="space-y-4">
-                        <label className="text-[14px] font-black text-emerald-500 uppercase tracking-widest ml-2">基本薪资</label>
+                        <label className="text-[14px] font-black text-emerald-500 uppercase tracking-widest ml-2">{t('baseSalary')}</label>
                         <input className="input-premium w-full text-white font-black" type="number" value={salaryForm.baseSalary} onChange={e => setSalaryForm({...salaryForm, baseSalary: e.target.value})} required />
                      </div>
                      <div className="space-y-4">
-                        <label className="text-[14px] font-black text-indigo-400 uppercase tracking-widest ml-2">浮动奖金</label>
+                        <label className="text-[14px] font-black text-indigo-400 uppercase tracking-widest ml-2">{t('bonus')}</label>
                         <input className="input-premium w-full text-white font-black" type="number" value={salaryForm.bonus} onChange={e => setSalaryForm({...salaryForm, bonus: e.target.value})} />
                      </div>
                      <div className="space-y-4">
-                        <label className="text-[14px] font-black text-rose-400 uppercase tracking-widest ml-2">扣除/罚金</label>
+                        <label className="text-[14px] font-black text-rose-400 uppercase tracking-widest ml-2">{t('deduction')}</label>
                         <input className="input-premium w-full text-white font-black" type="number" value={salaryForm.deduction} onChange={e => setSalaryForm({...salaryForm, deduction: e.target.value})} />
                      </div>
                   </div>
                   <div className="flex gap-4 pt-4">
                      <button type="submit" className="flex-1 px-8 py-3 bg-indigo-600 text-white rounded-2xl font-black text-[14px] uppercase tracking-widest shadow-lg shadow-indigo-500/20">{t('btnConfirmSync')}</button>
-                     <button type="button" onClick={() => setShowAddSalary(false)} className="px-8 py-3 bg-slate-100 text-slate-500 rounded-2xl font-black text-[14px] uppercase tracking-widest border border-slate-200">取消</button>
+                     <button type="button" onClick={() => setShowAddSalary(false)} className="px-8 py-3 bg-slate-100 text-slate-500 rounded-2xl font-black text-[14px] uppercase tracking-widest border border-slate-200">{t('cancel')}</button>
                   </div>
                </form>
             </div>
@@ -442,14 +442,14 @@ export default function StaffPage({ defaultTab: initialTab }) {
                                <div className="font-black text-slate-900">{s.User?.username || t('staffMember')}</div>
                                <div className="text-[14px] text-slate-400 font-bold uppercase mt-1">{s.month} {t('fiscalPeriod')}</div>
                             </td>
-                            <td className="p-8">
+                            <td className="p-4">
                                <div className="flex gap-6 text-[14px] font-black uppercase tracking-tight">
                                   <span className="text-slate-400">{t('base')}: {formatCurrency(s.baseSalary)}</span>
                                   <span className="text-emerald-500">{t('bonus')}: +{formatCurrency(s.bonus)}</span>
                                   <span className="text-rose-500">{t('deduction')}: -{formatCurrency(s.deduction)}</span>
                                 </div>
                             </td>
-                            <td className="p-8 text-right">
+                            <td className="p-4 text-right">
                                <div className="flex items-center justify-end gap-6">
                                   <div className="text-xl font-black text-indigo-400">{formatCurrency(net)}</div>
                                   <button onClick={async () => { if(confirm(t('deleteConfirm'))) await api('DELETE', `/staff/salaries/${s.id}`); loadSalaries(); }} className="opacity-0 group-hover:opacity-100 text-rose-500 transition-opacity">✕</button>

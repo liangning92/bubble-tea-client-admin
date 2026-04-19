@@ -76,10 +76,10 @@ export default function PermissionMatrix() {
   const roles = Object.keys(matrix);
 
   // Build module list from permissions
-  const modules = buildModules(matrix);
+  const modules = buildModules(matrix, t);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       {/* Tab Switcher */}
       <div className="flex gap-4 border-b border-slate-100 pb-0">
         <button
@@ -132,7 +132,7 @@ function PermissionMatrixView({ matrix, modules, roles }) {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">{iconMap[role]}</span>
                 <div>
-                  <div className="font-black text-slate-900 text-[15px] uppercase tracking-tight">{roleData?.label || role}</div>
+                  <div className="font-black text-slate-900 text-[15px] uppercase tracking-tight">{t(roleData?.label) || t(role)}</div>
                   <div className="text-[12px] text-slate-400 font-black uppercase tracking-widest">{t('role') || '角色'}</div>
                 </div>
               </div>
@@ -152,7 +152,7 @@ function PermissionMatrixView({ matrix, modules, roles }) {
                 <th className="p-6 text-[11px] font-black text-slate-400 uppercase tracking-widest whitespace-nowrap">{t('moduleCol') || '功能模块'}</th>
                 {roles.map(r => (
                   <th key={r} className="p-6 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center whitespace-nowrap">
-                    {matrix[r]?.label || r}
+                    {t(matrix[r]?.label) || t(r)}
                   </th>
                 ))}
               </tr>
@@ -349,7 +349,7 @@ const MODULE_LABELS = (t) => ({
 });
 
 // Group permissions by module (prefix before the dot)
-function buildModules(matrix) {
+function buildModules(matrix, t) {
   const roleNames = Object.keys(matrix);
   const moduleMap = {};
 

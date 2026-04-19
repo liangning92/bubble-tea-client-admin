@@ -75,7 +75,7 @@ export default function WhatsAppConnector({ hideHeader }) {
   const tl = (id_text, zh_text) => (lang === 'zh' ? zh_text : id_text);
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500 max-w-4xl mx-auto">
+    <div className="space-y-4 animate-in fade-in duration-500 max-w-4xl mx-auto">
       <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
          {!hideHeader && (
            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
@@ -116,7 +116,7 @@ export default function WhatsAppConnector({ hideHeader }) {
             {status.status === 'READY' ? (
                <div className="text-center animate-in zoom-in duration-500">
                   <div className="text-7xl mb-6">✅</div>
-                  <h4 className="text-2xl font-black text-slate-800 mb-2">连接已成功 (Ready)</h4>
+                  <h4 className="text-2xl font-black text-slate-800 mb-2">{t('connectionSuccess')}</h4>
                   <p className="text-slate-500 font-medium max-w-xs mx-auto mb-8">
                      系统现在可以使用您的手机号正式下发自动化营销、优惠券及裂变奖励通知。
                   </p>
@@ -127,7 +127,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                </div>
             ) : status.qrCode ? (
                <div className="text-center">
-                  <p className="text-sm font-black text-slate-700 mb-6 uppercase tracking-widest">📱 请使用 WhatsApp 扫描下方二维码</p>
+                  <p className="text-sm font-black text-slate-700 mb-6 uppercase tracking-widest">📱 {t('whatsappScanInstruction')}</p>
                   <div className="bg-white p-6 rounded-3xl shadow-2xl inline-block border-8 border-white">
                      <img src={status.qrCode} alt="WhatsApp QR" className="w-64 h-64" />
                   </div>
@@ -136,7 +136,7 @@ export default function WhatsAppConnector({ hideHeader }) {
             ) : (
                <div className="text-center">
                   <div className="text-6xl mb-6 grayscale opacity-20">🤖</div>
-                  <h4 className="text-xl font-bold text-slate-400 mb-6">服务未启动或已断开</h4>
+                  <h4 className="text-xl font-bold text-slate-400 mb-6">{t('serviceDisconnected')}</h4>
                   <button 
                      onClick={handleInitialize}
                      disabled={loading}
@@ -155,7 +155,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                      <div>
-                        <label className="block text-[14px] font-black text-slate-500 uppercase tracking-widest mb-2">触达测试号码</label>
+                        <label className="block text-[14px] font-black text-slate-500 uppercase tracking-widest mb-2">{t('testPhone')}</label>
                         <input 
                            type="text" 
                            placeholder="6281277889901" 
@@ -165,7 +165,7 @@ export default function WhatsAppConnector({ hideHeader }) {
                         />
                      </div>
                      <div>
-                        <label className="block text-[14px] font-black text-slate-500 uppercase tracking-widest mb-2">触达消息文案</label>
+                        <label className="block text-[14px] font-black text-slate-500 uppercase tracking-widest mb-2">{t('testMessage')}</label>
                         <textarea 
                            rows="3"
                            value={testMsg}
@@ -194,9 +194,9 @@ export default function WhatsAppConnector({ hideHeader }) {
       </div>
 
       <div className="p-8 bg-slate-900 rounded-3xl text-white relative overflow-hidden shadow-2xl">
-         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="max-w-md">
-               <h4 className="text-xl font-black tracking-tight mb-2">策略执行与通讯安全审计</h4>
+               <h4 className="text-xl font-black tracking-tight mb-2">{t('strategyAudit')}</h4>
                <p className="text-sm text-slate-400 font-medium leading-relaxed mb-6">
                   工业级高频触达需遵循《通讯合规协议》。系统已开启智能抖动算法及指数级延迟策略，建议全自动模式下单日发送量不超过 200 条，以维持极高存续度。
                </p>

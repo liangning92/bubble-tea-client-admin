@@ -115,7 +115,6 @@ export default function InventoryPage({ readOnly = false }) {
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest">{t('category')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('onHand')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('costPerKg')}</th>
-                <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-center">{t('concentrateRatio')}</th>
                 <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right">{t('status')}</th>
                 {!readOnly && <th className="px-4 py-3 text-[14px] font-black text-slate-400 uppercase tracking-widest text-right rounded-tr-[40px]">{t('actions')}</th>}
               </tr>
@@ -151,11 +150,6 @@ export default function InventoryPage({ readOnly = false }) {
                          {parseFloat(item.costPerKg || 0) > 0 ? `${t('currencySymbol')}${parseFloat(item.costPerKg).toLocaleString()}/kg` : <span className="text-slate-300">-</span>}
                        </span>
                      </td>
-                     <td className="px-4 py-3 text-center">
-                       <span className={`text-[14px] font-black ${(item.concentrateRatio || 1) > 1 ? 'text-orange-500' : 'text-slate-300'}`}>
-                         {(item.concentrateRatio || 1) > 1 ? `×${item.concentrateRatio}` : '-'}
-                       </span>
-                     </td>
                      <td className="px-4 py-3 text-right">
                         <span className={`px-5 py-3 rounded-full text-[14px] font-black uppercase tracking-widest border transition-all ${low ? 'bg-red-50 text-red-600 border-red-100 shadow-sm' : 'bg-emerald-50 text-emerald-600 border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white'}`}>
                           {low ? t('stockLow') : t('available')}
@@ -179,7 +173,7 @@ export default function InventoryPage({ readOnly = false }) {
       {/* 新增原料 Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4 animate-in fade-in">
-          <div className="bg-white w-full max-w-lg rounded-[48px] shadow-3xl p-12 space-y-8 animate-soft relative overflow-hidden">
+          <div className="bg-white w-full max-w-lg rounded-[48px] shadow-3xl p-12 space-y-4 animate-soft relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-slate-100 rounded-full blur-3xl -mr-32 -mt-32 opacity-50" />
             
             <div className="flex justify-between items-center relative z-10">
@@ -215,17 +209,7 @@ export default function InventoryPage({ readOnly = false }) {
                   <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('costPerKgLabel', '采购价 (Rp/kg)')}</label>
                   <input type="number" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.costPerKg} onChange={e => setNewMat({...newMat, costPerKg: parseFloat(e.target.value) || 0})} placeholder="Rp/kg" />
                 </div>
-                <div className="space-y-4">
-                  <label className="text-[14px] font-black text-slate-400 uppercase tracking-widest pl-2">{t('concentrateRatioLabel', '浓缩比 (1kg=?)')}</label>
-                  <input type="number" step="0.1" className="input-premium w-full !bg-slate-50 !p-5 !rounded-[24px]" value={newMat.concentrateRatio} onChange={e => setNewMat({...newMat, concentrateRatio: parseFloat(e.target.value) || 1})} placeholder={t('placeholderRatio')} />
-                </div>
               </div>
-              <p className="text-[12px] text-slate-400 font-medium pl-2">
-                {newMat.concentrateRatio > 1
-                  ? t('hintConcentrate').replace('{ratio}', newMat.concentrateRatio).replace('{cost}', newMat.costPerKg > 0 ? (newMat.costPerKg / newMat.concentrateRatio).toLocaleString() : '0')
-                  : t('hintNoConcentrate')
-                }
-              </p>
 
               <div className="pt-4">
                 <button type="submit" disabled={submitting} className="w-full py-5 bg-slate-900 text-white font-black uppercase tracking-widest rounded-[24px] shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
@@ -238,7 +222,7 @@ export default function InventoryPage({ readOnly = false }) {
       )}
 
       {/* 底部政策卡片 */}
-      <div className="p-10 bg-slate-50 rounded-[56px] border border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-10 relative overflow-hidden group shadow-sm">
+      <div className="p-10 bg-slate-50 rounded-[56px] border border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-6 relative overflow-hidden group shadow-sm">
          <div className="absolute top-0 left-0 w-2 h-full bg-marigold opacity-80"></div>
          <div className="space-y-4 relative z-10 flex-1">
             <h4 className="text-xl font-black text-slate-800 tracking-tight flex items-center gap-3">

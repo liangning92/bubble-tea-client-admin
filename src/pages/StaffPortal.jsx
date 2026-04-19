@@ -73,7 +73,7 @@ export default function StaffPortal() {
   const totalUnpaid = salaries.reduce((sum, s) => sum + (s.total || 0), 0);
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-24 max-w-4xl mx-auto">
+    <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-24 max-w-4xl mx-auto">
       
       {/* 欢迎头部 */}
       <header className="p-10 bg-slate-900 rounded-[40px] text-white shadow-2xl relative overflow-hidden">
@@ -99,21 +99,21 @@ export default function StaffPortal() {
         <section className="bg-white border-2 border-dashed border-indigo-200 rounded-[40px] p-8 text-center animate-in zoom-in-95">
            <div id="reader" className="mx-auto rounded-3xl overflow-hidden border-4 border-indigo-50" style={{ maxWidth: '400px' }}></div>
            {scanResult && <p className="mt-4 font-black text-indigo-600">{scanResult}</p>}
-           <p className="mt-4 text-[14px] text-slate-400 font-bold">请对准收银机展示的动态打卡二维码</p>
+           <p className="mt-4 text-[14px] text-slate-400 font-bold">{t('scanQRCode')}</p>
         </section>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
          
-         {/* 1. 待办任务 */}
+         {/* 1. {t('taskList')} */}
          <section className="space-y-4">
             <div className="flex justify-between items-center px-4">
-               <h3 className="text-xl font-black text-slate-800 tracking-tight">待办任务</h3>
+               <h3 className="text-xl font-black text-slate-800 tracking-tight">{t('taskList')}</h3>
                <span className="px-4 py-0.5 bg-orange-100 text-orange-600 text-[14px] font-black rounded-lg uppercase tracking-widest">{tasks.length} PENDING</span>
             </div>
             <div className="space-y-4">
                {tasks.length === 0 ? (
-                  <div className="p-10 bg-white border border-slate-200 rounded-[32px] text-center text-slate-400 ">任务已清空 ✨</div>
+                  <div className="p-10 bg-white border border-slate-200 rounded-[32px] text-center text-slate-400 ">{t('tasksCleared')}</div>
                ) : (
                   tasks.map(task => (
                     <div key={task.id} className="p-6 bg-white border border-slate-200 rounded-[32px] shadow-sm flex justify-between items-center">
@@ -131,19 +131,19 @@ export default function StaffPortal() {
          {/* 2. 我的薪资 */}
          <section className="space-y-4">
             <div className="flex justify-between items-center px-4">
-               <h3 className="text-xl font-black text-slate-800 tracking-tight">工资单</h3>
-               <span className="px-4 py-0.5 bg-emerald-100 text-emerald-600 text-[12px] font-black rounded-lg uppercase tracking-widest border border-emerald-200">专属私密</span>
+               <h3 className="text-xl font-black text-slate-800 tracking-tight">{t('salarySlip')}</h3>
+               <span className="px-4 py-0.5 bg-emerald-100 text-emerald-600 text-[12px] font-black rounded-lg uppercase tracking-widest border border-emerald-200">{t('privateAndConfidential')}</span>
             </div>
             <div className="bg-white border border-slate-200 rounded-[32px] p-6 shadow-sm">
                {salaries.length === 0 ? (
-                  <div className="py-10 text-center text-slate-400  font-medium">暂无发放记录</div>
+                  <div className="py-10 text-center text-slate-400  font-medium">{t('noPaymentRecords')}</div>
                ) : (
                   <div className="space-y-4">
                     {salaries.slice(0, 3).map(s => (
                        <div key={s.id} className="flex justify-between items-center border-b border-slate-50 pb-4 last:border-0 last:pb-0">
                           <div>
                              <div className="text-sm font-black text-slate-800">{s.year}-{s.month}</div>
-                             <div className="text-[14px] text-slate-400">已结算</div>
+                             <div className="text-[14px] text-slate-400">{t('settled')}</div>
                           </div>
                           <div className="text-right">
                              <div className="text-sm font-black text-indigo-600">Rp {s.total.toLocaleString()}</div>
@@ -158,8 +158,8 @@ export default function StaffPortal() {
          {/* 3. 我的奖惩与申诉 (重点) */}
          <section className="space-y-4 md:col-span-2">
             <div className="flex justify-between items-center px-4">
-               <h3 className="text-xl font-black text-slate-800 tracking-tight">奖惩历史与记录</h3>
-               <span className="px-4 py-0.5 bg-indigo-100 text-indigo-600 text-[12px] font-black rounded-lg uppercase tracking-widest">异常申诉中心</span>
+               <h3 className="text-xl font-black text-slate-800 tracking-tight">{t('rewardHistory')}</h3>
+               <span className="px-4 py-0.5 bg-indigo-100 text-indigo-600 text-[12px] font-black rounded-lg uppercase tracking-widest">{t('appealCenter')}</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                {rewards.length === 0 ? (
