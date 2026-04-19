@@ -145,7 +145,7 @@ export default function DeliverySettings() {
         <div className="bg-white p-10 rounded-[48px] border border-slate-200 shadow-sm space-y-8">
           <div className="flex justify-between items-start">
             <h4 className="text-xl font-black text-slate-800">{t('globalPriceCenter')}</h4>
-            <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[14px] font-black rounded-full uppercase tracking-widest">Base Layer</span>
+            <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[14px] font-black rounded-full uppercase tracking-widest">{t('baseLayer')}</span>
           </div>
           
           <div className="space-y-8">
@@ -184,7 +184,7 @@ export default function DeliverySettings() {
           <div className="relative z-10">
             <div className="flex justify-between items-start">
                <h4 className="text-xl font-black text-white">{t('categoryMarkup')}</h4>
-               <span className="px-3 py-1 bg-white/10 text-white/60 text-[14px] font-black rounded-full uppercase tracking-widest border border-white/10">Priority Override</span>
+               <span className="px-3 py-1 bg-white/10 text-white/60 text-[14px] font-black rounded-full uppercase tracking-widest border border-white/10">{t('priorityOverride')}</span>
             </div>
             <p className="text-[14px] text-slate-400 font-medium mt-2">{t('categoryMarkupDesc')}</p>
           </div>

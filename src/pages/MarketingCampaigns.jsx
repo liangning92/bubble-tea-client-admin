@@ -17,7 +17,7 @@ export default function MarketingCampaigns({ hideHeader }) {
          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
              <h3 className="text-h2">{tl('Marketing Campaigns', '全链路营销活动执行')}</h3>
-             <p className="text-label-caps mt-1">Lifecycle event orchestration & outcome auditing</p>
+             <p className="text-label-caps mt-1">{t('lifecycleOrchestration')}</p>
           </div>
           <button className="btn-premium active !bg-slate-900 !text-white !px-8 border-none shadow-xl shadow-slate-900/10 !scale-100 hover:!scale-105 transition-all">
             {tl('Mulai Campaign Baru', '策划新活动')}

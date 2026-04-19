@@ -37,14 +37,14 @@ export default function SupplierManagement() {
                <input className="input" placeholder="Contact Person" value={form.contact} onChange={e => setForm({...form, contact: e.target.value})} />
                <input className="input" placeholder="Phone" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} required />
                <select className="input" value={form.category} onChange={e => setForm({...form, category: e.target.value})}>
-                  <option value="Tea">Tea Leaves</option>
-                  <option value="Dairy">Dairy & Milk</option>
-                  <option value="Syrup">Syrup & Toppings</option>
-                  <option value="Packaging">Packaging</option>
+                  <option value="Tea">{t('teaLeaves')}</option>
+                  <option value="Dairy">{t('dairyMilk')}</option>
+                  <option value="Syrup">{t('syrupToppings')}</option>
+                  <option value="Packaging">{t('packaging')}</option>
                </select>
                <div className="lg:col-span-4 flex gap-2">
-                  <button type="submit" className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold">Save Supplier</button>
-                  <button type="button" onClick={() => setShowAdd(false)} className="px-6 py-3 bg-white text-slate-500 rounded-xl font-bold">Cancel</button>
+                  <button type="submit" className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold">{t('saveSupplier')}</button>
+                  <button type="button" onClick={() => setShowAdd(false)} className="px-6 py-3 bg-white text-slate-500 rounded-xl font-bold">{t('cancel')}</button>
                </div>
             </form>
          </div>

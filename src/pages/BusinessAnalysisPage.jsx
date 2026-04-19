@@ -92,7 +92,7 @@ export default function BusinessAnalysisPage() {
                 </div>
                 <div className="card-premium">
                     <p className="text-label-caps mb-4">{t('totalOrders')}</p>
-                    <div className="text-3xl font-black text-slate-900 tracking-tighter">{data.orders} <span className="text-[14px] text-slate-400">Order</span></div>
+                    <div className="text-3xl font-black text-slate-900 tracking-tighter">{data.orders} <span className="text-[14px] text-slate-400">{t('order')}</span></div>
                 </div>
                 <div className="card-premium">
                     <p className="text-label-caps mb-4">{t('avgOrder')}</p>

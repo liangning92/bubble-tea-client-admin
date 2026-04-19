@@ -120,7 +120,7 @@ export default function ProfitPage() {
                    </div>
                    <div className="text-right">
                       <div className="text-[15px] font-black text-emerald-600">{p.margin}%</div>
-                      <div className="text-[10px] text-slate-300 font-black uppercase tracking-widest">Margin</div>
+                      <div className="text-[10px] text-slate-300 font-black uppercase tracking-widest">{t('margin')}</div>
                    </div>
                 </div>
               ))}

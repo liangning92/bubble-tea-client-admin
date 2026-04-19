@@ -58,9 +58,9 @@ export default function TranslationSettings() {
                  <option value="en">{t('langEnLong')}</option>
               </select>
               <select className="input" value={form.category} onChange={e => setForm({...form, category: e.target.value})}>
-                 <option value="UI">Universal UI</option>
-                 <option value="Product">Product Name</option>
-                 <option value="System">System Prompt</option>
+                 <option value="UI">{t('universalUI')}</option>
+                 <option value="Product">{t('productName')}</option>
+                 <option value="System">{t('systemPrompt')}</option>
               </select>
               <div className="lg:col-span-4 flex gap-2">
                  <button type="submit" className="flex-1 py-3 bg-blue-600 text-white rounded-xl font-bold">{t('saveMapping')}</button>
