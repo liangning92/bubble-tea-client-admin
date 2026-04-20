@@ -42,7 +42,7 @@ const PERMISSION_GROUPS = [
 ];
 
 // 新员工默认勾选的权限
-const DEFAULT_PERMISSIONS = ['pos_sales', 'inventory_view', 'hygiene_check', 'hygiene_record'];
+const DEFAULT_PERMISSIONS = ['pos_sales', 'inventory_view', 'attendance_view', 'salary_view', 'hygiene_check', 'hygiene_record', 'training_view'];
 
 export default function StaffPage({ defaultTab, hideHeader }) {
   const { t } = useAuth();
