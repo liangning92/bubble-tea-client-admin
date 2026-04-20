@@ -219,7 +219,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
               return (
               <tr key={s.id} className="hover:bg-slate-50 transition-all group">
                 <td className="p-4 font-black text-slate-900 text-[15px]">{s.name}</td>
-                <td className="p-4"><span className="px-5 py-1.5 bg-slate-100 rounded-lg text-[11px] font-black uppercase tracking-widest text-slate-500">{roles.find(r => r.value === (s.role || '').toLowerCase())?.label || s.role}</span></td>
+                <td className="p-4"><span className="px-5 py-1.5 bg-slate-100 rounded-lg text-[11px] font-black tracking-widest text-slate-500">{roles.find(r => r.value === (s.role || '').toLowerCase())?.label || s.role}</span></td>
                 <td className="p-4 text-right font-mono font-black text-slate-900 leading-none">
                    <span className="text-[10px] text-slate-300 mr-2 uppercase tracking-widest">{t('currencyIDR')}</span>
                    {parseFloat(s.baseSalary || 0).toLocaleString()}

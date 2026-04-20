@@ -2251,6 +2251,8 @@ demoStaffName: '梁宁 (店长)',
     quickActionsTab: '快捷按钮',
     paymentTab: '支付设置',
     receiptTab: '小票设置',
+    categoriesTab: '分类配置',
+    languageTab: '语言设置',
     otherTab: '其他设置',
     layoutMethod: '布局方式',
     gridLayout: '网格布局',
@@ -2266,6 +2268,14 @@ demoStaffName: '梁宁 (店长)',
     terminalId: '终端编号',
     quickActionsConfig: '快捷按钮配置',
     quickActionsConfigDesc: '设置左侧快捷操作按钮',
+    systemToolbar: '系统工具栏',
+    systemToolbarDesc: '控制收银端工具栏按钮的显示/隐藏',
+    hold: '挂单',
+    recall: '取单',
+    receipt: '小票',
+    report: '报表',
+    member: '会员',
+    shiftChange: '交接班',
     label: '标签',
     icon: '图标',
     enabled: '启用',
@@ -2540,6 +2550,8 @@ demoStaffName: '梁宁 (店长)',
     quickActionsTab: 'Quick Actions',
     paymentTab: 'Payment',
     receiptTab: 'Receipt',
+    categoriesTab: 'Categories',
+    languageTab: 'Language',
     otherTab: 'Other',
     layoutMethod: 'Layout',
     gridLayout: 'Grid Layout',
@@ -2555,6 +2567,14 @@ demoStaffName: '梁宁 (店长)',
     terminalId: 'Terminal ID',
     quickActionsConfig: 'Quick Actions Config',
     quickActionsConfigDesc: 'Configure left-side quick action buttons',
+    systemToolbar: 'System Toolbar',
+    systemToolbarDesc: 'Show/hide POS toolbar buttons',
+    hold: 'Hold Order',
+    recall: 'Recall Order',
+    receipt: 'Receipt',
+    report: 'Report',
+    member: 'Member',
+    shiftChange: 'Shift Change',
     label: 'Label',
     icon: 'Icon',
     enabled: 'Enabled',
@@ -3232,23 +3252,23 @@ demoStaffName: '梁宁 (店长)',
     addSupplier: 'Add Supplier',
     errorOccurred: 'An error occurred',
     ERR_NO_STORE: 'Failed to get store info',
-    perm_view: 'View',
-    perm_edit: 'Edit',
-    perm_delete: 'Delete',
-    perm_submit: 'Submit',
-    perm_review: 'Review',
-    perm_create: 'Create',
-    perm_export: 'Export',
-    perm_shelve: 'Shelve',
-    perm_calculate: 'Calculate',
-    perm_config: 'Config',
-    perm_npwp: 'NPWP',
-    perm_pb1: 'PB1',
-    perm_audit: 'Audit',
-    perm_record: 'Record',
-    perm_alerts: 'Alerts',
-    perm_reimbursement: 'Reimbursement',
-    perm_stream: 'Stream',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     successGeneric: 'Success',
     clockInSuccess: 'Clock in successful!',
     enterDesc: 'Please enter SOP details',
@@ -3637,23 +3657,23 @@ demoStaffName: '梁宁 (店长)',
     staff: 'Staff',
     // Global Error Toast
     errorOccurred: 'Error Occurred',
-    perm_view: 'Lihat',
-    perm_edit: 'Edit',
-    perm_delete: 'Hapus',
-    perm_submit: 'Kirim',
-    perm_review: 'Tinjau',
-    perm_create: 'Buat',
-    perm_export: 'Ekspor',
-    perm_shelve: 'Pajang',
-    perm_calculate: 'Hitung',
-    perm_config: 'Konfigurasi',
-    perm_npwp: 'NPWP',
-    perm_pb1: 'PB1',
-    perm_audit: 'Audit',
-    perm_record: 'Rekam',
-    perm_alerts: 'Peringatan',
-    perm_reimbursement: 'Ganti Rugi',
-    perm_stream: 'Stream',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     unhandledPromiseError: 'Unhandled Promise Error',
     notConfigured: 'Not Configured',
     close: 'Close',
@@ -4344,6 +4364,8 @@ demoStaffName: 'Liang Ning (Store Manager)',
     quickActionsTab: 'Aksi Cepat',
     paymentTab: 'Pembayaran',
     receiptTab: 'Struk',
+    categoriesTab: 'Kategori',
+    languageTab: 'Bahasa',
     otherTab: 'Lainnya',
     layoutMethod: 'Metode Layout',
     gridLayout: 'Grid',
@@ -4359,6 +4381,14 @@ demoStaffName: 'Liang Ning (Store Manager)',
     terminalId: 'ID Terminal',
     quickActionsConfig: 'Konfigurasi Aksi Cepat',
     quickActionsConfigDesc: 'Atur tombol aksi cepat di kiri',
+    systemToolbar: 'Bilah Sistem',
+    systemToolbarDesc: 'Tampilkan/sembunyikan tombol bilah alat POS',
+    hold: 'Tunda',
+    recall: 'Panggil',
+    receipt: 'Struk',
+    report: 'Laporan',
+    member: 'Member',
+    shiftChange: 'Ganti Shift',
     label: 'Label',
     icon: 'Ikon',
     enabled: 'Aktif',

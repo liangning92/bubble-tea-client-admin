@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { api, useAuth } from "../context/AuthContext";
 
 const TABS = [
-  { id: "layout", label: "界面布局" },
-  { id: "quickActions", label: "快捷按钮" },
-  { id: "payment", label: "支付设置" },
-  { id: "receipt", label: "小票设置" },
-  { id: "categories", label: "分类配置" },
-  { id: "language", label: "语言设置" }
+  { id: "layout", label: "layoutTab" },
+  { id: "quickActions", label: "quickActionsTab" },
+  { id: "payment", label: "paymentTab" },
+  { id: "receipt", label: "receiptTab" },
+  { id: "categories", label: "categoriesTab" },
+  { id: "language", label: "languageTab" }
 ];
 
 const LANGUAGE_OPTIONS = [
