@@ -57,6 +57,16 @@ const DEFAULT_CONFIG = {
     showOrderNo: true,
     showDateTime: true,
     footerMessage: "欢迎下次光临"
+  },
+  // 系统工具栏按钮开关
+  systemActions: {
+    hold: true,
+    recall: true,
+    print: true,
+    report: true,
+    member: true,
+    attendance: true,
+    shift: true
   }
 };
 
@@ -253,9 +263,49 @@ export default function POSSettingsPage() {
 
         {/* Quick Actions Tab */}
         {activeTab === "quickActions" && (
-          <div className="space-y-4">
-            <h3 className="text-lg font-black text-slate-900 mb-4">{t('quickActionsConfig')}</h3>
-            <p className="text-sm text-slate-500 mb-4">{t('quickActionsConfigDesc')}</p>
+          <div className="space-y-6">
+            {/* 系统工具栏 */}
+            <div>
+              <h3 className="text-lg font-black text-slate-900 mb-2">{t('systemToolbar') || '系统工具栏'}</h3>
+              <p className="text-sm text-slate-500 mb-4">{t('systemToolbarDesc') || '控制收银端工具栏按钮的显示/隐藏'}</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {[
+                  { key: 'hold', icon: '📋', label: t('hold') || '挂单' },
+                  { key: 'recall', icon: '📜', label: t('recall') || '取单' },
+                  { key: 'print', icon: '🖨️', label: t('receipt') || '小票' },
+                  { key: 'report', icon: '📊', label: t('report') || '报表' },
+                  { key: 'member', icon: '👤', label: t('member') || '会员' },
+                  { key: 'attendance', icon: '🔔', label: t('attendance') || '考勤' },
+                  { key: 'shift', icon: '🔄', label: t('shiftChange') || '交接班' },
+                ].map(btn => (
+                  <label
+                    key={btn.key}
+                    className={`flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${
+                      (config.systemActions || {})[btn.key] !== false
+                        ? 'border-orange-500 bg-orange-50'
+                        : 'border-slate-200 bg-slate-50 opacity-50'
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={(config.systemActions || {})[btn.key] !== false}
+                      onChange={e => {
+                        const sa = { ...(config.systemActions || {}), [btn.key]: e.target.checked };
+                        updateConfig('systemActions', sa);
+                      }}
+                      className="w-5 h-5 accent-orange-600"
+                    />
+                    <span className="text-xl">{btn.icon}</span>
+                    <span className="font-bold text-sm">{btn.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* 快捷按钮 */}
+            <div>
+              <h3 className="text-lg font-black text-slate-900 mb-2">{t('quickActionsConfig')}</h3>
+              <p className="text-sm text-slate-500 mb-4">{t('quickActionsConfigDesc')}</p>
             <div className="space-y-3">
               {(config.quickActions || []).map((action, index) => (
                 <div key={action.id} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl">
@@ -304,6 +354,8 @@ export default function POSSettingsPage() {
                 </div>
               ))}
             </div>
+            </div>
+
             <button
               onClick={() => addArrayItem("quickActions", { id: Date.now(), label: t('newButton'), icon: "⭐", enabled: true, color: "gray" })}
               className="mt-4 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-all"

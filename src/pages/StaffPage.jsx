@@ -95,7 +95,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
     const submitData = {
       ...form,
       baseSalary: parseFloat(cleanSalary) || 0,
-      position: form.position || roles.find(r => r.value === form.role)?.label || form.role,
+      position: form.position || roles.find(r => r.value === (form.role || '').toLowerCase())?.label || form.role,
       ...(password ? { password } : {})
     };
 
@@ -219,7 +219,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
               return (
               <tr key={s.id} className="hover:bg-slate-50 transition-all group">
                 <td className="p-4 font-black text-slate-900 text-[15px]">{s.name}</td>
-                <td className="p-4"><span className="px-5 py-1.5 bg-slate-100 rounded-lg text-[11px] font-black uppercase tracking-widest text-slate-500">{roles.find(r => r.value === s.role)?.label || s.role}</span></td>
+                <td className="p-4"><span className="px-5 py-1.5 bg-slate-100 rounded-lg text-[11px] font-black uppercase tracking-widest text-slate-500">{roles.find(r => r.value === (s.role || '').toLowerCase())?.label || s.role}</span></td>
                 <td className="p-4 text-right font-mono font-black text-slate-900 leading-none">
                    <span className="text-[10px] text-slate-300 mr-2 uppercase tracking-widest">{t('currencyIDR')}</span>
                    {parseFloat(s.baseSalary || 0).toLocaleString()}
@@ -262,7 +262,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
                 <div className="grid grid-cols-3 gap-4">
                    <div className="space-y-2">
                       <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('role')}</label>
-                      <select className="w-full h-11 bg-slate-50 rounded-xl px-3 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all appearance-none cursor-pointer text-sm" value={form.role} onChange={e => setForm({ ...form, role: e.target.value })}>
+                      <select className="w-full h-11 bg-slate-50 rounded-xl px-3 font-black text-slate-900 outline-none border-2 border-transparent focus:border-slate-900 transition-all appearance-none cursor-pointer text-sm" value={(form.role || '').toLowerCase()} onChange={e => setForm({ ...form, role: e.target.value })}>
                         {roles.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
                       </select>
                    </div>
