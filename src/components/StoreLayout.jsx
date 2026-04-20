@@ -1,12 +1,13 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import SidebarLayout from './SidebarLayout';
 import DashboardHeaderAlert from './DashboardHeaderAlert';
 import { useAuth } from '../context/AuthContext';
 
 export default function StoreLayout() {
-  const { canAccess, t, permissions } = useAuth();
+  const { canAccess, t, permissions, lang } = useAuth();
 
   // 严格遵循 i18n.js 原始规划：首页, 库存管理, 利润管理, 人员管理, 营销管理, 系统设置
+  // 注意：不使用useMemo缓存，确保lang变化时菜单标签同步更新
   const allMenuItems = [
     { path: '/', label: t('nav.home'), icon: '🏠', module: 'always_visible' },
     { path: '/inventory', label: t('nav.inventory'), icon: '📦', module: 'inventory' },
@@ -17,15 +18,14 @@ export default function StoreLayout() {
     { path: '/settings', label: t('nav.settings'), icon: '⚙️', module: 'system' },
   ];
 
-  const filteredMenu = useMemo(() => {
-    return allMenuItems.filter(item => {
-      if (item.module === 'always_visible') return true;
-      if (Array.isArray(item.module)) {
-        return item.module.some(m => canAccess(permissions, m));
-      }
-      return canAccess(permissions, item.module);
-    });
-  }, [permissions, canAccess]);
+  // 直接计算不过滤（无性能问题），确保lang变化时重新求值
+  const filteredMenu = allMenuItems.filter(item => {
+    if (item.module === 'always_visible') return true;
+    if (Array.isArray(item.module)) {
+      return item.module.some(m => canAccess(permissions, m));
+    }
+    return canAccess(permissions, item.module);
+  });
 
   return (
     <SidebarLayout 
