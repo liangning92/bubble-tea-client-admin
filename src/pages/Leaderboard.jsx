@@ -30,7 +30,7 @@ export default function Leaderboard({ hideHeader }) {
 
   useEffect(() => { loadData(); }, []);
 
-  if (loading) return <div className="py-24 text-center text-label-caps animate-pulse">Calculating Performance Matrix...</div>;
+  if (loading) return <div className="py-24 text-center text-label-caps animate-pulse">{t('calculatingPerformanceMatrix')}</div>;
 
   return (
     <div className="space-y-5 animate-soft text-slate-900">
@@ -38,7 +38,7 @@ export default function Leaderboard({ hideHeader }) {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-4">
           <div>
             <h3 className="text-h2">🏆 {t('leaderboardTitle')}</h3>
-            <p className="text-label-caps mt-1">Multi-dimensional Performance Leaderboard</p>
+            <p className="text-label-caps mt-1">{t('leaderboardSubtitle')}</p>
           </div>
           <div className="flex gap-4">
              <button className="px-4 py-3.5 bg-slate-50 text-slate-400 text-[14px] font-black uppercase tracking-widest border border-slate-100 rounded-xl hover:bg-slate-100 transition-all">{t('ruleSettings')}</button>

@@ -24,8 +24,8 @@ export default function AttendancePage() {
       } else {
         // API error or non-array response — use demo data
         setRecords([
-          { id: 1, name: '梁宁 (店长)', date: '2024-04-14', in: '09:00', out: '21:05', status: '正常', photo: '✅ 环境图已验' },
-          { id: 2, name: '收银员 A', date: '2024-04-14', in: '10:15', out: '18:10', status: '迟到', photo: '❌ 缺卫生图' },
+          { id: 1, name: t('demoStaffName') || '梁宁 (店长)', date: '2024-04-14', in: '09:00', out: '21:05', status: t('statusNormal') || '正常', photo: t('photoVerified') || '✅ 环境图已验' },
+          { id: 2, name: t('demoCashierName') || '收银员 A', date: '2024-04-14', in: '10:15', out: '18:10', status: t('statusLate') || '迟到', photo: t('photoMissing') || '❌ 缺卫生图' },
         ]);
       }
     } catch (e) {

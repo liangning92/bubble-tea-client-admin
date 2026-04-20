@@ -97,7 +97,7 @@ export default function PosTerminalPage() {
       <div className="w-24 bg-slate-900 border-r border-slate-800 flex flex-col items-center py-6 gap-4 overflow-y-auto no-scrollbar">
          {categories.map(cat => (
            <button key={cat} onClick={() => setActiveCategory(cat)} className={`w-16 h-16 rounded-2xl flex items-center justify-center text-[12px] font-black uppercase text-center px-1 transition-all ${activeCategory === cat ? 'bg-orange-600 text-white' : 'bg-slate-800 text-slate-500 hover:text-slate-300'}`}>
-              {cat}
+              <BusinessDataTranslator text={cat} />
            </button>
          ))}
       </div>

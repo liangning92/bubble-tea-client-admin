@@ -7,8 +7,8 @@ import { QRCodeCanvas } from 'qrcode.react';
 export default function POSPage() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState(['全部']);
-  const [activeCategory, setActiveCategory] = useState('全部');
+  const [categories, setCategories] = useState([t('all')]);
+  const [activeCategory, setActiveCategory] = useState(t('all'));
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
   const [successModal, setSuccessModal] = useState(null); // { name, code, orderNo }
@@ -92,7 +92,7 @@ export default function POSPage() {
       setProducts(list);
       localStorage.setItem('pos_offline_products', JSON.stringify(list)); // 离线缓存
 
-      const cats = ['全部', ...new Set(list.map(p => p.category || '其它'))];
+      const cats = [t('all'), ...new Set(list.map(p => p.category || t('other')))];
       setCategories(cats);
     } catch (err) {
       console.warn("网络异常，启用离线菜谱兜底:", err);
@@ -101,7 +101,7 @@ export default function POSPage() {
       if (cached) {
         const list = JSON.parse(cached);
         setProducts(list);
-        setCategories(['全部', ...new Set(list.map(p => p.category || '其它'))]);
+        setCategories([t('all'), ...new Set(list.map(p => p.category || t('other')))]);
         window.dispatchEvent(new CustomEvent('app:notification', { detail: { type: 'warning', message: '已切换至离线模式' } }));
       } else {
         window.dispatchEvent(new CustomEvent('app:error', { detail: { message: '首次加载需联网拉取商品', type: 'network' } }));
@@ -139,9 +139,9 @@ export default function POSPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const filteredProducts = activeCategory === '全部' 
+  const filteredProducts = activeCategory === t('all') 
     ? products 
-    : products.filter(p => (p.category || '其它') === activeCategory);
+    : products.filter(p => (p.category || t('other')) === activeCategory);
 
   const addToCart = (product) => {
     setCart(prev => {
@@ -351,7 +351,7 @@ export default function POSPage() {
                   : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-indigo-600 border border-slate-200'
               }`}
             >
-              {cat}
+              <BusinessDataTranslator text={cat} />
             </button>
           ))}
         </div>

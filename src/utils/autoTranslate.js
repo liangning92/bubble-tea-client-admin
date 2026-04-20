@@ -118,7 +118,31 @@ const reverseDictionary = {
   '半糖': 'Half Sugar',
   '大杯': 'Large',
   '中杯': 'Medium',
-  '小杯': 'Small'
+  '小杯': 'Small',
+  // 产品名称
+  '大红袍': 'Teh Hongpao',
+  '奶茶': 'Milk Tea',
+  '全部': 'Semua',
+  '波霸': 'Boba',
+  '珍珠奶茶': 'Boba Milk Tea',
+  '柠檬': 'Lemon',
+  '橙汁': 'Orange Juice',
+  '椰果': 'Coconut Jelly',
+  '仙草': 'Cincau',
+  '布丁': 'Pudding',
+  '奶盖': 'Cheese Foam',
+  '乌龙': 'Oolong',
+  '茉莉': 'Jasmine',
+  '拿铁': 'Latte',
+  '卡布奇诺': 'Cappuccino',
+  // 卫生任务翻译
+  '稳定性测试任务': 'Tugas Uji Stabilitas',
+  '开店前置': 'Tahap Pembukaan',
+  '操作间环境深度清洁': 'Pembersihan Mendalam Area Kerja',
+  '制冰机滤网': 'Saringan Mesin Es',
+  '水池无积水核查': 'Periksa Tanpa Genangan Air',
+  '吧台台面': 'Meja Bar',
+  '已更新': 'Sudah Diperbarui',
 };
 
 // 自动生成剩余的单词映射

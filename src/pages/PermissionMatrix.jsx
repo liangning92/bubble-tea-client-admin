@@ -174,7 +174,7 @@ function PermissionMatrixView({ matrix, modules, roles }) {
                           ) : (
                             perms.map(p => (
                               <span key={p} className="inline-block bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-wider px-4 py-1 rounded-lg">
-                                {p.split('.')[1] || p}
+                                {t(`perm_${p.split('.')[1] || p}`) || p.split('.')[1] || p}
                               </span>
                             ))
                           )}
@@ -346,6 +346,8 @@ const MODULE_LABELS = (t) => ({
   supplier: t('moduleSupplier'),
   system: t('moduleSystem'),
   hygiene: t('moduleHygiene'),
+  alerts: t('moduleAlerts'),
+  reimbursement: t('moduleReimbursement'),
 });
 
 // Group permissions by module (prefix before the dot)

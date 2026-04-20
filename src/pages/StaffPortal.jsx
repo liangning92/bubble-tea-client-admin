@@ -88,7 +88,7 @@ export default function StaffPortal() {
               className="mt-8 px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl flex items-center gap-3 shadow-lg shadow-indigo-500/30 transition-all active:scale-95"
             >
               <span className="text-2xl">📸</span>
-              {showScanner ? "关闭扫描仪" : "扫码打卡 (Clock In)"}
+              {showScanner ? t('closeScanner', '关闭扫描仪') : t('clockIn', '扫码打卡')}
             </button>
          </div>
          <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 blur-[120px] rounded-full -mr-32 -mt-32"></div>

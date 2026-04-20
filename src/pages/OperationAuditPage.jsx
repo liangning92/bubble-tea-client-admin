@@ -19,6 +19,12 @@ export default function OperationAuditPage() {
     { key: 'protocol', label: t('hygieneProtocol', '标准协议') }
   ];
 
+  // Map frequency value to i18n key
+  const freqLabel = (freq) => {
+    const map = { daily: 'freq_daily', weekly: 'freq_weekly', monthly: 'freq_monthly' };
+    return t(map[freq] || freq);
+  };
+
   // 映射后端字段到前端
   const mapTaskFromApi = (task) => ({
     id: task.id,
@@ -68,9 +74,9 @@ export default function OperationAuditPage() {
   const handleAddTask = () => {
     const newTask = {
       id: `temp_${Date.now()}`,
-      title: t('newTask', '新任务名称 / New Task Name'),
-      desc: t('enterDesc', '请在此输入标准作业描述 / Enter SOP details...'),
-      deadline: 'daily',
+      title: t('newTask'),
+      desc: t('enterDesc'),
+      deadline: 'freq_daily',
       shift: 'morning',
       time: new Date().toISOString(),
       status: '待反馈',
@@ -196,10 +202,10 @@ export default function OperationAuditPage() {
                <div className="space-y-4">
                   <div className="flex justify-between items-start">
                      <span className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-slate-900 group-hover:text-white transition-all text-slate-300">📋</span>
-                     <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-white px-3 py-1 rounded-full">{task.deadline}</span>
+                     <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-white px-3 py-1 rounded-full">{freqLabel(task.deadline)}</span>
                   </div>
-                  <h4 className="text-[18px] font-black text-slate-900 tracking-tighter">{task.title}</h4>
-                  <p className="text-[13px] text-slate-400 font-bold leading-relaxed line-clamp-3">{task.desc}</p>
+                  <h4 className="text-[18px] font-black text-slate-900 tracking-tighter">{t(task.title)}</h4>
+                  <p className="text-[13px] text-slate-400 font-bold leading-relaxed line-clamp-3">{t(task.desc)}</p>
                </div>
                <div className="pt-6 border-t border-slate-50 flex justify-between items-center mt-6">
                   <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{t('tapToEdit')}</span>
