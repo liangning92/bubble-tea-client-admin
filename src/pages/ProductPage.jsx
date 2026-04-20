@@ -234,15 +234,15 @@ export default function ProductPage() {
                 <div className="grid grid-cols-3 gap-3">
                    <div>
                       <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">{t('chineseName')} *</label>
-                      <input className="input-premium" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder="如：波霸奶茶" />
+                      <input className="input-premium" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder={t('enterProductName')} />
                    </div>
                    <div>
                       <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">🇬🇧 {t('langEN')}</label>
-                      <input className="input-premium" value={form.nameEn} onChange={e => setForm({...form, nameEn: e.target.value})} placeholder="如：Boba Milk Tea" />
+                      <input className="input-premium" value={form.nameEn} onChange={e => setForm({...form, nameEn: e.target.value})} placeholder={t('enterProductNameEn')} />
                    </div>
                    <div>
                       <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">🇮🇩 {t('langID')}</label>
-                      <input className="input-premium" value={form.nameId} onChange={e => setForm({...form, nameId: e.target.value})} placeholder="如：Teh Susu Boba" />
+                      <input className="input-premium" value={form.nameId} onChange={e => setForm({...form, nameId: e.target.value})} placeholder={t('enterProductNameId')} />
                    </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -253,11 +253,11 @@ export default function ProductPage() {
                    <div>
                       <label className="text-[14px] font-black text-slate-400 uppercase mb-2 block">{t('categoryLabel')}</label>
                       <select className="input-premium" value={form.category} onChange={e => setForm({...form, category: e.target.value})}>
-                        <option value="奶茶">{t('catMilktea')}</option>
-                        <option value="果茶">{t('catFruitTea')}</option>
-                        <option value="纯茶">{t('catPureTea')}</option>
-                        <option value="零食">{t('catSnack')}</option>
-                        <option value="其它">{t('catOther')}</option>
+                        <option value="Milk Tea">{t('catMilktea')}</option>
+                        <option value="Fruit Tea">{t('catFruitTea')}</option>
+                        <option value="Pure Tea">{t('catPureTea')}</option>
+                        <option value="Snack">{t('catSnack')}</option>
+                        <option value="Other">{t('catOther')}</option>
                       </select>
                    </div>
                 </div>
