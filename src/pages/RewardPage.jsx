@@ -23,8 +23,7 @@ export default function RewardPage() {
     try {
       const [rewardData, staffData] = await Promise.all([
         api('GET', '/staff/rewards'),
-        api('GET', '/staff/users')
-      ]);
+        api('GET', '/staff')      ]);
       setRewards(Array.isArray(rewardData) ? rewardData : (rewardData?.data || []));
       setStaffList(Array.isArray(staffData) ? staffData : (staffData?.data || []));
     } catch (e) {
@@ -169,7 +168,7 @@ export default function RewardPage() {
                      required
                    >
                      <option value="">{t('selectStaff')}</option>
-                     {staffList.map(s => <option key={s.id} value={s.id}>{s.username}</option>)}
+                     {staffList.map(s => <option key={s.id} value={s.userId || s.id}>{s.name}</option>)}
                    </select>
                 </div>
 

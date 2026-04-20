@@ -3,41 +3,41 @@ import { useAuth, api } from '../context/AuthContext';
 
 // 按模块分组的权限配置 [groupKey, icon, [[labelKey, viewKey, editKey/null]]]
 const PERMISSION_GROUPS = [
-  { group: 'perm.cashier', icon: '🖥️', permissions: [
-      ['perm.cashierLogin', 'pos_sales', null],
+  { group: 'perm_cashier', icon: '🖥️', permissions: [
+      ['perm_cashierLogin', 'pos_sales', null],
   ]},
-  { group: 'perm.inventory', icon: '📦', permissions: [
-      ['perm.view', 'inventory_view', 'inventory_edit'],
+  { group: 'perm_inventory', icon: '📦', permissions: [
+      ['perm_view', 'inventory_view', 'inventory_edit'],
   ]},
-  { group: 'perm.product', icon: '🧋', permissions: [
-      ['perm.view', 'products_view', 'products_edit'],
-      ['perm.shelve', 'products_shelve', null],
+  { group: 'perm_product', icon: '🧋', permissions: [
+      ['perm_view', 'products_view', 'products_edit'],
+      ['perm_shelve', 'products_shelve', null],
   ]},
-  { group: 'perm.profit', icon: '💰', permissions: [
-      ['perm.view', 'profit_view', null],
-      ['perm.export', 'profit_export', null],
+  { group: 'perm_profit', icon: '💰', permissions: [
+      ['perm_view', 'profit_view', null],
+      ['perm_export', 'profit_export', null],
   ]},
-  { group: 'perm.attendance', icon: '📅', permissions: [
-      ['perm.view', 'attendance_view', 'attendance_edit'],
-      ['perm.scheduleEdit', 'schedule_edit', null],
+  { group: 'perm_attendance', icon: '📅', permissions: [
+      ['perm_view', 'attendance_view', 'attendance_edit'],
+      ['perm_scheduleEdit', 'schedule_edit', null],
   ]},
-  { group: 'perm.payroll', icon: '💳', permissions: [
-      ['perm.view', 'salary_view', null],
-      ['perm.rewardRecord', 'reward_edit', null],
+  { group: 'perm_payroll', icon: '💳', permissions: [
+      ['perm_view', 'salary_view', null],
+      ['perm_rewardRecord', 'reward_edit', null],
   ]},
-  { group: 'perm.hygiene', icon: '🧹', permissions: [
-      ['perm.view', 'hygiene_view', 'hygiene_record'],
-      ['perm.executeCheck', 'hygiene_check', null],
+  { group: 'perm_hygiene', icon: '🧹', permissions: [
+      ['perm_view', 'hygiene_view', 'hygiene_record'],
+      ['perm_executeCheck', 'hygiene_check', null],
   ]},
-  { group: 'perm.training', icon: '📚', permissions: [
-      ['perm.view', 'training_view', 'training_edit'],
+  { group: 'perm_training', icon: '📚', permissions: [
+      ['perm_view', 'training_view', 'training_edit'],
   ]},
-  { group: 'perm.marketing', icon: '🚀', permissions: [
-      ['perm.view', 'marketing_view', 'marketing_edit'],
+  { group: 'perm_marketing', icon: '🚀', permissions: [
+      ['perm_view', 'marketing_view', 'marketing_edit'],
   ]},
-  { group: 'perm.system', icon: '⚙️', permissions: [
-      ['perm.view', 'system_view', null],
-      ['perm.merchantConfig', 'system_config', null],
+  { group: 'perm_system', icon: '⚙️', permissions: [
+      ['perm_view', 'system_view', null],
+      ['perm_merchantConfig', 'system_config', null],
   ]},
 ];
 
@@ -51,7 +51,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
   const [editId, setEditId] = useState(null);
   const [toast, setToast] = useState(null);
   const [showPermissions, setShowPermissions] = useState(false);
-  const [tempPassword, setTempPassword] = useState('');
+  const [visiblePasswords, setVisiblePasswords] = useState({});
   const [resetPasswordId, setResetPasswordId] = useState(null);
 
   const [form, setForm] = useState({
@@ -88,6 +88,10 @@ export default function StaffPage({ defaultTab, hideHeader }) {
     return Math.random().toString().slice(2, 8).padStart(6, '0');
   }
 
+  function togglePassword(id) {
+    setVisiblePasswords(prev => ({ ...prev, [id]: !prev[id] }));
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     const cleanSalary = String(form.baseSalary).replace(/[^\d]/g, '');
@@ -107,12 +111,42 @@ export default function StaffPage({ defaultTab, hideHeader }) {
       if (res && !res.error) {
         setShowForm(false);
         loadData();
-        if (password) setTempPassword(password);
+        if (password && res && res.id) setVisiblePasswords(prev => ({ ...prev, [res.id]: true }));
         showToast(editId ? t('saveSuccess') : t('staffCreated'));
       } else {
         showToast(res?.error?.startsWith('ERR_') ? t(res.error) : (res?.error || t('serverError')), 'error');
       }
     } catch (e) {
+      showToast(t('networkError'), 'error');
+    }
+  }
+
+  async function handleTerminate(id) {
+    if (!confirm(t('confirmTerminate') || '确认将此人标记为离职？')) return;
+    try {
+      const res = await api('PUT', `/staff/${id}`, { status: 'terminated' });
+      if (res && !res.error) {
+        showToast(t('terminatedSuccess') || '已标记为离职', 'success');
+        loadData();
+      } else {
+        showToast(res?.error || t('serverError'), 'error');
+      }
+    } catch {
+      showToast(t('networkError'), 'error');
+    }
+  }
+
+  async function handleDeleteStaff(id) {
+    if (!confirm(t('confirmDeleteStaff') || '彻底删除该员工？此操作不可恢复！')) return;
+    try {
+      const res = await api('DELETE', `/staff/${id}`);
+      if (res && !res.error) {
+        showToast(t('deleteSuccess') || '已删除', 'success');
+        loadData();
+      } else {
+        showToast(res?.error || t('serverError'), 'error');
+      }
+    } catch {
       showToast(t('networkError'), 'error');
     }
   }
@@ -139,7 +173,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
       hireDate: s.hireDate ? s.hireDate.split('T')[0] : new Date().toISOString().split('T')[0],
       status: s.status || 'active', permissions: perms, salaryView: s.salaryView || 'all',
     });
-    setTempPassword('');
+    setVisiblePasswords({});
     setEditId(s.id);
     setShowForm(true);
     setShowPermissions(false);
@@ -147,7 +181,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
 
   function openAddForm() {
     setForm({ name: '', phone: '', role: 'barista', position: '', baseSalary: '', hireDate: new Date().toISOString().split('T')[0], status: 'active', permissions: [...DEFAULT_PERMISSIONS], salaryView: 'all' });
-    setTempPassword('');
+    setVisiblePasswords({});
     setShowPermissions(false);
     setEditId(null);
     setShowForm(true);
@@ -209,7 +243,7 @@ export default function StaffPage({ defaultTab, hideHeader }) {
               <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">{t('rolePosition')}</th>
               <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">{t('baseSalary')}</th>
               <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('status')}</th>
-              <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('permissions')}</th>
+              <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">{t('loginPassword') || '登录密码'}</th>
               <th className="p-4 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">{t('actions')}</th>
             </tr>
           </thead>
@@ -224,12 +258,32 @@ export default function StaffPage({ defaultTab, hideHeader }) {
                    <span className="text-[10px] text-slate-300 mr-2 uppercase tracking-widest">{t('currencyIDR')}</span>
                    {parseFloat(s.baseSalary || 0).toLocaleString()}
                 </td>
-                <td className="p-4 text-center"><span className="px-5 py-3 bg-emerald-500 text-white rounded-full text-[11px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">{t('onDuty')}</span></td>
                 <td className="p-4 text-center">
-                  <span className="text-[11px] text-slate-400">{perms.length || 0} {t('permissions') || '项权限'}</span>
+                  {s.status === 'terminated' ? (
+                    <span className="px-5 py-3 bg-slate-200 text-slate-500 rounded-full text-[11px] font-black uppercase tracking-widest">{t('terminated') || '离职'}</span>
+                  ) : s.status === 'leave' ? (
+                    <span className="px-5 py-3 bg-yellow-100 text-yellow-600 rounded-full text-[11px] font-black uppercase tracking-widest">{t('onLeave') || '休假'}</span>
+                  ) : (
+                    <span className="px-5 py-3 bg-emerald-500 text-white rounded-full text-[11px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">{t('onDuty')}</span>
+                  )}
+                </td>
+                <td className="p-4 text-center">
+                  {s.loginPassword ? (
+                    visiblePasswords[s.id] ? (
+                      <span className="font-mono font-black text-orange-600 text-[13px] tracking-wider">{s.loginPassword}</span>
+                    ) : (
+                      <span className="font-mono text-slate-300 text-sm tracking-widest">····</span>
+                    )
+                  ) : (
+                    <span className="text-[10px] text-slate-300 italic">未开通</span>
+                  )}
                 </td>
                 <td className="p-4 text-right flex gap-2 justify-end">
-                    <button onClick={() => handleResetPassword(s.id)} className="px-3 py-2 border border-slate-100 rounded-xl text-[11px] font-bold text-slate-500 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200 transition-all" title={t('resetPassword')}>🔑</button>
+                    <button onClick={() => s.loginPassword ? togglePassword(s.id) : handleResetPassword(s.id)} className="px-3 py-2 border border-slate-100 rounded-xl text-[11px] font-bold text-slate-500 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200 transition-all" title={s.loginPassword ? (visiblePasswords[s.id] ? t('hidePassword') : t('showPassword')) : t('resetPassword')}>{s.loginPassword && visiblePasswords[s.id] ? '🙈' : '🔑'}</button>
+                    {s.status !== 'terminated' && (
+                      <button onClick={() => handleTerminate(s.id)} className="px-3 py-2 border border-slate-100 rounded-xl text-[11px] font-bold text-slate-500 hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200 transition-all" title={t('markTerminated') || '标记离职'}>{t('terminateLabel') || '离职'}</button>
+                    )}
+                    <button onClick={() => handleDeleteStaff(s.id)} className="px-3 py-2 border border-slate-100 rounded-xl text-[11px] font-bold text-slate-500 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-all" title={t('deleteStaff') || '删除员工'}>{t('deleteLabel') || '🗑'}</button>
                     <button onClick={() => handleEdit(s)} className="w-12 h-12 border border-slate-100 rounded-xl flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-sm text-xl">✏️</button>
                 </td>
               </tr>);
@@ -351,25 +405,6 @@ export default function StaffPage({ defaultTab, hideHeader }) {
         </div>
       )}
 
-      {/* 临时密码弹窗 */}
-      {tempPassword && (
-        <div className="fixed inset-0 z-[500] flex items-center justify-center p-6 bg-black/50">
-          <div className="bg-white rounded-3xl shadow-3xl w-full max-w-sm p-8 text-center">
-            <div className="text-5xl mb-4">🔑</div>
-            <h3 className="text-xl font-black mb-2">{t('tempPasswordTitle') || '员工账号已创建'}</h3>
-            <p className="text-slate-500 text-sm mb-6">{t('tempPasswordDesc') || '请将临时密码告知员工'}（员工登录时需要手机号+此密码）</p>
-            <div className="bg-slate-50 rounded-2xl p-4 mb-4">
-              <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1">{t('phone')}</div>
-              <div className="text-xl font-black text-slate-900">{form.phone}</div>
-            </div>
-            <div className="bg-orange-50 border-2 border-orange-200 rounded-2xl p-4 mb-6">
-              <div className="text-[10px] text-orange-400 uppercase tracking-widest mb-1">{t('tempPassword') || '临时密码'}</div>
-              <div className="text-4xl font-black text-orange-600 tracking-widest">{tempPassword}</div>
-            </div>
-            <button onClick={() => setTempPassword('')} className="w-full h-14 bg-slate-900 text-white rounded-2xl font-black text-[13px] uppercase tracking-widest">{t('confirm') || '确认'}</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

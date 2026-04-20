@@ -68,7 +68,8 @@ export default function SettingsHub() {
 }
 
 function SystemGeneralSettings() {
-  const { t } = useAuth();
+  const { t, lang } = useAuth();
+  const tl = (zh, en, id) => lang === 'zh' ? zh : lang === 'en' ? en : id;
   return (
     <div className="space-y-6 animate-soft text-slate-900">
        <div className="flex flex-col md:flex-row justify-end items-center gap-6">

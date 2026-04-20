@@ -14,12 +14,9 @@ export default function SchedulePage({ hideHeader }) {
     { id: 3, nameKey: 'shiftNight', startTime: '15:00', endTime: '00:00', color: '#10b981' }
   ]);
 
-  const [staffList] = useState([
-    { id: 1, name: '梁宁', roleKey: 'roleStoreManager' },
-    { id: 2, name: 'Staff A', roleKey: 'roleCashier' },
-    { id: 3, name: 'Barista B', roleKey: 'roleBarista' },
-    { id: 4, name: 'Logistics C', roleKey: 'roleLogistics' }
-  ]);
+  // 真实员工数据（从API加载）
+  const [staffList, setStaffList] = useState([]);
+  const [loadingStaff, setLoadingStaff] = useState(true);
 
   const [scheduleData, setScheduleData] = useState({});
 
@@ -42,8 +39,46 @@ export default function SchedulePage({ hideHeader }) {
     });
   }, [currentDate, lang]);
 
+  // 获取真实员工列表
+  useEffect(() => {
+    async function fetchStaff() {
+      try {
+        const res = await api('GET', '/staff');
+        if (res && Array.isArray(res)) {
+          // 角色映射：API角色值 -> roleKey
+          const roleKeyMap = {
+            manager: 'roleStoreManager',
+            store_manager: 'roleStoreManager',
+            cashier: 'roleCashier',
+            barista: 'roleBarista',
+            crew: 'roleLogistics',
+            logistics: 'roleLogistics',
+          };
+          // 过滤：在职员工，只取 active 状态
+          const activeStaff = res.filter(s => s.status !== 'terminated');
+          const mapped = activeStaff.map(s => {
+            // 去除 name 中的角色后缀，如 "李四 (Barista)" -> "李四"
+            const cleanName = s.name ? s.name.replace(/\s*\([^)]+\)\s*$/, '').trim() : s.name;
+            return {
+              id: s.id,
+              name: cleanName || s.phone || `员工${s.id}`,
+              roleKey: roleKeyMap[s.role?.toLowerCase()] || 'roleBarista',
+            };
+          });
+          setStaffList(mapped);
+        }
+      } catch (e) {
+        console.error('Failed to fetch staff list', e);
+      } finally {
+        setLoadingStaff(false);
+      }
+    }
+    fetchStaff();
+  }, []);
+
   // 实战数据初始化：强制排布下周班次
   useEffect(() => {
+    if (!staffList.length) return;
     const mock = {};
     staffList.forEach(staff => {
       currentWeekDays.forEach((day, idx) => {
@@ -52,7 +87,7 @@ export default function SchedulePage({ hideHeader }) {
       });
     });
     setScheduleData(mock);
-  }, [currentWeekDays]);
+  }, [currentWeekDays, staffList]);
 
   const handleShiftChange = (staffId, dateIso, val) => {
     setScheduleData(prev => ({ ...prev, [`${staffId}-${dateIso}`]: val }));
